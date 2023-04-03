@@ -2,72 +2,106 @@
 <html lang="en">
 
 <head>
-    @include('admin.head')
+    @include('ChuShop.head')
+
 </head>
 
-<body class="hold-transition register-page">
-    <div class="register-box">
-        <div class="register-logo">
-            <a href=""><b>Admin</b></a>
-        </div>
+<body>
 
-        <div class="card">
-            <div class="card-body register-card-body">
-                <p class="login-box-msg">Register a new membership</p>
-                @include('admin.alert')
-                <form action="/register_action" method="post">
-                    <div class="input-group mb-3">
-                        <input type="text" name="name" class="form-control" placeholder="Full name">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="email" name="email"class="form-control" placeholder="Email">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="password" name="password" class="form-control" placeholder="Password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="password" name="password_confirmation"class="form-control"
-                            placeholder="Retype password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-
-                        <!-- /.col -->
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Register</button>
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                    @csrf
-                </form>
+    <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
 
+    <main>
+
+        <!-- Section -->
+        <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
+            <div class="container">
+
+                <div class="row justify-content-center form-bg-image"
+                    data-background-lg="/template/chuShop/assets/img/illustrations/signin.svg">
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                            <div class="text-center text-md-center mb-4 mt-md-0">
+                                <h1 class="mb-0 h3">ĐĂNG KÝ </h1>
+                            </div>
+                            @include('admin.alert')
+                            <form action="register_action" class="mt-4" method="POST">
+                                <!-- Form -->
+                                <div class="form-group mb-4">
+                                    <label for="email">Họ và Tên</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon1">
+                                            <i class="fas fa-user"></i>
+                                        </span>
+                                        <input type="text" class="form-control" value="{{ old('name') }}"
+                                            placeholder="Nhập Họ và Tên" id="name" name="name" autofocus>
+                                    </div>
+                                    <label for="email">Email</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon1">
+                                            <i class="fas fa-envelope"></i>
+                                        </span>
+                                        <input type="email" class="form-control"value="{{ old('email') }}"
+                                            placeholder="Nhập Email" id="email" name="email" autofocus>
+                                    </div>
+                                </div>
+                                <!-- End of Form -->
+                                <div class="form-group">
+                                    <!-- Form -->
+                                    <div class="form-group mb-4">
+                                        <label for="password">Mật Khẩu</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon2">
+                                                <i class="fas fa-lock"></i>
+                                            </span>
+                                            <input type="password" placeholder="Nhập Mật Khẩu" class="form-control"
+                                                id="password" name="password">
+                                        </div>
+                                    </div>
+                                    <!-- End of Form -->
+                                    <!-- Form -->
+                                    <div class="form-group mb-4">
+                                        <label for="confirm_password">Xác Nhận Mật Khẩu</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon2">
+                                                <i class="fas fa-lock-open"></i>
+                                            </span>
+                                            <input type="password" placeholder="Nhập Lại Mật Khẩu" class="form-control"
+                                                id="confirm_password" name="confirm_password">
+                                        </div>
+                                    </div>
+                                    <!-- End of Form -->
+                                    <div class="mb-4">
+                                        <span class="fw-normal">
+                                            Bạn là một trung tâm dịch vụ?
+                                            <a href="/login" class="fw-bold">Hãy đến với chúng tôi</a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-gray-800">ĐĂNG KÝ</button>
+                                </div>
+                                @csrf
+                            </form>
+
+                            <div class="d-flex justify-content-center align-items-center mt-4">
+                                <span class="fw-normal">
+                                    Bạn đã có tài khoản ?
+                                    <a href="/login" class="fw-bold">Đăng nhập</a>
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- /.form-box -->
-        </div><!-- /.card -->
-    </div>
-    <!-- /.register-box -->
+        </section>
+    </main>
 
-    @include('admin.footer')
+    @include('ChuShop.footer')
+
+
+
 </body>
 
 </html>

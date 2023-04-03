@@ -22,6 +22,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->integer('role_id');
+            $table->boolean('trangthai')->default(1);
         });
     }
 

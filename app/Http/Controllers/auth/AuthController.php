@@ -23,7 +23,12 @@ class AuthController extends Controller
             'name' => 'required',
             'email' => 'required|email:filter',
             'password' => 'required',
-            'password_confirmation' => 'required|same:password',
+            'confirm_password' => 'required|same:password',
+        ], [
+            'email.required' => 'Bạn chưa nhập email',
+            'name.required' => 'Bạn chưa nhập tên',
+            'password.required' => 'Bạn chưa nhập mật khẩu',
+            'confirm_password.required' => 'Mật khẩu không trùng khớp',
         ]);
 
         $user = new User([
@@ -51,7 +56,7 @@ class AuthController extends Controller
             'password' => 'required',
         ], [
             'email.required' => 'Bạn chưa nhập email',
-            'password.required' => 'Bạn chưa nhập password',
+            'password.required' => 'Bạn chưa nhập mật khẩu',
         ]);
         $arr = [
             'email' => $request->email,
@@ -61,7 +66,7 @@ class AuthController extends Controller
         if (!$dataUser) {
             return redirect('login')->with('error', 'Tài khoản không tồn tại');
         }
-        if ($dataUser->status != 0) {
+        if ($dataUser->trangthai != 1) {
             return redirect('login')->with('error', 'Tài khoản của bạn đang bị khóa');
         }
         if ($dataUser->role_id == 1) {
@@ -71,7 +76,7 @@ class AuthController extends Controller
         }
         if ($dataUser->role_id == 2) {
             if (Auth::attempt($arr)) {
-                return redirect('chushop');
+                return redirect('ChuShop');
             }
         }
         if ($dataUser->role_id == 3) {

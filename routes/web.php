@@ -9,11 +9,13 @@ use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\ChuShop\MainCSController;
 use App\Http\Controllers\MainUserController;
 use App\Http\Controllers\MenuUserController;
 use App\Http\Controllers\ProductUserController;
 
 use App\Http\Controllers\auth\AuthController;
+
 
 Route::get('login', [AuthController::class, 'login'])->name('login');
 
@@ -69,13 +71,25 @@ Route::middleware(['auth'])->group(function () {
         Route::get('customers/view/{customer}', [CartController::class, 'show']);
 
         #Account
-        Route::get('chuShop', [AccController::class, 'chuShop']);
-        Route::get('khachhang', [AccController::class, 'khachhang']);
+        Route::prefix('accs')->group(function () {
+            Route::get('add', [AccController::class, 'create']);
+            Route::post('add', [AccController::class, 'store']);
+            Route::get('chuShop', [AccController::class, 'chuShop']);
+            Route::get('khachhang', [AccController::class, 'khachhang']);
+            Route::get('admin', [AccController::class, 'admin']);
+            Route::get('edit/{acc}', [AccController::class, 'show']);
+            Route::post('edit/{acc}', [AccController::class, 'update']);
+        });
     });
 });
 
+Route::middleware(['auth'])->group(function () {
 
+    Route::prefix('ChuShop')->group(function () {
 
+        Route::get('/', [MainCSController::class, 'index'])->name('ChuShop');
+    });
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [MainUserController::class, 'index']);

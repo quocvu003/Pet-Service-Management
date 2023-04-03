@@ -2,61 +2,90 @@
 <html lang="en">
 
 <head>
-    @include('admin.head')
+    @include('ChuShop.head')
 </head>
 
-<body class="hold-transition login-page">
-    <div class="login-box">
-        <!-- /.login-logo -->
-        <div class="card card-outline card-primary">
-            <div class="card-header text-center">
-                <a href="" class="h1"><b>ĐĂNG NHẬP</b></a>
-            </div>
-            <div class="card-body">
-                <p class="login-box-msg">Vui lòng đăng nhập để tiếp tục</p>
-                @include('admin.alert')
-                <form action="/login_action" method="post">
-                    <div class="input-group mb-3">
-                        <input type="email" name="email" class="form-control" placeholder="Email">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="password" name="password" class="form-control" placeholder="Password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" name="remember" id="remember">
-                                <label for="remember">
-                                    Lưu đăng nhập
-                                </label>
-                            </div>
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-8">
-                            <button type="submit" class="btn btn-primary btn-block">ĐĂNG NHẬP</button>
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                    @csrf
-                </form>
-            </div>
-            <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-    </div>
-    <!-- /.login-box -->
+<body>
+    <main>
 
-    @include('admin.footer')
+        <!-- Section -->
+        <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
+            <div class="container">
+                <p class="text-center">
+
+                </p>
+                <div class="row justify-content-center form-bg-image"
+                    data-background-lg="/template/chuShop/assets/img/illustrations/signin.svg">
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                            <div class="text-center text-md-center mb-4 mt-md-0">
+                                <h1 class="mb-0 h3">ĐĂNG NHẬP</h1>
+                            </div>
+                            @include('admin.alert')
+                            <form action="login_action" class="mt-4" method="POST">
+                                <!-- Form -->
+                                <div class="form-group mb-4">
+                                    <label for="email">Email</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon1">
+                                            <svg class="icon icon-xs text-gray-600" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z">
+                                                </path>
+                                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z">
+                                                </path>
+                                            </svg>
+                                        </span>
+                                        <input type="email" class="form-control" placeholder="Nhập email "
+                                            id="email" name="email" autofocus>
+                                    </div>
+                                </div>
+                                <!-- End of Form -->
+                                <div class="form-group">
+                                    <!-- Form -->
+                                    <div class="form-group mb-4">
+                                        <label for="password">Mật Khẩu</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon2">
+                                                <svg class="icon icon-xs text-gray-600" fill="currentColor"
+                                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd"
+                                                        d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                                        clip-rule="evenodd"></path>
+                                                </svg>
+                                            </span>
+
+                                            <input type="password" placeholder="Nhập mật khẩu" class="form-control"
+                                                id="password" name="password">
+
+                                        </div>
+                                    </div>
+                                    <!-- End of Form -->
+
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-gray-800">ĐĂNG NHẬP</button>
+                                </div>
+                                @csrf
+                            </form>
+
+                            <div class="d-flex justify-content-center align-items-center mt-4">
+                                <span class="fw-normal">
+                                    Bạn chưa có tài khoản ?
+                                    <a href="/register" class="fw-bold">Tạo tài khoản</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    @include('ChuShop.footer')
+
+
 </body>
 
 </html>
