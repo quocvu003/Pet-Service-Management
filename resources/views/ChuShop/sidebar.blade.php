@@ -17,12 +17,11 @@
         </div>
         <ul class="nav flex-column pt-3 pt-md-0">
             <li class="nav-item">
-                <a href="/template/chuShop/index.html" class="nav-link d-flex align-items-center">
+                <a href="/ChuShop" class="nav-link d-flex align-items-center">
                     <span class="sidebar-icon">
-                        <img src="/template/chuShop/assets/img/brand/light.svg" height="20" width="20"
-                            alt="Volt Logo">
+                        <img src="{{ $logo }}" height="60" width="60" alt="Volt Logo">
                     </span>
-                    <span class="mt-1 ms-1 sidebar-text">{{ $fullNameUser }}</span>
+                    <span class="mt-1 ms-1 sidebar-text" style="font-size: 30px">{{ $tenShop }}</span>
                 </a>
             </li>
             <li class="nav-item  active ">
@@ -75,7 +74,8 @@
                     <ul class="flex-column nav">
                         <li class="nav-item ">
                             <a class="nav-link" href="/template/chuShop/pages/tables/bootstrap-tables.html">
-                                <span class="sidebar-text">Danh Sách Dịch Vụ</span>
+                                <span class="sidebar-text">Danh Sách Dịch Vụ </span>
+
                             </a>
                         </li>
                     </ul>
@@ -94,7 +94,7 @@
                                 <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path>
                             </svg>
                         </span>
-                        <span class="sidebar-text">Đơn Hàng</span>
+                        <span class="sidebar-text">Đặt Lịch</span>
                     </span>
                     <span class="link-arrow">
                         <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
@@ -109,7 +109,7 @@
                     <ul class="flex-column nav">
                         <li class="nav-item">
                             <a class="nav-link" href="/template/chuShop/pages/examples/sign-in.html">
-                                <span class="sidebar-text">Danh Sách Đơn Hàng</span>
+                                <span class="sidebar-text">Danh Sách Đặt Lịch</span>
                             </a>
                         </li>
 
@@ -142,14 +142,9 @@
                 </span>
                 <div class="multi-level collapse " role="list" id="submenu-components" aria-expanded="false">
                     <ul class="flex-column nav">
-                        <li class="nav-item">
-                            <a class="nav-link" target="_blank"
-                                href="https://themesberg.com/docs/volt-bootstrap-5-dashboard/components/accordions/">
-                                <span class="sidebar-text">Thêm Nhân Viên</span>
-                            </a>
-                        </li>
+
                         <li class="nav-item ">
-                            <a class="nav-link" href="/template/chuShop/pages/components/buttons.html">
+                            <a class="nav-link" href="/ChuShop/nhanviens/list">
                                 <span class="sidebar-text">Danh Sách Nhân Viên</span>
                             </a>
                         </li>

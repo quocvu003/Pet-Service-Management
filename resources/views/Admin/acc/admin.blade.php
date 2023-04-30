@@ -1,26 +1,35 @@
 @extends('admin.main')
-
 @section('content')
     <table class="table">
         <thead>
             <tr>
-                <th style="width: 50px">ID</th>
-                <th>Tên Shop</th>
+                <th style="width: 50px">STT</th>
+                <th>Ảnh đại diện</th>
+                <th>Họ và Tên</th>
                 <th>Email</th>
                 <th>Trạng Thái</th>
-                <th>Cập Nhật Lần Cuối</th>
+                <th>Ngày Tạo</th>
 
                 <th style="width: 100px">&nbsp;</th>
             </tr>
         </thead>
         <tbody>
+
             @foreach ($accs as $key => $acc)
+                @php
+                    $stt = $key + 1;
+                @endphp
                 <tr>
-                    <td>{{ $acc->id }}</td>
-                    <td>{{ $acc->name }}</td>
+                    <td>{{ $stt }}</td>
+                    <td><a href="{{ $acc->hinhanh }}" target="_blank">
+                            <img src="{{ $acc->hinhanh }}" height="40px">
+                        </a>
+                    </td>
+                    <td>{{ $acc->ten }}</td>
                     <td>{{ $acc->email }}</td>
                     <td>{!! \App\Helpers\Helper::active($acc->trangthai) !!}</td>
-                    <td>{{ $acc->updated_at }}</td>
+                    <td>{{ \Carbon\Carbon::parse($acc->created_at)->isoFormat('DD/MM/YYYY') }}</td>
+
                     <td>
 
                         <a class="btn btn-primary btn-sm" href="/admin/accs/edit/{{ $acc->id }}">

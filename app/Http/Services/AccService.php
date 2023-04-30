@@ -3,38 +3,64 @@
 
 namespace App\Http\Services;
 
+use App\Jobs\SendMail;
+use App\Models\Shop;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Storage;
 
 class AccService
 {
+
+
     public function getadmin()
     {
-        return User::where('role_id', 1)->get();
+        return User::where('quyen_id', 1)->get();
     }
-    public function getChuShop()
+
+    public function getappli()
     {
-        return User::where('role_id', 2)->get();
+        return User::join('shops', 'shops.id', '=', 'taikhoans.shop_id')
+            ->select('taikhoans.*', 'shops.*', 'taikhoans.id as user_id', 'shops.id as shop_id', 'taikhoans.ten as user_ten', 'shops.ten as shop_ten')
+            ->where('taikhoans.quyen_id', '=', 2)
+            ->where('taikhoans.trangthai', '=', 2)
+            ->get();
     }
+
+    public function getUsersWithShops()
+    {
+        return User::join('shops', 'shops.id', '=', 'taikhoans.shop_id')
+            ->select('taikhoans.*', 'shops.*', 'taikhoans.id as user_id', 'shops.id as shop_id', 'taikhoans.ten as user_ten', 'shops.ten as shop_ten')
+            ->where('taikhoans.quyen_id', '=', 2)
+            ->where('taikhoans.trangthai', '<>', 2)
+            ->get();
+    }
+
     public function getkhachhang()
     {
-        return User::where('role_id', 3)->get();
+        return User::where('quyen_id', 3)->get();
     }
     public function create($request)
     {
         $request->validate([
-            'name' => 'required',
+            'ten' => 'required',
             'email' => 'required|email:filter',
             'password' => 'required',
-            'password_confirmation' => 'required|same:password',
+            'password_confirmation' => 'same:password',
+        ], [
+            'email.required' => 'Bạn chưa nhập email',
+            'ten.required' => 'Bạn chưa nhập tên',
+            'password.required' => 'Bạn chưa nhập mật khẩu',
+            'confirm_password.same' => 'Mật khẩu không trùng khớp',
         ]);
         try {
             User::create([
-                'name' => (string) $request->input('name'),
+                'ten' => (string) $request->input('ten'),
                 'email' => (string) $request->input('email'),
-                'password' => Hash::make($request->password),
-                'role_id' => (string) $request->input('role_id'),
+                'password' => bcrypt($request->password),
+                'quyen_id' => (string) $request->input('quyen_id'),
 
             ]);
 
@@ -47,23 +73,77 @@ class AccService
     }
     public function update($request, $acc)
     {
-        $oldPasswordHash = $acc->password;
+        // // mật khẩu cũ lấy từ db
+        // $oldPasswordHash = $acc->matkhau;
 
-        // Giả sử đây là mật khẩu mới nhập từ input
-        $newPassword = $request->password;
+        // // mật khẩu mới nhập từ input
+        // $newPassword = $request->password;
 
-        if (Hash::check($newPassword, $oldPasswordHash)) {
-        } else {
-            $acc->password = Hash::make($request->password);
-        }
-        $acc->name = (string) $request->input('name');
-        $acc->email = (string) $request->input('email');
-
-        $acc->trangthai = (string) $request->input('active');
-        $acc->role_id = (string) $request->input('role_id');
+        // if (Hash::check($newPassword, $oldPasswordHash)) {
+        //     $acc->matkhau = $oldPasswordHash;
+        // } else {
+        //     $acc->matkhau = bcrypt($request->password);
+        // }
+        $acc->fill($request->input());
         $acc->save();
 
         Session::flash('success', 'Cập nhật tài khoản thành công');
         return true;
     }
+
+
+
+    public function updateshop(Request $request, User $acc, Shop $shop)
+    {
+        // Cập nhật dữ liệu cho bảng users và shops
+        $acc->ten = $request->ten;
+        $acc->email = $request->email;
+        $acc->trangthai = $request->trangthai;
+        $acc->save();
+
+        $shop->ten = $request->tenshop;
+        $shop->sdt = $request->sdt;
+        $shop->diachi = $request->diachi;
+        $shop->hinhanh = $request->hinhanh;
+        $shop->save();
+
+        Session::flash('success', 'Cập nhật tài khoản thành công');
+        return true;
+    }
+    public function duyet(Request $request, User $acc)
+    {
+
+        $acc->trangthai = $request->input('trangthai');
+        $acc->save();
+
+
+        Session::flash('success', 'Đơn đăng ký đã được duyệt');
+        #Queue
+        SendMail::dispatch($request->input('email'))->delay(now()->addSeconds(5));
+        return true;
+    }
+    public function destroy($request)
+    {
+        $acc = User::where('id', $request->input('id'))->first();
+        if ($acc) {
+            $path = str_replace('storage', 'public', $acc->hinhanh);
+            Storage::delete($path);
+            $acc->delete();
+            return true;
+        }
+
+        return false;
+    }
+    // public function destroyshop($request)
+    // {
+    //     $shop = Shop::where('id', $request->input('id'))->first();
+    //     if ($shop) {
+    //         $path = str_replace('storage', 'public', $shop->hinhanh);
+    //         Storage::delete($path);
+    //         $shop->delete();
+    //         return true;
+    //     }
+
+    //     return false;
+    // }
 }

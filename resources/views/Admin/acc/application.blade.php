@@ -34,13 +34,13 @@
                     <td>{!! \App\Helpers\Helper::active($acc->trangthai) !!}</td>
                     <td>{{ \Carbon\Carbon::parse($acc->created_at)->isoFormat('DD/MM/YYYY') }}</td>
                     <td>
-                        <a class="btn btn-primary btn-sm" href="/admin/accs/editshop/{{ $acc->user_id }}">
+                        <a class="btn btn-primary btn-sm" href="/admin/accs/showappli/{{ $acc->user_id }}">
                             <i class="fas fa-edit"></i>
                         </a>
-                        {{-- <a href="#" class="btn btn-danger btn-sm"
+                        <a href="#" class="btn btn-danger btn-sm"
                             onclick="removeRow({{ $acc->shop_id }}, '/admin/accs/destroyshop')">
                             <i class="fas fa-trash"></i>
-                        </a> --}}
+                        </a>
                     </td>
                 </tr>
             @endforeach

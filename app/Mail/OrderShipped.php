@@ -5,6 +5,8 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class OrderShipped extends Mailable
@@ -20,14 +22,9 @@ class OrderShipped extends Mailable
     {
         //
     }
-
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
     public function build()
     {
-        return $this->view('user.mail.success');
+        return $this->view('Mail.duyet')
+            ->subject('THÔNG BÁO TỪ PETCARE');
     }
 }

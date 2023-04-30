@@ -15,24 +15,30 @@ use App\Http\Controllers\MenuUserController;
 use App\Http\Controllers\ProductUserController;
 
 use App\Http\Controllers\auth\AuthController;
-
+use App\Http\Controllers\ChuShop\NhanvienController;
 
 Route::get('login', [AuthController::class, 'login'])->name('login');
-
 Route::post('login_action', [AuthController::class, 'login_action']);
 
 Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::post('register_action', [AuthController::class, 'register_action']);
+#Upload
+Route::post('upload/services', [UploadController::class, 'store']);
+
+
+Route::get('register_seller', [AuthController::class, 'register_seller'])->name('register_seller');
+Route::post('register_seller_action', [AuthController::class, 'register_seller_action']);
+
+Route::get('verification', [AuthController::class, 'verification'])->name('verification');
+Route::post('verification_action', [AuthController::class, 'verification_action']);
+
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-
-
 
 Route::middleware(['auth'])->group(function () {
 
     Route::prefix('admin')->group(function () {
 
         Route::get('/', [MainController::class, 'index'])->name('admin');
-        Route::get('main', [MainController::class, 'index']);
 
         #Menu
         Route::prefix('menus')->group(function () {
@@ -44,15 +50,7 @@ Route::middleware(['auth'])->group(function () {
             Route::DELETE('destroy', [MenuController::class, 'destroy']);
         });
 
-        #Product
-        Route::prefix('products')->group(function () {
-            Route::get('add', [ProductController::class, 'create']);
-            Route::post('add', [ProductController::class, 'store']);
-            Route::get('list', [ProductController::class, 'index']);
-            Route::get('edit/{product}', [ProductController::class, 'show']);
-            Route::post('edit/{product}', [ProductController::class, 'update']);
-            Route::DELETE('destroy', [ProductController::class, 'destroy']);
-        });
+
 
         #Slider
         Route::prefix('sliders')->group(function () {
@@ -74,11 +72,21 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('accs')->group(function () {
             Route::get('add', [AccController::class, 'create']);
             Route::post('add', [AccController::class, 'store']);
+            // show
             Route::get('chuShop', [AccController::class, 'chuShop']);
+            Route::get('application', [AccController::class, 'application']);
             Route::get('khachhang', [AccController::class, 'khachhang']);
             Route::get('admin', [AccController::class, 'admin']);
+            // đơn đăng ký
+            Route::get('showappli/{acc}', [AccController::class, 'showappli']);
+            Route::post('showappli/{acc}', [AccController::class, 'duyet']);
+            //
             Route::get('edit/{acc}', [AccController::class, 'show']);
             Route::post('edit/{acc}', [AccController::class, 'update']);
+            Route::DELETE('destroy', [AccController::class, 'destroy']);
+            // chủ Shop
+            Route::get('editshop/{acc}', [AccController::class, 'showshop']);
+            Route::post('editshop/{acc}', [AccController::class, 'updateshop']);
         });
     });
 });
@@ -88,6 +96,12 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('ChuShop')->group(function () {
 
         Route::get('/', [MainCSController::class, 'index'])->name('ChuShop');
+        Route::get('/profile', [MainCSController::class, 'profile']);
+        #Account
+        Route::prefix('nhanviens')->group(function () {
+            Route::get('list', [NhanvienController::class, 'index']);
+            Route::post('list', [NhanvienController::class, 'store']);
+        });
     });
 });
 

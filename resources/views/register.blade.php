@@ -20,9 +20,10 @@
                 <div class="row justify-content-center form-bg-image"
                     data-background-lg="/template/chuShop/assets/img/illustrations/signin.svg">
                     <div class="col-12 d-flex align-items-center justify-content-center">
-                        <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                        <div class="shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500"
+                            style="background-color: rgb(255, 255, 255);border-style: solid">
                             <div class="text-center text-md-center mb-4 mt-md-0">
-                                <h1 class="mb-0 h3">ĐĂNG KÝ </h1>
+                                <h1 class="mb-0 h3">ĐĂNG KÝ</h1>
                             </div>
                             @include('admin.alert')
                             <form action="register_action" class="mt-4" method="POST">
@@ -33,7 +34,7 @@
                                         <span class="input-group-text" id="basic-addon1">
                                             <i class="fas fa-user"></i>
                                         </span>
-                                        <input type="text" class="form-control" value="{{ old('name') }}"
+                                        <input type="text" class="form-control" value="{{ old('ten') }}"
                                             placeholder="Nhập Họ và Tên" id="name" name="name" autofocus>
                                     </div>
                                     <label for="email">Email</label>
@@ -73,8 +74,9 @@
                                     <!-- End of Form -->
                                     <div class="mb-4">
                                         <span class="fw-normal">
-                                            Bạn là một trung tâm dịch vụ?
-                                            <a href="/login" class="fw-bold">Hãy đến với chúng tôi</a>
+                                            Bạn là Shop chăm sóc thú
+                                            cưng ?
+                                            <a href="/register_seller" class="fw-bold"> Đăng ký ngay nào!</a>
                                         </span>
                                     </div>
                                 </div>

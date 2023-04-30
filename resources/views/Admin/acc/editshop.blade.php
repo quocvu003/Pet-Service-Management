@@ -12,6 +12,15 @@
                     </div>
                 </div>
             </div>
+            <label for="menu">Tên Shop</label>
+            <div class="input-group mb-3">
+                <input type="text" name="tenshop" class="form-control" value="{{ $shops->ten }}">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-user"></span>
+                    </div>
+                </div>
+            </div>
             <label for="menu">Email</label>
             <div class="input-group mb-3">
                 <input type="email" name="email"class="form-control"value="{{ $acc->email }}">
@@ -33,7 +42,7 @@
             </div> --}}
             <label for="menu">Số điện thoại</label>
             <div class="input-group mb-3">
-                <input type="text" name="sdt"class="form-control"value="{{ $acc->sdt }}">
+                <input type="text" name="sdt"class="form-control"value="{{ $shops->sdt }}">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <i class="fas fa-phone"></i>
@@ -42,7 +51,7 @@
             </div>
             <label for="menu">Địa chỉ</label>
             <div class="input-group mb-3">
-                <input type="text" name="diachi"class="form-control"value="{{ $acc->diachi }}">
+                <input type="text" name="diachi"class="form-control"value="{{ $shops->diachi }}">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <i class="fas fa-map-marker-alt"></i>
@@ -52,15 +61,21 @@
 
 
             <div class="form-group">
-                <label for="menu">Ảnh đại diện</label>
+                <label for="menu">Logo</label>
                 <input type="file" class="form-control" id="hinhanh">
                 <div id="hinhanh_show">
-                    <a href="{{ $acc->hinhanh }}" target="_blank">
-                        <img src="{{ $acc->hinhanh }}" width="100px">
+                    <a href="{{ $shops->hinhanh }}" target="_blank">
+                        <img src="{{ $shops->hinhanh }}" width="100px">
                     </a>
                 </div>
-                <input type="hidden" name="hinhanh" value="{{ $acc->hinhanh }}" id="hinhanh01">
+                <input type="hidden" name="hinhanh" value="{{ $shops->hinhanh }}" id="hinhanh01">
             </div>
+
+
+
+
+
+
 
             <div class="form-group">
                 <label>Trạng thái</label>

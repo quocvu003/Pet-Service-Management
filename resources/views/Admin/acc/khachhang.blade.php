@@ -4,7 +4,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th style="width: 50px">ID</th>
+                <th style="width: 50px">STT</th>
                 <th>Tên Khách Hàng</th>
                 <th>Email</th>
                 <th>Trạng Thái</th>
@@ -15,9 +15,12 @@
         </thead>
         <tbody>
             @foreach ($accs as $key => $acc)
+                @php
+                    $stt = $key + 1;
+                @endphp
                 <tr>
-                    <td>{{ $acc->id }}</td>
-                    <td>{{ $acc->name }}</td>
+                    <td>{{ $stt }}</td>
+                    <td>{{ $acc->ten }}</td>
                     <td>{{ $acc->email }}</td>
                     <td>{!! \App\Helpers\Helper::active($acc->trangthai) !!}</td>
                     <td>{{ $acc->updated_at }}</td>

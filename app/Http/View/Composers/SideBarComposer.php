@@ -21,11 +21,8 @@ class SideBarComposer
     {
         $id = Auth::user()->id;
         $currentuser = User::find($id);
-        // dd($currentuser);
-        if (is_null($currentuser)) {
-            $view->with('fullNameUser', 'Vui Lòng Đăng Nhập');
-        }
 
-        $view->with('fullNameUser', $currentuser->name);
+        $view->with('fullNameUser', $currentuser->ten);
+        $view->with('avatar', $currentuser->hinhanh);
     }
 }

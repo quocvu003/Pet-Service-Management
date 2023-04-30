@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\User;
 use App\Http\Services\AccService;
+use App\Models\Shop;
 use Illuminate\Http\Request;
 
 class AccController extends Controller
@@ -23,17 +24,23 @@ class AccController extends Controller
         ]);
     }
 
-
     public function store(Request $request)
     {
         $this->AccService->create($request);
         return redirect()->back();
     }
 
+    public function application()
+    {
+        return view('admin.acc.application', [
+            'title' => 'Danh Sách Các Shop Đang Chờ Duyệt',
+            'accs' => $this->AccService->getappli()
+        ]);
+    }
     public function admin()
     {
-        return view('admin.acc.chuShop', [
-            'title' => 'Danh Sách Tài Khoản Chủ Shop',
+        return view('admin.acc.admin', [
+            'title' => 'Danh Sách Tài Khoản Admin',
             'accs' => $this->AccService->getadmin()
         ]);
     }
@@ -41,7 +48,8 @@ class AccController extends Controller
     {
         return view('admin.acc.chuShop', [
             'title' => 'Danh Sách Tài Khoản Chủ Shop',
-            'accs' => $this->AccService->getChuShop()
+            'accs' => $this->AccService->getUsersWithShops(),
+
         ]);
     }
     public function khachhang()
@@ -51,21 +59,104 @@ class AccController extends Controller
             'accs' => $this->AccService->getkhachhang()
         ]);
     }
-    public function show(User $acc)
+    public function show(User $user)
     {
+
         return view('admin.acc.edit', [
-            'title' => 'Chỉnh sửa tài khoản:' . $acc->name,
-            'acc' => $acc,
+            'title' => 'Chỉnh sửa tài khoản:' . $user->ten,
+            'acc' => $user,
 
         ]);
     }
+
     public function update(Request $request, User $acc)
     {
         $result = $this->AccService->update($request, $acc);
         if ($result) {
-            return redirect('/admin');
+            return redirect()->back();
+        }
+    }
+    public function showappli(User $acc)
+    {
+        // Lấy thông tin về user
+        $user = $acc;
+
+        // Lấy danh sách shop của user
+        $shops = $user->shops;
+
+        return view('admin.acc.showappli', [
+            'title' => 'Duyệt tài khoản:' . $user->ten,
+            'acc' => $user,
+            'shop' => $shops
+        ]);
+    }
+
+    public function showshop(User $acc)
+    {
+        // Lấy thông tin về user
+        $user = $acc;
+
+        // Lấy danh sách shop của user
+        $shops = $user->shops;
+
+        return view('admin.acc.editshop', [
+            'title' => 'Chỉnh sửa tài khoản:' . $acc->ten,
+            'acc' => $acc,
+            'shops' => $shops
+        ]);
+    }
+
+
+    public function updateshop(Request $request, $id)
+    {
+        $user = User::findOrFail($id); // Lấy bản ghi của bảng users dựa trên $id truyền vào
+
+        // Lấy đối tượng của bảng shops mà có khóa ngoại là user_id
+        $shop = $user->shops()->first();
+
+        // Gọi hàm cập nhật dữ liệu từ AccService
+        $result = $this->AccService->updateshop($request, $user, $shop);
+
+        if ($result) {
+            return redirect()->back();
+        }
+    }
+
+    public function destroy(Request $request)
+    {
+        $result = $this->AccService->destroy($request);
+        if ($result) {
+            return response()->json([
+                'error' => false,
+                'message' => 'Xóa thành công '
+            ]);
         }
 
-        return redirect()->back();
+        return response()->json(['error' => true]);
     }
+    public function duyet(Request $request, $id)
+    {
+        $user = User::findOrFail($id); // Lấy bản ghi của bảng users dựa trên $id truyền vào
+
+
+
+        // Gọi hàm cập nhật dữ liệu từ AccService
+        $result = $this->AccService->duyet($request, $user);
+
+        if ($result) {
+            return redirect()->back();
+        }
+    }
+    // public function destroyshow(Request $request)
+    // {
+    //     $result = $this->AccService->destroyshop($request);
+    //     if ($result) {
+    //         return response()->json([
+    //             'error' => false,
+    //             'message' => 'Xóa thành công '
+    //         ]);
+    //     }
+
+    //     return response()->json(['error' => true]);
+    // }
 }

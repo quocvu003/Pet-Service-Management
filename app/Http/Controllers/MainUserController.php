@@ -24,9 +24,9 @@ class MainUserController extends Controller
     {
         return view('user.home', [
             'title' => 'Shop Nước Hoa ',
-            'sliders' => $this->slider->show(),
-            'menus' => $this->menu->show(),
-            'products' => $this->product->get()
+            // 'sliders' => $this->slider->show(),
+            // 'menus' => $this->menu->show(),
+            // 'products' => $this->product->get()
         ]);
     }
 

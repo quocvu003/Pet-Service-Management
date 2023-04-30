@@ -42,8 +42,9 @@ class Helper
 
     public static function active($active = 0): string
     {
-        return $active == 0 ? '<span class="btn btn-danger btn-xs">NO</span>'
-            : '<span class="btn btn-success btn-xs">YES</span>';
+        return $active == 0 ? '<span class="btn btn-danger btn-xs">KHÓA</span>'
+            : ($active == 2 ? '<span class="btn btn-warning btn-xs">CHỜ DUYỆT</span>'
+                : '<span class="btn btn-success btn-xs">KÍCH HOẠT</span>');
     }
 
     public static function menus($menus, $parent_id = 0): string

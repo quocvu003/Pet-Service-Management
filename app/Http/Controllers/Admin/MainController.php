@@ -14,11 +14,10 @@ class MainController extends Controller
    {
       $id = Auth::user()->id;
       $currentuser = User::find($id);
-      // dd($currentuser);
+
       return view('admin.home', [
          'title' => 'Trang quản trị Admin',
          'name' => $currentuser->name,
-
       ]);
    }
 }

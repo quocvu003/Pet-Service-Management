@@ -11,13 +11,25 @@ class MainCSController extends Controller
 {
     public function index()
     {
-
         $id = Auth::user()->id;
         $currentuser = User::find($id);
         // dd($currentuser);
         return view('ChuShop.home', [
             'title' => 'Trang Quản Trị Chủ Shop',
-            'name' => $currentuser->name,
+            'tenshop',
+            'logo',
+            'ten',
+
+        ]);
+    }
+    public function profile()
+    {
+        $id = Auth::user()->id;
+        $currentuser = User::find($id);
+        // dd($currentuser);
+        return view('ChuShop.profile', [
+            'title' => 'Trang Cá Nhân',
+            // 'name' => $currentuser->ten,
 
         ]);
     }

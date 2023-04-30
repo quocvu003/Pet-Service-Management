@@ -9,7 +9,7 @@
 <body>
 
     @include('ChuShop.sidebar')
-    @include('ChuShop.header')
+    @include('ChuShop.nav')
 
     @yield('content')
 

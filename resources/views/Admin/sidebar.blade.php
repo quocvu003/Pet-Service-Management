@@ -9,8 +9,9 @@
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="/template/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            <div class="image" height="100px" width="100px">
+                <img src="{{ $avatar }}" alt="User Image"
+                    style="border: 1px solid rgb(0, 0, 0);border-radius: 50%;object-fit: cover">
             </div>
             <div class="info">
                 <a href="/admin" class="d-block" style="text-decoration: unset">{{ $fullNameUser }}</a>
@@ -53,32 +54,6 @@
                     </ul>
                 </li>
 
-                {{-- San Pham --}}
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-people-carry"></i>
-
-                        <p>
-                            Sản phẩm
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/admin/products/add" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Thêm sản phẩm</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/admin/products/list" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách sản phẩm</p>
-                            </a>
-                        </li>
-
-                    </ul>
-                </li>
                 {{-- Slider --}}
                 <li class="nav-item">
                     <a href="#" class="nav-link">
@@ -105,21 +80,22 @@
 
                     </ul>
                 </li>
-                {{-- Gio hang --}}
+
+                {{-- Duyệt đơn đăng ký --}}
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
 
                         <i class="nav-icon fas fa-shopping-cart"></i>
-                        <p> Giỏ Hàng
+                        <p> Đơn đăng ký
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/admin/customers" class="nav-link">
+                            <a href="/admin/accs/application" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Danh Sách Đơn Hàng </p>
+                                <p>Danh sách đơn đăng ký </p>
                             </a>
                         </li>
 

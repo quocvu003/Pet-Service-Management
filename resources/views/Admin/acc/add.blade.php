@@ -47,6 +47,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="form-group">
                 <label>Phân Quyền</label>
                 <div class="custom-control custom-radio">
@@ -67,7 +68,7 @@
 
                 <!-- /.col -->
                 <div class="col-4">
-                    <button type="submit" class="btn btn-primary btn-block">Register</button>
+                    <button type="submit" class="btn btn-primary btn-block">Thêm tài khoản</button>
                 </div>
                 <!-- /.col -->
             </div>

@@ -11,13 +11,12 @@
         <!-- Section -->
         <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
             <div class="container">
-                <p class="text-center">
 
-                </p>
                 <div class="row justify-content-center form-bg-image"
                     data-background-lg="/template/chuShop/assets/img/illustrations/signin.svg">
                     <div class="col-12 d-flex align-items-center justify-content-center">
-                        <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                        <div class="shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500"
+                            style="background-color: rgb(197, 222, 244)">
                             <div class="text-center text-md-center mb-4 mt-md-0">
                                 <h1 class="mb-0 h3">ĐĂNG NHẬP</h1>
                             </div>
@@ -39,6 +38,7 @@
                                         </span>
                                         <input type="email" class="form-control" placeholder="Nhập email "
                                             id="email" name="email" autofocus>
+
                                     </div>
                                 </div>
                                 <!-- End of Form -->
