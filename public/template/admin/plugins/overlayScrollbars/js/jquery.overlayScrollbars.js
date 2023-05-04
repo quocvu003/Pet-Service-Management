@@ -847,7 +847,7 @@
                 var _strLength = LEXICON.l;
                 var _loopingInstances = [];
                 var _loopingInstancesIntervalCache = [];
-                var _loopIsActive = false;
+                var _loopIstrangthai = false;
                 var _loopIntervalDefault = 33;
                 var _loopInterval = _loopIntervalDefault;
                 var _loopTimeOld = _getNow();
@@ -858,7 +858,7 @@
                  * The auto update loop which will run every 50 milliseconds or less if the update interval of a instance is lower than 50 milliseconds.
                  */
                 var loop = function () {
-                    if (_loopingInstances[_strLength] > 0 && _loopIsActive) {
+                    if (_loopingInstances[_strLength] > 0 && _loopIstrangthai) {
                         _loopID = COMPATIBILITY.rAF()(function () {
                             loop();
                         });
@@ -905,9 +905,9 @@
                     if (_inArray(instance, _loopingInstances) === -1) {
                         _loopingInstances.push(instance);
                         _loopingInstancesIntervalCache.push(_getNow());
-                        if (_loopingInstances[_strLength] > 0 && !_loopIsActive) {
-                            _loopIsActive = true;
-                            globals.autoUpdateLoop = _loopIsActive;
+                        if (_loopingInstances[_strLength] > 0 && !_loopIstrangthai) {
+                            _loopIstrangthai = true;
+                            globals.autoUpdateLoop = _loopIstrangthai;
                             loop();
                         }
                     }
@@ -925,9 +925,9 @@
                         _loopingInstances.splice(index, 1);
 
                         //correct update loop behavior
-                        if (_loopingInstances[_strLength] === 0 && _loopIsActive) {
-                            _loopIsActive = false;
-                            globals.autoUpdateLoop = _loopIsActive;
+                        if (_loopingInstances[_strLength] === 0 && _loopIstrangthai) {
+                            _loopIstrangthai = false;
+                            globals.autoUpdateLoop = _loopIstrangthai;
                             if (_loopID !== undefined) {
                                 COMPATIBILITY.cAF()(_loopID);
                                 _loopID = -1;
@@ -2973,9 +2973,9 @@
 
                         //manage interactivity
                         if (scrollbarsClickScrollingChanged)
-                            refreshScrollbarsInteractive(true, scrollbarsClickScrolling);
+                            refreshScrollbarsIntertrangthai(true, scrollbarsClickScrolling);
                         if (scrollbarsDragScrollingChanged)
-                            refreshScrollbarsInteractive(false, scrollbarsDragScrolling);
+                            refreshScrollbarsIntertrangthai(false, scrollbarsDragScrolling);
 
                         //callbacks:
                         dispatchCallback('onDirectionChanged', {
@@ -3310,7 +3310,7 @@
                                 if (_scrollbarsAutoHideScroll || _scrollbarsAutoHideMove)
                                     refreshScrollbarsAutoHide(true);
 
-                                if (!nativeOverlayScrollbarsAreActive())
+                                if (!nativeOverlayScrollbarsAretrangthai())
                                     addClass(_hostElement, _classNameHostScrolling);
 
                                 dispatchCallback('onScrollStart', event);
@@ -3334,7 +3334,7 @@
                                     if (_scrollbarsAutoHideScroll || _scrollbarsAutoHideMove)
                                         refreshScrollbarsAutoHide(false);
 
-                                    if (!nativeOverlayScrollbarsAreActive())
+                                    if (!nativeOverlayScrollbarsAretrangthai())
                                         removeClass(_hostElement, _classNameHostScrolling);
 
                                     dispatchCallback('onScrollStop', event);
@@ -3440,7 +3440,7 @@
                     var xy = scrollbarVars._x_y;
                     var XY = scrollbarVars._X_Y;
                     var scroll = _strScroll + scrollbarVars._Left_Top;
-                    var strActive = 'active';
+                    var strtrangthai = 'trangthai';
                     var strSnapHandle = 'snapHandle';
                     var strClickEvent = 'click';
                     var scrollDurationFactor = 1;
@@ -3476,7 +3476,7 @@
                     function onMouseTouchDownContinue(event) {
                         var originalEvent = event.originalEvent || event;
                         var isTouchEvent = originalEvent.touches !== undefined;
-                        return _sleeping || _destroyed || nativeOverlayScrollbarsAreActive() || !_scrollbarsDragScrollingCache || (isTouchEvent && !getPreparedScrollbarsOption('touchSupport')) ? false : COMPATIBILITY.mBtn(event) === 1 || isTouchEvent;
+                        return _sleeping || _destroyed || nativeOverlayScrollbarsAretrangthai() || !_scrollbarsDragScrollingCache || (isTouchEvent && !getPreparedScrollbarsOption('touchSupport')) ? false : COMPATIBILITY.mBtn(event) === 1 || isTouchEvent;
                     }
                     function documentDragMove(event) {
                         if (onMouseTouchDownContinue(event)) {
@@ -3518,9 +3518,9 @@
 
                         _scrollbarsHandlesDefineScrollPos = false;
                         removeClass(_bodyElement, _classNameDragging);
-                        removeClass(scrollbarVars._handle, strActive);
-                        removeClass(scrollbarVars._track, strActive);
-                        removeClass(scrollbarVars._scrollbar, strActive);
+                        removeClass(scrollbarVars._handle, strtrangthai);
+                        removeClass(scrollbarVars._track, strtrangthai);
+                        removeClass(scrollbarVars._scrollbar, strtrangthai);
 
                         mouseDownScroll = undefined;
                         mouseDownOffset = undefined;
@@ -3561,8 +3561,8 @@
 
                         _scrollbarsHandlesDefineScrollPos = !getPreparedScrollbarsOption(strSnapHandle);
                         addClass(_bodyElement, _classNameDragging);
-                        addClass(scrollbarVars._handle, strActive);
-                        addClass(scrollbarVars._scrollbar, strActive);
+                        addClass(scrollbarVars._handle, strtrangthai);
+                        addClass(scrollbarVars._scrollbar, strtrangthai);
 
                         setupResponsiveEventListener(_documentElement,
                             [_strMouseTouchMoveEvent, _strMouseTouchUpEvent, _strSelectStartEvent],
@@ -3679,8 +3679,8 @@
 
                             _scrollbarsHandlesDefineScrollPos = !getPreparedScrollbarsOption(strSnapHandle);
                             addClass(_bodyElement, _classNameDragging);
-                            addClass(scrollbarVars._track, strActive);
-                            addClass(scrollbarVars._scrollbar, strActive);
+                            addClass(scrollbarVars._track, strtrangthai);
+                            addClass(scrollbarVars._scrollbar, strtrangthai);
 
                             setupResponsiveEventListener(_documentElement,
                                 [_strMouseTouchUpEvent, _strKeyDownEvent, _strKeyUpEvent, _strSelectStartEvent],
@@ -3754,14 +3754,14 @@
                         removeClass(_scrollbarVerticalElement, _classNameScrollbarAutoHidden);
                     }
                     else {
-                        var anyActive;
-                        var strActive = 'active';
+                        var anytrangthai;
+                        var strtrangthai = 'trangthai';
                         var hide = function () {
                             if (!_scrollbarsHandleHovered && !_destroyed) {
-                                anyActive = _scrollbarHorizontalHandleElement.hasClass(strActive) || _scrollbarVerticalHandleElement.hasClass(strActive);
-                                if (!anyActive && (_scrollbarsAutoHideScroll || _scrollbarsAutoHideMove || _scrollbarsAutoHideLeave))
+                                anytrangthai = _scrollbarHorizontalHandleElement.hasClass(strtrangthai) || _scrollbarVerticalHandleElement.hasClass(strtrangthai);
+                                if (!anytrangthai && (_scrollbarsAutoHideScroll || _scrollbarsAutoHideMove || _scrollbarsAutoHideLeave))
                                     addClass(_scrollbarHorizontalElement, _classNameScrollbarAutoHidden);
-                                if (!anyActive && (_scrollbarsAutoHideScroll || _scrollbarsAutoHideMove || _scrollbarsAutoHideLeave))
+                                if (!anytrangthai && (_scrollbarsAutoHideScroll || _scrollbarsAutoHideMove || _scrollbarsAutoHideLeave))
                                     addClass(_scrollbarVerticalElement, _classNameScrollbarAutoHidden);
                             }
                         };
@@ -3785,7 +3785,7 @@
                     var handleRatio = MATH.min(1, _viewportSize[scrollbarVars._w_h] / _contentScrollSizeCache[scrollbarVars._w_h]);
                     handleCSS[scrollbarVars._width_height] = (MATH.floor(handleRatio * 100 * digit) / digit) + '%'; //the last * digit / digit is for flooring to the 4th digit
 
-                    if (!nativeOverlayScrollbarsAreActive())
+                    if (!nativeOverlayScrollbarsAretrangthai())
                         scrollbarVars._handle.css(handleCSS);
 
                     //measure the handle length to respect min & max length
@@ -3857,7 +3857,7 @@
 
 
                     //only apply css if offset has changed and overflow exists.
-                    if (!nativeOverlayScrollbarsAreActive()) {
+                    if (!nativeOverlayScrollbarsAretrangthai()) {
                         scrollbarVars._handle.css(handleCSS);
 
                         //clear up transition
@@ -3879,7 +3879,7 @@
                  * @param isTrack True if the track element is the target, false if the handle element is the target.
                  * @param value True for interactivity false for no interactivity.
                  */
-                function refreshScrollbarsInteractive(isTrack, value) {
+                function refreshScrollbarsIntertrangthai(isTrack, value) {
                     var action = value ? 'removeClass' : 'addClass';
                     var element1 = isTrack ? _scrollbarHorizontalTrackElement : _scrollbarHorizontalHandleElement;
                     var element2 = isTrack ? _scrollbarVerticalTrackElement : _scrollbarVerticalHandleElement;
@@ -4253,10 +4253,10 @@
                 }
 
                 /**
-                 * Determines whether native overlay scrollbars are active.
-                 * @returns {boolean} True if native overlay scrollbars are active, false otherwise.
+                 * Determines whether native overlay scrollbars are trangthai.
+                 * @returns {boolean} True if native overlay scrollbars are trangthai, false otherwise.
                  */
-                function nativeOverlayScrollbarsAreActive() {
+                function nativeOverlayScrollbarsAretrangthai() {
                     return (_ignoreOverlayScrollbarHidingCache && (_nativeScrollbarIsOverlaid.x && _nativeScrollbarIsOverlaid.y));
                 }
 
@@ -5379,7 +5379,7 @@
                         _viewportElement[_strScrollLeft](initBodyScroll.l)[_strScrollTop](initBodyScroll.t);
 
                         //set the focus on the viewport element so you dont have to click on the page to use keyboard keys (up / down / space) for scrolling
-                        if (document.activeElement == targetElement && _viewportElementNative.focus) {
+                        if (document.trangthaiElement == targetElement && _viewportElementNative.focus) {
                             //set a tabindex to make the viewportElement focusable
                             _viewportElement.attr(LEXICON.ti, '-1');
                             _viewportElementNative.focus();

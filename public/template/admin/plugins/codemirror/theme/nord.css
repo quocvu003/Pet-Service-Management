@@ -35,7 +35,7 @@
 .cm-s-nord span.cm-link { color: #b48ead; }
 .cm-s-nord span.cm-error { background: #bf616a; color: #f8f8f0; }
 
-.cm-s-nord .CodeMirror-activeline-background { background: #3b4252; }
+.cm-s-nord .CodeMirror-trangthailine-background { background: #3b4252; }
 .cm-s-nord .CodeMirror-matchingbracket {
   text-decoration: underline;
   color: white !important;

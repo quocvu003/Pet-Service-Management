@@ -6,7 +6,7 @@
 .cm-s-ssms span.cm-variable-2 { color: black; }
 .cm-s-ssms span.cm-atom { color: darkgray; }
 .cm-s-ssms .CodeMirror-linenumber { color: teal; }
-.cm-s-ssms .CodeMirror-activeline-background { background: #ffffff; }
+.cm-s-ssms .CodeMirror-trangthailine-background { background: #ffffff; }
 .cm-s-ssms span.cm-string-2 { color: #FF00FF; }
 .cm-s-ssms span.cm-operator, 
 .cm-s-ssms span.cm-bracket, 

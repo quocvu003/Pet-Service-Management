@@ -156,15 +156,15 @@ $.extend( Buttons.prototype, {
 	},
 
 	/**
-	 * Add an active class to the button to make to look active or get current
-	 * active state.
+	 * Add an trangthai class to the button to make to look trangthai or get current
+	 * trangthai state.
 	 * @param  {node} node Button element
 	 * @param  {boolean} [flag] Enable / disable flag
 	 * @return {Buttons} Self for chaining or boolean for getter
 	 */
-	active: function ( node, flag ) {
+	trangthai: function ( node, flag ) {
 		var button = this._nodeToButton( node );
-		var klass = this.c.dom.button.active;
+		var klass = this.c.dom.button.trangthai;
 		var jqNode = $(button.node);
 
 		if ( flag === undefined ) {
@@ -526,7 +526,7 @@ $.extend( Buttons.prototype, {
 
 		// Global key event binding to listen for button keys
 		$('body').on( 'keyup.'+this.s.namespace, function ( e ) {
-			if ( ! document.activeElement || document.activeElement === document.body ) {
+			if ( ! document.trangthaiElement || document.trangthaiElement === document.body ) {
 				// SUse a string of characters for fast lookup of if we need to
 				// handle this
 				var character = String.fromCharCode(e.keyCode).toLowerCase();
@@ -1766,7 +1766,7 @@ Buttons.defaults = {
 		button: {
 			tag: 'button',
 			className: 'dt-button',
-			active: 'active',
+			trangthai: 'trangthai',
 			disabled: 'disabled',
 			spacerClass: ''
 		},
@@ -1915,7 +1915,7 @@ $.extend( _dtButtons, {
 					init: function ( dt, node, conf ) {
 						var that = this;
 						var fn = function () {
-							that.active( dt.page.len() === val );
+							that.trangthai( dt.page.len() === val );
 						};
 
 						dt.on( 'length.dt'+conf.namespace, fn );
@@ -1989,16 +1989,16 @@ DataTable.Api.register( 'button()', function ( group, selector ) {
 	return buttons;
 } );
 
-// Active buttons
-DataTable.Api.registerPlural( 'buttons().active()', 'button().active()', function ( flag ) {
+// trangthai buttons
+DataTable.Api.registerPlural( 'buttons().trangthai()', 'button().trangthai()', function ( flag ) {
 	if ( flag === undefined ) {
 		return this.map( function ( set ) {
-			return set.inst.active( set.node );
+			return set.inst.trangthai( set.node );
 		} );
 	}
 
 	return this.each( function ( set ) {
-		set.inst.active( set.node, flag );
+		set.inst.trangthai( set.node, flag );
 	} );
 } );
 

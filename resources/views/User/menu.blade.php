@@ -72,7 +72,7 @@
 
                             <ul>
                                 <li class="p-b-6">
-                                    <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+                                    <a href="#" class="filter-link stext-106 trans-04 filter-link-trangthai">
                                         All
                                     </a>
                                 </li>

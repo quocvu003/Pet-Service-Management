@@ -45,7 +45,7 @@
       this.options[name] = (options && options.hasOwnProperty(name) ? options : defaults)[name]
     this.overlay = this.timeout = null;
     this.matchesonscroll = null;
-    this.active = false;
+    this.trangthai = false;
   }
 
   CodeMirror.defineOption("highlightSelectionMatches", false, function(cm, val, old) {
@@ -59,7 +59,7 @@
     if (val) {
       var state = cm.state.matchHighlighter = new State(val);
       if (cm.hasFocus()) {
-        state.active = true
+        state.trangthai = true
         highlightMatches(cm)
       } else {
         cm.on("focus", onFocus)
@@ -70,13 +70,13 @@
 
   function cursorActivity(cm) {
     var state = cm.state.matchHighlighter;
-    if (state.active || cm.hasFocus()) scheduleHighlight(cm, state)
+    if (state.trangthai || cm.hasFocus()) scheduleHighlight(cm, state)
   }
 
   function onFocus(cm) {
     var state = cm.state.matchHighlighter
-    if (!state.active) {
-      state.active = true
+    if (!state.trangthai) {
+      state.trangthai = true
       scheduleHighlight(cm, state)
     }
   }

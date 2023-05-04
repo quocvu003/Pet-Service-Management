@@ -21,7 +21,7 @@
 .cm-s-idea span.cm-attribute { color: #0000FF; }
 .cm-s-idea span.cm-tag { color: #000080; }
 .cm-s-idea span.cm-link { color: #0000FF; }
-.cm-s-idea .CodeMirror-activeline-background { background: #FFFAE3; }
+.cm-s-idea .CodeMirror-trangthailine-background { background: #FFFAE3; }
 
 .cm-s-idea span.cm-builtin { color: #30a; }
 .cm-s-idea span.cm-bracket { color: #cc7; }
@@ -36,7 +36,7 @@
   background-color: #ebf3fd !important;
 }
 
-.CodeMirror-hints.idea .CodeMirror-hint-active {
+.CodeMirror-hints.idea .CodeMirror-hint-trangthai {
   background-color: #a2b8c9 !important;
   color: #5c6065 !important;
 }

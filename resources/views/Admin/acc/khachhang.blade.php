@@ -22,7 +22,7 @@
                     <td>{{ $stt }}</td>
                     <td>{{ $acc->ten }}</td>
                     <td>{{ $acc->email }}</td>
-                    <td>{!! \App\Helpers\Helper::active($acc->trangthai) !!}</td>
+                    <td>{!! \App\Helpers\Helper::trangthai($acc->trangthai) !!}</td>
                     <td>{{ $acc->updated_at }}</td>
                     <td>
 

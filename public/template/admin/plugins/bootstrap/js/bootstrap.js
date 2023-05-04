@@ -393,7 +393,7 @@
   var EVENT_KEY$9 = "." + DATA_KEY$9;
   var DATA_API_KEY$6 = '.data-api';
   var JQUERY_NO_CONFLICT$9 = $__default["default"].fn[NAME$9];
-  var CLASS_NAME_ACTIVE$3 = 'active';
+  var CLASS_NAME_trangthai$3 = 'trangthai';
   var CLASS_NAME_BUTTON = 'btn';
   var CLASS_NAME_FOCUS = 'focus';
   var EVENT_CLICK_DATA_API$5 = "click" + EVENT_KEY$9 + DATA_API_KEY$6;
@@ -404,7 +404,7 @@
   var SELECTOR_DATA_TOGGLE$4 = '[data-toggle="button"]';
   var SELECTOR_DATA_TOGGLES_BUTTONS = '[data-toggle="buttons"] .btn';
   var SELECTOR_INPUT = 'input:not([type="hidden"])';
-  var SELECTOR_ACTIVE$2 = '.active';
+  var SELECTOR_trangthai$2 = '.trangthai';
   var SELECTOR_BUTTON = '.btn';
   /**
    * Class definition
@@ -430,13 +430,13 @@
 
         if (input) {
           if (input.type === 'radio') {
-            if (input.checked && this._element.classList.contains(CLASS_NAME_ACTIVE$3)) {
+            if (input.checked && this._element.classList.contains(CLASS_NAME_trangthai$3)) {
               triggerChangeEvent = false;
             } else {
-              var activeElement = rootElement.querySelector(SELECTOR_ACTIVE$2);
+              var trangthaiElement = rootElement.querySelector(SELECTOR_trangthai$2);
 
-              if (activeElement) {
-                $__default["default"](activeElement).removeClass(CLASS_NAME_ACTIVE$3);
+              if (trangthaiElement) {
+                $__default["default"](trangthaiElement).removeClass(CLASS_NAME_trangthai$3);
               }
             }
           }
@@ -444,7 +444,7 @@
           if (triggerChangeEvent) {
             // if it's not a radio button or checkbox don't add a pointless/invalid checked property to the input
             if (input.type === 'checkbox' || input.type === 'radio') {
-              input.checked = !this._element.classList.contains(CLASS_NAME_ACTIVE$3);
+              input.checked = !this._element.classList.contains(CLASS_NAME_trangthai$3);
             }
 
             if (!this.shouldAvoidTriggerChange) {
@@ -459,11 +459,11 @@
 
       if (!(this._element.hasAttribute('disabled') || this._element.classList.contains('disabled'))) {
         if (addAriaPressed) {
-          this._element.setAttribute('aria-pressed', !this._element.classList.contains(CLASS_NAME_ACTIVE$3));
+          this._element.setAttribute('aria-pressed', !this._element.classList.contains(CLASS_NAME_trangthai$3));
         }
 
         if (triggerChangeEvent) {
-          $__default["default"](this._element).toggleClass(CLASS_NAME_ACTIVE$3);
+          $__default["default"](this._element).toggleClass(CLASS_NAME_trangthai$3);
         }
       }
     };
@@ -534,7 +534,7 @@
     $__default["default"](button).toggleClass(CLASS_NAME_FOCUS, /^focus(in)?$/.test(event.type));
   });
   $__default["default"](window).on(EVENT_LOAD_DATA_API$2, function () {
-    // ensure correct active class is set to match the controls' actual values/states
+    // ensure correct trangthai class is set to match the controls' actual values/states
     // find all checkboxes/readio buttons inside data-toggle groups
     var buttons = [].slice.call(document.querySelectorAll(SELECTOR_DATA_TOGGLES_BUTTONS));
 
@@ -543,9 +543,9 @@
       var input = button.querySelector(SELECTOR_INPUT);
 
       if (input.checked || input.hasAttribute('checked')) {
-        button.classList.add(CLASS_NAME_ACTIVE$3);
+        button.classList.add(CLASS_NAME_trangthai$3);
       } else {
-        button.classList.remove(CLASS_NAME_ACTIVE$3);
+        button.classList.remove(CLASS_NAME_trangthai$3);
       }
     } // find all button toggles
 
@@ -556,9 +556,9 @@
       var _button = buttons[_i];
 
       if (_button.getAttribute('aria-pressed') === 'true') {
-        _button.classList.add(CLASS_NAME_ACTIVE$3);
+        _button.classList.add(CLASS_NAME_trangthai$3);
       } else {
-        _button.classList.remove(CLASS_NAME_ACTIVE$3);
+        _button.classList.remove(CLASS_NAME_trangthai$3);
       }
     }
   });
@@ -592,7 +592,7 @@
 
   var SWIPE_THRESHOLD = 40;
   var CLASS_NAME_CAROUSEL = 'carousel';
-  var CLASS_NAME_ACTIVE$2 = 'active';
+  var CLASS_NAME_trangthai$2 = 'trangthai';
   var CLASS_NAME_SLIDE = 'slide';
   var CLASS_NAME_RIGHT = 'carousel-item-right';
   var CLASS_NAME_LEFT = 'carousel-item-left';
@@ -616,8 +616,8 @@
   var EVENT_DRAG_START = "dragstart" + EVENT_KEY$8;
   var EVENT_LOAD_DATA_API$1 = "load" + EVENT_KEY$8 + DATA_API_KEY$5;
   var EVENT_CLICK_DATA_API$4 = "click" + EVENT_KEY$8 + DATA_API_KEY$5;
-  var SELECTOR_ACTIVE$1 = '.active';
-  var SELECTOR_ACTIVE_ITEM = '.active.carousel-item';
+  var SELECTOR_trangthai$1 = '.trangthai';
+  var SELECTOR_trangthai_ITEM = '.trangthai.carousel-item';
   var SELECTOR_ITEM = '.carousel-item';
   var SELECTOR_ITEM_IMG = '.carousel-item img';
   var SELECTOR_NEXT_PREV = '.carousel-item-next, .carousel-item-prev';
@@ -652,7 +652,7 @@
     function Carousel(element, config) {
       this._items = null;
       this._interval = null;
-      this._activeElement = null;
+      this._trangthaiElement = null;
       this._isPaused = false;
       this._isSliding = false;
       this.touchTimeout = null;
@@ -726,9 +726,9 @@
     _proto.to = function to(index) {
       var _this = this;
 
-      this._activeElement = this._element.querySelector(SELECTOR_ACTIVE_ITEM);
+      this._trangthaiElement = this._element.querySelector(SELECTOR_trangthai_ITEM);
 
-      var activeIndex = this._getItemIndex(this._activeElement);
+      var trangthaiIndex = this._getItemIndex(this._trangthaiElement);
 
       if (index > this._items.length - 1 || index < 0) {
         return;
@@ -741,13 +741,13 @@
         return;
       }
 
-      if (activeIndex === index) {
+      if (trangthaiIndex === index) {
         this.pause();
         this.cycle();
         return;
       }
 
-      var direction = index > activeIndex ? DIRECTION_NEXT : DIRECTION_PREV;
+      var direction = index > trangthaiIndex ? DIRECTION_NEXT : DIRECTION_PREV;
 
       this._slide(direction, this._items[index]);
     };
@@ -761,7 +761,7 @@
       this._interval = null;
       this._isPaused = null;
       this._isSliding = null;
-      this._activeElement = null;
+      this._trangthaiElement = null;
       this._indicatorsElement = null;
     } // Private
     ;
@@ -910,28 +910,28 @@
       return this._items.indexOf(element);
     };
 
-    _proto._getItemByDirection = function _getItemByDirection(direction, activeElement) {
+    _proto._getItemByDirection = function _getItemByDirection(direction, trangthaiElement) {
       var isNextDirection = direction === DIRECTION_NEXT;
       var isPrevDirection = direction === DIRECTION_PREV;
 
-      var activeIndex = this._getItemIndex(activeElement);
+      var trangthaiIndex = this._getItemIndex(trangthaiElement);
 
       var lastItemIndex = this._items.length - 1;
-      var isGoingToWrap = isPrevDirection && activeIndex === 0 || isNextDirection && activeIndex === lastItemIndex;
+      var isGoingToWrap = isPrevDirection && trangthaiIndex === 0 || isNextDirection && trangthaiIndex === lastItemIndex;
 
       if (isGoingToWrap && !this._config.wrap) {
-        return activeElement;
+        return trangthaiElement;
       }
 
       var delta = direction === DIRECTION_PREV ? -1 : 1;
-      var itemIndex = (activeIndex + delta) % this._items.length;
+      var itemIndex = (trangthaiIndex + delta) % this._items.length;
       return itemIndex === -1 ? this._items[this._items.length - 1] : this._items[itemIndex];
     };
 
     _proto._triggerSlideEvent = function _triggerSlideEvent(relatedTarget, eventDirectionName) {
       var targetIndex = this._getItemIndex(relatedTarget);
 
-      var fromIndex = this._getItemIndex(this._element.querySelector(SELECTOR_ACTIVE_ITEM));
+      var fromIndex = this._getItemIndex(this._element.querySelector(SELECTOR_trangthai_ITEM));
 
       var slideEvent = $__default["default"].Event(EVENT_SLIDE, {
         relatedTarget: relatedTarget,
@@ -943,21 +943,21 @@
       return slideEvent;
     };
 
-    _proto._setActiveIndicatorElement = function _setActiveIndicatorElement(element) {
+    _proto._settrangthaiIndicatorElement = function _settrangthaiIndicatorElement(element) {
       if (this._indicatorsElement) {
-        var indicators = [].slice.call(this._indicatorsElement.querySelectorAll(SELECTOR_ACTIVE$1));
-        $__default["default"](indicators).removeClass(CLASS_NAME_ACTIVE$2);
+        var indicators = [].slice.call(this._indicatorsElement.querySelectorAll(SELECTOR_trangthai$1));
+        $__default["default"](indicators).removeClass(CLASS_NAME_trangthai$2);
 
         var nextIndicator = this._indicatorsElement.children[this._getItemIndex(element)];
 
         if (nextIndicator) {
-          $__default["default"](nextIndicator).addClass(CLASS_NAME_ACTIVE$2);
+          $__default["default"](nextIndicator).addClass(CLASS_NAME_trangthai$2);
         }
       }
     };
 
     _proto._updateInterval = function _updateInterval() {
-      var element = this._activeElement || this._element.querySelector(SELECTOR_ACTIVE_ITEM);
+      var element = this._trangthaiElement || this._element.querySelector(SELECTOR_trangthai_ITEM);
 
       if (!element) {
         return;
@@ -976,11 +976,11 @@
     _proto._slide = function _slide(direction, element) {
       var _this4 = this;
 
-      var activeElement = this._element.querySelector(SELECTOR_ACTIVE_ITEM);
+      var trangthaiElement = this._element.querySelector(SELECTOR_trangthai_ITEM);
 
-      var activeElementIndex = this._getItemIndex(activeElement);
+      var trangthaiElementIndex = this._getItemIndex(trangthaiElement);
 
-      var nextElement = element || activeElement && this._getItemByDirection(direction, activeElement);
+      var nextElement = element || trangthaiElement && this._getItemByDirection(direction, trangthaiElement);
 
       var nextElementIndex = this._getItemIndex(nextElement);
 
@@ -999,7 +999,7 @@
         eventDirectionName = DIRECTION_RIGHT;
       }
 
-      if (nextElement && $__default["default"](nextElement).hasClass(CLASS_NAME_ACTIVE$2)) {
+      if (nextElement && $__default["default"](nextElement).hasClass(CLASS_NAME_trangthai$2)) {
         this._isSliding = false;
         return;
       }
@@ -1010,7 +1010,7 @@
         return;
       }
 
-      if (!activeElement || !nextElement) {
+      if (!trangthaiElement || !nextElement) {
         // Some weirdness is happening, so we bail
         return;
       }
@@ -1021,33 +1021,33 @@
         this.pause();
       }
 
-      this._setActiveIndicatorElement(nextElement);
+      this._settrangthaiIndicatorElement(nextElement);
 
-      this._activeElement = nextElement;
+      this._trangthaiElement = nextElement;
       var slidEvent = $__default["default"].Event(EVENT_SLID, {
         relatedTarget: nextElement,
         direction: eventDirectionName,
-        from: activeElementIndex,
+        from: trangthaiElementIndex,
         to: nextElementIndex
       });
 
       if ($__default["default"](this._element).hasClass(CLASS_NAME_SLIDE)) {
         $__default["default"](nextElement).addClass(orderClassName);
         Util.reflow(nextElement);
-        $__default["default"](activeElement).addClass(directionalClassName);
+        $__default["default"](trangthaiElement).addClass(directionalClassName);
         $__default["default"](nextElement).addClass(directionalClassName);
-        var transitionDuration = Util.getTransitionDurationFromElement(activeElement);
-        $__default["default"](activeElement).one(Util.TRANSITION_END, function () {
-          $__default["default"](nextElement).removeClass(directionalClassName + " " + orderClassName).addClass(CLASS_NAME_ACTIVE$2);
-          $__default["default"](activeElement).removeClass(CLASS_NAME_ACTIVE$2 + " " + orderClassName + " " + directionalClassName);
+        var transitionDuration = Util.getTransitionDurationFromElement(trangthaiElement);
+        $__default["default"](trangthaiElement).one(Util.TRANSITION_END, function () {
+          $__default["default"](nextElement).removeClass(directionalClassName + " " + orderClassName).addClass(CLASS_NAME_trangthai$2);
+          $__default["default"](trangthaiElement).removeClass(CLASS_NAME_trangthai$2 + " " + orderClassName + " " + directionalClassName);
           _this4._isSliding = false;
           setTimeout(function () {
             return $__default["default"](_this4._element).trigger(slidEvent);
           }, 0);
         }).emulateTransitionEnd(transitionDuration);
       } else {
-        $__default["default"](activeElement).removeClass(CLASS_NAME_ACTIVE$2);
-        $__default["default"](nextElement).addClass(CLASS_NAME_ACTIVE$2);
+        $__default["default"](trangthaiElement).removeClass(CLASS_NAME_trangthai$2);
+        $__default["default"](nextElement).addClass(CLASS_NAME_trangthai$2);
         this._isSliding = false;
         $__default["default"](this._element).trigger(slidEvent);
       }
@@ -1182,7 +1182,7 @@
   var EVENT_HIDE$4 = "hide" + EVENT_KEY$7;
   var EVENT_HIDDEN$4 = "hidden" + EVENT_KEY$7;
   var EVENT_CLICK_DATA_API$3 = "click" + EVENT_KEY$7 + DATA_API_KEY$4;
-  var SELECTOR_ACTIVES = '.show, .collapsing';
+  var SELECTOR_trangthaiS = '.show, .collapsing';
   var SELECTOR_DATA_TOGGLE$3 = '[data-toggle="collapse"]';
   var Default$6 = {
     toggle: true,
@@ -1248,11 +1248,11 @@
         return;
       }
 
-      var actives;
-      var activesData;
+      var trangthais;
+      var trangthaisData;
 
       if (this._parent) {
-        actives = [].slice.call(this._parent.querySelectorAll(SELECTOR_ACTIVES)).filter(function (elem) {
+        trangthais = [].slice.call(this._parent.querySelectorAll(SELECTOR_trangthaiS)).filter(function (elem) {
           if (typeof _this._config.parent === 'string') {
             return elem.getAttribute('data-parent') === _this._config.parent;
           }
@@ -1260,15 +1260,15 @@
           return elem.classList.contains(CLASS_NAME_COLLAPSE);
         });
 
-        if (actives.length === 0) {
-          actives = null;
+        if (trangthais.length === 0) {
+          trangthais = null;
         }
       }
 
-      if (actives) {
-        activesData = $__default["default"](actives).not(this._selector).data(DATA_KEY$7);
+      if (trangthais) {
+        trangthaisData = $__default["default"](trangthais).not(this._selector).data(DATA_KEY$7);
 
-        if (activesData && activesData._isTransitioning) {
+        if (trangthaisData && trangthaisData._isTransitioning) {
           return;
         }
       }
@@ -1280,11 +1280,11 @@
         return;
       }
 
-      if (actives) {
-        Collapse._jQueryInterface.call($__default["default"](actives).not(this._selector), 'hide');
+      if (trangthais) {
+        Collapse._jQueryInterface.call($__default["default"](trangthais).not(this._selector), 'hide');
 
-        if (!activesData) {
-          $__default["default"](actives).data(DATA_KEY$7, null);
+        if (!trangthaisData) {
+          $__default["default"](trangthais).data(DATA_KEY$7, null);
         }
       }
 
@@ -1591,11 +1591,11 @@
         return;
       }
 
-      var isActive = $__default["default"](this._menu).hasClass(CLASS_NAME_SHOW$5);
+      var istrangthai = $__default["default"](this._menu).hasClass(CLASS_NAME_SHOW$5);
 
       Dropdown._clearMenus();
 
-      if (isActive) {
+      if (istrangthai) {
         return;
       }
 
@@ -1916,16 +1916,16 @@
 
       var parent = Dropdown._getParentFromElement(this);
 
-      var isActive = $__default["default"](parent).hasClass(CLASS_NAME_SHOW$5);
+      var istrangthai = $__default["default"](parent).hasClass(CLASS_NAME_SHOW$5);
 
-      if (!isActive && event.which === ESCAPE_KEYCODE$1) {
+      if (!istrangthai && event.which === ESCAPE_KEYCODE$1) {
         return;
       }
 
       event.preventDefault();
       event.stopPropagation();
 
-      if (!isActive || event.which === ESCAPE_KEYCODE$1 || event.which === SPACE_KEYCODE) {
+      if (!istrangthai || event.which === ESCAPE_KEYCODE$1 || event.which === SPACE_KEYCODE) {
         if (event.which === ESCAPE_KEYCODE$1) {
           $__default["default"](parent.querySelector(SELECTOR_DATA_TOGGLE$2)).trigger('focus');
         }
@@ -2827,7 +2827,7 @@
       this._isEnabled = true;
       this._timeout = 0;
       this._hoverState = '';
-      this._activeTrigger = {};
+      this._trangthaiTrigger = {};
       this._popper = null; // Protected
 
       this.element = element;
@@ -2867,9 +2867,9 @@
           $__default["default"](event.currentTarget).data(dataKey, context);
         }
 
-        context._activeTrigger.click = !context._activeTrigger.click;
+        context._trangthaiTrigger.click = !context._trangthaiTrigger.click;
 
-        if (context._isWithActiveTrigger()) {
+        if (context._isWithtrangthaiTrigger()) {
           context._enter(null, context);
         } else {
           context._leave(null, context);
@@ -2898,7 +2898,7 @@
       this._isEnabled = null;
       this._timeout = null;
       this._hoverState = null;
-      this._activeTrigger = null;
+      this._trangthaiTrigger = null;
 
       if (this._popper) {
         this._popper.destroy();
@@ -3026,9 +3026,9 @@
         $__default["default"](document.body).children().off('mouseover', null, $__default["default"].noop);
       }
 
-      this._activeTrigger[TRIGGER_CLICK] = false;
-      this._activeTrigger[TRIGGER_FOCUS] = false;
-      this._activeTrigger[TRIGGER_HOVER] = false;
+      this._trangthaiTrigger[TRIGGER_CLICK] = false;
+      this._trangthaiTrigger[TRIGGER_FOCUS] = false;
+      this._trangthaiTrigger[TRIGGER_HOVER] = false;
 
       if ($__default["default"](this.tip).hasClass(CLASS_NAME_FADE$3)) {
         var transitionDuration = Util.getTransitionDurationFromElement(tip);
@@ -3221,7 +3221,7 @@
       }
 
       if (event) {
-        context._activeTrigger[event.type === 'focusin' ? TRIGGER_FOCUS : TRIGGER_HOVER] = true;
+        context._trangthaiTrigger[event.type === 'focusin' ? TRIGGER_FOCUS : TRIGGER_HOVER] = true;
       }
 
       if ($__default["default"](context.getTipElement()).hasClass(CLASS_NAME_SHOW$3) || context._hoverState === HOVER_STATE_SHOW) {
@@ -3254,10 +3254,10 @@
       }
 
       if (event) {
-        context._activeTrigger[event.type === 'focusout' ? TRIGGER_FOCUS : TRIGGER_HOVER] = false;
+        context._trangthaiTrigger[event.type === 'focusout' ? TRIGGER_FOCUS : TRIGGER_HOVER] = false;
       }
 
-      if (context._isWithActiveTrigger()) {
+      if (context._isWithtrangthaiTrigger()) {
         return;
       }
 
@@ -3276,9 +3276,9 @@
       }, context.config.delay.hide);
     };
 
-    _proto._isWithActiveTrigger = function _isWithActiveTrigger() {
-      for (var trigger in this._activeTrigger) {
-        if (this._activeTrigger[trigger]) {
+    _proto._isWithtrangthaiTrigger = function _isWithtrangthaiTrigger() {
+      for (var trigger in this._trangthaiTrigger) {
+        if (this._trangthaiTrigger[trigger]) {
           return true;
         }
       }
@@ -3629,7 +3629,7 @@
   var DATA_API_KEY$1 = '.data-api';
   var JQUERY_NO_CONFLICT$2 = $__default["default"].fn[NAME$2];
   var CLASS_NAME_DROPDOWN_ITEM = 'dropdown-item';
-  var CLASS_NAME_ACTIVE$1 = 'active';
+  var CLASS_NAME_trangthai$1 = 'trangthai';
   var EVENT_ACTIVATE = "activate" + EVENT_KEY$2;
   var EVENT_SCROLL = "scroll" + EVENT_KEY$2;
   var EVENT_LOAD_DATA_API = "load" + EVENT_KEY$2 + DATA_API_KEY$1;
@@ -3667,7 +3667,7 @@
       this._selector = this._config.target + " " + SELECTOR_NAV_LINKS + "," + (this._config.target + " " + SELECTOR_LIST_ITEMS + ",") + (this._config.target + " " + SELECTOR_DROPDOWN_ITEMS);
       this._offsets = [];
       this._targets = [];
-      this._activeTarget = null;
+      this._trangthaiTarget = null;
       this._scrollHeight = 0;
       $__default["default"](this._scrollElement).on(EVENT_SCROLL, function (event) {
         return _this._process(event);
@@ -3729,7 +3729,7 @@
       this._selector = null;
       this._offsets = null;
       this._targets = null;
-      this._activeTarget = null;
+      this._trangthaiTarget = null;
       this._scrollHeight = null;
     } // Private
     ;
@@ -3778,15 +3778,15 @@
       if (scrollTop >= maxScroll) {
         var target = this._targets[this._targets.length - 1];
 
-        if (this._activeTarget !== target) {
+        if (this._trangthaiTarget !== target) {
           this._activate(target);
         }
 
         return;
       }
 
-      if (this._activeTarget && scrollTop < this._offsets[0] && this._offsets[0] > 0) {
-        this._activeTarget = null;
+      if (this._trangthaiTarget && scrollTop < this._offsets[0] && this._offsets[0] > 0) {
+        this._trangthaiTarget = null;
 
         this._clear();
 
@@ -3794,16 +3794,16 @@
       }
 
       for (var i = this._offsets.length; i--;) {
-        var isActiveTarget = this._activeTarget !== this._targets[i] && scrollTop >= this._offsets[i] && (typeof this._offsets[i + 1] === 'undefined' || scrollTop < this._offsets[i + 1]);
+        var istrangthaiTarget = this._trangthaiTarget !== this._targets[i] && scrollTop >= this._offsets[i] && (typeof this._offsets[i + 1] === 'undefined' || scrollTop < this._offsets[i + 1]);
 
-        if (isActiveTarget) {
+        if (istrangthaiTarget) {
           this._activate(this._targets[i]);
         }
       }
     };
 
     _proto._activate = function _activate(target) {
-      this._activeTarget = target;
+      this._trangthaiTarget = target;
 
       this._clear();
 
@@ -3814,16 +3814,16 @@
       var $link = $__default["default"]([].slice.call(document.querySelectorAll(queries.join(','))));
 
       if ($link.hasClass(CLASS_NAME_DROPDOWN_ITEM)) {
-        $link.closest(SELECTOR_DROPDOWN$1).find(SELECTOR_DROPDOWN_TOGGLE$1).addClass(CLASS_NAME_ACTIVE$1);
-        $link.addClass(CLASS_NAME_ACTIVE$1);
+        $link.closest(SELECTOR_DROPDOWN$1).find(SELECTOR_DROPDOWN_TOGGLE$1).addClass(CLASS_NAME_trangthai$1);
+        $link.addClass(CLASS_NAME_trangthai$1);
       } else {
-        // Set triggered link as active
-        $link.addClass(CLASS_NAME_ACTIVE$1); // Set triggered links parents as active
+        // Set triggered link as trangthai
+        $link.addClass(CLASS_NAME_trangthai$1); // Set triggered links parents as trangthai
         // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
 
-        $link.parents(SELECTOR_NAV_LIST_GROUP$1).prev(SELECTOR_NAV_LINKS + ", " + SELECTOR_LIST_ITEMS).addClass(CLASS_NAME_ACTIVE$1); // Handle special case when .nav-link is inside .nav-item
+        $link.parents(SELECTOR_NAV_LIST_GROUP$1).prev(SELECTOR_NAV_LINKS + ", " + SELECTOR_LIST_ITEMS).addClass(CLASS_NAME_trangthai$1); // Handle special case when .nav-link is inside .nav-item
 
-        $link.parents(SELECTOR_NAV_LIST_GROUP$1).prev(SELECTOR_NAV_ITEMS).children(SELECTOR_NAV_LINKS).addClass(CLASS_NAME_ACTIVE$1);
+        $link.parents(SELECTOR_NAV_LIST_GROUP$1).prev(SELECTOR_NAV_ITEMS).children(SELECTOR_NAV_LINKS).addClass(CLASS_NAME_trangthai$1);
       }
 
       $__default["default"](this._scrollElement).trigger(EVENT_ACTIVATE, {
@@ -3833,9 +3833,9 @@
 
     _proto._clear = function _clear() {
       [].slice.call(document.querySelectorAll(this._selector)).filter(function (node) {
-        return node.classList.contains(CLASS_NAME_ACTIVE$1);
+        return node.classList.contains(CLASS_NAME_trangthai$1);
       }).forEach(function (node) {
-        return node.classList.remove(CLASS_NAME_ACTIVE$1);
+        return node.classList.remove(CLASS_NAME_trangthai$1);
       });
     } // Static
     ;
@@ -3913,7 +3913,7 @@
   var DATA_API_KEY = '.data-api';
   var JQUERY_NO_CONFLICT$1 = $__default["default"].fn[NAME$1];
   var CLASS_NAME_DROPDOWN_MENU = 'dropdown-menu';
-  var CLASS_NAME_ACTIVE = 'active';
+  var CLASS_NAME_trangthai = 'trangthai';
   var CLASS_NAME_DISABLED = 'disabled';
   var CLASS_NAME_FADE$1 = 'fade';
   var CLASS_NAME_SHOW$1 = 'show';
@@ -3924,11 +3924,11 @@
   var EVENT_CLICK_DATA_API = "click" + EVENT_KEY$1 + DATA_API_KEY;
   var SELECTOR_DROPDOWN = '.dropdown';
   var SELECTOR_NAV_LIST_GROUP = '.nav, .list-group';
-  var SELECTOR_ACTIVE = '.active';
-  var SELECTOR_ACTIVE_UL = '> li > .active';
+  var SELECTOR_trangthai = '.trangthai';
+  var SELECTOR_trangthai_UL = '> li > .trangthai';
   var SELECTOR_DATA_TOGGLE = '[data-toggle="tab"], [data-toggle="pill"], [data-toggle="list"]';
   var SELECTOR_DROPDOWN_TOGGLE = '.dropdown-toggle';
-  var SELECTOR_DROPDOWN_ACTIVE_CHILD = '> .dropdown-menu .active';
+  var SELECTOR_DROPDOWN_trangthai_CHILD = '> .dropdown-menu .trangthai';
   /**
    * Class definition
    */
@@ -3945,7 +3945,7 @@
     _proto.show = function show() {
       var _this = this;
 
-      if (this._element.parentNode && this._element.parentNode.nodeType === Node.ELEMENT_NODE && $__default["default"](this._element).hasClass(CLASS_NAME_ACTIVE) || $__default["default"](this._element).hasClass(CLASS_NAME_DISABLED)) {
+      if (this._element.parentNode && this._element.parentNode.nodeType === Node.ELEMENT_NODE && $__default["default"](this._element).hasClass(CLASS_NAME_trangthai) || $__default["default"](this._element).hasClass(CLASS_NAME_DISABLED)) {
         return;
       }
 
@@ -3955,7 +3955,7 @@
       var selector = Util.getSelectorFromElement(this._element);
 
       if (listElement) {
-        var itemSelector = listElement.nodeName === 'UL' || listElement.nodeName === 'OL' ? SELECTOR_ACTIVE_UL : SELECTOR_ACTIVE;
+        var itemSelector = listElement.nodeName === 'UL' || listElement.nodeName === 'OL' ? SELECTOR_trangthai_UL : SELECTOR_trangthai;
         previous = $__default["default"].makeArray($__default["default"](listElement).find(itemSelector));
         previous = previous[previous.length - 1];
       }
@@ -4010,37 +4010,37 @@
     _proto._activate = function _activate(element, container, callback) {
       var _this2 = this;
 
-      var activeElements = container && (container.nodeName === 'UL' || container.nodeName === 'OL') ? $__default["default"](container).find(SELECTOR_ACTIVE_UL) : $__default["default"](container).children(SELECTOR_ACTIVE);
-      var active = activeElements[0];
-      var isTransitioning = callback && active && $__default["default"](active).hasClass(CLASS_NAME_FADE$1);
+      var trangthaiElements = container && (container.nodeName === 'UL' || container.nodeName === 'OL') ? $__default["default"](container).find(SELECTOR_trangthai_UL) : $__default["default"](container).children(SELECTOR_trangthai);
+      var trangthai = trangthaiElements[0];
+      var isTransitioning = callback && trangthai && $__default["default"](trangthai).hasClass(CLASS_NAME_FADE$1);
 
       var complete = function complete() {
-        return _this2._transitionComplete(element, active, callback);
+        return _this2._transitionComplete(element, trangthai, callback);
       };
 
-      if (active && isTransitioning) {
-        var transitionDuration = Util.getTransitionDurationFromElement(active);
-        $__default["default"](active).removeClass(CLASS_NAME_SHOW$1).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
+      if (trangthai && isTransitioning) {
+        var transitionDuration = Util.getTransitionDurationFromElement(trangthai);
+        $__default["default"](trangthai).removeClass(CLASS_NAME_SHOW$1).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
       } else {
         complete();
       }
     };
 
-    _proto._transitionComplete = function _transitionComplete(element, active, callback) {
-      if (active) {
-        $__default["default"](active).removeClass(CLASS_NAME_ACTIVE);
-        var dropdownChild = $__default["default"](active.parentNode).find(SELECTOR_DROPDOWN_ACTIVE_CHILD)[0];
+    _proto._transitionComplete = function _transitionComplete(element, trangthai, callback) {
+      if (trangthai) {
+        $__default["default"](trangthai).removeClass(CLASS_NAME_trangthai);
+        var dropdownChild = $__default["default"](trangthai.parentNode).find(SELECTOR_DROPDOWN_trangthai_CHILD)[0];
 
         if (dropdownChild) {
-          $__default["default"](dropdownChild).removeClass(CLASS_NAME_ACTIVE);
+          $__default["default"](dropdownChild).removeClass(CLASS_NAME_trangthai);
         }
 
-        if (active.getAttribute('role') === 'tab') {
-          active.setAttribute('aria-selected', false);
+        if (trangthai.getAttribute('role') === 'tab') {
+          trangthai.setAttribute('aria-selected', false);
         }
       }
 
-      $__default["default"](element).addClass(CLASS_NAME_ACTIVE);
+      $__default["default"](element).addClass(CLASS_NAME_trangthai);
 
       if (element.getAttribute('role') === 'tab') {
         element.setAttribute('aria-selected', true);
@@ -4063,7 +4063,7 @@
 
         if (dropdownElement) {
           var dropdownToggleList = [].slice.call(dropdownElement.querySelectorAll(SELECTOR_DROPDOWN_TOGGLE));
-          $__default["default"](dropdownToggleList).addClass(CLASS_NAME_ACTIVE);
+          $__default["default"](dropdownToggleList).addClass(CLASS_NAME_trangthai);
         }
 
         element.setAttribute('aria-expanded', true);

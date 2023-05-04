@@ -506,13 +506,13 @@
         });
         $.fn.dataTable.ext.buttons.fixedColumns = {
             action: function (e, dt, node, config) {
-                if ($(node).attr('active')) {
-                    $(node).removeAttr('active').removeClass('active');
+                if ($(node).attr('trangthai')) {
+                    $(node).removeAttr('trangthai').removeClass('trangthai');
                     dt.fixedColumns().left(0);
                     dt.fixedColumns().right(0);
                 }
                 else {
-                    $(node).attr('active', true).addClass('active');
+                    $(node).attr('trangthai', true).addClass('trangthai');
                     dt.fixedColumns().left(config.config.left);
                     dt.fixedColumns().right(config.config.right);
                 }
@@ -525,7 +525,7 @@
                 if (dt.settings()[0]._fixedColumns === undefined) {
                     _init(dt.settings(), config);
                 }
-                $(node).attr('active', true).addClass('active');
+                $(node).attr('trangthai', true).addClass('trangthai');
                 dt.button(node).text(config.text || dt.i18n('buttons.fixedColumns', dt.settings()[0]._fixedColumns.c.i18n.button));
             },
             text: null

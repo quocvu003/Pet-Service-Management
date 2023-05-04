@@ -2686,14 +2686,14 @@ function uPlot(opts, data, then) {
 	const _timeAxisVals   = timeAxisVals(_tzDate, timeAxisStamps((ms == 1 ? _timeAxisStampsMs : _timeAxisStampsS), _fmtDate));
 	const _timeSeriesVal  = timeSeriesVal(_tzDate, timeSeriesStamp(_timeSeriesStamp, _fmtDate));
 
-	const activeIdxs = [];
+	const trangthaiIdxs = [];
 
 	const legend     = (self.legend = assign({}, legendOpts, opts.legend));
 	const showLegend = legend.show;
 	const markers    = legend.markers;
 
 	{
-		legend.idxs = activeIdxs;
+		legend.idxs = trangthaiIdxs;
 
 		markers.width  = fnOrSelf(markers.width);
 		markers.dash   = fnOrSelf(markers.dash);
@@ -3005,7 +3005,7 @@ function uPlot(opts, data, then) {
 	const cursor = (self.cursor = assign({}, cursorOpts, {drag: {y: mode == 2}}, opts.cursor));
 
 	{
-		cursor.idxs = activeIdxs;
+		cursor.idxs = trangthaiIdxs;
 
 		cursor._lock = false;
 
@@ -3085,7 +3085,7 @@ function uPlot(opts, data, then) {
 		}
 
 		if (cursor.show) {
-			activeIdxs.splice(i, 0, null);
+			trangthaiIdxs.splice(i, 0, null);
 
 			let pt = initCursorPt(s, i);
 			pt && cursorPts.splice(i, 0, pt);
@@ -3115,7 +3115,7 @@ function uPlot(opts, data, then) {
 		}
 
 		if (cursor.show) {
-			activeIdxs.splice(i, 1);
+			trangthaiIdxs.splice(i, 1);
 
 			cursorPts.length > 1 && cursorPts.splice(i, 1)[0].remove();
 		}
@@ -4530,7 +4530,7 @@ function uPlot(opts, data, then) {
 				setSeries(null, FOCUS_TRUE, true, src == null && syncOpts.setSeries);
 
 			if (legend.live) {
-				activeIdxs.fill(null);
+				trangthaiIdxs.fill(null);
 				shouldSetLegend = true;
 
 				for (let i = 0; i < series.length; i++)
@@ -4552,7 +4552,7 @@ function uPlot(opts, data, then) {
 			for (let i = mode == 2 ? 1 : 0; i < series.length; i++) {
 				let s = series[i];
 
-				let idx1  = activeIdxs[i];
+				let idx1  = trangthaiIdxs[i];
 				let yVal1 = mode == 1 ? data[i][idx1] : data[i][1][idx1];
 
 				let idx2  = cursor.dataIdx(self, i, idx, valAtPosX);
@@ -4560,7 +4560,7 @@ function uPlot(opts, data, then) {
 
 				shouldSetLegend = shouldSetLegend || yVal2 != yVal1 || idx2 != idx1;
 
-				activeIdxs[i] = idx2;
+				trangthaiIdxs[i] = idx2;
 
 				let xPos2 = idx2 == idx ? xPos : incrRoundUp(valToPosX(mode == 1 ? data[0][idx2] : data[i][0][idx2], scaleX, xDim, 0), 0.5);
 

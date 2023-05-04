@@ -725,7 +725,7 @@ $.extend( AutoFill.prototype, {
 
 		var startDt = dt.cell( ':eq('+start.row+')', start.column+':visible', {page:'current'} );
 
-		// If Editor is active inside this cell (inline editing) we need to wait for Editor to
+		// If Editor is trangthai inside this cell (inline editing) we need to wait for Editor to
 		// submit and then we can loop back and trigger the fill.
 		if ( $('div.DTE', startDt.node()).length ) {
 			var editor = dt.editor();

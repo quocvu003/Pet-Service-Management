@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\DanhMucService;
 use Illuminate\Http\Request;
 use App\Http\Services\Slider\SliderService;
-use App\Http\Services\Menu\MenuService;
+
 use App\Http\Services\Product\ProductService;
 
 class MainUserController extends Controller
@@ -13,34 +14,34 @@ class MainUserController extends Controller
     protected $menu;
     protected $product;
 
-    public function __construct(SliderService $slider, MenuService $menu, ProductService $product)
+    public function __construct(DanhMucService $menu,)
     {
-        $this->slider = $slider;
+        // $this->slider = $slider;
         $this->menu = $menu;
-        $this->product = $product;
+        // $this->product = $product;
     }
 
     public function index()
     {
         return view('user.home', [
-            'title' => 'Shop Nước Hoa ',
+            'title' => 'PetCare Shop ',
             // 'sliders' => $this->slider->show(),
-            // 'menus' => $this->menu->show(),
+            'menus' => $this->menu->show(),
             // 'products' => $this->product->get()
         ]);
     }
 
-    public function loadProduct(Request $request)
-    {
+    // public function loadProduct(Request $request)
+    // {
 
-        $page = $request->input('page', 0);
-        $result = $this->product->get($page);
-        if (count($result) != 0) {
-            $html = view('user.products.list', ['product' => $result])->render();
+    //         $page = $request->input('page', 0);
+    //         $result = $this->product->get($page);
+    //         if (count($result) != 0) {
+    //             $html = view('user.products.list', ['product' => $result])->render();
 
-            return response()->json(['html' => $html]);
-        }
+    //             return response()->json(['html' => $html]);
+    //         }
 
-        return response()->json(['html' => '']);
-    }
+    //         return response()->json(['html' => '']);
+    // }
 }

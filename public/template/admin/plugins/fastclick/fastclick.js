@@ -294,9 +294,9 @@
 	FastClick.prototype.sendClick = function(targetElement, event) {
 		var clickEvent, touch;
 
-		// On some Android devices activeElement needs to be blurred otherwise the synthetic click will have no effect (#24)
-		if (document.activeElement && document.activeElement !== targetElement) {
-			document.activeElement.blur();
+		// On some Android devices trangthaiElement needs to be blurred otherwise the synthetic click will have no effect (#24)
+		if (document.trangthaiElement && document.trangthaiElement !== targetElement) {
+			document.trangthaiElement.blur();
 		}
 
 		touch = event.changedTouches[0];
@@ -580,7 +580,7 @@
 			this.sendClick(targetElement, event);
 
 			// Select elements need the event to go through on iOS 4, otherwise the selector menu won't open.
-			// Also this breaks opening selects when VoiceOver is active on iOS6, iOS7 (and possibly others)
+			// Also this breaks opening selects when VoiceOver is trangthai on iOS6, iOS7 (and possibly others)
 			if (!deviceIsIOS || targetTagName !== 'select') {
 				this.targetElement = null;
 				event.preventDefault();

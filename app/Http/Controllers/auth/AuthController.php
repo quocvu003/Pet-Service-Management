@@ -7,7 +7,7 @@ use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+
 
 class AuthController extends Controller
 
@@ -90,6 +90,11 @@ class AuthController extends Controller
                     return redirect('/');
                 }
             }
+            if ($dataUser->quyen_id == 4) {
+                if (Auth::attempt($arr)) {
+                    return redirect('/NhanVien');
+                }
+            }
         }
         if ($dataUser->trangthai == 2) {
             return redirect('login')
@@ -106,6 +111,7 @@ class AuthController extends Controller
     }
     public function register_seller_action(Request $request)
     {
+
         $request->validate([
             'email' => 'required|email:filter',
             'password' => 'required',
@@ -136,17 +142,6 @@ class AuthController extends Controller
 
         return redirect()->route('login');
     }
-
-
-
-    public function verification()
-    {
-        return view('verification', [
-            'title' => 'Đăng ký trở thành chủ Shop',
-
-        ]);
-    }
-
 
 
 

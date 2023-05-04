@@ -243,7 +243,7 @@
         }
         this.el = document.createElement('div');
         this.el.classList.add('pace');
-        this.el.classList.add('pace-active');
+        this.el.classList.add('pace-trangthai');
         document.body.classList.remove('pace-done');
         document.body.classList.add('pace-running');
         this.el.innerHTML = '<div class="pace-progress">\n  <div class="pace-progress-inner"></div>\n</div>\n<div class="pace-activity"></div>';
@@ -259,8 +259,8 @@
     Bar.prototype.finish = function() {
       var el;
       el = this.getElement();
-      el.classList.remove('pace-active');
-      el.classList.add('pace-inactive');
+      el.classList.remove('pace-trangthai');
+      el.classList.add('pace-intrangthai');
       document.body.classList.remove('pace-running');
       return document.body.classList.add('pace-done');
     };
@@ -526,13 +526,13 @@
         after = 0;
       }
       return setTimeout(function() {
-        var l, len1, ref1, ref2, results, stillActive;
+        var l, len1, ref1, ref2, results, stilltrangthai;
         if (type === 'socket') {
-          stillActive = request.readyState < 2;
+          stilltrangthai = request.readyState < 2;
         } else {
-          stillActive = (0 < (ref1 = request.readyState) && ref1 < 4);
+          stilltrangthai = (0 < (ref1 = request.readyState) && ref1 < 4);
         }
-        if (stillActive) {
+        if (stilltrangthai) {
           Pace.restart();
           ref2 = Pace.sources;
           results = [];
@@ -693,7 +693,7 @@
   DocumentMonitor = (function() {
     DocumentMonitor.prototype.states = {
       loading: 0,
-      interactive: 50,
+      intertrangthai: 50,
       complete: 100
     };
 

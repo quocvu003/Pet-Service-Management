@@ -547,8 +547,8 @@ $.extend( FixedHeader.prototype, {
 		// Record focus. Browser's will cause input elements to loose focus if
 		// they are inserted else where in the doc
 		var tablePart = this.dom[ item==='footer' ? 'tfoot' : 'thead' ];
-		var focus = $.contains( tablePart[0], document.activeElement ) ?
-			document.activeElement :
+		var focus = $.contains( tablePart[0], document.trangthaiElement ) ?
+			document.trangthaiElement :
 			null;
 		var scrollBody = $($(this.s.dt.table().node()).parent());
 
@@ -653,7 +653,7 @@ $.extend( FixedHeader.prototype, {
 		}
 
 		// Restore focus if it was lost
-		if ( focus && focus !== document.activeElement ) {
+		if ( focus && focus !== document.trangthaiElement ) {
 			setTimeout( function () {
 				focus.focus();
 			}, 10 );

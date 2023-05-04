@@ -123,7 +123,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 					default:
 						btnDisplay = button + 1;
 						btnClass = page === button ?
-							'active' : '';
+							'trangthai' : '';
 						break;
 				}
 
@@ -156,16 +156,16 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 		}
 	};
 
-	// IE9 throws an 'unknown error' if document.activeElement is used
+	// IE9 throws an 'unknown error' if document.trangthaiElement is used
 	// inside an iframe or frame. 
-	var activeEl;
+	var trangthaiEl;
 
 	try {
 		// Because this approach is destroying and recreating the paging
 		// elements, focus is lost on the select button which is bad for
 		// accessibility. So we want to restore focus once the draw has
 		// completed
-		activeEl = $(host).find(document.activeElement).data('dt-idx');
+		trangthaiEl = $(host).find(document.trangthaiElement).data('dt-idx');
 	}
 	catch (e) {}
 
@@ -174,8 +174,8 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 		buttons
 	);
 
-	if ( activeEl !== undefined ) {
-		$(host).find( '[data-dt-idx='+activeEl+']' ).trigger('focus');
+	if ( trangthaiEl !== undefined ) {
+		$(host).find( '[data-dt-idx='+trangthaiEl+']' ).trigger('focus');
 	}
 };
 

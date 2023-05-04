@@ -97,7 +97,7 @@ The plugin allso adds the following methods to the plot object:
             second: {x: -1, y: -1},
             show: false,
             currentMode: 'xy',
-            active: false
+            trangthai: false
         };
 
         var SNAPPING_CONSTANT = $.plot.uiConstants.SNAPPING_CONSTANT;
@@ -110,7 +110,7 @@ The plugin allso adds the following methods to the plot object:
         var savedhandlers = {};
 
         function onDrag(e) {
-            if (selection.active) {
+            if (selection.trangthai) {
                 updateSelection(e);
 
                 plot.getPlaceholder().trigger("plotselecting", [ getSelection() ]);
@@ -140,7 +140,7 @@ The plugin allso adds the following methods to the plot object:
 
             setSelectionPos(selection.first, e);
 
-            selection.active = true;
+            selection.trangthai = true;
         }
 
         function onDragEnd(e) {
@@ -154,7 +154,7 @@ The plugin allso adds the following methods to the plot object:
             }
 
             // no more dragging
-            selection.active = false;
+            selection.trangthai = false;
             updateSelection(e);
 
             if (selectionIsSane()) {

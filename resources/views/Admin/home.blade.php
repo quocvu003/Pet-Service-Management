@@ -80,7 +80,7 @@
                             <div class="card-tools">
                                 <ul class="nav nav-pills ml-auto">
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
+                                        <a class="nav-link trangthai" href="#revenue-chart" data-toggle="tab">Area</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
@@ -91,7 +91,7 @@
                         <div class="card-body">
                             <div class="tab-content p-0">
                                 <!-- Morris chart - Sales -->
-                                <div class="chart tab-pane active" id="revenue-chart"
+                                <div class="chart tab-pane trangthai" id="revenue-chart"
                                     style="position: relative; height: 300px;">
                                     <div class="chartjs-size-monitor">
                                         <div class="chartjs-size-monitor-expand">
@@ -961,7 +961,7 @@
                                                                 <td data-action="selectDay" data-day="03/14/2023"
                                                                     class="day">14</td>
                                                                 <td data-action="selectDay" data-day="03/15/2023"
-                                                                    class="day active today">15</td>
+                                                                    class="day trangthai today">15</td>
                                                                 <td data-action="selectDay" data-day="03/16/2023"
                                                                     class="day">16</td>
                                                                 <td data-action="selectDay" data-day="03/17/2023"
@@ -1041,7 +1041,7 @@
                                                                         data-action="selectMonth"
                                                                         class="month">Feb</span><span
                                                                         data-action="selectMonth"
-                                                                        class="month active">Mar</span><span
+                                                                        class="month trangthai">Mar</span><span
                                                                         data-action="selectMonth"
                                                                         class="month">Apr</span><span
                                                                         data-action="selectMonth"
@@ -1089,7 +1089,7 @@
                                                                         data-action="selectYear"
                                                                         class="year">2022</span><span
                                                                         data-action="selectYear"
-                                                                        class="year active">2023</span><span
+                                                                        class="year trangthai">2023</span><span
                                                                         data-action="selectYear"
                                                                         class="year">2024</span><span
                                                                         data-action="selectYear"
@@ -1131,7 +1131,8 @@
                                                                         data-selection="2006">2000</span><span
                                                                         data-action="selectDecade" class="decade"
                                                                         data-selection="2016">2010</span><span
-                                                                        data-action="selectDecade" class="decade active"
+                                                                        data-action="selectDecade"
+                                                                        class="decade trangthai"
                                                                         data-selection="2026">2020</span><span
                                                                         data-action="selectDecade" class="decade"
                                                                         data-selection="2036">2030</span><span

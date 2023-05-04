@@ -3,12 +3,21 @@
 namespace App\Http\Controllers\ChuShop;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\ChuShopService;
+
 use App\Models\User;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class MainCSController extends Controller
 {
+    protected  $ChuShopService;
+    public function __construct(ChuShopService $ChuShopService)
+    {
+        $this->ChuShopService = $ChuShopService;
+    }
+
     public function index()
     {
         $id = Auth::user()->id;
@@ -24,13 +33,38 @@ class MainCSController extends Controller
     }
     public function profile()
     {
-        $id = Auth::user()->id;
-        $currentuser = User::find($id);
-        // dd($currentuser);
-        return view('ChuShop.profile', [
+        $user = Auth::user();
+        $shop = $user->shops;
+
+        return view('ChuShop.profile.index', [
             'title' => 'Trang Cá Nhân',
-            // 'name' => $currentuser->ten,
+            'user' => $user,
+            'shop' => $shop
 
         ]);
+    }
+    public function show()
+    {
+        $user = Auth::user();
+        $shop = $user->shops;
+
+        return view('ChuShop.profile.edit', [
+            'title' => 'Chỉnh Sửa Trang Cá Nhân',
+            'user' => $user,
+            'shop' => $shop
+
+        ]);
+    }
+    public function updateshop(Request $request)
+    {
+        $user = Auth::user();
+
+        $shop = $user->shops;
+
+        $result = $this->ChuShopService->updateshop($request, $user, $shop);
+
+        if ($result) {
+            return redirect()->back();
+        }
     }
 }

@@ -62,36 +62,31 @@
 
             <div class="form-group">
                 <label for="menu">Logo</label>
-                <input type="file" class="form-control" id="hinhanh">
+                <input type="file" value="{{ $shops->hinhanh }}" class="form-control" id="hinhanh">
                 <div id="hinhanh_show">
                     <a href="{{ $shops->hinhanh }}" target="_blank">
-                        <img src="{{ $shops->hinhanh }}" width="100px">
+                        <img src="{{ $shops->hinhanh }}" width="100px" alt="{{ $shops->hinhanh }}">
                     </a>
+
                 </div>
-                <input type="hidden" name="hinhanh" value="{{ $shops->hinhanh }}" id="hinhanh01">
-            </div>
+                <input type='hidden' name="hinhanh" id="hinhanh01">
 
 
-
-
-
-
-
-            <div class="form-group">
-                <label>Trạng thái</label>
-                <div class="custom-control custom-radio">
-                    <input class="custom-control-input" value="1" type="radio" id="active" name="trangthai"
-                        {{ $acc->trangthai == 1 ? ' checked=""' : '' }}>
-                    <label for="active" class="custom-control-label">Kích Hoạt</label>
+                <div class="form-group">
+                    <label>Trạng thái</label>
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" value="1" type="radio" id="trangthai" name="trangthai"
+                            {{ $acc->trangthai == 1 ? ' checked=""' : '' }}>
+                        <label for="trangthai" class="custom-control-label">Kích Hoạt</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" value="0" type="radio" id="no_trangthai" name="trangthai"
+                            {{ $acc->trangthai == 0 ? ' checked=""' : '' }}>
+                        <label for="no_trangthai" class="custom-control-label">khóa</label>
+                    </div>
                 </div>
-                <div class="custom-control custom-radio">
-                    <input class="custom-control-input" value="0" type="radio" id="no_active" name="trangthai"
-                        {{ $acc->trangthai == 0 ? ' checked=""' : '' }}>
-                    <label for="no_active" class="custom-control-label">khóa</label>
-                </div>
-            </div>
 
-            {{-- <div class="form-group">
+                {{-- <div class="form-group">
                 <label>Phân Quyền</label>
                 <div class="custom-control custom-radio">
                     <input class="custom-control-input" type="radio" id="admin" name="quyen_id" value="1"
@@ -110,15 +105,15 @@
                 </div>
 
             </div> --}}
-            <div class="row">
+                <div class="row">
 
-                <!-- /.col -->
-                <div class="col-4">
-                    <button type="submit" class="btn btn-primary btn-block">Cập nhật tài khoản</button>
+                    <!-- /.col -->
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary btn-block">Cập nhật tài khoản</button>
+                    </div>
+                    <!-- /.col -->
                 </div>
-                <!-- /.col -->
-            </div>
-            @csrf
+                @csrf
 
     </form>
 @endsection

@@ -14,7 +14,7 @@
   "use strict";
 
   var HINT_ELEMENT_CLASS        = "CodeMirror-hint";
-  var ACTIVE_HINT_ELEMENT_CLASS = "CodeMirror-hint-active";
+  var trangthai_HINT_ELEMENT_CLASS = "CodeMirror-hint-trangthai";
 
   // This is the old interface, kept around for now to stay
   // backwards-compatible.
@@ -40,8 +40,8 @@
         if (selections[i].head.line != selections[i].anchor.line) return;
     }
 
-    if (this.state.completionActive) this.state.completionActive.close();
-    var completion = this.state.completionActive = new Completion(this, options);
+    if (this.state.completiontrangthai) this.state.completiontrangthai.close();
+    var completion = this.state.completiontrangthai = new Completion(this, options);
     if (!completion.options.hint) return;
 
     CodeMirror.signal(this, "startCompletion", this);
@@ -49,7 +49,7 @@
   });
 
   CodeMirror.defineExtension("closeHint", function() {
-    if (this.state.completionActive) this.state.completionActive.close()
+    if (this.state.completiontrangthai) this.state.completiontrangthai.close()
   })
 
   function Completion(cm, options) {
@@ -74,8 +74,8 @@
 
   Completion.prototype = {
     close: function() {
-      if (!this.active()) return;
-      this.cm.state.completionActive = null;
+      if (!this.trangthai()) return;
+      this.cm.state.completiontrangthai = null;
       this.tick = null;
       if (this.options.updateOnCursorActivity) {
         this.cm.off("cursorActivity", this.activityFunc);
@@ -86,8 +86,8 @@
       CodeMirror.signal(this.cm, "endCompletion", this.cm);
     },
 
-    active: function() {
-      return this.cm.state.completionActive == this;
+    trangthai: function() {
+      return this.cm.state.completiontrangthai == this;
     },
 
     pick: function(data, i) {
@@ -243,7 +243,7 @@
     var completions = data.list;
     for (var i = 0; i < completions.length; ++i) {
       var elt = hints.appendChild(ownerDocument.createElement("li")), cur = completions[i];
-      var className = HINT_ELEMENT_CLASS + (i != this.selectedHint ? "" : " " + ACTIVE_HINT_ELEMENT_CLASS);
+      var className = HINT_ELEMENT_CLASS + (i != this.selectedHint ? "" : " " + trangthai_HINT_ELEMENT_CLASS);
       if (cur.className != null) className = cur.className + " " + className;
       elt.className = className;
       if (i == this.selectedHint) elt.setAttribute("aria-selected", "true")
@@ -276,7 +276,7 @@
     container.appendChild(hints);
     cm.getInputField().setAttribute("aria-autocomplete", "list")
     cm.getInputField().setAttribute("aria-owns", this.id)
-    cm.getInputField().setAttribute("aria-activedescendant", this.id + "-" + this.selectedHint)
+    cm.getInputField().setAttribute("aria-trangthaidescendant", this.id + "-" + this.selectedHint)
 
     var box = completion.options.moveOnOverlap ? hints.getBoundingClientRect() : new DOMRect();
     var scrolls = completion.options.paddingForScrollbar ? hints.scrollHeight > hints.clientHeight + 1 : false;
@@ -315,8 +315,8 @@
       node.style.paddingRight = cm.display.nativeBarWidth + "px"
 
     cm.addKeyMap(this.keyMap = buildKeyMap(completion, {
-      moveFocus: function(n, avoidWrap) { widget.changeActive(widget.selectedHint + n, avoidWrap); },
-      setFocus: function(n) { widget.changeActive(n); },
+      moveFocus: function(n, avoidWrap) { widget.changetrangthai(widget.selectedHint + n, avoidWrap); },
+      setFocus: function(n) { widget.changetrangthai(n); },
       menuSize: function() { return widget.screenAmount(); },
       length: completions.length,
       close: function() { completion.close(); },
@@ -343,13 +343,13 @@
 
     CodeMirror.on(hints, "dblclick", function(e) {
       var t = getHintElement(hints, e.target || e.srcElement);
-      if (t && t.hintId != null) {widget.changeActive(t.hintId); widget.pick();}
+      if (t && t.hintId != null) {widget.changetrangthai(t.hintId); widget.pick();}
     });
 
     CodeMirror.on(hints, "click", function(e) {
       var t = getHintElement(hints, e.target || e.srcElement);
       if (t && t.hintId != null) {
-        widget.changeActive(t.hintId);
+        widget.changetrangthai(t.hintId);
         if (completion.options.completeOnSingleClick) widget.pick();
       }
     });
@@ -361,7 +361,7 @@
     // The first hint doesn't need to be scrolled to on init
     var selectedHintRange = this.getSelectedHintRange();
     if (selectedHintRange.from !== 0 || selectedHintRange.to !== 0) {
-      this.scrollToActive();
+      this.scrollTotrangthai();
     }
 
     CodeMirror.signal(data, "select", completions[this.selectedHint], hints.childNodes[this.selectedHint]);
@@ -375,7 +375,7 @@
       if (this.hints.parentNode) this.hints.parentNode.removeChild(this.hints);
       this.completion.cm.removeKeyMap(this.keyMap);
       var input = this.completion.cm.getInputField()
-      input.removeAttribute("aria-activedescendant")
+      input.removeAttribute("aria-trangthaidescendant")
       input.removeAttribute("aria-owns")
 
       var cm = this.completion.cm;
@@ -397,7 +397,7 @@
       this.completion.pick(this.data, this.selectedHint);
     },
 
-    changeActive: function(i, avoidWrap) {
+    changetrangthai: function(i, avoidWrap) {
       if (i >= this.data.list.length)
         i = avoidWrap ? this.data.list.length - 1 : 0;
       else if (i < 0)
@@ -405,18 +405,18 @@
       if (this.selectedHint == i) return;
       var node = this.hints.childNodes[this.selectedHint];
       if (node) {
-        node.className = node.className.replace(" " + ACTIVE_HINT_ELEMENT_CLASS, "");
+        node.className = node.className.replace(" " + trangthai_HINT_ELEMENT_CLASS, "");
         node.removeAttribute("aria-selected")
       }
       node = this.hints.childNodes[this.selectedHint = i];
-      node.className += " " + ACTIVE_HINT_ELEMENT_CLASS;
+      node.className += " " + trangthai_HINT_ELEMENT_CLASS;
       node.setAttribute("aria-selected", "true")
-      this.completion.cm.getInputField().setAttribute("aria-activedescendant", node.id)
-      this.scrollToActive()
+      this.completion.cm.getInputField().setAttribute("aria-trangthaidescendant", node.id)
+      this.scrollTotrangthai()
       CodeMirror.signal(this.data, "select", this.data.list[this.selectedHint], node);
     },
 
-    scrollToActive: function() {
+    scrollTotrangthai: function() {
       var selectedHintRange = this.getSelectedHintRange();
       var node1 = this.hints.childNodes[selectedHintRange.from];
       var node2 = this.hints.childNodes[selectedHintRange.to];

@@ -224,17 +224,17 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
 .fc .fc-button-primary:focus {
     box-shadow: 0 0 0 0.2rem rgba(76, 91, 106, 0.5);
   }
-.fc .fc-button-primary:not(:disabled):active,
-  .fc .fc-button-primary:not(:disabled).fc-button-active {
+.fc .fc-button-primary:not(:disabled):trangthai,
+  .fc .fc-button-primary:not(:disabled).fc-button-trangthai {
     color: #fff;
     color: var(--fc-button-text-color, #fff);
     background-color: #1a252f;
-    background-color: var(--fc-button-active-bg-color, #1a252f);
+    background-color: var(--fc-button-trangthai-bg-color, #1a252f);
     border-color: #151e27;
-    border-color: var(--fc-button-active-border-color, #151e27);
+    border-color: var(--fc-button-trangthai-border-color, #151e27);
   }
-.fc .fc-button-primary:not(:disabled):active:focus,
-  .fc .fc-button-primary:not(:disabled).fc-button-active:focus {
+.fc .fc-button-primary:not(:disabled):trangthai:focus,
+  .fc .fc-button-primary:not(:disabled).fc-button-trangthai:focus {
     box-shadow: 0 0 0 0.2rem rgba(76, 91, 106, 0.5);
   }
 .fc {
@@ -259,8 +259,8 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
     z-index: 1;
   }
 .fc .fc-button-group > .fc-button:focus,
-  .fc .fc-button-group > .fc-button:active,
-  .fc .fc-button-group > .fc-button.fc-button-active {
+  .fc .fc-button-group > .fc-button:trangthai,
+  .fc .fc-button-group > .fc-button.fc-button-trangthai {
     z-index: 1;
   }
 .fc-direction-ltr .fc-button-group > .fc-button:not(:first-child) {
@@ -418,7 +418,7 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
   /* when the harness controls the height, make the view liquid */
 
 }
-.fc .fc-view-harness-active > .fc-view {
+.fc .fc-view-harness-trangthai > .fc-view {
     position: absolute;
     top: 0;
     right: 0;

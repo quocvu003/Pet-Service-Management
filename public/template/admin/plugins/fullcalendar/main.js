@@ -1737,7 +1737,7 @@ var FullCalendar = (function (exports) {
         validRange: identity,
         visibleRange: identity,
         titleFormat: identity,
-        eventInteractive: Boolean,
+        eventIntertrangthai: Boolean,
         // only used by list-view, but languages define the value, so we need it in base options
         noEventsText: String,
         viewHint: identity,
@@ -2060,7 +2060,7 @@ var FullCalendar = (function (exports) {
         groupId: String,
         title: String,
         url: String,
-        interactive: Boolean,
+        intertrangthai: Boolean,
     };
     var EVENT_DATE_REFINERS = {
         start: identity,
@@ -2113,7 +2113,7 @@ var FullCalendar = (function (exports) {
             sourceId: sourceId,
             allDay: allDay,
             hasEnd: hasEnd,
-            interactive: refined.interactive,
+            intertrangthai: refined.intertrangthai,
             ui: createEventUi(refined, context),
             extendedProps: __assign(__assign({}, (refined.extendedProps || {})), extra),
         };
@@ -2580,15 +2580,15 @@ var FullCalendar = (function (exports) {
             return { href: url };
         }
         var emitter = context.emitter, options = context.options;
-        var eventInteractive = options.eventInteractive;
-        if (eventInteractive == null) {
-            eventInteractive = def.interactive;
-            if (eventInteractive == null) {
-                eventInteractive = Boolean(emitter.hasHandlers('eventClick'));
+        var eventIntertrangthai = options.eventIntertrangthai;
+        if (eventIntertrangthai == null) {
+            eventIntertrangthai = def.intertrangthai;
+            if (eventIntertrangthai == null) {
+                eventIntertrangthai = Boolean(emitter.hasHandlers('eventClick'));
             }
         }
         // mock what happens in EventClicking
-        if (eventInteractive) {
+        if (eventIntertrangthai) {
             // only attach keyboard-related handlers because click handler is already done in EventClicking
             return createAriaKeyboardAttrs(function (ev) {
                 emitter.trigger('eventClick', {
@@ -2832,16 +2832,16 @@ var FullCalendar = (function (exports) {
             enumerable: false,
             configurable: true
         });
-        Object.defineProperty(ViewApi.prototype, "activeStart", {
+        Object.defineProperty(ViewApi.prototype, "trangthaiStart", {
             get: function () {
-                return this.dateEnv.toDate(this.getCurrentData().dateProfile.activeRange.start);
+                return this.dateEnv.toDate(this.getCurrentData().dateProfile.trangthaiRange.start);
             },
             enumerable: false,
             configurable: true
         });
-        Object.defineProperty(ViewApi.prototype, "activeEnd", {
+        Object.defineProperty(ViewApi.prototype, "trangthaiEnd", {
             get: function () {
-                return this.dateEnv.toDate(this.getCurrentData().dateProfile.activeRange.end);
+                return this.dateEnv.toDate(this.getCurrentData().dateProfile.trangthaiRange.end);
             },
             enumerable: false,
             configurable: true
@@ -4556,7 +4556,7 @@ var FullCalendar = (function (exports) {
     function getDateMeta(date, todayRange, nowDate, dateProfile) {
         return {
             dow: date.getUTCDay(),
-            isDisabled: Boolean(dateProfile && !rangeContainsMarker(dateProfile.activeRange, date)),
+            isDisabled: Boolean(dateProfile && !rangeContainsMarker(dateProfile.trangthaiRange, date)),
             isOther: Boolean(dateProfile && !rangeContainsMarker(dateProfile.currentRange, date)),
             isToday: Boolean(todayRange && rangeContainsMarker(todayRange, date)),
             isPast: Boolean(nowDate ? (date < nowDate) : todayRange ? (date < todayRange.start) : false),
@@ -5163,7 +5163,7 @@ var FullCalendar = (function (exports) {
     }());
 
     var ViewContextType = createContext({}); // for Components
-    function buildViewContext(viewSpec, viewApi, viewOptions, dateProfileGenerator, dateEnv, theme, pluginHooks, dispatch, getCurrentData, emitter, calendarApi, registerInteractiveComponent, unregisterInteractiveComponent) {
+    function buildViewContext(viewSpec, viewApi, viewOptions, dateProfileGenerator, dateEnv, theme, pluginHooks, dispatch, getCurrentData, emitter, calendarApi, registerIntertrangthaiComponent, unregisterIntertrangthaiComponent) {
         return {
             dateEnv: dateEnv,
             options: viewOptions,
@@ -5186,8 +5186,8 @@ var FullCalendar = (function (exports) {
             createScrollResponder: function (execFunc) {
                 return new ScrollResponder(execFunc, emitter, createDuration(viewOptions.scrollTime), viewOptions.scrollTimeReset);
             },
-            registerInteractiveComponent: registerInteractiveComponent,
-            unregisterInteractiveComponent: unregisterInteractiveComponent,
+            registerIntertrangthaiComponent: registerIntertrangthaiComponent,
+            unregisterIntertrangthaiComponent: unregisterIntertrangthaiComponent,
         };
     }
 
@@ -5434,7 +5434,7 @@ var FullCalendar = (function (exports) {
         tableCellShaded: 'fc-cell-shaded',
         buttonGroup: 'fc-button-group',
         button: 'fc-button fc-button-primary',
-        buttonActive: 'fc-button-active',
+        buttontrangthai: 'fc-button-trangthai',
     };
     StandardTheme.prototype.baseIconClass = 'fc-icon';
     StandardTheme.prototype.iconClasses = {
@@ -5830,7 +5830,7 @@ var FullCalendar = (function (exports) {
             var currentInfo;
             var isRangeAllDay;
             var renderRange;
-            var activeRange;
+            var trangthaiRange;
             var isValid;
             validRange = this.buildValidRange();
             validRange = this.trimHiddenDays(validRange);
@@ -5841,12 +5841,12 @@ var FullCalendar = (function (exports) {
             isRangeAllDay = /^(year|month|week|day)$/.test(currentInfo.unit);
             renderRange = this.buildRenderRange(this.trimHiddenDays(currentInfo.range), currentInfo.unit, isRangeAllDay);
             renderRange = this.trimHiddenDays(renderRange);
-            activeRange = renderRange;
+            trangthaiRange = renderRange;
             if (!props.showNonCurrentDates) {
-                activeRange = intersectRanges(activeRange, currentInfo.range);
+                trangthaiRange = intersectRanges(trangthaiRange, currentInfo.range);
             }
-            activeRange = this.adjustActiveRange(activeRange);
-            activeRange = intersectRanges(activeRange, validRange); // might return null
+            trangthaiRange = this.adjusttrangthaiRange(trangthaiRange);
+            trangthaiRange = intersectRanges(trangthaiRange, validRange); // might return null
             // it's invalid if the originally requested date is not contained,
             // or if the range is completely outside of the valid range.
             isValid = rangesIntersect(currentInfo.range, validRange);
@@ -5862,9 +5862,9 @@ var FullCalendar = (function (exports) {
                 isRangeAllDay: isRangeAllDay,
                 // dates that display events and accept drag-n-drop
                 // will be `null` if no dates accept events
-                activeRange: activeRange,
+                trangthaiRange: trangthaiRange,
                 // date range with a rendered skeleton
-                // includes not-active days that need some sort of DOM
+                // includes not-trangthai days that need some sort of DOM
                 renderRange: renderRange,
                 // Duration object that denotes the first visible time of any given day
                 slotMinTime: props.slotMinTime,
@@ -5919,18 +5919,18 @@ var FullCalendar = (function (exports) {
         DateProfileGenerator.prototype.getFallbackDuration = function () {
             return createDuration({ day: 1 });
         };
-        // Returns a new activeRange to have time values (un-ambiguate)
+        // Returns a new trangthaiRange to have time values (un-ambiguate)
         // slotMinTime or slotMaxTime causes the range to expand.
-        DateProfileGenerator.prototype.adjustActiveRange = function (range) {
+        DateProfileGenerator.prototype.adjusttrangthaiRange = function (range) {
             var _a = this.props, dateEnv = _a.dateEnv, usesMinMaxTime = _a.usesMinMaxTime, slotMinTime = _a.slotMinTime, slotMaxTime = _a.slotMaxTime;
             var start = range.start, end = range.end;
             if (usesMinMaxTime) {
-                // expand active range if slotMinTime is negative (why not when positive?)
+                // expand trangthai range if slotMinTime is negative (why not when positive?)
                 if (asRoughDays(slotMinTime) < 0) {
                     start = startOfDay(start); // necessary?
                     start = dateEnv.add(start, slotMinTime);
                 }
-                // expand active range if slotMaxTime is beyond one day (why not when negative?)
+                // expand trangthai range if slotMaxTime is beyond one day (why not when negative?)
                 if (asRoughDays(slotMaxTime) > 1) {
                     end = startOfDay(end); // necessary?
                     end = addDays(end, -1);
@@ -6003,7 +6003,7 @@ var FullCalendar = (function (exports) {
             return { start: start, end: end };
         };
         // Builds a normalized range object for the "visible" range,
-        // which is a way to define the currentRange and activeRange at the same time.
+        // which is a way to define the currentRange and trangthaiRange at the same time.
         DateProfileGenerator.prototype.buildCustomVisibleRange = function (date) {
             var props = this.props;
             var input = props.visibleRangeInput;
@@ -6150,14 +6150,14 @@ var FullCalendar = (function (exports) {
     }
 
     function initEventSources(calendarOptions, dateProfile, context) {
-        var activeRange = dateProfile ? dateProfile.activeRange : null;
-        return addSources({}, parseInitialSources(calendarOptions, context), activeRange, context);
+        var trangthaiRange = dateProfile ? dateProfile.trangthaiRange : null;
+        return addSources({}, parseInitialSources(calendarOptions, context), trangthaiRange, context);
     }
     function reduceEventSources(eventSources, action, dateProfile, context) {
-        var activeRange = dateProfile ? dateProfile.activeRange : null; // need this check?
+        var trangthaiRange = dateProfile ? dateProfile.trangthaiRange : null; // need this check?
         switch (action.type) {
             case 'ADD_EVENT_SOURCES': // already parsed
-                return addSources(eventSources, action.sources, activeRange, context);
+                return addSources(eventSources, action.sources, trangthaiRange, context);
             case 'REMOVE_EVENT_SOURCE':
                 return removeSource(eventSources, action.sourceId);
             case 'PREV': // TODO: how do we track all actions that affect dateProfile :(
@@ -6165,13 +6165,13 @@ var FullCalendar = (function (exports) {
             case 'CHANGE_DATE':
             case 'CHANGE_VIEW_TYPE':
                 if (dateProfile) {
-                    return fetchDirtySources(eventSources, activeRange, context);
+                    return fetchDirtySources(eventSources, trangthaiRange, context);
                 }
                 return eventSources;
             case 'FETCH_EVENT_SOURCES':
                 return fetchSourcesByIds(eventSources, action.sourceIds ? // why no type?
                     arrayToHash(action.sourceIds) :
-                    excludeStaticSources(eventSources, context), activeRange, action.isRefetch || false, context);
+                    excludeStaticSources(eventSources, context), trangthaiRange, action.isRefetch || false, context);
             case 'RECEIVE_EVENTS':
             case 'RECEIVE_EVENT_ERROR':
                 return receiveResponse(eventSources, action.sourceId, action.fetchId, action.fetchRange);
@@ -6182,8 +6182,8 @@ var FullCalendar = (function (exports) {
         }
     }
     function reduceEventSourcesNewTimeZone(eventSources, dateProfile, context) {
-        var activeRange = dateProfile ? dateProfile.activeRange : null; // need this check?
-        return fetchSourcesByIds(eventSources, excludeStaticSources(eventSources, context), activeRange, true, context);
+        var trangthaiRange = dateProfile ? dateProfile.trangthaiRange : null; // need this check?
+        return fetchSourcesByIds(eventSources, excludeStaticSources(eventSources, context), trangthaiRange, true, context);
     }
     function computeEventSourcesLoading(eventSources) {
         for (var sourceId in eventSources) {
@@ -6317,7 +6317,7 @@ var FullCalendar = (function (exports) {
                 return receiveRawEvents(eventStore, eventSources[action.sourceId], action.fetchId, action.fetchRange, action.rawEvents, context);
             case 'ADD_EVENTS': // already parsed, but not expanded
                 return addEvent(eventStore, action.eventStore, // new ones
-                dateProfile ? dateProfile.activeRange : null, context);
+                dateProfile ? dateProfile.trangthaiRange : null, context);
             case 'RESET_EVENTS':
                 return action.eventStore;
             case 'MERGE_EVENTS': // already parsed and expanded
@@ -6327,7 +6327,7 @@ var FullCalendar = (function (exports) {
             case 'CHANGE_DATE':
             case 'CHANGE_VIEW_TYPE':
                 if (dateProfile) {
-                    return expandRecurring(eventStore, dateProfile.activeRange, context);
+                    return expandRecurring(eventStore, dateProfile.trangthaiRange, context);
                 }
                 return eventStore;
             case 'REMOVE_EVENTS':
@@ -6849,7 +6849,7 @@ var FullCalendar = (function (exports) {
     }
 
     function handleDateProfile(dateProfile, context) {
-        context.emitter.trigger('datesSet', __assign(__assign({}, buildRangeApiWithTimeZone(dateProfile.activeRange, context.dateEnv)), { view: context.viewApi }));
+        context.emitter.trigger('datesSet', __assign(__assign({}, buildRangeApiWithTimeZone(dateProfile.trangthaiRange, context.dateEnv)), { view: context.viewApi }));
     }
 
     function handleEventStore(eventStore, context) {
@@ -7050,7 +7050,7 @@ var FullCalendar = (function (exports) {
             range = dateProfile.currentRange;
         }
         else { // for day units or smaller, use the actual day range
-            range = dateProfile.activeRange;
+            range = dateProfile.trangthaiRange;
         }
         return dateEnv.formatRange(range.start, range.end, createFormatter(viewOptions.titleFormat || buildTitleFormat(dateProfile)), {
             isEndExclusive: dateProfile.isRangeAllDay,
@@ -7121,7 +7121,7 @@ var FullCalendar = (function (exports) {
             this.emitter.setOptions(currentViewData.options);
             var currentDate = getInitialDate(optionsData.calendarOptions, optionsData.dateEnv);
             var dateProfile = currentViewData.dateProfileGenerator.build(currentDate);
-            if (!rangeContainsMarker(dateProfile.activeRange, currentDate)) {
+            if (!rangeContainsMarker(dateProfile.trangthaiRange, currentDate)) {
                 currentDate = dateProfile.currentRange.start;
             }
             var calendarContext = {
@@ -7545,7 +7545,7 @@ var FullCalendar = (function (exports) {
     you can get nextDayThreshold from context.nextDayThreshold
     */
     function sliceEvents(props, allDay) {
-        return sliceEventStore(props.eventStore, props.eventUiBases, props.dateProfile.activeRange, allDay ? props.nextDayThreshold : null).fg;
+        return sliceEventStore(props.eventStore, props.eventUiBases, props.dateProfile.trangthaiRange, allDay ? props.nextDayThreshold : null).fg;
     }
 
     var NamedTimeZoneImpl = /** @class */ (function () {
@@ -7898,13 +7898,13 @@ var FullCalendar = (function (exports) {
                     children.push(createElement("h2", { className: "fc-toolbar-title", id: props.titleId }, props.title));
                 }
                 else {
-                    var isPressed = buttonName === props.activeButton;
+                    var isPressed = buttonName === props.trangthaiButton;
                     var isDisabled = (!props.isTodayEnabled && buttonName === 'today') ||
                         (!props.isPrevEnabled && buttonName === 'prev') ||
                         (!props.isNextEnabled && buttonName === 'next');
                     var buttonClasses = ["fc-" + buttonName + "-button", theme.getClass('button')];
                     if (isPressed) {
-                        buttonClasses.push(theme.getClass('buttonActive'));
+                        buttonClasses.push(theme.getClass('buttontrangthai'));
                     }
                     children.push(createElement("button", { type: "button", title: typeof buttonHint === 'function' ? buttonHint(props.navUnit) : buttonHint, disabled: isDisabled, "aria-pressed": isPressed, className: buttonClasses.join(' '), onClick: buttonClick }, buttonText || (buttonIcon ? createElement("span", { className: buttonIcon }) : '')));
                 }
@@ -7956,7 +7956,7 @@ var FullCalendar = (function (exports) {
         };
         Toolbar.prototype.renderSection = function (key, widgetGroups) {
             var props = this.props;
-            return (createElement(ToolbarSection, { key: key, widgetGroups: widgetGroups, title: props.title, navUnit: props.navUnit, activeButton: props.activeButton, isTodayEnabled: props.isTodayEnabled, isPrevEnabled: props.isPrevEnabled, isNextEnabled: props.isNextEnabled, titleId: props.titleId }));
+            return (createElement(ToolbarSection, { key: key, widgetGroups: widgetGroups, title: props.title, navUnit: props.navUnit, trangthaiButton: props.trangthaiButton, isTodayEnabled: props.isTodayEnabled, isPrevEnabled: props.isPrevEnabled, isNextEnabled: props.isNextEnabled, titleId: props.titleId }));
         };
         return Toolbar;
     }(BaseComponent));
@@ -7985,7 +7985,7 @@ var FullCalendar = (function (exports) {
             var classNames = [
                 'fc-view-harness',
                 (aspectRatio || props.liquid || props.height)
-                    ? 'fc-view-harness-active' // harness controls the height
+                    ? 'fc-view-harness-trangthai' // harness controls the height
                     : 'fc-view-harness-passive', // let the view do the height
             ];
             var height = '';
@@ -8123,7 +8123,7 @@ var FullCalendar = (function (exports) {
             };
             // Component Registration
             // -----------------------------------------------------------------------------------------------------------------
-            _this.registerInteractiveComponent = function (component, settingsInput) {
+            _this.registerIntertrangthaiComponent = function (component, settingsInput) {
                 var settings = parseInteractionSettings(component, settingsInput);
                 var DEFAULT_INTERACTIONS = [
                     EventClicking,
@@ -8134,7 +8134,7 @@ var FullCalendar = (function (exports) {
                 _this.interactionsStore[component.uid] = interactions;
                 interactionSettingsStore[component.uid] = settings;
             };
-            _this.unregisterInteractiveComponent = function (component) {
+            _this.unregisterIntertrangthaiComponent = function (component) {
                 for (var _i = 0, _a = _this.interactionsStore[component.uid]; _i < _a.length; _i++) {
                     var listener = _a[_i];
                     listener.destroy();
@@ -8181,7 +8181,7 @@ var FullCalendar = (function (exports) {
             else {
                 viewAspectRatio = Math.max(options.aspectRatio, 0.5); // prevent from getting too tall
             }
-            var viewContext = this.buildViewContext(props.viewSpec, props.viewApi, props.options, props.dateProfileGenerator, props.dateEnv, props.theme, props.pluginHooks, props.dispatch, props.getCurrentData, props.emitter, props.calendarApi, this.registerInteractiveComponent, this.unregisterInteractiveComponent);
+            var viewContext = this.buildViewContext(props.viewSpec, props.viewApi, props.options, props.dateProfileGenerator, props.dateEnv, props.theme, props.pluginHooks, props.dispatch, props.getCurrentData, props.emitter, props.calendarApi, this.registerIntertrangthaiComponent, this.unregisterIntertrangthaiComponent);
             var viewLabelId = (toolbarConfig.header && toolbarConfig.header.hasTitle)
                 ? this.state.viewLabelId
                 : '';
@@ -8257,7 +8257,7 @@ var FullCalendar = (function (exports) {
         var nextInfo = dateProfileGenerator.buildNext(dateProfile, currentDate, false);
         return {
             title: title,
-            activeButton: viewSpec.type,
+            trangthaiButton: viewSpec.type,
             navUnit: viewSpec.singleUnit,
             isTodayEnabled: todayInfo.isValid && !rangeContainsMarker(dateProfile.currentRange, now),
             isPrevEnabled: prevInfo.isValid,
@@ -8654,7 +8654,7 @@ var FullCalendar = (function (exports) {
             if (!businessHours) {
                 return [];
             }
-            return this._sliceEventStore.apply(this, __spreadArray([expandRecurring(businessHours, computeActiveRange(dateProfile, Boolean(nextDayThreshold)), context),
+            return this._sliceEventStore.apply(this, __spreadArray([expandRecurring(businessHours, computetrangthaiRange(dateProfile, Boolean(nextDayThreshold)), context),
                 {},
                 dateProfile,
                 nextDayThreshold], extraArgs)).bg;
@@ -8665,7 +8665,7 @@ var FullCalendar = (function (exports) {
                 extraArgs[_i - 4] = arguments[_i];
             }
             if (eventStore) {
-                var rangeRes = sliceEventStore(eventStore, eventUiBases, computeActiveRange(dateProfile, Boolean(nextDayThreshold)), nextDayThreshold);
+                var rangeRes = sliceEventStore(eventStore, eventUiBases, computetrangthaiRange(dateProfile, Boolean(nextDayThreshold)), nextDayThreshold);
                 return {
                     bg: this.sliceEventRanges(rangeRes.bg, extraArgs),
                     fg: this.sliceEventRanges(rangeRes.fg, extraArgs),
@@ -8681,7 +8681,7 @@ var FullCalendar = (function (exports) {
             if (!interaction) {
                 return null;
             }
-            var rangeRes = sliceEventStore(interaction.mutatedEvents, eventUiBases, computeActiveRange(dateProfile, Boolean(nextDayThreshold)), nextDayThreshold);
+            var rangeRes = sliceEventStore(interaction.mutatedEvents, eventUiBases, computetrangthaiRange(dateProfile, Boolean(nextDayThreshold)), nextDayThreshold);
             return {
                 segs: this.sliceEventRanges(rangeRes.fg, extraArgs),
                 affectedInstances: interaction.affectedEvents.instances,
@@ -8743,8 +8743,8 @@ var FullCalendar = (function (exports) {
     TODO: should be part of DateProfile!
     TimelineDateProfile already does this btw
     */
-    function computeActiveRange(dateProfile, isComponentAllDay) {
-        var range = dateProfile.activeRange;
+    function computetrangthaiRange(dateProfile, isComponentAllDay) {
+        var range = dateProfile.trangthaiRange;
         if (isComponentAllDay) {
             return range;
         }
@@ -9640,13 +9640,13 @@ var FullCalendar = (function (exports) {
             _this.handleRootEl = function (rootEl) {
                 _this.rootEl = rootEl;
                 if (rootEl) {
-                    _this.context.registerInteractiveComponent(_this, {
+                    _this.context.registerIntertrangthaiComponent(_this, {
                         el: rootEl,
                         useEventCenter: false,
                     });
                 }
                 else {
-                    _this.context.unregisterInteractiveComponent(_this);
+                    _this.context.unregisterIntertrangthaiComponent(_this);
                 }
             };
             return _this;
@@ -10949,8 +10949,8 @@ var FullCalendar = (function (exports) {
                         positionTop >= 0 && positionTop < height) {
                         var hit = component.queryHit(positionLeft, positionTop, width, height);
                         if (hit && (
-                        // make sure the hit is within activeRange, meaning it's not a dead cell
-                        rangeContainsRange(hit.dateProfile.activeRange, hit.dateSpan.range)) &&
+                        // make sure the hit is within trangthaiRange, meaning it's not a dead cell
+                        rangeContainsRange(hit.dateProfile.trangthaiRange, hit.dateSpan.range)) &&
                             (!bestHit || hit.layer > bestHit.layer)) {
                             hit.componentId = id;
                             hit.context = component.context;
@@ -12784,13 +12784,13 @@ var FullCalendar = (function (exports) {
             _this.handleRootEl = function (rootEl) {
                 _this.rootEl = rootEl;
                 if (rootEl) {
-                    _this.context.registerInteractiveComponent(_this, {
+                    _this.context.registerIntertrangthaiComponent(_this, {
                         el: rootEl,
                         isHitComboAllowed: _this.props.isHitComboAllowed,
                     });
                 }
                 else {
-                    _this.context.unregisterInteractiveComponent(_this);
+                    _this.context.unregisterIntertrangthaiComponent(_this);
                 }
             };
             return _this;
@@ -13951,13 +13951,13 @@ var FullCalendar = (function (exports) {
             };
             _this.handleRootEl = function (el) {
                 if (el) {
-                    _this.context.registerInteractiveComponent(_this, {
+                    _this.context.registerIntertrangthaiComponent(_this, {
                         el: el,
                         isHitComboAllowed: _this.props.isHitComboAllowed,
                     });
                 }
                 else {
-                    _this.context.unregisterInteractiveComponent(_this);
+                    _this.context.unregisterIntertrangthaiComponent(_this);
                 }
             };
             _this.handleScrollRequest = function (request) {
@@ -14275,8 +14275,8 @@ var FullCalendar = (function (exports) {
         return ListViewEventRow;
     }(BaseComponent));
     function renderEventInnerContent(seg, context) {
-        var interactiveAttrs = getSegAnchorAttrs(seg, context);
-        return (createElement("a", __assign({}, interactiveAttrs), seg.eventRange.def.title));
+        var intertrangthaiAttrs = getSegAnchorAttrs(seg, context);
+        return (createElement("a", __assign({}, intertrangthaiAttrs), seg.eventRange.def.title));
     }
     function buildTimeContent(seg, timeFormat, context, timeHeaderId, dateHeaderId) {
         var options = context.options;
@@ -14333,12 +14333,12 @@ var FullCalendar = (function (exports) {
             };
             _this.setRootEl = function (rootEl) {
                 if (rootEl) {
-                    _this.context.registerInteractiveComponent(_this, {
+                    _this.context.registerIntertrangthaiComponent(_this, {
                         el: rootEl,
                     });
                 }
                 else {
-                    _this.context.unregisterInteractiveComponent(_this);
+                    _this.context.unregisterIntertrangthaiComponent(_this);
                 }
             };
             return _this;
@@ -14397,7 +14397,7 @@ var FullCalendar = (function (exports) {
             }));
         };
         ListView.prototype._eventStoreToSegs = function (eventStore, eventUiBases, dayRanges) {
-            return this.eventRangesToSegs(sliceEventStore(eventStore, eventUiBases, this.props.dateProfile.activeRange, this.context.options.nextDayThreshold).fg, dayRanges);
+            return this.eventRangesToSegs(sliceEventStore(eventStore, eventUiBases, this.props.dateProfile.trangthaiRange, this.context.options.nextDayThreshold).fg, dayRanges);
         };
         ListView.prototype.eventRangesToSegs = function (eventRanges, dayRanges) {
             var segs = [];
@@ -14531,10 +14531,10 @@ var FullCalendar = (function (exports) {
     BootstrapTheme.prototype.classes = {
         root: 'fc-theme-bootstrap',
         table: 'table-bordered',
-        tableCellShaded: 'table-active',
+        tableCellShaded: 'table-trangthai',
         buttonGroup: 'btn-group',
         button: 'btn btn-primary',
-        buttonActive: 'active',
+        buttontrangthai: 'trangthai',
         popover: 'popover',
         popoverHeader: 'popover-header',
         popoverContent: 'popover-body',

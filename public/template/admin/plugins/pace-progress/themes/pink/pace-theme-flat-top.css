@@ -21,7 +21,7 @@
   transition: transform .5s ease-out;
 }
 
-.pace.pace-active {
+.pace.pace-trangthai {
   -webkit-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);

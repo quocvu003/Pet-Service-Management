@@ -1,5 +1,5 @@
 <header>
-    @php $menusHtml = \App\Helpers\Helper::menus($menus); @endphp
+    @php $menusHtml = \App\Helpers\Helper::danhmucs($danhmucs); @endphp
 
     <!-- Header desktop -->
     <div class="container-menu-desktop">
@@ -16,7 +16,7 @@
                 <!-- Menu desktop -->
                 <div class="menu-desktop">
                     <ul class="main-menu">
-                        <li class="active-menu"><a href="/">Trang Chủ</a> </li>
+                        <li class="trangthai-menu"><a href="/">Trang Chủ</a> </li>
                         {!! $menusHtml !!}
                         <li>
                             <a href="contact.html">Về Chúng Tôi</a>
@@ -34,8 +34,7 @@
                     </div>
 
                     <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
-                        data-notify="{{ !is_null(\Session::get('carts')) ? count(\Session::get('carts')) : 0 }}">
-                        <i class="zmdi zmdi-shopping-cart"></i>
+                        {{-- data-notify="{{ !is_null(\Session::get('carts')) ? count(\Session::get('carts')) : 0 }}"> --}} <i class="zmdi zmdi-shopping-cart"></i>
                     </div>
 
                     <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
@@ -81,7 +80,7 @@
     <!-- Menu Mobile -->
     <div class="menu-mobile">
         <ul class="main-menu-m">
-            <li class="active-menu"><a href="/">Trang Chủ</a> </li>
+            <li class="trangthai-menu"><a href="/">Trang Chủ</a> </li>
 
             {!! $menusHtml !!}
 

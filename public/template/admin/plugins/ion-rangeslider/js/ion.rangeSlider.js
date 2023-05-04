@@ -174,7 +174,7 @@
         this.is_update = false;
         this.is_start = true;
         this.is_finish = false;
-        this.is_active = false;
+        this.is_trangthai = false;
         this.is_resize = false;
         this.is_click = false;
 
@@ -785,8 +785,8 @@
                 return;
             }
 
-            if (this.is_active) {
-                this.is_active = false;
+            if (this.is_trangthai) {
+                this.is_trangthai = false;
             } else {
                 return;
             }
@@ -835,7 +835,7 @@
             this.current_plugin = this.plugin_count;
             this.target = target;
 
-            this.is_active = true;
+            this.is_trangthai = true;
             this.dragging = true;
 
             this.coords.x_gap = this.$cache.rs.offset().left;
@@ -1342,7 +1342,7 @@
 
             this.drawHandles();
 
-            if (this.is_active) {
+            if (this.is_trangthai) {
                 this.raf_id = requestAnimationFrame(this.updateScene.bind(this));
             } else {
                 this.update_tm = setTimeout(this.updateScene.bind(this), 300);

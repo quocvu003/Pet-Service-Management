@@ -179,7 +179,7 @@
       if (digit != "-") cm.state.emacsPrefix += digit;
       return;
     }
-    // Not active yet
+    // Not trangthai yet
     cm.state.emacsPrefix = digit;
     cm.on("keyHandled", maybeClearPrefix);
     cm.on("inputRead", maybeDuplicateInput);

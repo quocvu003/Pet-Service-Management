@@ -356,27 +356,3 @@ d.addEventListener("DOMContentLoaded", function(event) {
 
 });
 
-  /*Upload File */
-  $('#hinhanh').change(function () {
-    const form = new FormData();
-    form.append('file', $(this)[0].files[0]);
-    console.log('form');
-    $.ajax({
-        processData: false,
-        contentType: false,
-        type: 'POST',
-        dataType: 'JSON',
-        data: form,
-        url: '/upload/services',
-        success: function (results) {
-            if (results.error === false) {
-                $('#hinhanh_show').html('<a href="' + results.url + '" target="_blank">' +
-                    '<img src="' + results.url + '" width="100px"></a>');
-
-                $('#hinhanh01').val(results.url);
-            } else {
-                alert('Upload File Lỗi');
-            }
-        }
-    });
-});

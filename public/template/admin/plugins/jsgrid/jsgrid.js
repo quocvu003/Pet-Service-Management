@@ -139,7 +139,7 @@
         pagerContainerClass: "jsgrid-pager-container",
         pagerClass: "jsgrid-pager",
         pagerNavButtonClass: "jsgrid-pager-nav-button",
-        pagerNavButtonInactiveClass: "jsgrid-pager-nav-inactive-button",
+        pagerNavButtonIntrangthaiClass: "jsgrid-pager-nav-intrangthai-button",
         pageClass: "jsgrid-pager-page",
         currentPageClass: "jsgrid-pager-current-page",
 
@@ -871,9 +871,9 @@
             return pages;
         },
 
-        _createPagerNavButton: function(text, pageIndex, isActive) {
-            return this._createPagerButton(text, this.pagerNavButtonClass + (isActive ? "" : " " + this.pagerNavButtonInactiveClass),
-                isActive ? function() { this.openPage(pageIndex); } : $.noop);
+        _createPagerNavButton: function(text, pageIndex, istrangthai) {
+            return this._createPagerButton(text, this.pagerNavButtonClass + (istrangthai ? "" : " " + this.pagerNavButtonIntrangthaiClass),
+                istrangthai ? function() { this.openPage(pageIndex); } : $.noop);
         },
 
         _createPagerPageNavButton: function(text, handler) {

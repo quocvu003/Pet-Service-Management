@@ -4338,10 +4338,10 @@
 		// Update the input elements whenever the table is filtered
 		$(settings.nTable).on( 'search.dt.DT', function ( ev, s ) {
 			if ( settings === s ) {
-				// IE9 throws an 'unknown error' if document.activeElement is used
+				// IE9 throws an 'unknown error' if document.trangthaiElement is used
 				// inside an iframe or frame...
 				try {
-					if ( jqFilter[0] !== document.activeElement ) {
+					if ( jqFilter[0] !== document.trangthaiElement ) {
 						jqFilter.val( previousSearch.sSearch );
 					}
 				}
@@ -5677,7 +5677,7 @@
 			var tr = $('<tr/>').appendTo( tmpTable.find('tbody') );
 	
 			// Clone the table header and footer - we can't use the header / footer
-			// from the cloned table, since if scrolling is active, the table's
+			// from the cloned table, since if scrolling is trangthai, the table's
 			// real header and footer are contained in different table tags
 			tmpTable.find('thead, tfoot').remove();
 			tmpTable
@@ -9664,7 +9664,7 @@
 	/**
 	 * Object models container, for the various models that DataTables has
 	 * available to it. These models define the objects that are used to hold
-	 * the active state and configuration of the table.
+	 * the trangthai state and configuration of the table.
 	 *  @namespace
 	 */
 	DataTable.models = {};
@@ -14151,7 +14151,7 @@
 		 *   (false)
 		 *
 		 * Note that as with the main search ability in DataTables, technically this
-		 * is "filtering", since it is subtractive. However, for consistency in
+		 * is "filtering", since it is subtrtrangthai. However, for consistency in
 		 * naming we call it searching here.
 		 *
 		 *  @type array
@@ -14576,7 +14576,7 @@
 	
 		/* Paging buttons */
 		"sPageButton": "paginate_button",
-		"sPageButtonActive": "current",
+		"sPageButtontrangthai": "current",
 		"sPageButtonDisabled": "disabled",
 	
 		/* Striping classes */
@@ -14774,7 +14774,7 @@
 								default:
 									btnDisplay = settings.fnFormatNumber( button + 1 );
 									btnClass = page === button ?
-										classes.sPageButtonActive : '';
+										classes.sPageButtontrangthai : '';
 									break;
 							}
 	
@@ -14802,24 +14802,24 @@
 					}
 				};
 	
-				// IE9 throws an 'unknown error' if document.activeElement is used
+				// IE9 throws an 'unknown error' if document.trangthaiElement is used
 				// inside an iframe or frame. Try / catch the error. Not good for
 				// accessibility, but neither are frames.
-				var activeEl;
+				var trangthaiEl;
 	
 				try {
 					// Because this approach is destroying and recreating the paging
 					// elements, focus is lost on the select button which is bad for
 					// accessibility. So we want to restore focus once the draw has
 					// completed
-					activeEl = $(host).find(document.activeElement).data('dt-idx');
+					trangthaiEl = $(host).find(document.trangthaiElement).data('dt-idx');
 				}
 				catch (e) {}
 	
 				attach( $(host).empty(), buttons );
 	
-				if ( activeEl !== undefined ) {
-					$(host).find( '[data-dt-idx='+activeEl+']' ).trigger('focus');
+				if ( trangthaiEl !== undefined ) {
+					$(host).find( '[data-dt-idx='+trangthaiEl+']' ).trigger('focus');
 				}
 			}
 		}

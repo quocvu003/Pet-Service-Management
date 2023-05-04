@@ -24,7 +24,7 @@
   pointer-events: none;
 }
 
-.pace.pace-active .pace-activity {
+.pace.pace-trangthai .pace-activity {
   -webkit-transform: translateX(50%) translateY(-50%) rotate(45deg);
   transform: translateX(50%) translateY(-50%) rotate(45deg);
 }

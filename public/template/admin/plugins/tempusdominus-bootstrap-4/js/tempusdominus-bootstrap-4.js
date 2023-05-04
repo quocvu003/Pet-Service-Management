@@ -2418,10 +2418,10 @@ var TempusDominusBootstrap4 = function ($) {
         monthsViewHeader.eq(2).addClass('disabled');
       }
 
-      months.removeClass('active');
+      months.removeClass('trangthai');
 
       if (lastPickedDate && lastPickedDate.isSame(this._viewDate, 'y') && !this.unset) {
-        months.eq(lastPickedDate.month()).addClass('active');
+        months.eq(lastPickedDate.month()).addClass('trangthai');
       }
 
       months.each(function (index) {
@@ -2465,7 +2465,7 @@ var TempusDominusBootstrap4 = function ($) {
       html += "<span data-action=\"selectYear\" class=\"year old" + (!this._isValid(startYear, 'y') ? ' disabled' : '') + "\">" + (startYear.year() - 1) + "</span>";
 
       while (!startYear.isAfter(endYear, 'y')) {
-        html += "<span data-action=\"selectYear\" class=\"year" + (startYear.isSame(this._getLastPickedDate(), 'y') && !this.unset ? ' active' : '') + (!this._isValid(startYear, 'y') ? ' disabled' : '') + "\">" + startYear.year() + "</span>";
+        html += "<span data-action=\"selectYear\" class=\"year" + (startYear.isSame(this._getLastPickedDate(), 'y') && !this.unset ? ' trangthai' : '') + (!this._isValid(startYear, 'y') ? ' disabled' : '') + "\">" + startYear.year() + "</span>";
         startYear.add(1, 'y');
       }
 
@@ -2509,7 +2509,7 @@ var TempusDominusBootstrap4 = function ($) {
         endDecadeYear = startDecade.year() + 11;
         minDateDecade = this._options.minDate && this._options.minDate.isAfter(startDecade, 'y') && this._options.minDate.year() <= endDecadeYear;
         maxDateDecade = this._options.maxDate && this._options.maxDate.isAfter(startDecade, 'y') && this._options.maxDate.year() <= endDecadeYear;
-        html += "<span data-action=\"selectDecade\" class=\"decade" + (lastPickedDate && lastPickedDate.isAfter(startDecade) && lastPickedDate.year() <= endDecadeYear ? ' active' : '') + (!this._isValid(startDecade, 'y') && !minDateDecade && !maxDateDecade ? ' disabled' : '') + "\" data-selection=\"" + (startDecade.year() + 6) + "\">" + startDecade.year() + "</span>";
+        html += "<span data-action=\"selectDecade\" class=\"decade" + (lastPickedDate && lastPickedDate.isAfter(startDecade) && lastPickedDate.year() <= endDecadeYear ? ' trangthai' : '') + (!this._isValid(startDecade, 'y') && !minDateDecade && !maxDateDecade ? ' disabled' : '') + "\" data-selection=\"" + (startDecade.year() + 6) + "\">" + startDecade.year() + "</span>";
         startDecade.add(10, 'y');
       }
 
@@ -2572,12 +2572,12 @@ var TempusDominusBootstrap4 = function ($) {
 
           if (index !== -1) {
             if (currentDate.isSame(this._datesFormatted[index], 'd') && !this.unset) {
-              clsName += ' active';
+              clsName += ' trangthai';
             }
           }
         } else {
           if (currentDate.isSame(this._getLastPickedDate(), 'd') && !this.unset) {
-            clsName += ' active';
+            clsName += ' trangthai';
           }
         }
 
@@ -2978,7 +2978,7 @@ var TempusDominusBootstrap4 = function ($) {
                 expanded = $parent.find('.show'),
                 closed = $parent.find('.collapse:not(.show)'),
                 $span = $this.is('span') ? $this : $this.find('span');
-            var collapseData, inactiveIcon, iconTest;
+            var collapseData, intrangthaiIcon, iconTest;
 
             if (expanded && expanded.length) {
               collapseData = expanded.data('collapse');
@@ -2999,8 +2999,8 @@ var TempusDominusBootstrap4 = function ($) {
 
               if (this._useFeatherIcons()) {
                 $link.toggleClass(this._options.icons.time + ' ' + this._options.icons.date);
-                inactiveIcon = $link.hasClass(this._options.icons.time) ? this._options.icons.date : this._options.icons.time;
-                $link.html(this._iconTag(inactiveIcon));
+                intrangthaiIcon = $link.hasClass(this._options.icons.time) ? this._options.icons.date : this._options.icons.time;
+                $link.html(this._iconTag(intrangthaiIcon));
               } else {
                 $span.toggleClass(this._options.icons.time + ' ' + this._options.icons.date);
               }
@@ -3137,7 +3137,7 @@ var TempusDominusBootstrap4 = function ($) {
       }
 
       if (this.component && this.component.hasClass('btn')) {
-        this.component.toggleClass('active');
+        this.component.toggleClass('trangthai');
       }
 
       this.widget.hide();
@@ -3236,7 +3236,7 @@ var TempusDominusBootstrap4 = function ($) {
       this.widget.on('mousedown', false);
 
       if (this.component && this.component.hasClass('btn')) {
-        this.component.toggleClass('active');
+        this.component.toggleClass('trangthai');
       }
 
       this._place();

@@ -17,7 +17,7 @@
   transition: all 2s linear 0s;
 }
 
-.pace.pace-active {
+.pace.pace-trangthai {
   -webkit-transform: scale(.25);
   -moz-transform: scale(.25);
   -ms-transform: scale(.25);

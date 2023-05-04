@@ -131,7 +131,7 @@ $.extend( DataTable.ext.buttons, {
 			dt
 				.on( 'column-visibility.dt'+conf.namespace, function (e, settings) {
 					if ( ! settings.bDestroying && settings.nTable == dt.settings()[0].nTable ) {
-						that.active( dt.column( conf.columns ).visible() );
+						that.trangthai( dt.column( conf.columns ).visible() );
 					}
 				} )
 				.on( 'column-reorder.dt'+conf.namespace, function (e, settings, details) {
@@ -149,10 +149,10 @@ $.extend( DataTable.ext.buttons, {
 					that.text( conf._columnText( dt, conf ) );
 
 					// Since its a different column, we need to check its visibility
-					that.active( dt.column( conf.columns ).visible() );
+					that.trangthai( dt.column( conf.columns ).visible() );
 				} );
 
-			this.active( dt.column( conf.columns ).visible() );
+			this.trangthai( dt.column( conf.columns ).visible() );
 		},
 		destroy: function ( dt, button, conf ) {
 			dt

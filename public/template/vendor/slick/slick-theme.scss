@@ -12,14 +12,14 @@ $slick-font-family: "slick" !default;
 $slick-loader-path: "./" !default;
 $slick-arrow-color: white !default;
 $slick-dot-color: black !default;
-$slick-dot-color-active: $slick-dot-color !default;
+$slick-dot-color-trangthai: $slick-dot-color !default;
 $slick-prev-character: "\2190" !default;
 $slick-next-character: "\2192" !default;
 $slick-dot-character: "\2022" !default;
 $slick-dot-size: 6px !default;
 $slick-opacity-default: 0.75 !default;
 $slick-opacity-on-hover: 1 !default;
-$slick-opacity-not-active: 0.25 !default;
+$slick-opacity-not-trangthai: 0.25 !default;
 
 @function slick-image-url($url) {
     @if function-exists(image-url) {
@@ -87,7 +87,7 @@ $slick-opacity-not-active: 0.25 !default;
         }
     }
     &.slick-disabled:before {
-        opacity: $slick-opacity-not-active;
+        opacity: $slick-opacity-not-trangthai;
     }
     &:before {
         font-family: $slick-font-family;
@@ -181,13 +181,13 @@ $slick-opacity-not-active: 0.25 !default;
                 line-height: 20px;
                 text-align: center;
                 color: $slick-dot-color;
-                opacity: $slick-opacity-not-active;
+                opacity: $slick-opacity-not-trangthai;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
             }
         }
-        &.slick-active button:before {
-            color: $slick-dot-color-active;
+        &.slick-trangthai button:before {
+            color: $slick-dot-color-trangthai;
             opacity: $slick-opacity-default;
         }
     }

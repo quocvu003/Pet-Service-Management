@@ -4,17 +4,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CartController;
 use App\Http\Controllers\Admin\AccController;
+use App\Http\Controllers\Admin\DanhmucController;
+use App\Http\Controllers\Admin\FeeController;
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\MenuController;
-use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\ChuShop\MainCSController;
 use App\Http\Controllers\MainUserController;
-use App\Http\Controllers\MenuUserController;
-use App\Http\Controllers\ProductUserController;
-
 use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\NhanVien\MainNVController;
 use App\Http\Controllers\ChuShop\NhanvienController;
 
 Route::get('login', [AuthController::class, 'login'])->name('login');
@@ -41,16 +40,14 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [MainController::class, 'index'])->name('admin');
 
         #Menu
-        Route::prefix('menus')->group(function () {
-            Route::get('add', [MenuController::class, 'create']);
-            Route::post('add', [MenuController::class, 'store']);
-            Route::get('list', [MenuController::class, 'index']);
-            Route::get('edit/{menu}', [MenuController::class, 'show']);
-            Route::post('edit/{menu}', [MenuController::class, 'update']);
-            Route::DELETE('destroy', [MenuController::class, 'destroy']);
+        Route::prefix('danhmucs')->group(function () {
+            Route::get('add', [DanhmucController::class, 'create']);
+            Route::post('add', [DanhmucController::class, 'store']);
+            Route::get('list', [DanhmucController::class, 'index']);
+            Route::get('edit/{danhmuc}', [DanhmucController::class, 'show']);
+            Route::post('edit/{danhmuc}', [DanhmucController::class, 'update']);
+            Route::DELETE('destroy', [DanhmucController::class, 'destroy']);
         });
-
-
 
         #Slider
         Route::prefix('sliders')->group(function () {
@@ -88,6 +85,12 @@ Route::middleware(['auth'])->group(function () {
             Route::get('editshop/{acc}', [AccController::class, 'showshop']);
             Route::post('editshop/{acc}', [AccController::class, 'updateshop']);
         });
+        #Phí thu
+        Route::prefix('fees')->group(function () {
+            Route::get('add', [FeeController::class, 'create']);
+            Route::post('add', [FeeController::class, 'store']);
+            Route::get('list', [FeeController::class, 'list']);
+        });
     });
 });
 
@@ -96,28 +99,42 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('ChuShop')->group(function () {
 
         Route::get('/', [MainCSController::class, 'index'])->name('ChuShop');
-        Route::get('/profile', [MainCSController::class, 'profile']);
+        Route::prefix('profiles')->group(function () {
+            Route::get('/index', [MainCSController::class, 'profile']);
+            Route::get('/edit', [MainCSController::class, 'show']);
+            Route::post('/edit', [MainCSController::class, 'updateshop']);
+        });
+        // #Upload
+        // Route::post('upload/services', [UploadController::class, 'store']);
         #Account
         Route::prefix('nhanviens')->group(function () {
             Route::get('list', [NhanvienController::class, 'index']);
             Route::post('list', [NhanvienController::class, 'store']);
         });
     });
+    Route::prefix('NhanVien')->group(function () {
+        Route::get('/', [MainNVController::class, 'index'])->name('NhanVien');
+        Route::prefix('profiles')->group(function () {
+            Route::get('/index', [NhanvienController::class, 'profile']);
+            Route::get('/edit', [NhanVienController::class, 'show']);
+            Route::post('/edit', [NhanVienController::class, 'updateshop']);
+        });
+    });
 });
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [MainUserController::class, 'index']);
-    // load more product
-    Route::post('/services/load-product', [MainUserController::class, 'loadProduct']);
-    // click danh muc
-    Route::get('/danh-muc/{id}-{slug}.html', [MenuUserController::class, 'index']);
-    // chi tiet san pham
-    Route::get('/san-pham/{id}-{slug}.html', [ProductUserController::class, 'index']);
-    // them san pham vo gio hang
-    Route::post('add-cart', [App\Http\Controllers\CartController::class, 'index']);
-    Route::get('carts', [App\Http\Controllers\CartController::class, 'show']);
-    Route::post('update-cart', [App\Http\Controllers\CartController::class, 'update']);
-    Route::get('carts/delete/{id}', [App\Http\Controllers\CartController::class, 'remove']);
-    // dat hang
-    Route::post('carts', [App\Http\Controllers\CartController::class, 'addCart']);
+    // // load more product
+    // Route::post('/services/load-product', [MainUserController::class, 'loadProduct']);
+    // // click danh muc
+    // Route::get('/danh-muc/{id}-{slug}.html', [MenuUserController::class, 'index']);
+    // // chi tiet san pham
+    // Route::get('/san-pham/{id}-{slug}.html', [ProductUserController::class, 'index']);
+    // // them san pham vo gio hang
+    // Route::post('add-cart', [App\Http\Controllers\CartController::class, 'index']);
+    // Route::get('carts', [App\Http\Controllers\CartController::class, 'show']);
+    // Route::post('update-cart', [App\Http\Controllers\CartController::class, 'update']);
+    // Route::get('carts/delete/{id}', [App\Http\Controllers\CartController::class, 'remove']);
+    // // dat hang
+    // Route::post('carts', [App\Http\Controllers\CartController::class, 'addCart']);
 });

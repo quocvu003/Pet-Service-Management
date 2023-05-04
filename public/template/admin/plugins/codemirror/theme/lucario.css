@@ -33,5 +33,5 @@
 .cm-s-lucario span.cm-builtin { color: #72C05D; }
 .cm-s-lucario span.cm-variable-3, .cm-s-lucario span.cm-type { color: #ffb86c; }
 
-.cm-s-lucario .CodeMirror-activeline-background { background: #243443; }
+.cm-s-lucario .CodeMirror-trangthailine-background { background: #243443; }
 .cm-s-lucario .CodeMirror-matchingbracket { text-decoration: underline; color: white !important; }

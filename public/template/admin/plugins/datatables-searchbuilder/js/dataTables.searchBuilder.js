@@ -430,7 +430,7 @@
                         _this._clearCondition();
                         _this._clearValue();
                         _this._populateCondition();
-                        // If this criteria was previously active in the search then
+                        // If this criteria was previously trangthai in the search then
                         // remove it from the search and trigger a new search
                         if (_this.s.filled) {
                             _this.s.filled = false;
@@ -471,7 +471,7 @@
                         _this._populateValue();
                         for (var _b = 0, _c = _this.dom.value; _b < _c.length; _b++) {
                             var val = _c[_b];
-                            // If this criteria was previously active in the search then remove
+                            // If this criteria was previously trangthai in the search then remove
                             // it from the search and trigger a new search
                             if (_this.s.filled && val !== undefined && _this.dom.container.has(val[0]).length !== 0) {
                                 _this.s.filled = false;

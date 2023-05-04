@@ -11,7 +11,7 @@ class MenuService
     // menu ít, k cần phân trang
     public function getParent()
     {
-        return Menu::where('parent_id', 0)->get();
+        return Menu::where('danhmuccha', 0)->get();
     }
     // menu nhiều, cần phân trang
     public function getAll()
@@ -22,7 +22,7 @@ class MenuService
     public function show()
     {
         return Menu::select('name', 'id')
-            ->where('parent_id', 0)
+            ->where('danhmuccha', 0)
             ->orderbyDesc('id')
             ->get();
     }
@@ -32,7 +32,7 @@ class MenuService
         try {
             menu::create([
                 'name' => (string) $request->input('name'),
-                'parent_id' => (int) $request->input('parent_id'),
+                'danhmuccha' => (int) $request->input('danhmuccha'),
                 'description' => (string) $request->input('description'),
                 'content' => (string) $request->input('content'),
                 'active' => (string) $request->input('active'),
@@ -49,8 +49,8 @@ class MenuService
 
     public function update($request, $menu): bool
     {
-        if ($request->input('parent_id') != $menu->id) {
-            $menu->parent_id = (string) $request->input('parent_id');
+        if ($request->input('danhmuccha') != $menu->id) {
+            $menu->danhmuccha = (string) $request->input('danhmuccha');
         }
         $menu->name = (string) $request->input('name');
         $menu->description = (string) $request->input('description');
@@ -68,7 +68,7 @@ class MenuService
         $menu = Menu::where('id', $id)->first();
 
         if ($menu) {
-            return Menu::where('id', $menu->id)->orWhere('parent_id', $id)->delete();
+            return Menu::where('id', $menu->id)->orWhere('danhmuccha', $id)->delete();
         }
         return false;
     }

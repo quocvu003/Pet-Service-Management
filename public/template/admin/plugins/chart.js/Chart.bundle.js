@@ -3502,7 +3502,7 @@ var core_animations = {
 	requestAnimationFrame: function() {
 		var me = this;
 		if (me.request === null) {
-			// Skip animation frame requests until the active one is executed.
+			// Skip animation frame requests until the trangthai one is executed.
 			// This can happen when processing mouse events, e.g. 'mousemove'
 			// and 'mouseout' events will trigger multiple renders.
 			me.request = helpers$1.requestAnimFrame.call(window, function() {
@@ -8211,8 +8211,8 @@ core_defaults._set('global', {
 			},
 			labelColor: function(tooltipItem, chart) {
 				var meta = chart.getDatasetMeta(tooltipItem.datasetIndex);
-				var activeElement = meta.data[tooltipItem.index];
-				var view = activeElement._view;
+				var trangthaiElement = meta.data[tooltipItem.index];
+				var view = trangthaiElement._view;
 				return {
 					borderColor: view.borderColor,
 					backgroundColor: view.backgroundColor
@@ -8629,7 +8629,7 @@ function getBeforeAfterBodyLines(callback) {
 var exports$4 = core_element.extend({
 	initialize: function() {
 		this._model = getBaseModel(this._options);
-		this._lastActive = [];
+		this._lasttrangthai = [];
 	},
 
 	// Get the title
@@ -8710,11 +8710,11 @@ var exports$4 = core_element.extend({
 		// which breaks any animations.
 		var existingModel = me._model;
 		var model = me._model = getBaseModel(opts);
-		var active = me._active;
+		var trangthai = me._trangthai;
 
 		var data = me._data;
 
-		// In the case where active.length === 0 we need to keep these at existing values for good animations
+		// In the case where trangthai.length === 0 we need to keep these at existing values for good animations
 		var alignment = {
 			xAlign: existingModel.xAlign,
 			yAlign: existingModel.yAlign
@@ -8734,16 +8734,16 @@ var exports$4 = core_element.extend({
 
 		var i, len;
 
-		if (active.length) {
+		if (trangthai.length) {
 			model.opacity = 1;
 
 			var labelColors = [];
 			var labelTextColors = [];
-			tooltipPosition = positioners[opts.position].call(me, active, me._eventPosition);
+			tooltipPosition = positioners[opts.position].call(me, trangthai, me._eventPosition);
 
 			var tooltipItems = [];
-			for (i = 0, len = active.length; i < len; ++i) {
-				tooltipItems.push(createTooltipItem(active[i]));
+			for (i = 0, len = trangthai.length; i < len; ++i) {
+				tooltipItems.push(createTooltipItem(trangthai[i]));
 			}
 
 			// If the user provided a filter function, use it to modify the tooltip items
@@ -9119,24 +9119,24 @@ var exports$4 = core_element.extend({
 		var options = me._options;
 		var changed = false;
 
-		me._lastActive = me._lastActive || [];
+		me._lasttrangthai = me._lasttrangthai || [];
 
-		// Find Active Elements for tooltips
+		// Find trangthai Elements for tooltips
 		if (e.type === 'mouseout') {
-			me._active = [];
+			me._trangthai = [];
 		} else {
-			me._active = me._chart.getElementsAtEventForMode(e, options.mode, options);
+			me._trangthai = me._chart.getElementsAtEventForMode(e, options.mode, options);
 			if (options.reverse) {
-				me._active.reverse();
+				me._trangthai.reverse();
 			}
 		}
 
-		// Remember Last Actives
-		changed = !helpers$1.arrayEquals(me._active, me._lastActive);
+		// Remember Last trangthais
+		changed = !helpers$1.arrayEquals(me._trangthai, me._lasttrangthai);
 
 		// Only handle target event on tooltip change
 		if (changed) {
-			me._lastActive = me._active;
+			me._lasttrangthai = me._trangthai;
 
 			if (options.enabled || options.custom) {
 				me._eventPosition = {
@@ -9666,9 +9666,9 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 		// after update.
 		me.tooltip.initialize();
 
-		// Last active contains items that were previously in the tooltip.
+		// Last trangthai contains items that were previously in the tooltip.
 		// When we reset the tooltip, we need to clear it
-		me.lastActive = [];
+		me.lasttrangthai = [];
 
 		// Do this before render so that any plugins that need final scale updates can use it
 		core_plugins.notify(me, 'afterUpdate');
@@ -10215,40 +10215,40 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 		var hoverOptions = options.hover;
 		var changed = false;
 
-		me.lastActive = me.lastActive || [];
+		me.lasttrangthai = me.lasttrangthai || [];
 
-		// Find Active Elements for hover and tooltips
+		// Find trangthai Elements for hover and tooltips
 		if (e.type === 'mouseout') {
-			me.active = [];
+			me.trangthai = [];
 		} else {
-			me.active = me.getElementsAtEventForMode(e, hoverOptions.mode, hoverOptions);
+			me.trangthai = me.getElementsAtEventForMode(e, hoverOptions.mode, hoverOptions);
 		}
 
 		// Invoke onHover hook
 		// Need to call with native event here to not break backwards compatibility
-		helpers$1.callback(options.onHover || options.hover.onHover, [e.native, me.active], me);
+		helpers$1.callback(options.onHover || options.hover.onHover, [e.native, me.trangthai], me);
 
 		if (e.type === 'mouseup' || e.type === 'click') {
 			if (options.onClick) {
 				// Use e.native here for backwards compatibility
-				options.onClick.call(me, e.native, me.active);
+				options.onClick.call(me, e.native, me.trangthai);
 			}
 		}
 
-		// Remove styling for last active (even if it may still be active)
-		if (me.lastActive.length) {
-			me.updateHoverStyle(me.lastActive, hoverOptions.mode, false);
+		// Remove styling for last trangthai (even if it may still be trangthai)
+		if (me.lasttrangthai.length) {
+			me.updateHoverStyle(me.lasttrangthai, hoverOptions.mode, false);
 		}
 
 		// Built in hover styling
-		if (me.active.length && hoverOptions.mode) {
-			me.updateHoverStyle(me.active, hoverOptions.mode, true);
+		if (me.trangthai.length && hoverOptions.mode) {
+			me.updateHoverStyle(me.trangthai, hoverOptions.mode, true);
 		}
 
-		changed = !helpers$1.arrayEquals(me.active, me.lastActive);
+		changed = !helpers$1.arrayEquals(me.trangthai, me.lasttrangthai);
 
-		// Remember Last Actives
-		me.lastActive = me.active;
+		// Remember Last trangthais
+		me.lasttrangthai = me.trangthai;
 
 		return changed;
 	}

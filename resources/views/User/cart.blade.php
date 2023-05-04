@@ -18,7 +18,7 @@
 
             <ul class="header-cart-wrapitem w-full">
 
-                @if (count($productsCart) > 0)
+                {{-- @if (count($productsCart) > 0)
                     @foreach ($productsCart as $key => $product)
                         @php
                             
@@ -45,7 +45,7 @@
                             </div>
                         </li>
                     @endforeach
-                @endif
+                @endif --}}
 
 
             </ul>

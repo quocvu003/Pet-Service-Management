@@ -65,14 +65,14 @@
             <div class="form-group">
                 <label>Trạng thái</label>
                 <div class="custom-control custom-radio">
-                    <input class="custom-control-input" value="1" type="radio" id="active" name="trangthai"
+                    <input class="custom-control-input" value="1" type="radio" id="trangthai" name="trangthai"
                         {{ $acc->trangthai == 1 ? ' checked=""' : '' }}>
-                    <label for="active" class="custom-control-label">Kích Hoạt</label>
+                    <label for="trangthai" class="custom-control-label">Kích Hoạt</label>
                 </div>
                 <div class="custom-control custom-radio">
-                    <input class="custom-control-input" value="0" type="radio" id="no_active" name="trangthai"
+                    <input class="custom-control-input" value="0" type="radio" id="no_trangthai" name="trangthai"
                         {{ $acc->trangthai == 0 ? ' checked=""' : '' }}>
-                    <label for="no_active" class="custom-control-label">khóa</label>
+                    <label for="no_trangthai" class="custom-control-label">khóa</label>
                 </div>
             </div>
 

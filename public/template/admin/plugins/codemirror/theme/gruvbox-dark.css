@@ -32,7 +32,7 @@
 .cm-s-gruvbox-dark span.cm-qualifier { color: #8ec07c; }
 .cm-s-gruvbox-dark span.cm-attribute { color: #8ec07c; }
 
-.cm-s-gruvbox-dark .CodeMirror-activeline-background { background: #3c3836; }
+.cm-s-gruvbox-dark .CodeMirror-trangthailine-background { background: #3c3836; }
 .cm-s-gruvbox-dark .CodeMirror-matchingbracket { background: #928374; color:#282828 !important; }
 
 .cm-s-gruvbox-dark span.cm-builtin { color: #fe8019; }

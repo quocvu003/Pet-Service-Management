@@ -1236,7 +1236,7 @@ $.each( [ 'Row', 'Column', 'Cell' ], function ( i, item ) {
 			var that = this;
 
 			dt.on( 'selectItems.dt.DT', function ( e, ctx, items ) {
-				that.active( items === lc );
+				that.trangthai( items === lc );
 			} );
 		}
 	};

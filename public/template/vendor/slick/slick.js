@@ -122,7 +122,7 @@
 
             $.extend(_, _.initials);
 
-            _.activeBreakpoint = null;
+            _.trangthaiBreakpoint = null;
             _.animType = null;
             _.animProp = null;
             _.breakpoints = [];
@@ -191,7 +191,7 @@
     Slick.prototype.activateADA = function() {
         var _ = this;
 
-        _.$slideTrack.find('.slick-active').attr({
+        _.$slideTrack.find('.slick-trangthai').attr({
             'aria-hidden': 'false'
         }).find('a, input, button, select').attr({
             'tabindex': '0'
@@ -496,7 +496,7 @@
 
             _.$dots = dot.appendTo(_.options.appendDots);
 
-            _.$dots.find('li').first().addClass('slick-active');
+            _.$dots.find('li').first().addClass('slick-trangthai');
 
         }
 
@@ -628,9 +628,9 @@
             }
 
             if (targetBreakpoint !== null) {
-                if (_.activeBreakpoint !== null) {
-                    if (targetBreakpoint !== _.activeBreakpoint || forceUpdate) {
-                        _.activeBreakpoint =
+                if (_.trangthaiBreakpoint !== null) {
+                    if (targetBreakpoint !== _.trangthaiBreakpoint || forceUpdate) {
+                        _.trangthaiBreakpoint =
                             targetBreakpoint;
                         if (_.breakpointSettings[targetBreakpoint] === 'unslick') {
                             _.unslick(targetBreakpoint);
@@ -646,7 +646,7 @@
                         triggerBreakpoint = targetBreakpoint;
                     }
                 } else {
-                    _.activeBreakpoint = targetBreakpoint;
+                    _.trangthaiBreakpoint = targetBreakpoint;
                     if (_.breakpointSettings[targetBreakpoint] === 'unslick') {
                         _.unslick(targetBreakpoint);
                     } else {
@@ -661,8 +661,8 @@
                     triggerBreakpoint = targetBreakpoint;
                 }
             } else {
-                if (_.activeBreakpoint !== null) {
-                    _.activeBreakpoint = null;
+                if (_.trangthaiBreakpoint !== null) {
+                    _.trangthaiBreakpoint = null;
                     _.options = _.originalSettings;
                     if (initial === true) {
                         _.currentSlide = _.options.initialSlide;
@@ -885,7 +885,7 @@
         if (_.$slides) {
 
             _.$slides
-                .removeClass('slick-slide slick-active slick-center slick-visible slick-current')
+                .removeClass('slick-slide slick-trangthai slick-center slick-visible slick-current')
                 .removeAttr('aria-hidden')
                 .removeAttr('data-slick-index')
                 .each(function(){
@@ -2287,7 +2287,7 @@
 
         allSlides = _.$slider
             .find('.slick-slide')
-            .removeClass('slick-active slick-center slick-current')
+            .removeClass('slick-trangthai slick-center slick-current')
             .attr('aria-hidden', 'true');
 
         _.$slides
@@ -2305,7 +2305,7 @@
                 if (index >= centerOffset && index <= (_.slideCount - 1) - centerOffset) {
                     _.$slides
                         .slice(index - centerOffset + evenCoef, index + centerOffset + 1)
-                        .addClass('slick-active')
+                        .addClass('slick-trangthai')
                         .attr('aria-hidden', 'false');
 
                 } else {
@@ -2313,7 +2313,7 @@
                     indexOffset = _.options.slidesToShow + index;
                     allSlides
                         .slice(indexOffset - centerOffset + 1 + evenCoef, indexOffset + centerOffset + 2)
-                        .addClass('slick-active')
+                        .addClass('slick-trangthai')
                         .attr('aria-hidden', 'false');
 
                 }
@@ -2344,13 +2344,13 @@
 
                 _.$slides
                     .slice(index, index + _.options.slidesToShow)
-                    .addClass('slick-active')
+                    .addClass('slick-trangthai')
                     .attr('aria-hidden', 'false');
 
             } else if (allSlides.length <= _.options.slidesToShow) {
 
                 allSlides
-                    .addClass('slick-active')
+                    .addClass('slick-trangthai')
                     .attr('aria-hidden', 'false');
 
             } else {
@@ -2362,14 +2362,14 @@
 
                     allSlides
                         .slice(indexOffset - (_.options.slidesToShow - remainder), indexOffset + remainder)
-                        .addClass('slick-active')
+                        .addClass('slick-trangthai')
                         .attr('aria-hidden', 'false');
 
                 } else {
 
                     allSlides
                         .slice(indexOffset, indexOffset + _.options.slidesToShow)
-                        .addClass('slick-active')
+                        .addClass('slick-trangthai')
                         .attr('aria-hidden', 'false');
 
                 }
@@ -2895,7 +2895,7 @@
         }
 
         _.$slides
-            .removeClass('slick-slide slick-active slick-visible slick-current')
+            .removeClass('slick-slide slick-trangthai slick-visible slick-current')
             .attr('aria-hidden', 'true')
             .css('width', '');
 
@@ -2952,13 +2952,13 @@
 
             _.$dots
                 .find('li')
-                    .removeClass('slick-active')
+                    .removeClass('slick-trangthai')
                     .end();
 
             _.$dots
                 .find('li')
                 .eq(Math.floor(_.currentSlide / _.options.slidesToScroll))
-                .addClass('slick-active');
+                .addClass('slick-trangthai');
 
         }
 

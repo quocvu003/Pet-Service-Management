@@ -386,18 +386,18 @@ ZeroClipboard_TableTools.Client.prototype = {
 			case 'mouseover':
 				if (this.domElement && this.cssEffects) {
 					//this.domElement.addClass('hover');
-					if (this.recoverActive) {
-						this.domElement.addClass('active');
+					if (this.recovertrangthai) {
+						this.domElement.addClass('trangthai');
 					}
 				}
 				break;
 
 			case 'mouseout':
 				if (this.domElement && this.cssEffects) {
-					this.recoverActive = false;
-					if (this.domElement.hasClass('active')) {
-						this.domElement.removeClass('active');
-						this.recoverActive = true;
+					this.recovertrangthai = false;
+					if (this.domElement.hasClass('trangthai')) {
+						this.domElement.removeClass('trangthai');
+						this.recovertrangthai = true;
 					}
 					//this.domElement.removeClass('hover');
 				}
@@ -405,14 +405,14 @@ ZeroClipboard_TableTools.Client.prototype = {
 
 			case 'mousedown':
 				if (this.domElement && this.cssEffects) {
-					this.domElement.addClass('active');
+					this.domElement.addClass('trangthai');
 				}
 				break;
 
 			case 'mouseup':
 				if (this.domElement && this.cssEffects) {
-					this.domElement.removeClass('active');
-					this.recoverActive = false;
+					this.domElement.removeClass('trangthai');
+					this.recovertrangthai = false;
 				}
 				break;
 		} // switch eventName
@@ -441,7 +441,7 @@ ZeroClipboard_TableTools.Client.prototype = {
 ZeroClipboard_TableTools.hasFlash = function ()
 {
 	try {
-		var fo = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+		var fo = new trangthaiXObject('ShockwaveFlash.ShockwaveFlash');
 		if (fo) {
 			return true;
 		}

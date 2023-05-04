@@ -588,13 +588,13 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
             style = "def";
             stream.skipToEnd();
             if (stream.string.match(/\\SV/)) {
-              state.tlvCodeActive = false;
+              state.tlvCodetrangthai = false;
             } else if (stream.string.match(/\\TLV/)){
-              state.tlvCodeActive = true;
+              state.tlvCodetrangthai = true;
             }
           }
           // Correct indentation in the face of a line prefix char.
-          if (state.tlvCodeActive && stream.pos == 0 &&
+          if (state.tlvCodetrangthai && stream.pos == 0 &&
               (state.indented == 0) && (match = stream.match(tlvLineIndentationMatch, false))) {
             state.indented = match[0].length;
           }
@@ -637,7 +637,7 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
           state.tlvNextIndent = indented;
         }
 
-        if (state.tlvCodeActive) {
+        if (state.tlvCodetrangthai) {
           // Highlight as TLV.
 
           var beginStatement = false;
@@ -763,13 +763,13 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
       },
 
       indent: function(state) {
-        return (state.tlvCodeActive == true) ? state.tlvNextIndent : -1;
+        return (state.tlvCodetrangthai == true) ? state.tlvNextIndent : -1;
       },
 
       startState: function(state) {
         state.tlvIndentationStyle = [];  // Styles to use for each level of indentation.
-        state.tlvCodeActive = true;  // True when we're in a TLV region (and at beginning of file).
-        state.tlvNextIndent = -1;    // The number of spaces to autoindent the next line if tlvCodeActive.
+        state.tlvCodetrangthai = true;  // True when we're in a TLV region (and at beginning of file).
+        state.tlvNextIndent = -1;    // The number of spaces to autoindent the next line if tlvCodetrangthai.
         state.tlvInBlockComment = false;  // True inside /**/ comment.
         if (tlvTrackStatements) {
           state.statementComment = false;  // True inside a statement's header comment.

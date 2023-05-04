@@ -47,8 +47,8 @@
   background: #212431;
 }
 
-.cm-s-moxer .CodeMirror-activeline-background,
-.cm-s-moxer .CodeMirror-activeline-gutter .CodeMirror-linenumber {
+.cm-s-moxer .CodeMirror-trangthailine-background,
+.cm-s-moxer .CodeMirror-trangthailine-gutter .CodeMirror-linenumber {
   background: rgba(33, 36, 49, 0.5);
 }
 

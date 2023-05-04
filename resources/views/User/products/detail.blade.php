@@ -27,31 +27,31 @@
                         <div class="wrap-slick3 flex-sb flex-w">
                             <div class="wrap-slick3-dots">
                                 <ul class="slick3-dots" style="" role="tablist">
-                                    <li class="slick-active" role="presentation">
+                                    <li class="slick-trangthai" role="presentation">
                                         <img src="{{ $product->thumb }}">
                                         <div class="slick3-dot-overlay"></div>
                                     </li>
                                 </ul>
                                 <ul class="slick3-dots" style="" role="tablist">
-                                    <li class="slick-active" role="presentation">
+                                    <li class="slick-trangthai" role="presentation">
                                         <img src="{{ $product->thumb }}">
                                         <div class="slick3-dot-overlay"></div>
                                     </li>
                                 </ul>
                                 <ul class="slick3-dots" style="" role="tablist">
-                                    <li class="slick-active" role="presentation">
+                                    <li class="slick-trangthai" role="presentation">
                                         <img src="{{ $product->thumb }}">
                                         <div class="slick3-dot-overlay"></div>
                                     </li>
                                 </ul>
                                 <ul class="slick3-dots" style="" role="tablist">
-                                    <li class="slick-active" role="presentation">
+                                    <li class="slick-trangthai" role="presentation">
                                         <img src="{{ $product->thumb }}">
                                         <div class="slick3-dot-overlay"></div>
                                     </li>
                                 </ul>
                                 <ul class="slick3-dots" style="" role="tablist">
-                                    <li class="slick-active" role="presentation">
+                                    <li class="slick-trangthai" role="presentation">
                                         <img src="{{ $product->thumb }}">
                                         <div class="slick3-dot-overlay"></div>
                                     </li>
@@ -67,7 +67,7 @@
                             <div class="slick3 gallery-lb slick-initialized slick-slider slick-dotted">
                                 <div class="slick-list draggable">
                                     <div class="slick-track" style="opacity: 1; width: 1539px;">
-                                        <div class="item-slick3 slick-slide slick-current slick-active"
+                                        <div class="item-slick3 slick-slide slick-current slick-trangthai"
                                             data-thumb="images/product-detail-01.jpg" data-slick-index="0"
                                             aria-hidden="false"
                                             style="width: 513px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;"
@@ -173,7 +173,7 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item p-b-10">
-                            <a class="nav-link active" data-toggle="tab" href="#description"
+                            <a class="nav-link trangthai" data-toggle="tab" href="#description"
                                 role="tab">Description</a>
                         </li>
 
@@ -190,7 +190,7 @@
                     <!-- Tab panes -->
                     <div class="tab-content p-t-43">
                         <!-- - -->
-                        <div class="tab-pane fade show active" id="description" role="tabpanel">
+                        <div class="tab-pane fade show trangthai" id="description" role="tabpanel">
                             <div class="how-pos2 p-lr-15-md">
                                 <p class="stext-102 cl6">
                                     {!! $product->content !!}

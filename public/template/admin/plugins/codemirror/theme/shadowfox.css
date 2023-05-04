@@ -48,5 +48,5 @@
 .cm-s-shadowfox span.cm-operator { color: #b1b1b3; }
 .cm-s-shadowfox span.cm-special { color: #d7d7db; }
 
-.cm-s-shadowfox .CodeMirror-activeline-background { background: rgba(185, 215, 253, .15) }
+.cm-s-shadowfox .CodeMirror-trangthailine-background { background: rgba(185, 215, 253, .15) }
 .cm-s-shadowfox .CodeMirror-matchingbracket { outline: solid 1px rgba(255, 255, 255, .25); color: white !important; }

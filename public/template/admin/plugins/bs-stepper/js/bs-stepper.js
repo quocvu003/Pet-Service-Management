@@ -110,7 +110,7 @@
 
   var MILLISECONDS_MULTIPLIER = 1000;
   var ClassName = {
-    ACTIVE: 'active',
+    trangthai: 'trangthai',
     LINEAR: 'linear',
     BLOCK: 'dstepper-block',
     NONE: 'dstepper-none',
@@ -123,7 +123,7 @@
   var show = function show(stepperNode, indexStep, options, done) {
     var stepper = stepperNode[customProperty];
 
-    if (stepper._steps[indexStep].classList.contains(ClassName.ACTIVE) || stepper._stepsContents[indexStep].classList.contains(ClassName.ACTIVE)) {
+    if (stepper._steps[indexStep].classList.contains(ClassName.trangthai) || stepper._stepsContents[indexStep].classList.contains(ClassName.trangthai)) {
       return;
     }
 
@@ -137,32 +137,32 @@
     });
     stepperNode.dispatchEvent(showEvent);
 
-    var activeStep = stepper._steps.filter(function (step) {
-      return step.classList.contains(ClassName.ACTIVE);
+    var trangthaiStep = stepper._steps.filter(function (step) {
+      return step.classList.contains(ClassName.trangthai);
     });
 
-    var activeContent = stepper._stepsContents.filter(function (content) {
-      return content.classList.contains(ClassName.ACTIVE);
+    var trangthaiContent = stepper._stepsContents.filter(function (content) {
+      return content.classList.contains(ClassName.trangthai);
     });
 
     if (showEvent.defaultPrevented) {
       return;
     }
 
-    if (activeStep.length) {
-      activeStep[0].classList.remove(ClassName.ACTIVE);
+    if (trangthaiStep.length) {
+      trangthaiStep[0].classList.remove(ClassName.trangthai);
     }
 
-    if (activeContent.length) {
-      activeContent[0].classList.remove(ClassName.ACTIVE);
+    if (trangthaiContent.length) {
+      trangthaiContent[0].classList.remove(ClassName.trangthai);
 
       if (!stepperNode.classList.contains(ClassName.VERTICAL) && !stepper.options.animation) {
-        activeContent[0].classList.remove(ClassName.BLOCK);
+        trangthaiContent[0].classList.remove(ClassName.BLOCK);
       }
     }
 
     showStep(stepperNode, stepper._steps[indexStep], stepper._steps, options);
-    showContent(stepperNode, stepper._stepsContents[indexStep], stepper._stepsContents, activeContent, done);
+    showContent(stepperNode, stepper._stepsContents[indexStep], stepper._stepsContents, trangthaiContent, done);
   };
 
   var showStep = function showStep(stepperNode, step, stepList, options) {
@@ -174,7 +174,7 @@
         trigger.setAttribute('disabled', 'disabled');
       }
     });
-    step.classList.add(ClassName.ACTIVE);
+    step.classList.add(ClassName.trangthai);
     var currentTrigger = step.querySelector(options.selectors.trigger);
     currentTrigger.setAttribute('aria-selected', 'true'); // if stepper is in linear mode, remove disabled attribute on current
 
@@ -183,7 +183,7 @@
     }
   };
 
-  var showContent = function showContent(stepperNode, content, contentList, activeContent, done) {
+  var showContent = function showContent(stepperNode, content, contentList, trangthaiContent, done) {
     var stepper = stepperNode[customProperty];
     var toIndex = contentList.indexOf(content);
     var shownEvent = createCustomEvent('shown.bs-stepper', {
@@ -207,14 +207,14 @@
       var duration = getTransitionDurationFromElement(content);
       content.addEventListener(transitionEndEvent, complete);
 
-      if (activeContent.length) {
-        activeContent[0].classList.add(ClassName.NONE);
+      if (trangthaiContent.length) {
+        trangthaiContent[0].classList.add(ClassName.NONE);
       }
 
-      content.classList.add(ClassName.ACTIVE);
+      content.classList.add(ClassName.trangthai);
       emulateTransitionEnd(content, duration);
     } else {
-      content.classList.add(ClassName.ACTIVE);
+      content.classList.add(ClassName.trangthai);
       content.classList.add(ClassName.BLOCK);
       stepperNode.dispatchEvent(shownEvent);
       done();

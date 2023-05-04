@@ -1306,12 +1306,12 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 	// QSA and matchesSelector support
 
-	// matchesSelector(:active) reports false when true (IE9/Opera 11.5)
+	// matchesSelector(:trangthai) reports false when true (IE9/Opera 11.5)
 	rbuggyMatches = [];
 
 	// qSa(:focus) reports false when true (Chrome 21)
 	// We allow this because of a bug in IE8/9 that throws an error
-	// whenever `document.activeElement` is accessed on an iframe
+	// whenever `document.trangthaiElement` is accessed on an iframe
 	// So, we allow :focus to pass through QSA all the time to avoid the IE error
 	// See https://bugs.jquery.com/ticket/13378
 	rbuggyQSA = [];
@@ -2174,7 +2174,7 @@ Expr = Sizzle.selectors = {
 		},
 
 		"focus": function( elem ) {
-			return elem === document.activeElement &&
+			return elem === document.trangthaiElement &&
 				( !document.hasFocus || document.hasFocus() ) &&
 				!!( elem.type || elem.href || ~elem.tabIndex );
 		},
@@ -4123,7 +4123,7 @@ function completed() {
 // Catch cases where $(document).ready() is called
 // after the browser event has already occurred.
 // Support: IE <=9 - 10 only
-// Older IE sometimes signals "interactive" too soon
+// Older IE sometimes signals "intertrangthai" too soon
 if ( document.readyState === "complete" ||
 	( document.readyState !== "loading" && !document.documentElement.doScroll ) ) {
 
@@ -5105,20 +5105,20 @@ function returnFalse() {
 
 // Support: IE <=9 - 11+
 // focus() and blur() are asynchronous, except when they are no-op.
-// So expect focus to be synchronous when the element is already active,
-// and blur to be synchronous when the element is not already active.
+// So expect focus to be synchronous when the element is already trangthai,
+// and blur to be synchronous when the element is not already trangthai.
 // (focus and blur are always synchronous in other supported browsers,
 // this just defines when we can count on it).
 function expectSync( elem, type ) {
-	return ( elem === safeActiveElement() ) === ( type === "focus" );
+	return ( elem === safetrangthaiElement() ) === ( type === "focus" );
 }
 
 // Support: IE <=9 only
-// Accessing document.activeElement can throw unexpectedly
+// Accessing document.trangthaiElement can throw unexpectedly
 // https://bugs.jquery.com/ticket/13393
-function safeActiveElement() {
+function safetrangthaiElement() {
 	try {
-		return document.activeElement;
+		return document.trangthaiElement;
 	} catch ( err ) { }
 }
 
@@ -7847,7 +7847,7 @@ jQuery.fn.extend( {
 				hooks.stop.call( this, true );
 			}
 
-			// Look for any active animations, and finish them
+			// Look for any trangthai animations, and finish them
 			for ( index = timers.length; index--; ) {
 				if ( timers[ index ].elem === this && timers[ index ].queue === type ) {
 					timers[ index ].anim.stop( true );
@@ -9283,8 +9283,8 @@ function ajaxConvert( s, response, jqXHR, isSuccess ) {
 
 jQuery.extend( {
 
-	// Counter for holding the number of active queries
-	active: 0,
+	// Counter for holding the number of trangthai queries
+	trangthai: 0,
 
 	// Last-Modified header cache for next request
 	lastModified: {},
@@ -9569,7 +9569,7 @@ jQuery.extend( {
 		fireGlobals = jQuery.event && s.global;
 
 		// Watch for a new set of requests
-		if ( fireGlobals && jQuery.active++ === 0 ) {
+		if ( fireGlobals && jQuery.trangthai++ === 0 ) {
 			jQuery.event.trigger( "ajaxStart" );
 		}
 
@@ -9814,7 +9814,7 @@ jQuery.extend( {
 				globalEventContext.trigger( "ajaxComplete", [ jqXHR, s ] );
 
 				// Handle the global AJAX counter
-				if ( !( --jQuery.active ) ) {
+				if ( !( --jQuery.trangthai ) ) {
 					jQuery.event.trigger( "ajaxStop" );
 				}
 			}

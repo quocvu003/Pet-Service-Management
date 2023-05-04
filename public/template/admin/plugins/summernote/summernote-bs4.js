@@ -8010,7 +8010,7 @@ var Buttons = /*#__PURE__*/function () {
       var _this6 = this;
 
       external_jQuery_default().each(infos, function (selector, pred) {
-        _this6.ui.toggleBtnActive($container.find(selector), pred());
+        _this6.ui.toggleBtntrangthai($container.find(selector), pred());
       });
     }
   }, {
@@ -8202,13 +8202,13 @@ var Toolbar = /*#__PURE__*/function () {
   }, {
     key: "updateFullscreen",
     value: function updateFullscreen(isFullscreen) {
-      this.ui.toggleBtnActive(this.$toolbar.find('.btn-fullscreen'), isFullscreen);
+      this.ui.toggleBtntrangthai(this.$toolbar.find('.btn-fullscreen'), isFullscreen);
       this.changeContainer(isFullscreen);
     }
   }, {
     key: "updateCodeview",
     value: function updateCodeview(isCodeview) {
-      this.ui.toggleBtnActive(this.$toolbar.find('.btn-codeview'), isCodeview);
+      this.ui.toggleBtntrangthai(this.$toolbar.find('.btn-codeview'), isCodeview);
 
       if (isCodeview) {
         this.deactivate();
@@ -9265,7 +9265,7 @@ var AirPopover = /*#__PURE__*/function () {
         _this.hide();
       },
       'summernote.focusout': function summernoteFocusout() {
-        if (!_this.$popover.is(':active,:focus')) {
+        if (!_this.$popover.is(':trangthai,:focus')) {
           _this.hide();
         }
       }
@@ -9327,7 +9327,7 @@ var AirPopover = /*#__PURE__*/function () {
   }, {
     key: "updateCodeview",
     value: function updateCodeview(isCodeview) {
-      this.ui.toggleBtnActive(this.$popover.find('.btn-codeview'), isCodeview);
+      this.ui.toggleBtntrangthai(this.$popover.find('.btn-codeview'), isCodeview);
 
       if (isCodeview) {
         this.hide();
@@ -9409,9 +9409,9 @@ var HintPopover = /*#__PURE__*/function () {
       this.$popover.hide();
       this.$content = this.$popover.find('.popover-content,.note-popover-content');
       this.$content.on('click', '.note-hint-item', function (e) {
-        _this2.$content.find('.active').removeClass('active');
+        _this2.$content.find('.trangthai').removeClass('trangthai');
 
-        external_jQuery_default()(e.currentTarget).addClass('active');
+        external_jQuery_default()(e.currentTarget).addClass('trangthai');
 
         _this2.replace();
       });
@@ -9427,14 +9427,14 @@ var HintPopover = /*#__PURE__*/function () {
   }, {
     key: "selectItem",
     value: function selectItem($item) {
-      this.$content.find('.active').removeClass('active');
-      $item.addClass('active');
+      this.$content.find('.trangthai').removeClass('trangthai');
+      $item.addClass('trangthai');
       this.$content[0].scrollTop = $item[0].offsetTop - this.$content.innerHeight() / 2;
     }
   }, {
     key: "moveDown",
     value: function moveDown() {
-      var $current = this.$content.find('.note-hint-item.active');
+      var $current = this.$content.find('.note-hint-item.trangthai');
       var $next = $current.next();
 
       if ($next.length) {
@@ -9452,7 +9452,7 @@ var HintPopover = /*#__PURE__*/function () {
   }, {
     key: "moveUp",
     value: function moveUp() {
-      var $current = this.$content.find('.note-hint-item.active');
+      var $current = this.$content.find('.note-hint-item.trangthai');
       var $prev = $current.prev();
 
       if ($prev.length) {
@@ -9470,7 +9470,7 @@ var HintPopover = /*#__PURE__*/function () {
   }, {
     key: "replace",
     value: function replace() {
-      var $item = this.$content.find('.note-hint-item.active');
+      var $item = this.$content.find('.note-hint-item.trangthai');
 
       if ($item.length) {
         var node = this.nodeFromItem($item); // If matchingWord length = 0 -> capture OK / open hint / but as mention capture "" (\w*)
@@ -9625,7 +9625,7 @@ var HintPopover = /*#__PURE__*/function () {
               }
             }); // select first .note-hint-item
 
-            this.$content.find('.note-hint-item:first').addClass('active'); // set position for popover after group is created
+            this.$content.find('.note-hint-item:first').addClass('trangthai'); // set position for popover after group is created
 
             if (this.direction === 'top') {
               this.$popover.css({
@@ -10180,8 +10180,8 @@ var ui = function ui(editorOptions) {
       $btn.toggleClass('disabled', !isEnable);
       $btn.attr('disabled', !isEnable);
     },
-    toggleBtnActive: function toggleBtnActive($btn, isActive) {
-      $btn.toggleClass('active', isActive);
+    toggleBtntrangthai: function toggleBtntrangthai($btn, istrangthai) {
+      $btn.toggleClass('trangthai', istrangthai);
     },
     onDialogShown: function onDialogShown($dialog, handler) {
       $dialog.one('shown.bs.modal', handler);

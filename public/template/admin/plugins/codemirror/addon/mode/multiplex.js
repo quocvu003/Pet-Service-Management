@@ -28,7 +28,7 @@ CodeMirror.multiplexingMode = function(outer /*, others */) {
     startState: function() {
       return {
         outer: CodeMirror.startState(outer),
-        innerActive: null,
+        innertrangthai: null,
         inner: null,
         startingInner: false
       };
@@ -37,14 +37,14 @@ CodeMirror.multiplexingMode = function(outer /*, others */) {
     copyState: function(state) {
       return {
         outer: CodeMirror.copyState(outer, state.outer),
-        innerActive: state.innerActive,
-        inner: state.innerActive && CodeMirror.copyState(state.innerActive.mode, state.inner),
+        innertrangthai: state.innertrangthai,
+        inner: state.innertrangthai && CodeMirror.copyState(state.innertrangthai.mode, state.inner),
         startingInner: state.startingInner
       };
     },
 
     token: function(stream, state) {
-      if (!state.innerActive) {
+      if (!state.innertrangthai) {
         var cutOff = Infinity, oldContent = stream.string;
         for (var i = 0; i < others.length; ++i) {
           var other = others[i];
@@ -52,7 +52,7 @@ CodeMirror.multiplexingMode = function(outer /*, others */) {
           if (found == stream.pos) {
             if (!other.parseDelimiters) stream.match(other.open);
             state.startingInner = !!other.parseDelimiters
-            state.innerActive = other;
+            state.innertrangthai = other;
 
             // Get the outer indent, making sure to handle CodeMirror.Pass
             var outerIndent = 0;
@@ -72,16 +72,16 @@ CodeMirror.multiplexingMode = function(outer /*, others */) {
         if (cutOff != Infinity) stream.string = oldContent;
         return outerToken;
       } else {
-        var curInner = state.innerActive, oldContent = stream.string;
+        var curInner = state.innertrangthai, oldContent = stream.string;
         if (!curInner.close && stream.sol()) {
-          state.innerActive = state.inner = null;
+          state.innertrangthai = state.inner = null;
           return this.token(stream, state);
         }
         var found = curInner.close && !state.startingInner ?
             indexOf(oldContent, curInner.close, stream.pos, curInner.parseDelimiters) : -1;
         if (found == stream.pos && !curInner.parseDelimiters) {
           stream.match(curInner.close);
-          state.innerActive = state.inner = null;
+          state.innertrangthai = state.inner = null;
           return curInner.delimStyle && (curInner.delimStyle + " " + curInner.delimStyle + "-close");
         }
         if (found > -1) stream.string = oldContent.slice(0, found);
@@ -90,7 +90,7 @@ CodeMirror.multiplexingMode = function(outer /*, others */) {
         else if (stream.pos > stream.start) state.startingInner = false
 
         if (found == stream.pos && curInner.parseDelimiters)
-          state.innerActive = state.inner = null;
+          state.innertrangthai = state.inner = null;
 
         if (curInner.innerStyle) {
           if (innerToken) innerToken = innerToken + " " + curInner.innerStyle;
@@ -102,33 +102,33 @@ CodeMirror.multiplexingMode = function(outer /*, others */) {
     },
 
     indent: function(state, textAfter, line) {
-      var mode = state.innerActive ? state.innerActive.mode : outer;
+      var mode = state.innertrangthai ? state.innertrangthai.mode : outer;
       if (!mode.indent) return CodeMirror.Pass;
-      return mode.indent(state.innerActive ? state.inner : state.outer, textAfter, line);
+      return mode.indent(state.innertrangthai ? state.inner : state.outer, textAfter, line);
     },
 
     blankLine: function(state) {
-      var mode = state.innerActive ? state.innerActive.mode : outer;
+      var mode = state.innertrangthai ? state.innertrangthai.mode : outer;
       if (mode.blankLine) {
-        mode.blankLine(state.innerActive ? state.inner : state.outer);
+        mode.blankLine(state.innertrangthai ? state.inner : state.outer);
       }
-      if (!state.innerActive) {
+      if (!state.innertrangthai) {
         for (var i = 0; i < others.length; ++i) {
           var other = others[i];
           if (other.open === "\n") {
-            state.innerActive = other;
+            state.innertrangthai = other;
             state.inner = CodeMirror.startState(other.mode, mode.indent ? mode.indent(state.outer, "", "") : 0);
           }
         }
-      } else if (state.innerActive.close === "\n") {
-        state.innerActive = state.inner = null;
+      } else if (state.innertrangthai.close === "\n") {
+        state.innertrangthai = state.inner = null;
       }
     },
 
     electricChars: outer.electricChars,
 
     innerMode: function(state) {
-      return state.inner ? {state: state.inner, mode: state.innerActive.mode} : {state: state.outer, mode: outer};
+      return state.inner ? {state: state.inner, mode: state.innertrangthai.mode} : {state: state.outer, mode: outer};
     }
   };
 };

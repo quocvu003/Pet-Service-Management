@@ -35,7 +35,7 @@
         function interpretGestures(e) {
             var o = plot.getOptions();
 
-            if (!o.pan.active && !o.zoom.active) {
+            if (!o.pan.trangthai && !o.zoom.trangthai) {
                 return;
             }
 
@@ -119,7 +119,7 @@
                 if (wasPinchEvent(e)) {
                     mainEventHolder.dispatchEvent(new CustomEvent('pinchend', { detail: e }));
                     mainEventHolder.dispatchEvent(new CustomEvent('panstart', { detail: e }));
-                } else if (noTouchActive(e)) {
+                } else if (noTouchtrangthai(e)) {
                     mainEventHolder.dispatchEvent(new CustomEvent('panend', { detail: e }));
                 }
             }
@@ -284,7 +284,7 @@
             return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
         }
 
-        function noTouchActive(e) {
+        function noTouchtrangthai(e) {
             return (e.touches && e.touches.length === 0);
         }
 

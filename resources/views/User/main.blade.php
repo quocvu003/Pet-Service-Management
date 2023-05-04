@@ -5,7 +5,7 @@
     @include('user.head')
 </head>
 
-<body> {{-- class="animsition" --}}
+<body> /
 
     <!-- Header -->
     @include('user.header')

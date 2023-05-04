@@ -22,19 +22,18 @@ class AccService
 
     public function getappli()
     {
-        return User::join('shops', 'shops.id', '=', 'taikhoans.shop_id')
-            ->select('taikhoans.*', 'shops.*', 'taikhoans.id as user_id', 'shops.id as shop_id', 'taikhoans.ten as user_ten', 'shops.ten as shop_ten')
-            ->where('taikhoans.quyen_id', '=', 2)
-            ->where('taikhoans.trangthai', '=', 2)
+
+        return  User::with('shops')
+            ->where('quyen_id', '=', 2)
+            ->where('trangthai', '=', 2)
             ->get();
     }
 
     public function getUsersWithShops()
     {
-        return User::join('shops', 'shops.id', '=', 'taikhoans.shop_id')
-            ->select('taikhoans.*', 'shops.*', 'taikhoans.id as user_id', 'shops.id as shop_id', 'taikhoans.ten as user_ten', 'shops.ten as shop_ten')
-            ->where('taikhoans.quyen_id', '=', 2)
-            ->where('taikhoans.trangthai', '<>', 2)
+        return  User::with('shops')
+            ->where('quyen_id', '=', 2)
+            ->where('trangthai', '<>', 2)
             ->get();
     }
 
@@ -92,7 +91,6 @@ class AccService
     }
 
 
-
     public function updateshop(Request $request, User $acc, Shop $shop)
     {
         // Cập nhật dữ liệu cho bảng users và shops
@@ -106,7 +104,6 @@ class AccService
         $shop->diachi = $request->diachi;
         $shop->hinhanh = $request->hinhanh;
         $shop->save();
-
         Session::flash('success', 'Cập nhật tài khoản thành công');
         return true;
     }

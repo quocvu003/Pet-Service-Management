@@ -1074,7 +1074,7 @@ S2.define('select2/results',[
       // When the dropdown is closed, aria-expended="false"
       self.$results.attr('aria-expanded', 'false');
       self.$results.attr('aria-hidden', 'true');
-      self.$results.removeAttr('aria-activedescendant');
+      self.$results.removeAttr('aria-trangthaidescendant');
     });
 
     container.on('results:toggle', function () {
@@ -1383,7 +1383,7 @@ S2.define('select2/selection/base',[
     });
 
     container.on('results:focus', function (params) {
-      self.$selection.attr('aria-activedescendant', params.data._resultId);
+      self.$selection.attr('aria-trangthaidescendant', params.data._resultId);
     });
 
     container.on('selection:update', function (params) {
@@ -1401,7 +1401,7 @@ S2.define('select2/selection/base',[
     container.on('close', function () {
       // When the dropdown is closed, aria-expanded="false"
       self.$selection.attr('aria-expanded', 'false');
-      self.$selection.removeAttr('aria-activedescendant');
+      self.$selection.removeAttr('aria-trangthaidescendant');
       self.$selection.removeAttr('aria-owns');
 
       self.$selection.focus();
@@ -1421,13 +1421,13 @@ S2.define('select2/selection/base',[
   BaseSelection.prototype._handleBlur = function (evt) {
     var self = this;
 
-    // This needs to be delayed as the active element is the body when the tab
+    // This needs to be delayed as the trangthai element is the body when the tab
     // key is pressed, possibly along with others.
     window.setTimeout(function () {
       // Don't trigger `blur` if the focus is still in the selection
       if (
-        (document.activeElement == self.$selection[0]) ||
-        ($.contains(self.$selection[0], document.activeElement))
+        (document.trangthaiElement == self.$selection[0]) ||
+        ($.contains(self.$selection[0], document.trangthaiElement))
       ) {
         return;
       }
@@ -1877,7 +1877,7 @@ S2.define('select2/selection/search',[
 
     container.on('close', function () {
       self.$search.val('');
-      self.$search.removeAttr('aria-activedescendant');
+      self.$search.removeAttr('aria-trangthaidescendant');
       self.$search.trigger('focus');
     });
 
@@ -1896,7 +1896,7 @@ S2.define('select2/selection/search',[
     });
 
     container.on('results:focus', function (params) {
-      self.$search.attr('aria-activedescendant', params.id);
+      self.$search.attr('aria-trangthaidescendant', params.id);
     });
 
     this.$selection.on('focusin', '.select2-search--inline', function (evt) {
@@ -2004,7 +2004,7 @@ S2.define('select2/selection/search',[
   };
 
   Search.prototype.update = function (decorated, data) {
-    var searchHadFocus = this.$search[0] == document.activeElement;
+    var searchHadFocus = this.$search[0] == document.trangthaiElement;
 
     this.$search.attr('placeholder', '');
 

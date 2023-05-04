@@ -1201,12 +1201,12 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 	// QSA and matchesSelector support
 
-	// matchesSelector(:active) reports false when true (IE9/Opera 11.5)
+	// matchesSelector(:trangthai) reports false when true (IE9/Opera 11.5)
 	rbuggyMatches = [];
 
 	// qSa(:focus) reports false when true (Chrome 21)
 	// We allow this because of a bug in IE8/9 that throws an error
-	// whenever `document.activeElement` is accessed on an iframe
+	// whenever `document.trangthaiElement` is accessed on an iframe
 	// So, we allow :focus to pass through QSA all the time to avoid the IE error
 	// See http://bugs.jquery.com/ticket/13378
 	rbuggyQSA = [];
@@ -1961,7 +1961,7 @@ Expr = Sizzle.selectors = {
 		},
 
 		"focus": function( elem ) {
-			return elem === document.activeElement && (!document.hasFocus || document.hasFocus()) && !!(elem.type || elem.href || ~elem.tabIndex);
+			return elem === document.trangthaiElement && (!document.hasFocus || document.hasFocus()) && !!(elem.type || elem.href || ~elem.tabIndex);
 		},
 
 		// Boolean properties
@@ -3626,7 +3626,7 @@ jQuery.ready.promise = function( obj ) {
 		// Catch cases where $(document).ready() is called
 		// after the browser event has already occurred.
 		// Support: IE6-10
-		// Older IE sometimes signals "interactive" too soon
+		// Older IE sometimes signals "intertrangthai" too soon
 		if ( document.readyState === "complete" ||
 			( document.readyState !== "loading" && !document.documentElement.doScroll ) ) {
 
@@ -4766,9 +4766,9 @@ function returnFalse() {
 
 // Support: IE9
 // See #13393 for more info
-function safeActiveElement() {
+function safetrangthaiElement() {
 	try {
-		return document.activeElement;
+		return document.trangthaiElement;
 	} catch ( err ) { }
 }
 
@@ -5410,7 +5410,7 @@ jQuery.event = {
 
 			// Fire native event if possible so blur/focus sequence is correct
 			trigger: function() {
-				if ( this !== safeActiveElement() && this.focus ) {
+				if ( this !== safetrangthaiElement() && this.focus ) {
 					try {
 						this.focus();
 						return false;
@@ -5426,7 +5426,7 @@ jQuery.event = {
 		},
 		blur: {
 			trigger: function() {
-				if ( this === safeActiveElement() && this.blur ) {
+				if ( this === safetrangthaiElement() && this.blur ) {
 					this.blur();
 					return false;
 				}
@@ -7022,7 +7022,7 @@ function getWidthOrHeight( elem, name, extra ) {
 		val = parseFloat( val ) || 0;
 	}
 
-	// use the active box-sizing model to add/subtract irrelevant styles
+	// use the trangthai box-sizing model to add/subtract irrelevant styles
 	return ( val +
 		augmentWidthOrHeight(
 			elem,
@@ -8010,7 +8010,7 @@ jQuery.fn.extend( {
 				hooks.stop.call( this, true );
 			}
 
-			// look for any active animations, and finish them
+			// look for any trangthai animations, and finish them
 			for ( index = timers.length; index--; ) {
 				if ( timers[ index ].elem === this && timers[ index ].queue === type ) {
 					timers[ index ].anim.stop( true );
@@ -9057,7 +9057,7 @@ jQuery.parseXML = function( data ) {
 			tmp = new window.DOMParser();
 			xml = tmp.parseFromString( data, "text/xml" );
 		} else { // IE
-			xml = new window.ActiveXObject( "Microsoft.XMLDOM" );
+			xml = new window.trangthaiXObject( "Microsoft.XMLDOM" );
 			xml.async = "false";
 			xml.loadXML( data );
 		}
@@ -9350,8 +9350,8 @@ function ajaxConvert( s, response, jqXHR, isSuccess ) {
 
 jQuery.extend( {
 
-	// Counter for holding the number of active queries
-	active: 0,
+	// Counter for holding the number of trangthai queries
+	trangthai: 0,
 
 	// Last-Modified header cache for next request
 	lastModified: {},
@@ -9625,7 +9625,7 @@ jQuery.extend( {
 		fireGlobals = jQuery.event && s.global;
 
 		// Watch for a new set of requests
-		if ( fireGlobals && jQuery.active++ === 0 ) {
+		if ( fireGlobals && jQuery.trangthai++ === 0 ) {
 			jQuery.event.trigger( "ajaxStart" );
 		}
 
@@ -9858,7 +9858,7 @@ jQuery.extend( {
 				globalEventContext.trigger( "ajaxComplete", [ jqXHR, s ] );
 
 				// Handle the global AJAX counter
-				if ( !( --jQuery.active ) ) {
+				if ( !( --jQuery.trangthai ) ) {
 					jQuery.event.trigger( "ajaxStop" );
 				}
 			}
@@ -10136,21 +10136,21 @@ jQuery.fn.extend( {
 
 // Create the request object
 // (This is still attached to ajaxSettings for backward compatibility)
-jQuery.ajaxSettings.xhr = window.ActiveXObject !== undefined ?
+jQuery.ajaxSettings.xhr = window.trangthaiXObject !== undefined ?
 
 	// Support: IE6-IE8
 	function() {
 
-		// XHR cannot access local files, always use ActiveX for that case
+		// XHR cannot access local files, always use trangthaiX for that case
 		if ( this.isLocal ) {
-			return createActiveXHR();
+			return createtrangthaiXHR();
 		}
 
 		// Support: IE 9-11
-		// IE seems to error on cross-domain PATCH requests when ActiveX XHR
+		// IE seems to error on cross-domain PATCH requests when trangthaiX XHR
 		// is used. In IE 9+ always use the native XHR.
 		// Note: this condition won't catch Edge as it doesn't define
-		// document.documentMode but it also doesn't support ActiveX so it won't
+		// document.documentMode but it also doesn't support trangthaiX so it won't
 		// reach this code.
 		if ( document.documentMode > 8 ) {
 			return createStandardXHR();
@@ -10163,7 +10163,7 @@ jQuery.ajaxSettings.xhr = window.ActiveXObject !== undefined ?
 		// Although this check for six methods instead of eight
 		// since IE also does not support "trace" and "connect"
 		return /^(get|post|head|put|delete|options)$/i.test( this.type ) &&
-			createStandardXHR() || createActiveXHR();
+			createStandardXHR() || createtrangthaiXHR();
 	} :
 
 	// For all other browsers, use the standard XMLHttpRequest object
@@ -10238,7 +10238,7 @@ if ( xhrSupported ) {
 					for ( i in headers ) {
 
 						// Support: IE<9
-						// IE's ActiveXObject throws a 'Type Mismatch' exception when setting
+						// IE's trangthaiXObject throws a 'Type Mismatch' exception when setting
 						// request header to a null-value.
 						//
 						// To keep consistent with other XHR implementations, cast the value
@@ -10327,7 +10327,7 @@ if ( xhrSupported ) {
 					} else {
 
 						// Register the callback, but delay it in case `xhr.send` throws
-						// Add to the list of active xhr callbacks
+						// Add to the list of trangthai xhr callbacks
 						xhr.onreadystatechange = xhrCallbacks[ id ] = callback;
 					}
 				},
@@ -10349,9 +10349,9 @@ function createStandardXHR() {
 	} catch ( e ) {}
 }
 
-function createActiveXHR() {
+function createtrangthaiXHR() {
 	try {
-		return new window.ActiveXObject( "Microsoft.XMLHTTP" );
+		return new window.trangthaiXObject( "Microsoft.XMLHTTP" );
 	} catch ( e ) {}
 }
 

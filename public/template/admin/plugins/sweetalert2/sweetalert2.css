@@ -307,7 +307,7 @@
 .swal2-actions:not(.swal2-loading) .swal2-styled:hover {
   background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
 }
-.swal2-actions:not(.swal2-loading) .swal2-styled:active {
+.swal2-actions:not(.swal2-loading) .swal2-styled:trangthai {
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
 }
 
@@ -799,14 +799,14 @@
   line-height: 2em;
   text-align: center;
 }
-.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step {
+.swal2-progress-steps .swal2-progress-step.swal2-trangthai-progress-step {
   background: #2778c4;
 }
-.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step ~ .swal2-progress-step {
+.swal2-progress-steps .swal2-progress-step.swal2-trangthai-progress-step ~ .swal2-progress-step {
   background: #add8e6;
   color: #fff;
 }
-.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step ~ .swal2-progress-step-line {
+.swal2-progress-steps .swal2-progress-step.swal2-trangthai-progress-step ~ .swal2-progress-step-line {
   background: #add8e6;
 }
 .swal2-progress-steps .swal2-progress-step-line {

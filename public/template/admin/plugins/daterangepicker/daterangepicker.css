@@ -208,7 +208,7 @@
   border-radius: 4px;
 }
 
-.daterangepicker td.active, .daterangepicker td.active:hover {
+.daterangepicker td.trangthai, .daterangepicker td.trangthai:hover {
   background-color: #357ebd;
   border-color: transparent;
   color: #fff;
@@ -329,7 +329,7 @@
   background-color: #eee;
 }
 
-.daterangepicker .ranges li.active {
+.daterangepicker .ranges li.trangthai {
   background-color: #08c;
   color: #fff;
 }

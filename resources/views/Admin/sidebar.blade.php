@@ -39,13 +39,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/admin/menus/add" class="nav-link">
+                            <a href="/admin/danhmucs/add" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Thêm danh mục</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/admin/menus/list" class="nav-link">
+                            <a href="/admin/danhmucs/list" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách danh mục</p>
                             </a>
@@ -86,7 +86,7 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link">
 
-                        <i class="nav-icon fas fa-shopping-cart"></i>
+                        <i class="nav-icon fas fa-th-list"></i>
                         <p> Đơn đăng ký
                             <i class="right fas fa-angle-left"></i>
                         </p>
@@ -138,6 +138,31 @@
 
                     </ul>
                 </li>
+                {{-- Phí thu --}}
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+
+                        <i class="nav-icon fas fa-money-check"></i>
+                        <p> Phí thu
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/admin/fees/add" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Thêm phí thu</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/fees/list" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Doanh sách phí thu </p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
         </nav>
         <!-- /.sidebar-menu -->
     </div>

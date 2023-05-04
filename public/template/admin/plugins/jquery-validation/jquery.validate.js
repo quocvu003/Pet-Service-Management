@@ -294,7 +294,7 @@ $.extend( $.validator, {
 		ignore: ":hidden",
 		ignoreTitle: false,
 		onfocusin: function( element ) {
-			this.lastActive = element;
+			this.lasttrangthai = element;
 
 			// Hide error label and remove error class on focus if enabled
 			if ( this.settings.focusCleanup ) {
@@ -625,11 +625,11 @@ $.extend( $.validator, {
 		focusInvalid: function() {
 			if ( this.settings.focusInvalid ) {
 				try {
-					$( this.findLastActive() || this.errorList.length && this.errorList[ 0 ].element || [] )
+					$( this.findLasttrangthai() || this.errorList.length && this.errorList[ 0 ].element || [] )
 					.filter( ":visible" )
 					.trigger( "focus" )
 
-					// Manually trigger focusin event; without it, focusin handler isn't called, findLastActive won't have anything to find
+					// Manually trigger focusin event; without it, focusin handler isn't called, findLasttrangthai won't have anything to find
 					.trigger( "focusin" );
 				} catch ( e ) {
 
@@ -638,11 +638,11 @@ $.extend( $.validator, {
 			}
 		},
 
-		findLastActive: function() {
-			var lastActive = this.lastActive;
-			return lastActive && $.grep( this.errorList, function( n ) {
-				return n.element.name === lastActive.name;
-			} ).length === 1 && lastActive;
+		findLasttrangthai: function() {
+			var lasttrangthai = this.lasttrangthai;
+			return lasttrangthai && $.grep( this.errorList, function( n ) {
+				return n.element.name === lasttrangthai.name;
+			} ).length === 1 && lasttrangthai;
 		},
 
 		elements: function() {

@@ -268,12 +268,12 @@ $.extend( KeyTable.prototype, {
 			}
 
 			// Activate Editor when a key is pressed (will be ignored, if
-			// already active).
+			// already trangthai).
 			dt.on( 'key'+namespace, function ( e, dt, key, cell, orig ) {
 				that._editor( key, orig, false );
 			} );
 
-			// Active editing on double click - it will already have focus from
+			// trangthai editing on double click - it will already have focus from
 			// the click event handler above
 			$( dt.table().body() ).on( 'dblclick'+namespace, 'th, td', function (e) {
 				if ( that.s.enable === false ) {
@@ -452,11 +452,11 @@ $.extend( KeyTable.prototype, {
 		$(document).on( 'paste'+namespace, function (ejq) {
 			var e = ejq.originalEvent;
 			var focused = that.s.lastFocus;
-			var activeEl = document.activeElement;
+			var trangthaiEl = document.trangthaiElement;
 			var editor = that.c.editor;
 			var pastedText;
 
-			if ( focused && (! activeEl || activeEl.nodeName.toLowerCase() === 'body') ) {
+			if ( focused && (! trangthaiEl || trangthaiEl.nodeName.toLowerCase() === 'body') ) {
 				e.preventDefault();
 
 				if ( window.clipboardData && window.clipboardData.getData ) {

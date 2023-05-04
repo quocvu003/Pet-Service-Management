@@ -38836,7 +38836,7 @@ module.exports = !$assign || fails(function () {
 /***/ 30:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
-/* global ActiveXObject -- old IE, WSH */
+/* global trangthaiXObject -- old IE, WSH */
 var anObject = __webpack_require__(9670);
 var defineProperties = __webpack_require__(6048);
 var enumBugKeys = __webpack_require__(748);
@@ -38857,12 +38857,12 @@ var scriptTag = function (content) {
   return LT + SCRIPT + GT + content + LT + '/' + SCRIPT + GT;
 };
 
-// Create object with fake `null` prototype: use ActiveX Object with cleared prototype
-var NullProtoObjectViaActiveX = function (activeXDocument) {
-  activeXDocument.write(scriptTag(''));
-  activeXDocument.close();
-  var temp = activeXDocument.parentWindow.Object;
-  activeXDocument = null; // avoid memory leak
+// Create object with fake `null` prototype: use trangthaiX Object with cleared prototype
+var NullProtoObjectViatrangthaiX = function (trangthaiXDocument) {
+  trangthaiXDocument.write(scriptTag(''));
+  trangthaiXDocument.close();
+  var temp = trangthaiXDocument.parentWindow.Object;
+  trangthaiXDocument = null; // avoid memory leak
   return temp;
 };
 
@@ -38883,21 +38883,21 @@ var NullProtoObjectViaIFrame = function () {
   return iframeDocument.F;
 };
 
-// Check for document.domain and active x support
-// No need to use active x approach when document.domain is not set
+// Check for document.domain and trangthai x support
+// No need to use trangthai x approach when document.domain is not set
 // see https://github.com/es-shims/es5-shim/issues/150
 // variation of https://github.com/kitcambridge/es5-shim/commit/4f738ac066346
 // avoid IE GC bug
-var activeXDocument;
+var trangthaiXDocument;
 var NullProtoObject = function () {
   try {
-    activeXDocument = new ActiveXObject('htmlfile');
+    trangthaiXDocument = new trangthaiXObject('htmlfile');
   } catch (error) { /* ignore */ }
   NullProtoObject = typeof document != 'undefined'
-    ? document.domain && activeXDocument
-      ? NullProtoObjectViaActiveX(activeXDocument) // old IE
+    ? document.domain && trangthaiXDocument
+      ? NullProtoObjectViatrangthaiX(trangthaiXDocument) // old IE
       : NullProtoObjectViaIFrame()
-    : NullProtoObjectViaActiveX(activeXDocument); // WSH
+    : NullProtoObjectViatrangthaiX(trangthaiXDocument); // WSH
   var length = enumBugKeys.length;
   while (length--) delete NullProtoObject[PROTOTYPE][enumBugKeys[length]];
   return NullProtoObject();

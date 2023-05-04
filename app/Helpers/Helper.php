@@ -7,62 +7,63 @@ use Illuminate\Support\Str;
 
 class Helper
 {
-    public static function menu($menus, $parent_id = 0, $char = '')
+    public static function danhmuc($danhmucs, $danhmuccha = 0, $char = '')
     {
         $html = '';
 
-        foreach ($menus as $key => $menu) {
-            if ($menu->parent_id == $parent_id) {
+        foreach ($danhmucs as $key => $danhmuc) {
+            if ($danhmuc->danhmuccha == $danhmuccha) {
                 $html .= '
                     <tr>
-                        <td>' . $menu->id . '</td>
-                        <td>' . $char . $menu->name . '</td>
-                        <td>' . self::active($menu->active) . '</td>
-                        <td>' . $menu->updated_at . '</td>
+                        <td>' . $danhmuc->id . '</td>
+                        <td>' . $char . $danhmuc->ten . '</td>
+                        <td>' . self::trangthai($danhmuc->trangthai) . '</td>
+                       
+                        <td>' . \Carbon\Carbon::parse($danhmuc->created_at)->isoFormat('DD/MM/YYYY') . '</td>
                         <td>
-                            <a class="btn btn-primary btn-sm" href="/admin/menus/edit/' . $menu->id . '">
+                            <a class="btn btn-primary btn-sm" href="/admin/danhmucs/edit/' . $danhmuc->id . '">
                                 <i class="fas fa-edit"></i>
                             </a>
                             <a href="#" class="btn btn-danger btn-sm"
-                                onclick="removeRow(' . $menu->id . ', \'/admin/menus/destroy\')">
+                                onclick="removeRow(' . $danhmuc->id . ', \'/admin/danhmucs/destroy\')">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
                     </tr>
                 ';
 
-                unset($menus[$key]);
+                unset($danhmucs[$key]);
 
-                $html .= self::menu($menus, $menu->id, $char . '|--');
+                $html .= self::danhmuc($danhmucs, $danhmuc->id, $char . '|--');
             }
         }
 
         return $html;
     }
 
-    public static function active($active = 0): string
+    public static function trangthai($trangthai = 0): string
     {
-        return $active == 0 ? '<span class="btn btn-danger btn-xs">KHÓA</span>'
-            : ($active == 2 ? '<span class="btn btn-warning btn-xs">CHỜ DUYỆT</span>'
+        return $trangthai == 0 ? '<span class="btn btn-danger btn-xs">KHÓA</span>'
+            : ($trangthai == 2 ? '<span class="btn btn-warning btn-xs">CHỜ DUYỆT</span>'
                 : '<span class="btn btn-success btn-xs">KÍCH HOẠT</span>');
     }
 
-    public static function menus($menus, $parent_id = 0): string
+    public static function danhmucs($danhmucs, $danhmuccha = 0): string
     {
         $html = '';
-        foreach ($menus as $key => $menu) {
-            if ($menu->parent_id == $parent_id) {
+        foreach ($danhmucs as $key => $danhmuc) {
+            if ($danhmuc->danhmuccha == $danhmuccha) {
                 $html .= '
                     <li>
-                        <a href="/danh-muc/' . $menu->id . '-' . Str::slug($menu->name, '-') . '.html">
-                            ' . $menu->name . '
+                        <a href="/danh-muc/' . $danhmuc->id . '-' . Str::slug($danhmuc->ten, '-') . '.html">
+                            ' . $danhmuc->ten . '
                         </a>';
 
-                unset($menus[$key]);
+                unset($danhmucs[$key]);
 
-                if (self::isChild($menus, $menu->id)) {
+                if (self::isChild($danhmucs, $danhmuc->id)) {
                     $html .= '<ul class="sub-menu">';
-                    $html .= self::menus($menus, $menu->id);
+                    $html .= self::danhmucs($danhmucs, $danhmuc->id);
                     $html .= '</ul>';
                 }
 
@@ -73,22 +74,13 @@ class Helper
         return $html;
     }
 
-    public static function isChild($menus, $id): bool
+    public static function isChild($danhmucs, $id): bool
     {
-        foreach ($menus as $menu) {
-            if ($menu->parent_id == $id) {
+        foreach ($danhmucs as $danhmuc) {
+            if ($danhmuc->danhmuccha == $id) {
                 return true;
             }
         }
-
         return false;
-    }
-
-    public static function price($price = 0, $priceSale = 0)
-    {
-
-        if ($price != 0)  return number_format($price);
-        if ($priceSale != 0) return number_format($priceSale);
-        return '<a href="/lien-he.html">Liên Hệ</a>';
     }
 }

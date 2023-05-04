@@ -817,7 +817,7 @@
   var JQUERY_NO_CONFLICT$a = $__default["default"].fn[NAME$a];
   var SELECTOR_NAVBAR = '.navbar';
   var SELECTOR_DROPDOWN_MENU = '.dropdown-menu';
-  var SELECTOR_DROPDOWN_MENU_ACTIVE = '.dropdown-menu.show';
+  var SELECTOR_DROPDOWN_MENU_trangthai = '.dropdown-menu.show';
   var SELECTOR_DROPDOWN_TOGGLE = '[data-toggle="dropdown"]';
   var CLASS_NAME_DROPDOWN_RIGHT = 'dropdown-menu-right';
   var CLASS_NAME_DROPDOWN_SUBMENU = 'dropdown-submenu'; // TODO: this is unused; should be removed along with the extend?
@@ -850,7 +850,7 @@
     };
 
     _proto.fixPosition = function fixPosition() {
-      var $element = $__default["default"](SELECTOR_DROPDOWN_MENU_ACTIVE);
+      var $element = $__default["default"](SELECTOR_DROPDOWN_MENU_trangthai);
 
       if ($element.length === 0) {
         return;
@@ -1227,7 +1227,7 @@
       return item;
     },
     autoIframeMode: true,
-    autoItemActive: true,
+    autoItemtrangthai: true,
     autoShowNewTab: true,
     autoDarkMode: false,
     allowDuplicates: false,
@@ -1377,27 +1377,27 @@
         }
       }
 
-      $__default["default"](SELECTOR_TAB_NAVBAR_NAV + " .active").tab('dispose').removeClass('active');
+      $__default["default"](SELECTOR_TAB_NAVBAR_NAV + " .trangthai").tab('dispose').removeClass('trangthai');
 
       this._fixHeight();
 
       $item.tab('show');
-      $item.parents('li').addClass('active');
+      $item.parents('li').addClass('trangthai');
       this.onTabChanged($item);
 
-      if (this._config.autoItemActive) {
-        this._setItemActive($__default["default"](tabId + " iframe").attr('src'));
+      if (this._config.autoItemtrangthai) {
+        this._setItemtrangthai($__default["default"](tabId + " iframe").attr('src'));
       }
     };
 
-    _proto.removeActiveTab = function removeActiveTab(type, element) {
+    _proto.removetrangthaiTab = function removetrangthaiTab(type, element) {
       if (type == 'all') {
         $__default["default"](SELECTOR_TAB_NAVBAR_NAV_ITEM).remove();
         $__default["default"](SELECTOR_TAB_PANE).remove();
         $__default["default"](SELECTOR_TAB_EMPTY).show();
       } else if (type == 'all-other') {
-        $__default["default"](SELECTOR_TAB_NAVBAR_NAV_ITEM + ":not(.active)").remove();
-        $__default["default"](SELECTOR_TAB_PANE + ":not(.active)").remove();
+        $__default["default"](SELECTOR_TAB_NAVBAR_NAV_ITEM + ":not(.trangthai)").remove();
+        $__default["default"](SELECTOR_TAB_PANE + ":not(.trangthai)").remove();
       } else if (type == 'only-this') {
         var $navClose = $__default["default"](element);
         var $navItem = $navClose.parent('.nav-item');
@@ -1414,7 +1414,7 @@
           this.switchTab($navItemParent.children().eq(prevNavItemIndex).find('a.nav-link'));
         }
       } else {
-        var _$navItem = $__default["default"](SELECTOR_TAB_NAVBAR_NAV_ITEM + ".active");
+        var _$navItem = $__default["default"](SELECTOR_TAB_NAVBAR_NAV_ITEM + ".trangthai");
 
         var _$navItemParent = _$navItem.parent();
 
@@ -1422,7 +1422,7 @@
 
         _$navItem.remove();
 
-        $__default["default"](SELECTOR_TAB_PANE + ".active").remove();
+        $__default["default"](SELECTOR_TAB_PANE + ".trangthai").remove();
 
         if ($__default["default"](SELECTOR_TAB_CONTENT).children().length == $__default["default"](SELECTOR_TAB_EMPTY + ", " + SELECTOR_TAB_LOADING).length) {
           $__default["default"](SELECTOR_TAB_EMPTY).show();
@@ -1534,7 +1534,7 @@
           target = e.target.offsetParent;
         }
 
-        _this3.removeActiveTab(target.attributes['data-type'] ? target.attributes['data-type'].nodeValue : null, target);
+        _this3.removetrangthaiTab(target.attributes['data-type'] ? target.attributes['data-type'].nodeValue : null, target);
       });
       $__default["default"](document).on('click', SELECTOR_DATA_TOGGLE_FULLSCREEN, function (e) {
         e.preventDefault();
@@ -1586,21 +1586,21 @@
       });
     };
 
-    _proto._setItemActive = function _setItemActive(href) {
-      $__default["default"](SELECTOR_SIDEBAR_MENU_ITEM + ", " + SELECTOR_HEADER_DROPDOWN_ITEM).removeClass('active');
-      $__default["default"](SELECTOR_HEADER_MENU_ITEM).parent().removeClass('active');
+    _proto._setItemtrangthai = function _setItemtrangthai(href) {
+      $__default["default"](SELECTOR_SIDEBAR_MENU_ITEM + ", " + SELECTOR_HEADER_DROPDOWN_ITEM).removeClass('trangthai');
+      $__default["default"](SELECTOR_HEADER_MENU_ITEM).parent().removeClass('trangthai');
       var $headerMenuItem = $__default["default"](SELECTOR_HEADER_MENU_ITEM + "[href$=\"" + href + "\"]");
       var $headerDropdownItem = $__default["default"](SELECTOR_HEADER_DROPDOWN_ITEM + "[href$=\"" + href + "\"]");
       var $sidebarMenuItem = $__default["default"](SELECTOR_SIDEBAR_MENU_ITEM + "[href$=\"" + href + "\"]");
       $headerMenuItem.each(function (i, e) {
-        $__default["default"](e).parent().addClass('active');
+        $__default["default"](e).parent().addClass('trangthai');
       });
       $headerDropdownItem.each(function (i, e) {
-        $__default["default"](e).addClass('active');
+        $__default["default"](e).addClass('trangthai');
       });
       $sidebarMenuItem.each(function (i, e) {
-        $__default["default"](e).addClass('active');
-        $__default["default"](e).parents('.nav-treeview').prevAll('.nav-link').addClass('active');
+        $__default["default"](e).addClass('trangthai');
+        $__default["default"](e).parents('.nav-treeview').prevAll('.nav-link').addClass('trangthai');
       });
     };
 
@@ -1644,7 +1644,7 @@
         var plugin = new IFrame($__default["default"](this), _options);
         $__default["default"](this).data(DATA_KEY$7, typeof config === 'object' ? config : data);
 
-        if (typeof config === 'string' && /createTab|openTabSidebar|switchTab|removeActiveTab/.test(config)) {
+        if (typeof config === 'string' && /createTab|openTabSidebar|switchTab|removetrangthaiTab/.test(config)) {
           plugin[config]();
         }
       } else {

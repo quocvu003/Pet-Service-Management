@@ -296,7 +296,7 @@ div.dt-button-collection button.dt-btn-split-drop-button:focus {
 div.dt-button-collection button.dt-btn-split-drop-button:hover {
   background-color: #e9ecef;
 }
-div.dt-button-collection button.dt-btn-split-drop-button:active {
+div.dt-button-collection button.dt-btn-split-drop-button:trangthai {
   background-color: #007bff !important;
 }
 
@@ -351,16 +351,16 @@ div.dt-buttons div.btn-group {
   position: initial;
 }
 
-div.dt-btn-split-wrapper:active:not(.disabled) button, div.dt-btn-split-wrapper.active:not(.disabled) button {
+div.dt-btn-split-wrapper:trangthai:not(.disabled) button, div.dt-btn-split-wrapper.trangthai:not(.disabled) button {
   background-color: #5a6268;
   border-color: #545b62;
 }
-div.dt-btn-split-wrapper:active:not(.disabled) button.dt-btn-split-drop, div.dt-btn-split-wrapper.active:not(.disabled) button.dt-btn-split-drop {
+div.dt-btn-split-wrapper:trangthai:not(.disabled) button.dt-btn-split-drop, div.dt-btn-split-wrapper.trangthai:not(.disabled) button.dt-btn-split-drop {
   box-shadow: none;
   background-color: #6c757d;
   border-color: #6c757d;
 }
-div.dt-btn-split-wrapper:active:not(.disabled) button:hover, div.dt-btn-split-wrapper.active:not(.disabled) button:hover {
+div.dt-btn-split-wrapper:trangthai:not(.disabled) button:hover, div.dt-btn-split-wrapper.trangthai:not(.disabled) button:hover {
   background-color: #5a6268;
   border-color: #545b62;
 }

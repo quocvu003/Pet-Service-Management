@@ -8,6 +8,7 @@ class UploadService
 {
     public function store($request)
     {
+
         if ($request->hasFile('file')) {
             try {
                 $name = $request->file('file')->getClientOriginalName();
@@ -15,7 +16,8 @@ class UploadService
                 $pathFull = 'uploads/' . date("Y/m/d");
 
                 $request->file('file')->storeAs(
-                    'public/' . $pathFull, $name
+                    'public/' . $pathFull,
+                    $name
                 );
 
                 return '/storage/' . $pathFull . '/' . $name;

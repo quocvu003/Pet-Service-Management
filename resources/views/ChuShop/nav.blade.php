@@ -1,5 +1,5 @@
-<nav class="navbar navbar-top navbar-expand navbar-dashboard navbar-dark ps-0 pe-2 pb-0">
-    <div class="container-fluid px-0" style="border-bottom: 1px solid black">
+<nav class="navbar navbar-top navbar-expand navbar-dashboard navbar-dark ps-0 pe-2 pb-0 mb-20">
+    <div class="container-fluid px-0">
         <div class="d-flex justify-content-between w-100" id="navbarSupportedContent">
             <div class="d-flex align-items-center">
 
@@ -78,7 +78,7 @@
                         </div>
                     </a>
                     <div class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-1">
-                        <a class="dropdown-item d-flex align-items-center" href="/ChuShop/profile">
+                        <a class="dropdown-item d-flex align-items-center" href="/ChuShop/profiles/index">
                             <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"

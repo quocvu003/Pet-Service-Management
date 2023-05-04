@@ -1,7 +1,7 @@
 /* Based on the theme at http://bonsaiden.github.com/JavaScript-Garden */
 
-/*<!--activeline-->*/
-.cm-s-midnight .CodeMirror-activeline-background { background: #253540; }
+/*<!--trangthailine-->*/
+.cm-s-midnight .CodeMirror-trangthailine-background { background: #253540; }
 
 .cm-s-midnight.CodeMirror {
     background: #0F192A;

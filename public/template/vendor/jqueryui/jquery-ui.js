@@ -485,7 +485,7 @@ $.Widget.prototype = {
 	_setOptionDisabled: function( value ) {
 		this._toggleClass( this.widget(), this.widgetFullName + "-disabled", null, !!value );
 
-		// If the widget is becoming disabled, then nothing is interactive
+		// If the widget is becoming disabled, then nothing is intertrangthai
 		if ( value ) {
 			this._removeClass( this.hoverable, null, "ui-state-hover" );
 			this._removeClass( this.focusable, null, "ui-state-focus" );
@@ -2288,22 +2288,22 @@ if ( $.uiBackCompat !== false ) {
 					width: element.width(),
 					height: element.height()
 				},
-				active = document.activeElement;
+				trangthai = document.trangthaiElement;
 
 			// Support: Firefox
 			// Firefox incorrectly exposes anonymous content
 			// https://bugzilla.mozilla.org/show_bug.cgi?id=561664
 			try {
-				active.id;
+				trangthai.id;
 			} catch ( e ) {
-				active = document.body;
+				trangthai = document.body;
 			}
 
 			element.wrap( wrapper );
 
 			// Fixes #7595 - Elements lose focus when wrapped.
-			if ( element[ 0 ] === active || $.contains( element[ 0 ], active ) ) {
-				$( active ).trigger( "focus" );
+			if ( element[ 0 ] === trangthai || $.contains( element[ 0 ], trangthai ) ) {
+				$( trangthai ).trigger( "focus" );
 			}
 
 			// Hotfix for jQuery 1.4 since some change in wrap() seems to actually
@@ -2339,14 +2339,14 @@ if ( $.uiBackCompat !== false ) {
 		},
 
 		removeWrapper: function( element ) {
-			var active = document.activeElement;
+			var trangthai = document.trangthaiElement;
 
 			if ( element.parent().is( ".ui-effects-wrapper" ) ) {
 				element.parent().replaceWith( element );
 
 				// Fixes #7595 - Elements lose focus when wrapped.
-				if ( element[ 0 ] === active || $.contains( element[ 0 ], active ) ) {
-					$( active ).trigger( "focus" );
+				if ( element[ 0 ] === trangthai || $.contains( element[ 0 ], trangthai ) ) {
+					$( trangthai ).trigger( "focus" );
 				}
 			}
 
@@ -4318,7 +4318,7 @@ var uniqueId = $.fn.extend( {
 var widgetsAccordion = $.widget( "ui.accordion", {
 	version: "1.12.1",
 	options: {
-		active: 0,
+		trangthai: 0,
 		animate: {},
 		classes: {
 			"ui-accordion-header": "ui-corner-top",
@@ -4330,7 +4330,7 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 		header: "> li > :first-child, > :not(li):even",
 		heightStyle: "auto",
 		icons: {
-			activeHeader: "ui-icon-triangle-1-s",
+			trangthaiHeader: "ui-icon-triangle-1-s",
 			header: "ui-icon-triangle-1-e"
 		},
 
@@ -4362,24 +4362,24 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 		this._addClass( "ui-accordion", "ui-widget ui-helper-reset" );
 		this.element.attr( "role", "tablist" );
 
-		// Don't allow collapsible: false and active: false / null
-		if ( !options.collapsible && ( options.active === false || options.active == null ) ) {
-			options.active = 0;
+		// Don't allow collapsible: false and trangthai: false / null
+		if ( !options.collapsible && ( options.trangthai === false || options.trangthai == null ) ) {
+			options.trangthai = 0;
 		}
 
 		this._processPanels();
 
 		// handle negative values
-		if ( options.active < 0 ) {
-			options.active += this.headers.length;
+		if ( options.trangthai < 0 ) {
+			options.trangthai += this.headers.length;
 		}
 		this._refresh();
 	},
 
 	_getCreateEventData: function() {
 		return {
-			header: this.active,
-			panel: !this.active.length ? $() : this.active.next()
+			header: this.trangthai,
+			panel: !this.trangthai.length ? $() : this.trangthai.next()
 		};
 	},
 
@@ -4391,9 +4391,9 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 			icon = $( "<span>" );
 			this._addClass( icon, "ui-accordion-header-icon", "ui-icon " + icons.header );
 			icon.prependTo( this.headers );
-			children = this.active.children( ".ui-accordion-header-icon" );
+			children = this.trangthai.children( ".ui-accordion-header-icon" );
 			this._removeClass( children, icons.header )
-				._addClass( children, null, icons.activeHeader )
+				._addClass( children, null, icons.trangthaiHeader )
 				._addClass( this.headers, "ui-accordion-icons" );
 		}
 	},
@@ -4428,7 +4428,7 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 	},
 
 	_setOption: function( key, value ) {
-		if ( key === "active" ) {
+		if ( key === "trangthai" ) {
 
 			// _activate() will handle invalid values and update this.options
 			this._activate( value );
@@ -4445,7 +4445,7 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 		this._super( key, value );
 
 		// Setting collapsible: false while collapsed; open first panel
-		if ( key === "collapsible" && !value && this.options.active === false ) {
+		if ( key === "collapsible" && !value && this.options.trangthai === false ) {
 			this._activate( 0 );
 		}
 
@@ -4520,33 +4520,33 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 		this._processPanels();
 
 		// Was collapsed or no panel
-		if ( ( options.active === false && options.collapsible === true ) ||
+		if ( ( options.trangthai === false && options.collapsible === true ) ||
 				!this.headers.length ) {
-			options.active = false;
-			this.active = $();
+			options.trangthai = false;
+			this.trangthai = $();
 
-		// active false only when collapsible is true
-		} else if ( options.active === false ) {
+		// trangthai false only when collapsible is true
+		} else if ( options.trangthai === false ) {
 			this._activate( 0 );
 
-		// was active, but active panel is gone
-		} else if ( this.active.length && !$.contains( this.element[ 0 ], this.active[ 0 ] ) ) {
+		// was trangthai, but trangthai panel is gone
+		} else if ( this.trangthai.length && !$.contains( this.element[ 0 ], this.trangthai[ 0 ] ) ) {
 
 			// all remaining panel are disabled
 			if ( this.headers.length === this.headers.find( ".ui-state-disabled" ).length ) {
-				options.active = false;
-				this.active = $();
+				options.trangthai = false;
+				this.trangthai = $();
 
 			// activate previous panel
 			} else {
-				this._activate( Math.max( 0, options.active - 1 ) );
+				this._activate( Math.max( 0, options.trangthai - 1 ) );
 			}
 
-		// was active, active panel still exists
+		// was trangthai, trangthai panel still exists
 		} else {
 
-			// make sure active index is correct
-			options.active = this.headers.index( this.active );
+			// make sure trangthai index is correct
+			options.trangthai = this.headers.index( this.trangthai );
 		}
 
 		this._destroyIcons();
@@ -4562,7 +4562,7 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 		this._addClass( this.headers, "ui-accordion-header ui-accordion-header-collapsed",
 			"ui-state-default" );
 
-		this.panels = this.headers.next().filter( ":not(.ui-accordion-content-active)" ).hide();
+		this.panels = this.headers.next().filter( ":not(.ui-accordion-content-trangthai)" ).hide();
 		this._addClass( this.panels, "ui-accordion-content", "ui-helper-reset ui-widget-content" );
 
 		// Avoid memory leaks (#10056)
@@ -4578,11 +4578,11 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 			heightStyle = options.heightStyle,
 			parent = this.element.parent();
 
-		this.active = this._findActive( options.active );
-		this._addClass( this.active, "ui-accordion-header-active", "ui-state-active" )
-			._removeClass( this.active, "ui-accordion-header-collapsed" );
-		this._addClass( this.active.next(), "ui-accordion-content-active" );
-		this.active.next().show();
+		this.trangthai = this._findtrangthai( options.trangthai );
+		this._addClass( this.trangthai, "ui-accordion-header-trangthai", "ui-state-trangthai" )
+			._removeClass( this.trangthai, "ui-accordion-header-collapsed" );
+		this._addClass( this.trangthai.next(), "ui-accordion-content-trangthai" );
+		this.trangthai.next().show();
 
 		this.headers
 			.attr( "role", "tab" )
@@ -4598,7 +4598,7 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 				.attr( "role", "tabpanel" );
 
 		this.headers
-			.not( this.active )
+			.not( this.trangthai )
 				.attr( {
 					"aria-selected": "false",
 					"aria-expanded": "false",
@@ -4611,10 +4611,10 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 					.hide();
 
 		// Make sure at least one header is in the tab order
-		if ( !this.active.length ) {
+		if ( !this.trangthai.length ) {
 			this.headers.eq( 0 ).attr( "tabIndex", 0 );
 		} else {
-			this.active.attr( {
+			this.trangthai.attr( {
 				"aria-selected": "true",
 				"aria-expanded": "true",
 				tabIndex: 0
@@ -4669,24 +4669,24 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 	},
 
 	_activate: function( index ) {
-		var active = this._findActive( index )[ 0 ];
+		var trangthai = this._findtrangthai( index )[ 0 ];
 
-		// Trying to activate the already active panel
-		if ( active === this.active[ 0 ] ) {
+		// Trying to activate the already trangthai panel
+		if ( trangthai === this.trangthai[ 0 ] ) {
 			return;
 		}
 
-		// Trying to collapse, simulate a click on the currently active header
-		active = active || this.active[ 0 ];
+		// Trying to collapse, simulate a click on the currently trangthai header
+		trangthai = trangthai || this.trangthai[ 0 ];
 
 		this._eventHandler( {
-			target: active,
-			currentTarget: active,
+			target: trangthai,
+			currentTarget: trangthai,
 			preventDefault: $.noop
 		} );
 	},
 
-	_findActive: function( selector ) {
+	_findtrangthai: function( selector ) {
 		return typeof selector === "number" ? this.headers.eq( selector ) : $();
 	},
 
@@ -4708,16 +4708,16 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 	},
 
 	_eventHandler: function( event ) {
-		var activeChildren, clickedChildren,
+		var trangthaiChildren, clickedChildren,
 			options = this.options,
-			active = this.active,
+			trangthai = this.trangthai,
 			clicked = $( event.currentTarget ),
-			clickedIsActive = clicked[ 0 ] === active[ 0 ],
-			collapsing = clickedIsActive && options.collapsible,
+			clickedIstrangthai = clicked[ 0 ] === trangthai[ 0 ],
+			collapsing = clickedIstrangthai && options.collapsible,
 			toShow = collapsing ? $() : clicked.next(),
-			toHide = active.next(),
+			toHide = trangthai.next(),
 			eventData = {
-				oldHeader: active,
+				oldHeader: trangthai,
 				oldPanel: toHide,
 				newHeader: collapsing ? $() : clicked,
 				newPanel: toShow
@@ -4727,40 +4727,40 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 
 		if (
 
-				// click on active header, but not collapsible
-				( clickedIsActive && !options.collapsible ) ||
+				// click on trangthai header, but not collapsible
+				( clickedIstrangthai && !options.collapsible ) ||
 
 				// allow canceling activation
 				( this._trigger( "beforeActivate", event, eventData ) === false ) ) {
 			return;
 		}
 
-		options.active = collapsing ? false : this.headers.index( clicked );
+		options.trangthai = collapsing ? false : this.headers.index( clicked );
 
 		// When the call to ._toggle() comes after the class changes
 		// it causes a very odd bug in IE 8 (see #6720)
-		this.active = clickedIsActive ? $() : clicked;
+		this.trangthai = clickedIstrangthai ? $() : clicked;
 		this._toggle( eventData );
 
 		// Switch classes
-		// corner classes on the previously active header stay after the animation
-		this._removeClass( active, "ui-accordion-header-active", "ui-state-active" );
+		// corner classes on the previously trangthai header stay after the animation
+		this._removeClass( trangthai, "ui-accordion-header-trangthai", "ui-state-trangthai" );
 		if ( options.icons ) {
-			activeChildren = active.children( ".ui-accordion-header-icon" );
-			this._removeClass( activeChildren, null, options.icons.activeHeader )
-				._addClass( activeChildren, null, options.icons.header );
+			trangthaiChildren = trangthai.children( ".ui-accordion-header-icon" );
+			this._removeClass( trangthaiChildren, null, options.icons.trangthaiHeader )
+				._addClass( trangthaiChildren, null, options.icons.header );
 		}
 
-		if ( !clickedIsActive ) {
+		if ( !clickedIstrangthai ) {
 			this._removeClass( clicked, "ui-accordion-header-collapsed" )
-				._addClass( clicked, "ui-accordion-header-active", "ui-state-active" );
+				._addClass( clicked, "ui-accordion-header-trangthai", "ui-state-trangthai" );
 			if ( options.icons ) {
 				clickedChildren = clicked.children( ".ui-accordion-header-icon" );
 				this._removeClass( clickedChildren, null, options.icons.header )
-					._addClass( clickedChildren, null, options.icons.activeHeader );
+					._addClass( clickedChildren, null, options.icons.trangthaiHeader );
 			}
 
-			this._addClass( clicked.next(), "ui-accordion-content-active" );
+			this._addClass( clicked.next(), "ui-accordion-content-trangthai" );
 		}
 	},
 
@@ -4877,8 +4877,8 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 		var toHide = data.oldPanel,
 			prev = toHide.prev();
 
-		this._removeClass( toHide, "ui-accordion-content-active" );
-		this._removeClass( prev, "ui-accordion-header-active" )
+		this._removeClass( toHide, "ui-accordion-content-trangthai" );
+		this._removeClass( prev, "ui-accordion-header-trangthai" )
 			._addClass( prev, "ui-accordion-header-collapsed" );
 
 		// Work around for rendering bug in IE (#5421)
@@ -4891,32 +4891,32 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 
 
 
-var safeActiveElement = $.ui.safeActiveElement = function( document ) {
-	var activeElement;
+var safetrangthaiElement = $.ui.safetrangthaiElement = function( document ) {
+	var trangthaiElement;
 
 	// Support: IE 9 only
-	// IE9 throws an "Unspecified error" accessing document.activeElement from an <iframe>
+	// IE9 throws an "Unspecified error" accessing document.trangthaiElement from an <iframe>
 	try {
-		activeElement = document.activeElement;
+		trangthaiElement = document.trangthaiElement;
 	} catch ( error ) {
-		activeElement = document.body;
+		trangthaiElement = document.body;
 	}
 
 	// Support: IE 9 - 11 only
 	// IE may return null instead of an element
 	// Interestingly, this only seems to occur when NOT in an iframe
-	if ( !activeElement ) {
-		activeElement = document.body;
+	if ( !trangthaiElement ) {
+		trangthaiElement = document.body;
 	}
 
 	// Support: IE 11 only
 	// IE11 returns a seemingly empty object in some cases when accessing
-	// document.activeElement from an <iframe>
-	if ( !activeElement.nodeName ) {
-		activeElement = document.body;
+	// document.trangthaiElement from an <iframe>
+	if ( !trangthaiElement.nodeName ) {
+		trangthaiElement = document.body;
 	}
 
-	return activeElement;
+	return trangthaiElement;
 };
 
 
@@ -4963,7 +4963,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 	},
 
 	_create: function() {
-		this.activeMenu = this.element;
+		this.trangthaiMenu = this.element;
 
 		// Flag used to prevent firing of the click handler
 		// as the event bubbles up through nested menus
@@ -4985,7 +4985,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 			},
 			"click .ui-menu-item": function( event ) {
 				var target = $( event.target );
-				var active = $( $.ui.safeActiveElement( this.document[ 0 ] ) );
+				var trangthai = $( $.ui.safetrangthaiElement( this.document[ 0 ] ) );
 				if ( !this.mouseHandled && target.not( ".ui-state-disabled" ).length ) {
 					this.select( event );
 
@@ -4998,14 +4998,14 @@ var widgetsMenu = $.widget( "ui.menu", {
 					if ( target.has( ".ui-menu" ).length ) {
 						this.expand( event );
 					} else if ( !this.element.is( ":focus" ) &&
-							active.closest( ".ui-menu" ).length ) {
+							trangthai.closest( ".ui-menu" ).length ) {
 
 						// Redirect focus to the menu
 						this.element.trigger( "focus", [ true ] );
 
-						// If the active item is on the top level, let it stay active.
-						// Otherwise, blur the active item since it is no longer visible.
-						if ( this.active && this.active.parents( ".ui-menu" ).length === 1 ) {
+						// If the trangthai item is on the top level, let it stay trangthai.
+						// Otherwise, blur the trangthai item since it is no longer visible.
+						if ( this.trangthai && this.trangthai.parents( ".ui-menu" ).length === 1 ) {
 							clearTimeout( this.timer );
 						}
 					}
@@ -5013,7 +5013,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 			},
 			"mouseenter .ui-menu-item": function( event ) {
 
-				// Ignore mouse events while typeahead is active, see #10458.
+				// Ignore mouse events while typeahead is trangthai, see #10458.
 				// Prevents focusing the wrong item when typeahead causes a scroll while the mouse
 				// is over an item in the menu
 				if ( this.previousFilter ) {
@@ -5028,21 +5028,21 @@ var widgetsMenu = $.widget( "ui.menu", {
 					return;
 				}
 
-				// Remove ui-state-active class from siblings of the newly focused menu item
+				// Remove ui-state-trangthai class from siblings of the newly focused menu item
 				// to avoid a jump caused by adjacent elements both having a class with a border
-				this._removeClass( target.siblings().children( ".ui-state-active" ),
-					null, "ui-state-active" );
+				this._removeClass( target.siblings().children( ".ui-state-trangthai" ),
+					null, "ui-state-trangthai" );
 				this.focus( event, target );
 			},
 			mouseleave: "collapseAll",
 			"mouseleave .ui-menu": "collapseAll",
-			focus: function( event, keepActiveItem ) {
+			focus: function( event, keeptrangthaiItem ) {
 
-				// If there's already an active item, keep it active
+				// If there's already an trangthai item, keep it trangthai
 				// If not, activate the first item
-				var item = this.active || this.element.find( this.options.items ).eq( 0 );
+				var item = this.trangthai || this.element.find( this.options.items ).eq( 0 );
 
-				if ( !keepActiveItem ) {
+				if ( !keeptrangthaiItem ) {
 					this.focus( event, item );
 				}
 			},
@@ -5050,7 +5050,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 				this._delay( function() {
 					var notContained = !$.contains(
 						this.element[ 0 ],
-						$.ui.safeActiveElement( this.document[ 0 ] )
+						$.ui.safetrangthaiElement( this.document[ 0 ] )
 					);
 					if ( notContained ) {
 						this.collapseAll( event );
@@ -5084,7 +5084,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 
 		// Destroy (sub)menus
 		this.element
-			.removeAttr( "aria-activedescendant" )
+			.removeAttr( "aria-trangthaidescendant" )
 			.find( ".ui-menu" ).addBack()
 				.removeAttr( "role aria-labelledby aria-expanded aria-hidden aria-disabled " +
 					"tabIndex" )
@@ -5126,7 +5126,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 			this.collapse( event );
 			break;
 		case $.ui.keyCode.RIGHT:
-			if ( this.active && !this.active.is( ".ui-state-disabled" ) ) {
+			if ( this.trangthai && !this.trangthai.is( ".ui-state-disabled" ) ) {
 				this.expand( event );
 			}
 			break;
@@ -5155,8 +5155,8 @@ var widgetsMenu = $.widget( "ui.menu", {
 			}
 
 			match = this._filterMenuItems( character );
-			match = skip && match.index( this.active.next() ) !== -1 ?
-				this.active.nextAll( ".ui-menu-item" ) :
+			match = skip && match.index( this.trangthai.next() ) !== -1 ?
+				this.trangthai.nextAll( ".ui-menu-item" ) :
 				match;
 
 			// If no matches on the current filter, reset to the last character pressed
@@ -5183,8 +5183,8 @@ var widgetsMenu = $.widget( "ui.menu", {
 	},
 
 	_activate: function( event ) {
-		if ( this.active && !this.active.is( ".ui-state-disabled" ) ) {
-			if ( this.active.children( "[aria-haspopup='true']" ).length ) {
+		if ( this.trangthai && !this.trangthai.is( ".ui-state-disabled" ) ) {
+			if ( this.trangthai.children( "[aria-haspopup='true']" ).length ) {
 				this.expand( event );
 			} else {
 				this.select( event );
@@ -5248,8 +5248,8 @@ var widgetsMenu = $.widget( "ui.menu", {
 		// Add aria-disabled attribute to any disabled menu item
 		items.filter( ".ui-state-disabled" ).attr( "aria-disabled", "true" );
 
-		// If the active item has been removed, blur the menu
-		if ( this.active && !$.contains( this.element[ 0 ], this.active[ 0 ] ) ) {
+		// If the trangthai item has been removed, blur the menu
+		if ( this.trangthai && !$.contains( this.element[ 0 ], this.trangthai[ 0 ] ) ) {
 			this.blur();
 		}
 	},
@@ -5278,28 +5278,28 @@ var widgetsMenu = $.widget( "ui.menu", {
 	},
 
 	focus: function( event, item ) {
-		var nested, focused, activeParent;
+		var nested, focused, trangthaiParent;
 		this.blur( event, event && event.type === "focus" );
 
 		this._scrollIntoView( item );
 
-		this.active = item.first();
+		this.trangthai = item.first();
 
-		focused = this.active.children( ".ui-menu-item-wrapper" );
-		this._addClass( focused, null, "ui-state-active" );
+		focused = this.trangthai.children( ".ui-menu-item-wrapper" );
+		this._addClass( focused, null, "ui-state-trangthai" );
 
-		// Only update aria-activedescendant if there's a role
+		// Only update aria-trangthaidescendant if there's a role
 		// otherwise we assume focus is managed elsewhere
 		if ( this.options.role ) {
-			this.element.attr( "aria-activedescendant", focused.attr( "id" ) );
+			this.element.attr( "aria-trangthaidescendant", focused.attr( "id" ) );
 		}
 
-		// Highlight active parent menu item, if any
-		activeParent = this.active
+		// Highlight trangthai parent menu item, if any
+		trangthaiParent = this.trangthai
 			.parent()
 				.closest( ".ui-menu-item" )
 					.children( ".ui-menu-item-wrapper" );
-		this._addClass( activeParent, null, "ui-state-active" );
+		this._addClass( trangthaiParent, null, "ui-state-trangthai" );
 
 		if ( event && event.type === "keydown" ) {
 			this._close();
@@ -5313,7 +5313,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 		if ( nested.length && event && ( /^mouse/.test( event.type ) ) ) {
 			this._startOpening( nested );
 		}
-		this.activeMenu = item.parent();
+		this.trangthaiMenu = item.parent();
 
 		this._trigger( "focus", event, { item: item } );
 	},
@@ -5321,17 +5321,17 @@ var widgetsMenu = $.widget( "ui.menu", {
 	_scrollIntoView: function( item ) {
 		var borderTop, paddingTop, offset, scroll, elementHeight, itemHeight;
 		if ( this._hasScroll() ) {
-			borderTop = parseFloat( $.css( this.activeMenu[ 0 ], "borderTopWidth" ) ) || 0;
-			paddingTop = parseFloat( $.css( this.activeMenu[ 0 ], "paddingTop" ) ) || 0;
-			offset = item.offset().top - this.activeMenu.offset().top - borderTop - paddingTop;
-			scroll = this.activeMenu.scrollTop();
-			elementHeight = this.activeMenu.height();
+			borderTop = parseFloat( $.css( this.trangthaiMenu[ 0 ], "borderTopWidth" ) ) || 0;
+			paddingTop = parseFloat( $.css( this.trangthaiMenu[ 0 ], "paddingTop" ) ) || 0;
+			offset = item.offset().top - this.trangthaiMenu.offset().top - borderTop - paddingTop;
+			scroll = this.trangthaiMenu.scrollTop();
+			elementHeight = this.trangthaiMenu.height();
 			itemHeight = item.outerHeight();
 
 			if ( offset < 0 ) {
-				this.activeMenu.scrollTop( scroll + offset );
+				this.trangthaiMenu.scrollTop( scroll + offset );
 			} else if ( offset + itemHeight > elementHeight ) {
-				this.activeMenu.scrollTop( scroll + offset - elementHeight + itemHeight );
+				this.trangthaiMenu.scrollTop( scroll + offset - elementHeight + itemHeight );
 			}
 		}
 	},
@@ -5341,15 +5341,15 @@ var widgetsMenu = $.widget( "ui.menu", {
 			clearTimeout( this.timer );
 		}
 
-		if ( !this.active ) {
+		if ( !this.trangthai ) {
 			return;
 		}
 
-		this._removeClass( this.active.children( ".ui-menu-item-wrapper" ),
-			null, "ui-state-active" );
+		this._removeClass( this.trangthai.children( ".ui-menu-item-wrapper" ),
+			null, "ui-state-trangthai" );
 
-		this._trigger( "blur", event, { item: this.active } );
-		this.active = null;
+		this._trigger( "blur", event, { item: this.trangthai } );
+		this.trangthai = null;
 	},
 
 	_startOpening: function( submenu ) {
@@ -5369,7 +5369,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 
 	_open: function( submenu ) {
 		var position = $.extend( {
-			of: this.active
+			of: this.trangthai
 		}, this.options.position );
 
 		clearTimeout( this.timer );
@@ -5402,18 +5402,18 @@ var widgetsMenu = $.widget( "ui.menu", {
 
 			this.blur( event );
 
-			// Work around active item staying active after menu is blurred
-			this._removeClass( currentMenu.find( ".ui-state-active" ), null, "ui-state-active" );
+			// Work around trangthai item staying trangthai after menu is blurred
+			this._removeClass( currentMenu.find( ".ui-state-trangthai" ), null, "ui-state-trangthai" );
 
-			this.activeMenu = currentMenu;
+			this.trangthaiMenu = currentMenu;
 		}, this.delay );
 	},
 
-	// With no arguments, closes the currently active menu - if nothing is active
+	// With no arguments, closes the currently trangthai menu - if nothing is trangthai
 	// it closes all menus.  If passed an argument, it will search for menus BELOW
 	_close: function( startMenu ) {
 		if ( !startMenu ) {
-			startMenu = this.active ? this.active.parent() : this.element;
+			startMenu = this.trangthai ? this.trangthai.parent() : this.element;
 		}
 
 		startMenu.find( ".ui-menu" )
@@ -5433,8 +5433,8 @@ var widgetsMenu = $.widget( "ui.menu", {
 	},
 
 	collapse: function( event ) {
-		var newItem = this.active &&
-			this.active.parent().closest( ".ui-menu-item", this.element );
+		var newItem = this.trangthai &&
+			this.trangthai.parent().closest( ".ui-menu-item", this.element );
 		if ( newItem && newItem.length ) {
 			this._close();
 			this.focus( event, newItem );
@@ -5442,8 +5442,8 @@ var widgetsMenu = $.widget( "ui.menu", {
 	},
 
 	expand: function( event ) {
-		var newItem = this.active &&
-			this.active
+		var newItem = this.trangthai &&
+			this.trangthai
 				.children( ".ui-menu " )
 					.find( this.options.items )
 						.first();
@@ -5451,7 +5451,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 		if ( newItem && newItem.length ) {
 			this._open( newItem.parent() );
 
-			// Delay so Firefox will not hide activedescendant change in expanding submenu from AT
+			// Delay so Firefox will not hide trangthaidescendant change in expanding submenu from AT
 			this._delay( function() {
 				this.focus( event, newItem );
 			} );
@@ -5467,28 +5467,28 @@ var widgetsMenu = $.widget( "ui.menu", {
 	},
 
 	isFirstItem: function() {
-		return this.active && !this.active.prevAll( ".ui-menu-item" ).length;
+		return this.trangthai && !this.trangthai.prevAll( ".ui-menu-item" ).length;
 	},
 
 	isLastItem: function() {
-		return this.active && !this.active.nextAll( ".ui-menu-item" ).length;
+		return this.trangthai && !this.trangthai.nextAll( ".ui-menu-item" ).length;
 	},
 
 	_move: function( direction, filter, event ) {
 		var next;
-		if ( this.active ) {
+		if ( this.trangthai ) {
 			if ( direction === "first" || direction === "last" ) {
-				next = this.active
+				next = this.trangthai
 					[ direction === "first" ? "prevAll" : "nextAll" ]( ".ui-menu-item" )
 					.eq( -1 );
 			} else {
-				next = this.active
+				next = this.trangthai
 					[ direction + "All" ]( ".ui-menu-item" )
 					.eq( 0 );
 			}
 		}
-		if ( !next || !next.length || !this.active ) {
-			next = this.activeMenu.find( this.options.items )[ filter ]();
+		if ( !next || !next.length || !this.trangthai ) {
+			next = this.trangthaiMenu.find( this.options.items )[ filter ]();
 		}
 
 		this.focus( event, next );
@@ -5497,7 +5497,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 	nextPage: function( event ) {
 		var item, base, height;
 
-		if ( !this.active ) {
+		if ( !this.trangthai ) {
 			this.next( event );
 			return;
 		}
@@ -5505,23 +5505,23 @@ var widgetsMenu = $.widget( "ui.menu", {
 			return;
 		}
 		if ( this._hasScroll() ) {
-			base = this.active.offset().top;
+			base = this.trangthai.offset().top;
 			height = this.element.height();
-			this.active.nextAll( ".ui-menu-item" ).each( function() {
+			this.trangthai.nextAll( ".ui-menu-item" ).each( function() {
 				item = $( this );
 				return item.offset().top - base - height < 0;
 			} );
 
 			this.focus( event, item );
 		} else {
-			this.focus( event, this.activeMenu.find( this.options.items )
-				[ !this.active ? "first" : "last" ]() );
+			this.focus( event, this.trangthaiMenu.find( this.options.items )
+				[ !this.trangthai ? "first" : "last" ]() );
 		}
 	},
 
 	previousPage: function( event ) {
 		var item, base, height;
-		if ( !this.active ) {
+		if ( !this.trangthai ) {
 			this.next( event );
 			return;
 		}
@@ -5529,16 +5529,16 @@ var widgetsMenu = $.widget( "ui.menu", {
 			return;
 		}
 		if ( this._hasScroll() ) {
-			base = this.active.offset().top;
+			base = this.trangthai.offset().top;
 			height = this.element.height();
-			this.active.prevAll( ".ui-menu-item" ).each( function() {
+			this.trangthai.prevAll( ".ui-menu-item" ).each( function() {
 				item = $( this );
 				return item.offset().top - base + height > 0;
 			} );
 
 			this.focus( event, item );
 		} else {
-			this.focus( event, this.activeMenu.find( this.options.items ).first() );
+			this.focus( event, this.trangthaiMenu.find( this.options.items ).first() );
 		}
 	},
 
@@ -5548,11 +5548,11 @@ var widgetsMenu = $.widget( "ui.menu", {
 
 	select: function( event ) {
 
-		// TODO: It should never be possible to not have an active item at this
+		// TODO: It should never be possible to not have an trangthai item at this
 		// point, but the tests don't trigger mouseenter before click.
-		this.active = this.active || $( event.target ).closest( ".ui-menu-item" );
-		var ui = { item: this.active };
-		if ( !this.active.has( ".ui-menu" ).length ) {
+		this.trangthai = this.trangthai || $( event.target ).closest( ".ui-menu-item" );
+		var ui = { item: this.trangthai };
+		if ( !this.trangthai.has( ".ui-menu" ).length ) {
 			this.collapseAll( event, true );
 		}
 		this._trigger( "select", event, ui );
@@ -5562,7 +5562,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 		var escapedCharacter = character.replace( /[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&" ),
 			regex = new RegExp( "^" + escapedCharacter, "i" );
 
-		return this.activeMenu
+		return this.trangthaiMenu
 			.find( this.options.items )
 
 				// Only match on items, not dividers or other content (#10571)
@@ -5682,7 +5682,7 @@ $.widget( "ui.autocomplete", {
 				case keyCode.ENTER:
 
 					// when menu is open and has focus
-					if ( this.menu.active ) {
+					if ( this.menu.trangthai ) {
 
 						// #6055 - Opera still allows the keypress to occur
 						// which causes forms to submit
@@ -5692,7 +5692,7 @@ $.widget( "ui.autocomplete", {
 					}
 					break;
 				case keyCode.TAB:
-					if ( this.menu.active ) {
+					if ( this.menu.trangthai ) {
 						this.menu.select( event );
 					}
 					break;
@@ -5800,7 +5800,7 @@ $.widget( "ui.autocomplete", {
 					// and ignored the blur event because of the cancelBlur flag set above. So
 					// we restore focus to ensure that the menu closes properly based on the user's
 					// next actions.
-					if ( this.element[ 0 ] !== $.ui.safeActiveElement( this.document[ 0 ] ) ) {
+					if ( this.element[ 0 ] !== $.ui.safetrangthaiElement( this.document[ 0 ] ) ) {
 						this.element.trigger( "focus" );
 					}
 				} );
@@ -5844,7 +5844,7 @@ $.widget( "ui.autocomplete", {
 					previous = this.previous;
 
 				// Only trigger when focus was lost (click on menu)
-				if ( this.element[ 0 ] !== $.ui.safeActiveElement( this.document[ 0 ] ) ) {
+				if ( this.element[ 0 ] !== $.ui.safetrangthaiElement( this.document[ 0 ] ) ) {
 					this.element.trigger( "focus" );
 					this.previous = previous;
 
@@ -6624,7 +6624,7 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 		this._enhance();
 
 		if ( checked ) {
-			this._addClass( this.label, "ui-checkboxradio-checked", "ui-state-active" );
+			this._addClass( this.label, "ui-checkboxradio-checked", "ui-state-trangthai" );
 			if ( this.icon ) {
 				this._addClass( this.icon, null, "ui-state-hover" );
 			}
@@ -6683,7 +6683,7 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 
 	_toggleClasses: function() {
 		var checked = this.element[ 0 ].checked;
-		this._toggleClass( this.label, "ui-checkboxradio-checked", "ui-state-active", checked );
+		this._toggleClass( this.label, "ui-checkboxradio-checked", "ui-state-trangthai", checked );
 
 		if ( this.options.icon && this.type === "checkbox" ) {
 			this._toggleClass( this.icon, null, "ui-icon-check ui-state-checked", checked )
@@ -6697,7 +6697,7 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 
 					if ( instance ) {
 						instance._removeClass( instance.label,
-							"ui-checkboxradio-checked", "ui-state-active" );
+							"ui-checkboxradio-checked", "ui-state-trangthai" );
 					}
 				} );
 		}
@@ -6779,7 +6779,7 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 			isDisabled = this.element[ 0 ].disabled;
 
 		this._updateIcon( checked );
-		this._toggleClass( this.label, "ui-checkboxradio-checked", "ui-state-active", checked );
+		this._toggleClass( this.label, "ui-checkboxradio-checked", "ui-state-trangthai", checked );
 		if ( this.options.label !== null ) {
 			this._updateLabel();
 		}
@@ -7184,7 +7184,7 @@ var widgetsButton = $.ui.button;
 
 $.extend( $.ui, { datepicker: { version: "1.12.1" } } );
 
-var datepicker_instActive;
+var datepicker_insttrangthai;
 
 function datepicker_getZindex( elem ) {
 	var position, value;
@@ -7554,8 +7554,8 @@ $.extend( Datepicker.prototype, {
 			$target.removeClass( this.markerClassName ).empty();
 		}
 
-		if ( datepicker_instActive === inst ) {
-			datepicker_instActive = null;
+		if ( datepicker_insttrangthai === inst ) {
+			datepicker_insttrangthai = null;
 		}
 	},
 
@@ -7972,7 +7972,7 @@ $.extend( Datepicker.prototype, {
 	/* Generate the date picker content. */
 	_updateDatepicker: function( inst ) {
 		this.maxRows = 4; //Reset the max number of rows being displayed (see #7043)
-		datepicker_instActive = inst; // for delegate hover events
+		datepicker_insttrangthai = inst; // for delegate hover events
 		inst.dpDiv.empty().append( this._generateHTML( inst ) );
 		this._attachHandlers( inst );
 
@@ -7980,10 +7980,10 @@ $.extend( Datepicker.prototype, {
 			numMonths = this._getNumberOfMonths( inst ),
 			cols = numMonths[ 1 ],
 			width = 17,
-			activeCell = inst.dpDiv.find( "." + this._dayOverClass + " a" );
+			trangthaiCell = inst.dpDiv.find( "." + this._dayOverClass + " a" );
 
-		if ( activeCell.length > 0 ) {
-			datepicker_handleMouseover.apply( activeCell.get( 0 ) );
+		if ( trangthaiCell.length > 0 ) {
+			datepicker_handleMouseover.apply( trangthaiCell.get( 0 ) );
 		}
 
 		inst.dpDiv.removeClass( "ui-datepicker-multi-2 ui-datepicker-multi-3 ui-datepicker-multi-4" ).width( "" );
@@ -8963,7 +8963,7 @@ $.extend( Datepicker.prototype, {
 							( otherMonth && !showOtherMonths ? "&#xa0;" : // display for other months
 							( unselectable ? "<span class='ui-state-default'>" + printDate.getDate() + "</span>" : "<a class='ui-state-default" +
 							( printDate.getTime() === today.getTime() ? " ui-state-highlight" : "" ) +
-							( printDate.getTime() === currentDate.getTime() ? " ui-state-active" : "" ) + // highlight selected day
+							( printDate.getTime() === currentDate.getTime() ? " ui-state-trangthai" : "" ) + // highlight selected day
 							( otherMonth ? " ui-priority-secondary" : "" ) + // distinguish dates from other months
 							"' href='#'>" + printDate.getDate() + "</a>" ) ) + "</td>"; // display selectable date
 						printDate.setDate( printDate.getDate() + 1 );
@@ -9179,7 +9179,7 @@ $.extend( Datepicker.prototype, {
 /*
  * Bind hover events for datepicker elements.
  * Done via delegate so the binding only occurs once in the lifetime of the parent div.
- * Global datepicker_instActive, set by _updateDatepicker allows the handlers to find their way back to the active picker.
+ * Global datepicker_insttrangthai, set by _updateDatepicker allows the handlers to find their way back to the trangthai picker.
  */
 function datepicker_bindHover( dpDiv ) {
 	var selector = "button, .ui-datepicker-prev, .ui-datepicker-next, .ui-datepicker-calendar td a";
@@ -9196,7 +9196,7 @@ function datepicker_bindHover( dpDiv ) {
 }
 
 function datepicker_handleMouseover() {
-	if ( !$.datepicker._isDisabledDatepicker( datepicker_instActive.inline ? datepicker_instActive.dpDiv.parent()[ 0 ] : datepicker_instActive.input[ 0 ] ) ) {
+	if ( !$.datepicker._isDisabledDatepicker( datepicker_insttrangthai.inline ? datepicker_insttrangthai.dpDiv.parent()[ 0 ] : datepicker_insttrangthai.input[ 0 ] ) ) {
 		$( this ).parents( ".ui-datepicker-calendar" ).find( "a" ).removeClass( "ui-state-hover" );
 		$( this ).addClass( "ui-state-hover" );
 		if ( this.className.indexOf( "ui-datepicker-prev" ) !== -1 ) {
@@ -9624,7 +9624,7 @@ $.widget( "ui.draggable", $.ui.mouse, {
 			return false;
 		}
 
-		this._blurActiveElement( event );
+		this._blurtrangthaiElement( event );
 
 		this._blockFrames( o.iframeFix === true ? "iframe" : o.iframeFix );
 
@@ -9652,19 +9652,19 @@ $.widget( "ui.draggable", $.ui.mouse, {
 		}
 	},
 
-	_blurActiveElement: function( event ) {
-		var activeElement = $.ui.safeActiveElement( this.document[ 0 ] ),
+	_blurtrangthaiElement: function( event ) {
+		var trangthaiElement = $.ui.safetrangthaiElement( this.document[ 0 ] ),
 			target = $( event.target );
 
 		// Don't blur if the event occurred on an element that is within
 		// the currently focused element
 		// See #10527, #12472
-		if ( target.closest( activeElement ).length ) {
+		if ( target.closest( trangthaiElement ).length ) {
 			return;
 		}
 
 		// Blur any element that currently has focus, see #4261
-		$.ui.safeBlur( activeElement );
+		$.ui.safeBlur( trangthaiElement );
 	},
 
 	_mouseStart: function( event ) {
@@ -12142,9 +12142,9 @@ $.widget( "ui.dialog", {
 		if ( !this.opener.filter( ":focusable" ).trigger( "focus" ).length ) {
 
 			// Hiding a focused element doesn't trigger blur in WebKit
-			// so in case we have nothing to focus on, explicitly blur the active element
+			// so in case we have nothing to focus on, explicitly blur the trangthai element
 			// https://bugs.webkit.org/show_bug.cgi?id=47182
-			$.ui.safeBlur( $.ui.safeActiveElement( this.document[ 0 ] ) );
+			$.ui.safeBlur( $.ui.safetrangthaiElement( this.document[ 0 ] ) );
 		}
 
 		this._hide( this.uiDialog, this.options.hide, function() {
@@ -12188,7 +12188,7 @@ $.widget( "ui.dialog", {
 		}
 
 		this._isOpen = true;
-		this.opener = $( $.ui.safeActiveElement( this.document[ 0 ] ) );
+		this.opener = $( $.ui.safetrangthaiElement( this.document[ 0 ] ) );
 
 		this._size();
 		this._position();
@@ -12245,10 +12245,10 @@ $.widget( "ui.dialog", {
 
 	_keepFocus: function( event ) {
 		function checkFocus() {
-			var activeElement = $.ui.safeActiveElement( this.document[ 0 ] ),
-				isActive = this.uiDialog[ 0 ] === activeElement ||
-					$.contains( this.uiDialog[ 0 ], activeElement );
-			if ( !isActive ) {
+			var trangthaiElement = $.ui.safetrangthaiElement( this.document[ 0 ] ),
+				istrangthai = this.uiDialog[ 0 ] === trangthaiElement ||
+					$.contains( this.uiDialog[ 0 ], trangthaiElement );
+			if ( !istrangthai ) {
 				this._focusTabbable();
 			}
 		}
@@ -12967,7 +12967,7 @@ $.widget( "ui.droppable", {
 	_activate: function( event ) {
 		var draggable = $.ui.ddmanager.current;
 
-		this._addActiveClass();
+		this._addtrangthaiClass();
 		if ( draggable ) {
 			this._trigger( "activate", event, this.ui( draggable ) );
 		}
@@ -12976,7 +12976,7 @@ $.widget( "ui.droppable", {
 	_deactivate: function( event ) {
 		var draggable = $.ui.ddmanager.current;
 
-		this._removeActiveClass();
+		this._removetrangthaiClass();
 		if ( draggable ) {
 			this._trigger( "deactivate", event, this.ui( draggable ) );
 		}
@@ -13056,7 +13056,7 @@ $.widget( "ui.droppable", {
 
 		if ( this.accept.call( this.element[ 0 ],
 				( draggable.currentItem || draggable.element ) ) ) {
-			this._removeActiveClass();
+			this._removetrangthaiClass();
 			this._removeHoverClass();
 
 			this._trigger( "drop", event, this.ui( draggable ) );
@@ -13086,12 +13086,12 @@ $.widget( "ui.droppable", {
 		this._removeClass( "ui-droppable-hover" );
 	},
 
-	_addActiveClass: function() {
-		this._addClass( "ui-droppable-active" );
+	_addtrangthaiClass: function() {
+		this._addClass( "ui-droppable-trangthai" );
 	},
 
-	_removeActiveClass: function() {
-		this._removeClass( "ui-droppable-active" );
+	_removetrangthaiClass: function() {
+		this._removeClass( "ui-droppable-trangthai" );
 	}
 } );
 
@@ -13301,22 +13301,22 @@ $.ui.ddmanager = {
 // TODO: switch return back to widget declaration at top of file when this is removed
 if ( $.uiBackCompat !== false ) {
 
-	// Backcompat for activeClass and hoverClass options
+	// Backcompat for trangthaiClass and hoverClass options
 	$.widget( "ui.droppable", $.ui.droppable, {
 		options: {
 			hoverClass: false,
-			activeClass: false
+			trangthaiClass: false
 		},
-		_addActiveClass: function() {
+		_addtrangthaiClass: function() {
 			this._super();
-			if ( this.options.activeClass ) {
-				this.element.addClass( this.options.activeClass );
+			if ( this.options.trangthaiClass ) {
+				this.element.addClass( this.options.trangthaiClass );
 			}
 		},
-		_removeActiveClass: function() {
+		_removetrangthaiClass: function() {
 			this._super();
-			if ( this.options.activeClass ) {
-				this.element.removeClass( this.options.activeClass );
+			if ( this.options.trangthaiClass ) {
+				this.element.removeClass( this.options.trangthaiClass );
 			}
 		},
 		_addHoverClass: function() {
@@ -13962,7 +13962,7 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 					}
 					that.focusIndex = item.index;
 
-					that.button.attr( "aria-activedescendant",
+					that.button.attr( "aria-trangthaidescendant",
 						that.menuItems.eq( item.index ).attr( "id" ) );
 				}
 			} )
@@ -14037,7 +14037,7 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 		} else {
 
 			// Menu clears focus on close, reset focus to selected item
-			this._removeClass( this.menu.find( ".ui-state-active" ), null, "ui-state-active" );
+			this._removeClass( this.menu.find( ".ui-state-trangthai" ), null, "ui-state-trangthai" );
 			this.menuInstance.focus( null, this._getSelectedItem() );
 		}
 
@@ -14318,9 +14318,9 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 
 		this.button.attr( {
 			"aria-labelledby": id,
-			"aria-activedescendant": id
+			"aria-trangthaidescendant": id
 		} );
-		this.menu.attr( "aria-activedescendant", id );
+		this.menu.attr( "aria-trangthaidescendant", id );
 	},
 
 	_setOption: function( key, value ) {
@@ -14663,7 +14663,7 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 
 		this._handleIndex = index;
 
-		this._addClass( closestHandle, null, "ui-state-active" );
+		this._addClass( closestHandle, null, "ui-state-trangthai" );
 		closestHandle.trigger( "focus" );
 
 		offset = closestHandle.offset();
@@ -14698,7 +14698,7 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 	},
 
 	_mouseStop: function( event ) {
-		this._removeClass( this.handles, null, "ui-state-active" );
+		this._removeClass( this.handles, null, "ui-state-trangthai" );
 		this._mouseSliding = false;
 
 		this._stop( event, this._handleIndex );
@@ -15134,7 +15134,7 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 					event.preventDefault();
 					if ( !this._keySliding ) {
 						this._keySliding = true;
-						this._addClass( $( event.target ), null, "ui-state-active" );
+						this._addClass( $( event.target ), null, "ui-state-trangthai" );
 						allowed = this._start( event, index );
 						if ( allowed === false ) {
 							return;
@@ -15191,7 +15191,7 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 				this._keySliding = false;
 				this._stop( event, index );
 				this._change( event, index );
-				this._removeClass( $( event.target ), null, "ui-state-active" );
+				this._removeClass( $( event.target ), null, "ui-state-trangthai" );
 			}
 		}
 	}
@@ -16883,11 +16883,11 @@ $.widget( "ui.spinner", {
 			// If the input is focused then this.previous is properly set from
 			// when the input first received focus. If the input is not focused
 			// then we need to set this.previous based on the value before spinning.
-			previous = this.element[ 0 ] === $.ui.safeActiveElement( this.document[ 0 ] ) ?
+			previous = this.element[ 0 ] === $.ui.safetrangthaiElement( this.document[ 0 ] ) ?
 				this.previous : this.element.val();
 			function checkFocus() {
-				var isActive = this.element[ 0 ] === $.ui.safeActiveElement( this.document[ 0 ] );
-				if ( !isActive ) {
+				var istrangthai = this.element[ 0 ] === $.ui.safetrangthaiElement( this.document[ 0 ] );
+				if ( !istrangthai ) {
 					this.element.trigger( "focus" );
 					this.previous = previous;
 
@@ -16924,8 +16924,8 @@ $.widget( "ui.spinner", {
 		"mouseup .ui-spinner-button": "_stop",
 		"mouseenter .ui-spinner-button": function( event ) {
 
-			// button will add ui-state-active if mouse was down while mouseleave and kept down
-			if ( !$( event.currentTarget ).hasClass( "ui-state-active" ) ) {
+			// button will add ui-state-trangthai if mouse was down while mouseleave and kept down
+			if ( !$( event.currentTarget ).hasClass( "ui-state-trangthai" ) ) {
 				return;
 			}
 
@@ -17316,7 +17316,7 @@ $.widget( "ui.tabs", {
 	version: "1.12.1",
 	delay: 300,
 	options: {
-		active: null,
+		trangthai: null,
 		classes: {
 			"ui-tabs": "ui-corner-all",
 			"ui-tabs-nav": "ui-corner-all",
@@ -17367,7 +17367,7 @@ $.widget( "ui.tabs", {
 		this._toggleClass( "ui-tabs-collapsible", null, options.collapsible );
 
 		this._processTabs();
-		options.active = this._initialActive();
+		options.trangthai = this._initialtrangthai();
 
 		// Take disabling tabs via class attribute from HTML
 		// into account and update option properly.
@@ -17380,72 +17380,72 @@ $.widget( "ui.tabs", {
 		}
 
 		// Check for length avoids error when initializing empty list
-		if ( this.options.active !== false && this.anchors.length ) {
-			this.active = this._findActive( options.active );
+		if ( this.options.trangthai !== false && this.anchors.length ) {
+			this.trangthai = this._findtrangthai( options.trangthai );
 		} else {
-			this.active = $();
+			this.trangthai = $();
 		}
 
 		this._refresh();
 
-		if ( this.active.length ) {
-			this.load( options.active );
+		if ( this.trangthai.length ) {
+			this.load( options.trangthai );
 		}
 	},
 
-	_initialActive: function() {
-		var active = this.options.active,
+	_initialtrangthai: function() {
+		var trangthai = this.options.trangthai,
 			collapsible = this.options.collapsible,
 			locationHash = location.hash.substring( 1 );
 
-		if ( active === null ) {
+		if ( trangthai === null ) {
 
 			// check the fragment identifier in the URL
 			if ( locationHash ) {
 				this.tabs.each( function( i, tab ) {
 					if ( $( tab ).attr( "aria-controls" ) === locationHash ) {
-						active = i;
+						trangthai = i;
 						return false;
 					}
 				} );
 			}
 
-			// Check for a tab marked active via a class
-			if ( active === null ) {
-				active = this.tabs.index( this.tabs.filter( ".ui-tabs-active" ) );
+			// Check for a tab marked trangthai via a class
+			if ( trangthai === null ) {
+				trangthai = this.tabs.index( this.tabs.filter( ".ui-tabs-trangthai" ) );
 			}
 
-			// No active tab, set to false
-			if ( active === null || active === -1 ) {
-				active = this.tabs.length ? 0 : false;
+			// No trangthai tab, set to false
+			if ( trangthai === null || trangthai === -1 ) {
+				trangthai = this.tabs.length ? 0 : false;
 			}
 		}
 
 		// Handle numbers: negative, out of range
-		if ( active !== false ) {
-			active = this.tabs.index( this.tabs.eq( active ) );
-			if ( active === -1 ) {
-				active = collapsible ? false : 0;
+		if ( trangthai !== false ) {
+			trangthai = this.tabs.index( this.tabs.eq( trangthai ) );
+			if ( trangthai === -1 ) {
+				trangthai = collapsible ? false : 0;
 			}
 		}
 
-		// Don't allow collapsible: false and active: false
-		if ( !collapsible && active === false && this.anchors.length ) {
-			active = 0;
+		// Don't allow collapsible: false and trangthai: false
+		if ( !collapsible && trangthai === false && this.anchors.length ) {
+			trangthai = 0;
 		}
 
-		return active;
+		return trangthai;
 	},
 
 	_getCreateEventData: function() {
 		return {
-			tab: this.active,
-			panel: !this.active.length ? $() : this._getPanelForTab( this.active )
+			tab: this.trangthai,
+			panel: !this.trangthai.length ? $() : this._getPanelForTab( this.trangthai )
 		};
 	},
 
 	_tabKeydown: function( event ) {
-		var focusedTab = $( $.ui.safeActiveElement( this.document[ 0 ] ) ).closest( "li" ),
+		var focusedTab = $( $.ui.safetrangthaiElement( this.document[ 0 ] ) ).closest( "li" ),
 			selectedIndex = this.tabs.index( focusedTab ),
 			goingForward = true;
 
@@ -17483,7 +17483,7 @@ $.widget( "ui.tabs", {
 			clearTimeout( this.activating );
 
 			// Determine if we should collapse or activate
-			this._activate( selectedIndex === this.options.active ? false : selectedIndex );
+			this._activate( selectedIndex === this.options.trangthai ? false : selectedIndex );
 			return;
 		default:
 			return;
@@ -17504,7 +17504,7 @@ $.widget( "ui.tabs", {
 			this.tabs.eq( selectedIndex ).attr( "aria-selected", "true" );
 
 			this.activating = this._delay( function() {
-				this.option( "active", selectedIndex );
+				this.option( "trangthai", selectedIndex );
 			}, this.delay );
 		}
 	},
@@ -17517,18 +17517,18 @@ $.widget( "ui.tabs", {
 		// Ctrl+up moves focus to the current tab
 		if ( event.ctrlKey && event.keyCode === $.ui.keyCode.UP ) {
 			event.preventDefault();
-			this.active.trigger( "focus" );
+			this.trangthai.trigger( "focus" );
 		}
 	},
 
 	// Alt+page up/down moves focus to the previous/next tab (and activates)
 	_handlePageNav: function( event ) {
 		if ( event.altKey && event.keyCode === $.ui.keyCode.PAGE_UP ) {
-			this._activate( this._focusNextTab( this.options.active - 1, false ) );
+			this._activate( this._focusNextTab( this.options.trangthai - 1, false ) );
 			return true;
 		}
 		if ( event.altKey && event.keyCode === $.ui.keyCode.PAGE_DOWN ) {
-			this._activate( this._focusNextTab( this.options.active + 1, true ) );
+			this._activate( this._focusNextTab( this.options.trangthai + 1, true ) );
 			return true;
 		}
 	},
@@ -17560,7 +17560,7 @@ $.widget( "ui.tabs", {
 	},
 
 	_setOption: function( key, value ) {
-		if ( key === "active" ) {
+		if ( key === "trangthai" ) {
 
 			// _activate() will handle invalid values and update this.options
 			this._activate( value );
@@ -17573,7 +17573,7 @@ $.widget( "ui.tabs", {
 			this._toggleClass( "ui-tabs-collapsible", null, value );
 
 			// Setting collapsible: false while collapsed; open first panel
-			if ( !value && this.options.active === false ) {
+			if ( !value && this.options.trangthai === false ) {
 				this._activate( 0 );
 			}
 		}
@@ -17604,28 +17604,28 @@ $.widget( "ui.tabs", {
 		this._processTabs();
 
 		// Was collapsed or no tabs
-		if ( options.active === false || !this.anchors.length ) {
-			options.active = false;
-			this.active = $();
+		if ( options.trangthai === false || !this.anchors.length ) {
+			options.trangthai = false;
+			this.trangthai = $();
 
-		// was active, but active tab is gone
-		} else if ( this.active.length && !$.contains( this.tablist[ 0 ], this.active[ 0 ] ) ) {
+		// was trangthai, but trangthai tab is gone
+		} else if ( this.trangthai.length && !$.contains( this.tablist[ 0 ], this.trangthai[ 0 ] ) ) {
 
 			// all remaining tabs are disabled
 			if ( this.tabs.length === options.disabled.length ) {
-				options.active = false;
-				this.active = $();
+				options.trangthai = false;
+				this.trangthai = $();
 
 			// activate previous tab
 			} else {
-				this._activate( this._findNextTab( Math.max( 0, options.active - 1 ), false ) );
+				this._activate( this._findNextTab( Math.max( 0, options.trangthai - 1 ), false ) );
 			}
 
-		// was active, active tab still exists
+		// was trangthai, trangthai tab still exists
 		} else {
 
-			// make sure active index is correct
-			options.active = this.tabs.index( this.active );
+			// make sure trangthai index is correct
+			options.trangthai = this.tabs.index( this.trangthai );
 		}
 
 		this._refresh();
@@ -17636,29 +17636,29 @@ $.widget( "ui.tabs", {
 		this._setupEvents( this.options.event );
 		this._setupHeightStyle( this.options.heightStyle );
 
-		this.tabs.not( this.active ).attr( {
+		this.tabs.not( this.trangthai ).attr( {
 			"aria-selected": "false",
 			"aria-expanded": "false",
 			tabIndex: -1
 		} );
-		this.panels.not( this._getPanelForTab( this.active ) )
+		this.panels.not( this._getPanelForTab( this.trangthai ) )
 			.hide()
 			.attr( {
 				"aria-hidden": "true"
 			} );
 
 		// Make sure one tab is in the tab order
-		if ( !this.active.length ) {
+		if ( !this.trangthai.length ) {
 			this.tabs.eq( 0 ).attr( "tabIndex", 0 );
 		} else {
-			this.active
+			this.trangthai
 				.attr( {
 					"aria-selected": "true",
 					"aria-expanded": "true",
 					tabIndex: 0
 				} );
-			this._addClass( this.active, "ui-tabs-active", "ui-state-active" );
-			this._getPanelForTab( this.active )
+			this._addClass( this.trangthai, "ui-tabs-trangthai", "ui-state-trangthai" );
+			this._getPanelForTab( this.trangthai )
 				.show()
 				.attr( {
 					"aria-hidden": "false"
@@ -17866,15 +17866,15 @@ $.widget( "ui.tabs", {
 
 	_eventHandler: function( event ) {
 		var options = this.options,
-			active = this.active,
+			trangthai = this.trangthai,
 			anchor = $( event.currentTarget ),
 			tab = anchor.closest( "li" ),
-			clickedIsActive = tab[ 0 ] === active[ 0 ],
-			collapsing = clickedIsActive && options.collapsible,
+			clickedIstrangthai = tab[ 0 ] === trangthai[ 0 ],
+			collapsing = clickedIstrangthai && options.collapsible,
 			toShow = collapsing ? $() : this._getPanelForTab( tab ),
-			toHide = !active.length ? $() : this._getPanelForTab( active ),
+			toHide = !trangthai.length ? $() : this._getPanelForTab( trangthai ),
 			eventData = {
-				oldTab: active,
+				oldTab: trangthai,
 				oldPanel: toHide,
 				newTab: collapsing ? $() : tab,
 				newPanel: toShow
@@ -17890,17 +17890,17 @@ $.widget( "ui.tabs", {
 				// can't switch durning an animation
 				this.running ||
 
-				// click on active header, but not collapsible
-				( clickedIsActive && !options.collapsible ) ||
+				// click on trangthai header, but not collapsible
+				( clickedIstrangthai && !options.collapsible ) ||
 
 				// allow canceling activation
 				( this._trigger( "beforeActivate", event, eventData ) === false ) ) {
 			return;
 		}
 
-		options.active = collapsing ? false : this.tabs.index( tab );
+		options.trangthai = collapsing ? false : this.tabs.index( tab );
 
-		this.active = clickedIsActive ? $() : tab;
+		this.trangthai = clickedIstrangthai ? $() : tab;
 		if ( this.xhr ) {
 			this.xhr.abort();
 		}
@@ -17929,7 +17929,7 @@ $.widget( "ui.tabs", {
 		}
 
 		function show() {
-			that._addClass( eventData.newTab.closest( "li" ), "ui-tabs-active", "ui-state-active" );
+			that._addClass( eventData.newTab.closest( "li" ), "ui-tabs-trangthai", "ui-state-trangthai" );
 
 			if ( toShow.length && that.options.show ) {
 				that._show( toShow, that.options.show, complete );
@@ -17943,12 +17943,12 @@ $.widget( "ui.tabs", {
 		if ( toHide.length && this.options.hide ) {
 			this._hide( toHide, this.options.hide, function() {
 				that._removeClass( eventData.oldTab.closest( "li" ),
-					"ui-tabs-active", "ui-state-active" );
+					"ui-tabs-trangthai", "ui-state-trangthai" );
 				show();
 			} );
 		} else {
 			this._removeClass( eventData.oldTab.closest( "li" ),
-				"ui-tabs-active", "ui-state-active" );
+				"ui-tabs-trangthai", "ui-state-trangthai" );
 			toHide.hide();
 			show();
 		}
@@ -17981,19 +17981,19 @@ $.widget( "ui.tabs", {
 
 	_activate: function( index ) {
 		var anchor,
-			active = this._findActive( index );
+			trangthai = this._findtrangthai( index );
 
-		// Trying to activate the already active panel
-		if ( active[ 0 ] === this.active[ 0 ] ) {
+		// Trying to activate the already trangthai panel
+		if ( trangthai[ 0 ] === this.trangthai[ 0 ] ) {
 			return;
 		}
 
-		// Trying to collapse, simulate a click on the current active header
-		if ( !active.length ) {
-			active = this.active;
+		// Trying to collapse, simulate a click on the current trangthai header
+		if ( !trangthai.length ) {
+			trangthai = this.trangthai;
 		}
 
-		anchor = active.find( ".ui-tabs-anchor" )[ 0 ];
+		anchor = trangthai.find( ".ui-tabs-anchor" )[ 0 ];
 		this._eventHandler( {
 			target: anchor,
 			currentTarget: anchor,
@@ -18001,7 +18001,7 @@ $.widget( "ui.tabs", {
 		} );
 	},
 
-	_findActive: function( index ) {
+	_findtrangthai: function( index ) {
 		return index === false ? $() : this.tabs.eq( index );
 	},
 

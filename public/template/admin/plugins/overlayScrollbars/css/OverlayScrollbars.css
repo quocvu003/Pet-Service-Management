@@ -594,10 +594,10 @@ THEMES:
 .os-theme-light > .os-scrollbar:hover > .os-scrollbar-track > .os-scrollbar-handle {
     background: rgba(255, 255, 255, .55);
 }
-.os-theme-dark > .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle.active {
+.os-theme-dark > .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle.trangthai {
     background: rgba(0, 0, 0, .7);
 }
-.os-theme-light > .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle.active {
+.os-theme-light > .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle.trangthai {
     background: rgba(255, 255, 255, .7);
 }
 .os-theme-dark > .os-scrollbar-horizontal .os-scrollbar-handle:before,

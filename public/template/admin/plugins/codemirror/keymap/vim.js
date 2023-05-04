@@ -5518,7 +5518,7 @@
 
     /**
      * Listens for changes made in insert mode.
-     * Should only be active in insert mode.
+     * Should only be trangthai in insert mode.
      */
     function onChange(cm, changeObj) {
       var macroModeState = vimGlobalState.macroModeState;
@@ -5609,7 +5609,7 @@
 
     /**
     * Handles raw key down events from the text area.
-    * - Should only be active in insert mode.
+    * - Should only be trangthai in insert mode.
     * - For recording deletes in insert mode.
     */
     function onKeyEventTargetKeyDown(e) {

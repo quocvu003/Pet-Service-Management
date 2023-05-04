@@ -114,7 +114,7 @@
   border-radius: 1em;
 }
 
-.active .bs-stepper-circle {
+.trangthai .bs-stepper-circle {
   background-color: #007bff;
 }
 
@@ -164,14 +164,14 @@
   transition-property: opacity;
 }
 
-.bs-stepper-pane.fade.active,
-.bs-stepper .content.fade.active {
+.bs-stepper-pane.fade.trangthai,
+.bs-stepper .content.fade.trangthai {
   visibility: visible;
   opacity: 1;
 }
 
-.bs-stepper-pane.active:not(.fade),
-.bs-stepper .content.active:not(.fade) {
+.bs-stepper-pane.trangthai:not(.fade),
+.bs-stepper .content.trangthai:not(.fade) {
   display: block;
   visibility: visible;
 }

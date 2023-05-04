@@ -21,7 +21,7 @@
 .cm-s-yonce.CodeMirror pre { padding-left: 0px; }
 .cm-s-yonce .CodeMirror-gutters {background: #1C1C1C; border-right: 0px;}
 .cm-s-yonce .CodeMirror-linenumber {color: #777777;  padding-right: 10px; }
-.cm-s-yonce .CodeMirror-activeline .CodeMirror-linenumber.CodeMirror-gutter-elt { background: #1C1C1C; color: #fc4384; }
+.cm-s-yonce .CodeMirror-trangthailine .CodeMirror-linenumber.CodeMirror-gutter-elt { background: #1C1C1C; color: #fc4384; }
 .cm-s-yonce .CodeMirror-linenumber { color: #777; }
 .cm-s-yonce .CodeMirror-cursor { border-left: 2px solid #FC4384; }
 .cm-s-yonce .cm-searching { background: rgba(243, 155, 53, .3) !important; outline: 1px solid #F39B35; }
@@ -55,5 +55,5 @@
 .cm-s-yonce .cm-link { color:#696d70; font-style:italic; text-decoration:none; } /**/
 .cm-s-yonce .cm-error { border-bottom: 1px solid #C42412; }
 
-.cm-s-yonce .CodeMirror-activeline-background { background: #272727; }
+.cm-s-yonce .CodeMirror-trangthailine-background { background: #272727; }
 .cm-s-yonce .CodeMirror-matchingbracket { outline:1px solid grey; color:#D4D4D4 !important; }

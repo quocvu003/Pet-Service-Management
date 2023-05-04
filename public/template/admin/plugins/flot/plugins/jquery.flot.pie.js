@@ -74,7 +74,7 @@ More detail and specific examples can be found in the included HTML file.
             processed = false,
             ctx = null;
 
-        // interactive variables
+        // intertrangthai variables
 
         var highlights = [];
 
@@ -546,7 +546,7 @@ More detail and specific examples can be found in the included HTML file.
             }
         }
 
-        //-- Additional Interactive related functions --
+        //-- Additional Intertrangthai related functions --
 
         function isPointInPoly(poly, pt) {
             for (var c = false, i = -1, l = poly.length, j = l - 1; ++i < l; j = i) {

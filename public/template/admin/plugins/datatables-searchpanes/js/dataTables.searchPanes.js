@@ -47,7 +47,7 @@
                 displayed: false,
                 dt: table,
                 dtPane: undefined,
-                filteringActive: false,
+                filteringtrangthai: false,
                 firstSet: true,
                 forceViewTotal: false,
                 index: idx,
@@ -894,7 +894,7 @@
                             }
                             var message;
                             message =
-                                (_this.s.filteringActive || _this.s.showFiltered) && _this.c.viewTotal ||
+                                (_this.s.filteringtrangthai || _this.s.showFiltered) && _this.c.viewTotal ||
                                     _this.c.viewTotal && _this.s.forceViewTotal ?
                                     filteredMessage.replace(/{total}/, row.total) :
                                     countMessage.replace(/{total}/, row.total);
@@ -1273,7 +1273,7 @@
                         comparisonObj.filter.push(comp.filter);
                     }
                 }
-                // If cascadePanes is not active or if it is and the comparisonObj should be shown then add it to the pane
+                // If cascadePanes is not trangthai or if it is and the comparisonObj should be shown then add it to the pane
                 if (!this.c.cascadePanes || this.c.cascadePanes && comparisonObj.shown !== 0) {
                     rows.push(this.addRow(comparisonObj.display, comparisonObj.filter, comparisonObj.shown, comparisonObj.total, comparisonObj.sort, comparisonObj.type, comparisonObj.className));
                 }
@@ -1328,7 +1328,7 @@
             this.s.rowData.arrayFilter = [];
             this.s.rowData.bins = {};
             var settings = this.s.dt.settings()[0];
-            // If cascadePanes or viewTotal are active it is necessary to get the data which is currently
+            // If cascadePanes or viewTotal are trangthai it is necessary to get the data which is currently
             // being displayed for their functionality.
             // Also make sure that this was not the last pane to have a selection made
             if (!this.s.dt.page.info().serverSide) {
@@ -1545,7 +1545,7 @@
             // update all of the panes except for the one causing the change
             if (!this.s.dt.page.info().serverSide &&
                 this.s.dtPane !== undefined &&
-                (!this.s.filteringActive || this.c.cascadePanes || draw === true) &&
+                (!this.s.filteringtrangthai || this.c.cascadePanes || draw === true) &&
                 (this.c.cascadePanes !== true || this.s.selectPresent !== true) &&
                 (!this.s.lastSelect || !this.s.lastCascade)) {
                 var colOpts = this.s.colOpts;
@@ -1557,9 +1557,9 @@
                 if (this.colExists) {
                     // Only run populatePane if the data has not been collected yet
                     if (rowData.arrayFilter.length === 0) {
-                        this._populatePane(!this.s.filteringActive);
+                        this._populatePane(!this.s.filteringtrangthai);
                     }
-                    // If cascadePanes is active and the table has returned to its default state then
+                    // If cascadePanes is trangthai and the table has returned to its default state then
                     // there is a need to update certain parts ofthe rowData.
                     else if (this.c.cascadePanes &&
                         this.s.dt.rows().data().toArray().length ===
@@ -1567,9 +1567,9 @@
                         rowData.arrayFilter = rowData.arrayOriginal;
                         rowData.bins = rowData.binsOriginal;
                     }
-                    // Otherwise if viewTotal or cascadePanes is active then the data from the table must be read.
+                    // Otherwise if viewTotal or cascadePanes is trangthai then the data from the table must be read.
                     else if (this.c.viewTotal || this.c.cascadePanes) {
-                        this._populatePane(!this.s.filteringActive);
+                        this._populatePane(!this.s.filteringtrangthai);
                     }
                     // If the viewTotal option is selected then find the totals for the table
                     if (this.c.viewTotal) {
@@ -1923,7 +1923,7 @@
             var table = this.s.dt;
             // Only do this if the redraw isn't being triggered by the panes updating themselves
             if (!this.s.updating && !this.s.dt.page.info().serverSide) {
-                var filterActive = true;
+                var filtertrangthai = true;
                 var filterPane = this.s.filterPane;
                 var selectTotal = null;
                 for (var _i = 0, _a = this.s.panes; _i < _a.length; _i++) {
@@ -1936,9 +1936,9 @@
                 // then there can't be any filtering taking place
                 if (selectTotal === 0 &&
                     table.rows({ search: 'applied' }).data().toArray().length === table.rows().data().toArray().length) {
-                    filterActive = false;
+                    filtertrangthai = false;
                 }
-                // Otherwise if viewTotal is active then it is necessary to determine which panes a select is present in.
+                // Otherwise if viewTotal is trangthai then it is necessary to determine which panes a select is present in.
                 // If there is only one pane with a selection present then it should not show the filtered message as
                 // more selections may be made in that pane.
                 else if (this.c.viewTotal) {
@@ -2031,14 +2031,14 @@
                         var pane = _l[_k];
                         if (pane.s.dtPane !== undefined) {
                             var tempFilter = true;
-                            pane.s.filteringActive = true;
+                            pane.s.filteringtrangthai = true;
                             if (filterPane !== -1 && filterPane !== null && filterPane === pane.s.index ||
-                                filterActive === false ||
+                                filtertrangthai === false ||
                                 pane.s.index === solePane) {
                                 tempFilter = false;
-                                pane.s.filteringActive = false;
+                                pane.s.filteringtrangthai = false;
                             }
-                            pane.updatePane(!tempFilter ? false : filterActive);
+                            pane.updatePane(!tempFilter ? false : filtertrangthai);
                         }
                     }
                     // If the length of the selections are different then some of them have been
@@ -2057,14 +2057,14 @@
                             var paneUpdate = _q[_p];
                             if (paneUpdate.s.dtPane !== undefined) {
                                 var tempFilter = true;
-                                paneUpdate.s.filteringActive = true;
+                                paneUpdate.s.filteringtrangthai = true;
                                 if (filterPane !== -1 && filterPane !== null && filterPane === paneUpdate.s.index ||
-                                    filterActive === false ||
+                                    filtertrangthai === false ||
                                     paneUpdate.s.index === solePane) {
                                     tempFilter = false;
-                                    paneUpdate.s.filteringActive = false;
+                                    paneUpdate.s.filteringtrangthai = false;
                                 }
-                                paneUpdate.updatePane(!tempFilter ? tempFilter : filterActive);
+                                paneUpdate.updatePane(!tempFilter ? tempFilter : filtertrangthai);
                             }
                         }
                     }
@@ -2080,20 +2080,20 @@
                         var pane = _s[_r];
                         if (pane.s.dtPane !== undefined) {
                             var tempFilter = true;
-                            pane.s.filteringActive = true;
+                            pane.s.filteringtrangthai = true;
                             if (filterPane !== -1 && filterPane !== null && filterPane === pane.s.index ||
-                                filterActive === false ||
+                                filtertrangthai === false ||
                                 pane.s.index === solePane) {
                                 tempFilter = false;
-                                pane.s.filteringActive = false;
+                                pane.s.filteringtrangthai = false;
                             }
-                            pane.updatePane(!tempFilter ? tempFilter : filterActive);
+                            pane.updatePane(!tempFilter ? tempFilter : filtertrangthai);
                         }
                     }
                     // Update the label that shows how many filters are in place
                     this._updateFilterCount();
                 }
-                if (!filterActive || selectTotal === 0) {
+                if (!filtertrangthai || selectTotal === 0) {
                     this.s.selectionList = [];
                 }
             }
@@ -2252,7 +2252,7 @@
             return this._attachMessage();
         };
         /**
-         * Prepares the panes for selections to be made when cascade is active and a deselect has occured
+         * Prepares the panes for selections to be made when cascade is trangthai and a deselect has occured
          *
          * @param newSelectionList the list of selections which are to be made
          */
@@ -2379,7 +2379,7 @@
             }
         };
         /**
-         * Makes all of the selections when cascade is active
+         * Makes all of the selections when cascade is trangthai
          *
          * @param newSelectionList the list of selections to be made, in the order they were originally selected
          */
@@ -2503,7 +2503,7 @@
             }
         };
         /**
-         * Works out which panes to update when data is recieved from the server and viewTotal is active
+         * Works out which panes to update when data is recieved from the server and viewTotal is trangthai
          */
         SearchPanes.prototype._serverTotals = function () {
             var selectPresent = false;
@@ -2668,15 +2668,15 @@
                     loadedFilter !== undefined &&
                     loadedFilter.searchPanes !== undefined &&
                     loadedFilter.searchPanes.panes !== undefined) {
-                    var filterActive = false;
+                    var filtertrangthai = false;
                     for (var _i = 0, _a = loadedFilter.searchPanes.panes; _i < _a.length; _i++) {
                         var pane = _a[_i];
                         if (pane.selected.length > 0) {
-                            filterActive = true;
+                            filtertrangthai = true;
                             break;
                         }
                     }
-                    if (filterActive) {
+                    if (filtertrangthai) {
                         for (var _b = 0, _c = this.s.panes; _b < _c.length; _b++) {
                             var pane = _c[_b];
                             pane.s.showFiltered = true;
@@ -2872,7 +2872,7 @@
                     pane.s.lastSelect = pane.s.index === last;
                 }
             }
-            // If cascadePanes is active then make the previous selections in the order they were previously
+            // If cascadePanes is trangthai then make the previous selections in the order they were previously
             if (this.s.selectionList.length > 0 && this.c.cascadePanes) {
                 this._cascadeRegen(this.s.selectionList, this.s.selectionList.length);
             }
@@ -2906,7 +2906,7 @@
         };
         SearchPanes.prototype._prepViewTotal = function (selectTotal) {
             var filterPane = this.s.filterPane;
-            var filterActive = false;
+            var filtertrangthai = false;
             for (var _i = 0, _a = this.s.panes; _i < _a.length; _i++) {
                 var pane = _a[_i];
                 if (pane.s.dtPane !== undefined) {
@@ -2915,7 +2915,7 @@
                     // so set filterPane to that panes index
                     if (selectLength > 0 && filterPane === -1) {
                         filterPane = pane.s.index;
-                        filterActive = true;
+                        filtertrangthai = true;
                     }
                     // Then if another pane is found with a selection then set filterPane to null to
                     // show that multiple panes have selections present
@@ -2931,10 +2931,10 @@
             for (var _b = 0, _c = this.s.panes; _b < _c.length; _b++) {
                 var pane = _c[_b];
                 if (pane.s.dtPane !== undefined) {
-                    pane.s.filteringActive = true;
+                    pane.s.filteringtrangthai = true;
                     if (filterPane !== -1 && filterPane !== null && filterPane === pane.s.index ||
-                        filterActive === false) {
-                        pane.s.filteringActive = false;
+                        filtertrangthai === false) {
+                        pane.s.filteringtrangthai = false;
                     }
                 }
             }
@@ -3019,7 +3019,7 @@
                 emptyPanes: 'No SearchPanes',
                 loadMessage: 'Loading Search Panes...',
                 showMessage: 'Show All',
-                title: 'Filters Active - %d'
+                title: 'Filters trangthai - %d'
             },
             layout: 'auto',
             order: [],

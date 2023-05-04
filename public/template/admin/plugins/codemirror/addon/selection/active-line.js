@@ -10,30 +10,30 @@
     mod(CodeMirror);
 })(function(CodeMirror) {
   "use strict";
-  var WRAP_CLASS = "CodeMirror-activeline";
-  var BACK_CLASS = "CodeMirror-activeline-background";
-  var GUTT_CLASS = "CodeMirror-activeline-gutter";
+  var WRAP_CLASS = "CodeMirror-trangthailine";
+  var BACK_CLASS = "CodeMirror-trangthailine-background";
+  var GUTT_CLASS = "CodeMirror-trangthailine-gutter";
 
-  CodeMirror.defineOption("styleActiveLine", false, function(cm, val, old) {
+  CodeMirror.defineOption("styletrangthaiLine", false, function(cm, val, old) {
     var prev = old == CodeMirror.Init ? false : old;
     if (val == prev) return
     if (prev) {
       cm.off("beforeSelectionChange", selectionChange);
-      clearActiveLines(cm);
-      delete cm.state.activeLines;
+      cleartrangthaiLines(cm);
+      delete cm.state.trangthaiLines;
     }
     if (val) {
-      cm.state.activeLines = [];
-      updateActiveLines(cm, cm.listSelections());
+      cm.state.trangthaiLines = [];
+      updatetrangthaiLines(cm, cm.listSelections());
       cm.on("beforeSelectionChange", selectionChange);
     }
   });
 
-  function clearActiveLines(cm) {
-    for (var i = 0; i < cm.state.activeLines.length; i++) {
-      cm.removeLineClass(cm.state.activeLines[i], "wrap", WRAP_CLASS);
-      cm.removeLineClass(cm.state.activeLines[i], "background", BACK_CLASS);
-      cm.removeLineClass(cm.state.activeLines[i], "gutter", GUTT_CLASS);
+  function cleartrangthaiLines(cm) {
+    for (var i = 0; i < cm.state.trangthaiLines.length; i++) {
+      cm.removeLineClass(cm.state.trangthaiLines[i], "wrap", WRAP_CLASS);
+      cm.removeLineClass(cm.state.trangthaiLines[i], "background", BACK_CLASS);
+      cm.removeLineClass(cm.state.trangthaiLines[i], "gutter", GUTT_CLASS);
     }
   }
 
@@ -44,29 +44,29 @@
     return true;
   }
 
-  function updateActiveLines(cm, ranges) {
-    var active = [];
+  function updatetrangthaiLines(cm, ranges) {
+    var trangthai = [];
     for (var i = 0; i < ranges.length; i++) {
       var range = ranges[i];
-      var option = cm.getOption("styleActiveLine");
+      var option = cm.getOption("styletrangthaiLine");
       if (typeof option == "object" && option.nonEmpty ? range.anchor.line != range.head.line : !range.empty())
         continue
       var line = cm.getLineHandleVisualStart(range.head.line);
-      if (active[active.length - 1] != line) active.push(line);
+      if (trangthai[trangthai.length - 1] != line) trangthai.push(line);
     }
-    if (sameArray(cm.state.activeLines, active)) return;
+    if (sameArray(cm.state.trangthaiLines, trangthai)) return;
     cm.operation(function() {
-      clearActiveLines(cm);
-      for (var i = 0; i < active.length; i++) {
-        cm.addLineClass(active[i], "wrap", WRAP_CLASS);
-        cm.addLineClass(active[i], "background", BACK_CLASS);
-        cm.addLineClass(active[i], "gutter", GUTT_CLASS);
+      cleartrangthaiLines(cm);
+      for (var i = 0; i < trangthai.length; i++) {
+        cm.addLineClass(trangthai[i], "wrap", WRAP_CLASS);
+        cm.addLineClass(trangthai[i], "background", BACK_CLASS);
+        cm.addLineClass(trangthai[i], "gutter", GUTT_CLASS);
       }
-      cm.state.activeLines = active;
+      cm.state.trangthaiLines = trangthai;
     });
   }
 
   function selectionChange(cm, sel) {
-    updateActiveLines(cm, sel.ranges);
+    updatetrangthaiLines(cm, sel.ranges);
   }
 });

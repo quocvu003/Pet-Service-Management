@@ -610,7 +610,7 @@
             this.renderCalendar('right');
 
             //highlight any predefined range matching the current start and end dates
-            this.container.find('.ranges li').removeClass('active');
+            this.container.find('.ranges li').removeClass('trangthai');
             if (this.endDate == null) return;
 
             this.calculateChosenLabel();
@@ -809,11 +809,11 @@
 
                     //highlight the currently selected start date
                     if (calendar[row][col].format('YYYY-MM-DD') == this.startDate.format('YYYY-MM-DD'))
-                        classes.push('active', 'start-date');
+                        classes.push('trangthai', 'start-date');
 
                     //highlight the currently selected end date
                     if (this.endDate != null && calendar[row][col].format('YYYY-MM-DD') == this.endDate.format('YYYY-MM-DD'))
-                        classes.push('active', 'end-date');
+                        classes.push('trangthai', 'end-date');
 
                     //highlight dates in-between the selected dates
                     if (this.endDate != null && calendar[row][col] > this.startDate && calendar[row][col] < this.endDate)
@@ -1374,14 +1374,14 @@
                     //ignore times when comparing dates if time picker seconds is not enabled
                     if (this.startDate.format(format) == this.ranges[range][0].format(format) && this.endDate.format(format) == this.ranges[range][1].format(format)) {
                         customRange = false;
-                        this.chosenLabel = this.container.find('.ranges li:eq(' + i + ')').addClass('active').attr('data-range-key');
+                        this.chosenLabel = this.container.find('.ranges li:eq(' + i + ')').addClass('trangthai').attr('data-range-key');
                         break;
                     }
                 } else {
                     //ignore times when comparing dates if time picker is not enabled
                     if (this.startDate.format('YYYY-MM-DD') == this.ranges[range][0].format('YYYY-MM-DD') && this.endDate.format('YYYY-MM-DD') == this.ranges[range][1].format('YYYY-MM-DD')) {
                         customRange = false;
-                        this.chosenLabel = this.container.find('.ranges li:eq(' + i + ')').addClass('active').attr('data-range-key');
+                        this.chosenLabel = this.container.find('.ranges li:eq(' + i + ')').addClass('trangthai').attr('data-range-key');
                         break;
                     }
                 }
@@ -1389,7 +1389,7 @@
             }
             if (customRange) {
                 if (this.showCustomRangeLabel) {
-                    this.chosenLabel = this.container.find('.ranges li:last').addClass('active').attr('data-range-key');
+                    this.chosenLabel = this.container.find('.ranges li:last').addClass('trangthai').attr('data-range-key');
                 } else {
                     this.chosenLabel = null;
                 }

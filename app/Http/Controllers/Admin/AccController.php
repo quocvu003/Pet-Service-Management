@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\User;
 use App\Http\Services\AccService;
-use App\Models\Shop;
+
 use Illuminate\Http\Request;
 
 class AccController extends Controller
@@ -59,13 +59,12 @@ class AccController extends Controller
             'accs' => $this->AccService->getkhachhang()
         ]);
     }
-    public function show(User $user)
+    public function show(User $acc)
     {
-
+        $user = $acc;
         return view('admin.acc.edit', [
             'title' => 'Chỉnh sửa tài khoản:' . $user->ten,
             'acc' => $user,
-
         ]);
     }
 
@@ -85,9 +84,9 @@ class AccController extends Controller
         $shops = $user->shops;
 
         return view('admin.acc.showappli', [
-            'title' => 'Duyệt tài khoản:' . $user->ten,
+            'title' => 'Duyệt tài khoản: ' . $user->ten,
             'acc' => $user,
-            'shop' => $shops
+            'shops' => $shops
         ]);
     }
 
@@ -100,7 +99,7 @@ class AccController extends Controller
         $shops = $user->shops;
 
         return view('admin.acc.editshop', [
-            'title' => 'Chỉnh sửa tài khoản:' . $acc->ten,
+            'title' => 'Chỉnh sửa tài khoản: ' . $acc->ten,
             'acc' => $acc,
             'shops' => $shops
         ]);
@@ -109,6 +108,7 @@ class AccController extends Controller
 
     public function updateshop(Request $request, $id)
     {
+
         $user = User::findOrFail($id); // Lấy bản ghi của bảng users dựa trên $id truyền vào
 
         // Lấy đối tượng của bảng shops mà có khóa ngoại là user_id
@@ -118,7 +118,7 @@ class AccController extends Controller
         $result = $this->AccService->updateshop($request, $user, $shop);
 
         if ($result) {
-            return redirect()->back();
+            return redirect('/admin/accs/chuShop');
         }
     }
 
@@ -144,7 +144,7 @@ class AccController extends Controller
         $result = $this->AccService->duyet($request, $user);
 
         if ($result) {
-            return redirect()->back();
+            return redirect('/admin/accs/application');
         }
     }
     // public function destroyshow(Request $request)

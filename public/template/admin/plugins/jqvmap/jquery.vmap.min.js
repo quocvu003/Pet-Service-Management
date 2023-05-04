@@ -3,7 +3,7 @@
  * @author JQVMap <me@peterschmalfeldt.com>
  * @version 1.5.1
  * @link http://jqvmap.com
- * @license https://github.com/manifestinteractive/jqvmap/blob/master/LICENSE
+ * @license https://github.com/manifestintertrangthai/jqvmap/blob/master/LICENSE
  * @builddate 2016/06/02
  */
 

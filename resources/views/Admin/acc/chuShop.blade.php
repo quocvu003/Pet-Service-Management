@@ -24,17 +24,17 @@
                 <tr>
 
                     <td>{{ $stt }}</td>
-                    <td><a href="{{ $acc->hinhanh }}" target="_blank">
-                            <img src="{{ $acc->hinhanh }}" height="40px">
+                    <td><a href="{{ $acc->shops->hinhanh }}" target="_blank">
+                            <img src="{{ $acc->shops->hinhanh }}" height="50px">
                         </a>
                     </td>
-                    <td>{{ $acc->shop_ten }}</td>
-                    <td>{{ $acc->user_ten }}</td>
+                    <td>{{ $acc->shops->ten }}</td>
+                    <td>{{ $acc->ten }}</td>
                     <td>{{ $acc->email }}</td>
-                    <td>{!! \App\Helpers\Helper::active($acc->trangthai) !!}</td>
+                    <td>{!! \App\Helpers\Helper::trangthai($acc->trangthai) !!}</td>
                     <td>{{ \Carbon\Carbon::parse($acc->created_at)->isoFormat('DD/MM/YYYY') }}</td>
                     <td>
-                        <a class="btn btn-primary btn-sm" href="/admin/accs/editshop/{{ $acc->user_id }}">
+                        <a class="btn btn-primary btn-sm" href="/admin/accs/editshop/{{ $acc->id }}">
                             <i class="fas fa-edit"></i>
                         </a>
                         {{-- <a href="#" class="btn btn-danger btn-sm"

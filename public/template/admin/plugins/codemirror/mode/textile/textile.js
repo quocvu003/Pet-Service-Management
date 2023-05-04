@@ -140,7 +140,7 @@
     var styles = [];
     if (state.layoutType) styles.push(TOKEN_STYLES[state.layoutType]);
 
-    styles = styles.concat(activeStyles(
+    styles = styles.concat(trangthaiStyles(
       state, "addition", "bold", "cite", "code", "deletion", "em", "footCite",
       "image", "italic", "link", "span", "strong", "sub", "sup", "table", "tableHeading"));
 
@@ -176,7 +176,7 @@
       return type;
   }
 
-  function activeStyles(state) {
+  function trangthaiStyles(state) {
     var styles = [];
     for (var i = 1; i < arguments.length; ++i) {
       if (state[arguments[i]])

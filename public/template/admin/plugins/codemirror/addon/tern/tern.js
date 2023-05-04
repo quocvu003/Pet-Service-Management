@@ -73,7 +73,7 @@
     this.trackChange = function(doc, change) { trackChange(self, doc, change); };
 
     this.cachedArgHints = null;
-    this.activeArgHints = null;
+    this.trangthaiArgHints = null;
     this.jumpStack = [];
 
     this.getHint = function(cm, c) { return hint(self, cm, c); };
@@ -333,10 +333,10 @@
     tip.appendChild(document.createTextNode(tp.rettype ? ") ->\u00a0" : ")"));
     if (tp.rettype) tip.appendChild(elt("span", cls + "type", tp.rettype));
     var place = cm.cursorCoords(null, "page");
-    var tooltip = ts.activeArgHints = makeTooltip(place.right + 1, place.bottom, tip, cm)
+    var tooltip = ts.trangthaiArgHints = makeTooltip(place.right + 1, place.bottom, tip, cm)
     setTimeout(function() {
       tooltip.clear = onEditorActivity(cm, function() {
-        if (ts.activeArgHints == tooltip) closeArgHints(ts) })
+        if (ts.trangthaiArgHints == tooltip) closeArgHints(ts) })
     }, 20)
   }
 
@@ -695,10 +695,10 @@
   }
 
   function closeArgHints(ts) {
-    if (ts.activeArgHints) {
-      if (ts.activeArgHints.clear) ts.activeArgHints.clear()
-      remove(ts.activeArgHints)
-      ts.activeArgHints = null
+    if (ts.trangthaiArgHints) {
+      if (ts.trangthaiArgHints.clear) ts.trangthaiArgHints.clear()
+      remove(ts.trangthaiArgHints)
+      ts.trangthaiArgHints = null
     }
   }
 

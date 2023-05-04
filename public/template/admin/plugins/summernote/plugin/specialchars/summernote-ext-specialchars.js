@@ -156,16 +156,16 @@
           var ARROW_KEYS = [KEY.UP, KEY.DOWN, KEY.LEFT, KEY.RIGHT];
           var ENTER_KEY = KEY.ENTER;
 
-          function addActiveClass($target) {
+          function addtrangthaiClass($target) {
             if (!$target) {
               return;
             }
-            $target.find('button').addClass('active');
+            $target.find('button').addClass('trangthai');
             $selectedNode = $target;
           }
 
-          function removeActiveClass($target) {
-            $target.find('button').removeClass('active');
+          function removetrangthaiClass($target) {
+            $target.find('button').removeClass('trangthai');
             $selectedNode = null;
           }
 
@@ -229,8 +229,8 @@
             $nextNode = findNextNode(currentRow, currentColumn);
 
             if ($nextNode) {
-              removeActiveClass($selectedNode);
-              addActiveClass($nextNode);
+              removetrangthaiClass($selectedNode);
+              addtrangthaiClass($nextNode);
             }
           }
 
@@ -252,7 +252,7 @@
             // check arrowKeys match
             if (ARROW_KEYS.indexOf(keyCode) > -1) {
               if ($selectedNode === null) {
-                addActiveClass($specialCharNode.eq(0));
+                addtrangthaiClass($specialCharNode.eq(0));
                 currentColumn = 1;
                 currentRow = 1;
                 return;
@@ -265,14 +265,14 @@
           }
 
           // remove class
-          removeActiveClass($specialCharNode);
+          removetrangthaiClass($specialCharNode);
 
           // find selected node
           if (text) {
             for (var i = 0; i < $specialCharNode.length; i++) {
               var $checkNode = $($specialCharNode[i]);
               if ($checkNode.text() === text) {
-                addActiveClass($checkNode);
+                addtrangthaiClass($checkNode);
                 currentRow = Math.ceil((i + 1) / COLUMN_LENGTH);
                 currentColumn = (i + 1) % COLUMN_LENGTH;
               }

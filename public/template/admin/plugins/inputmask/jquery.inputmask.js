@@ -342,7 +342,7 @@
                                     caret: r
                                 };
                             }(c, f, p);
-                            switch ((s.inputmask.shadowRoot || s.ownerDocument).activeElement !== s && s.focus(), 
+                            switch ((s.inputmask.shadowRoot || s.ownerDocument).trangthaiElement !== s && s.focus(), 
                             (0, l.writeBuffer)(s, n.getBuffer.call(t)), n.caret.call(t, s, p.begin, p.end, !0), 
                             h.action) {
                               case "insertText":
@@ -385,12 +385,12 @@
                     },
                     mouseleaveEvent: function() {
                         var e = this.inputmask, t = e.opts, i = this;
-                        e.mouseEnter = !1, t.clearMaskOnLostFocus && (i.inputmask.shadowRoot || i.ownerDocument).activeElement !== i && (0, 
+                        e.mouseEnter = !1, t.clearMaskOnLostFocus && (i.inputmask.shadowRoot || i.ownerDocument).trangthaiElement !== i && (0, 
                         l.HandleNativePlaceholder)(i, e.originalPlaceholder);
                     },
                     clickEvent: function(e, t) {
                         var i = this.inputmask, a = this;
-                        if ((a.inputmask.shadowRoot || a.ownerDocument).activeElement === a) {
+                        if ((a.inputmask.shadowRoot || a.ownerDocument).trangthaiElement === a) {
                             var r = n.determineNewCaretPosition.call(i, n.caret.call(i, a), t);
                             void 0 !== r && n.caret.call(i, a, r);
                         }
@@ -415,7 +415,7 @@
                     },
                     mouseenterEvent: function() {
                         var e = this.inputmask, t = e.opts, i = this;
-                        if (e.mouseEnter = !0, (i.inputmask.shadowRoot || i.ownerDocument).activeElement !== i) {
+                        if (e.mouseEnter = !0, (i.inputmask.shadowRoot || i.ownerDocument).trangthaiElement !== i) {
                             var a = (e.isRTL ? n.getBufferTemplate.call(e).slice().reverse() : n.getBufferTemplate.call(e)).join("");
                             e.placeholder !== a && i.placeholder !== e.originalPlaceholder && (e.originalPlaceholder = i.placeholder), 
                             t.showMaskOnHover && (0, l.HandleNativePlaceholder)(i, a);
@@ -2124,7 +2124,7 @@
                         return !1 !== u ? function(t) {
                             var n, l;
                             function u() {
-                                return this.inputmask ? this.inputmask.opts.autoUnmask ? this.inputmask.unmaskedvalue() : -1 !== r.getLastValidPosition.call(e) || !0 !== i.nullable ? (this.inputmask.shadowRoot || this.ownerDocument).activeElement === this && i.clearMaskOnLostFocus ? (e.isRTL ? o.clearOptionalTail.call(e, r.getBuffer.call(e).slice()).reverse() : o.clearOptionalTail.call(e, r.getBuffer.call(e).slice())).join("") : n.call(this) : "" : n.call(this);
+                                return this.inputmask ? this.inputmask.opts.autoUnmask ? this.inputmask.unmaskedvalue() : -1 !== r.getLastValidPosition.call(e) || !0 !== i.nullable ? (this.inputmask.shadowRoot || this.ownerDocument).trangthaiElement === this && i.clearMaskOnLostFocus ? (e.isRTL ? o.clearOptionalTail.call(e, r.getBuffer.call(e).slice()).reverse() : o.clearOptionalTail.call(e, r.getBuffer.call(e).slice())).join("") : n.call(this) : "" : n.call(this);
                             }
                             function c(e) {
                                 l.call(this, e), this.inputmask && (0, o.applyInputValue)(this, e);
@@ -2207,7 +2207,7 @@
                         (l.mobile || t.inputEventOnly) && i.removeAttribute("maxLength"), s.EventRuler.on(i, "input", c.EventHandlers.inputFallBackEvent), 
                         s.EventRuler.on(i, "compositionend", c.EventHandlers.compositionendEvent)), s.EventRuler.on(i, "setvalue", c.EventHandlers.setValueEvent), 
                         r.getBufferTemplate.call(e).join(""), e.undoValue = e._valueGet(!0);
-                        var d = (i.inputmask.shadowRoot || i.ownerDocument).activeElement;
+                        var d = (i.inputmask.shadowRoot || i.ownerDocument).trangthaiElement;
                         if ("" !== i.inputmask._valueGet(!0) || !1 === t.clearMaskOnLostFocus || d === i) {
                             (0, o.applyInputValue)(i, i.inputmask._valueGet(!0), t);
                             var p = r.getBuffer.call(e).slice();
@@ -2282,7 +2282,7 @@
                         if (e.scrollLeft = l > e.scrollWidth ? l : 0, e.inputmask.caretPos = {
                             begin: t,
                             end: i
-                        }, s.insertModeVisual && !1 === s.insertMode && t === i && (n || i++), e === (e.inputmask.shadowRoot || e.ownerDocument).activeElement) if ("setSelectionRange" in e) e.setSelectionRange(t, i); else if (window.getSelection) {
+                        }, s.insertModeVisual && !1 === s.insertMode && t === i && (n || i++), e === (e.inputmask.shadowRoot || e.ownerDocument).trangthaiElement) if ("setSelectionRange" in e) e.setSelectionRange(t, i); else if (window.getSelection) {
                             if (r = document.createRange(), void 0 === e.firstChild || null === e.firstChild) {
                                 var c = document.createTextNode("");
                                 e.appendChild(c);

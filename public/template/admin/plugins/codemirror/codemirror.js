@@ -111,19 +111,19 @@
     } while (child = child.parentNode)
   }
 
-  function activeElt() {
-    // IE and Edge may throw an "Unspecified Error" when accessing document.activeElement.
+  function trangthaiElt() {
+    // IE and Edge may throw an "Unspecified Error" when accessing document.trangthaiElement.
     // IE < 10 will throw when accessed while the page is loading or in an iframe.
     // IE > 9 and Edge will throw when accessed in an iframe if document.body is unavailable.
-    var activeElement;
+    var trangthaiElement;
     try {
-      activeElement = document.activeElement;
+      trangthaiElement = document.trangthaiElement;
     } catch(e) {
-      activeElement = document.body || null;
+      trangthaiElement = document.body || null;
     }
-    while (activeElement && activeElement.shadowRoot && activeElement.shadowRoot.activeElement)
-      { activeElement = activeElement.shadowRoot.activeElement; }
-    return activeElement
+    while (trangthaiElement && trangthaiElement.shadowRoot && trangthaiElement.shadowRoot.trangthaiElement)
+      { trangthaiElement = trangthaiElement.shadowRoot.trangthaiElement; }
+    return trangthaiElement
   }
 
   function addClass(node, cls) {
@@ -2067,7 +2067,7 @@
   // state or simply not expect any other events to happen.
   // signalLater looks whether there are any handlers, and schedules
   // them to be executed when the last operation ends, or, if no
-  // operation is active, when a timeout fires.
+  // operation is trangthai, when a timeout fires.
   function signalLater(emitter, type /*, values...*/) {
     var arr = getHandlers(emitter, type);
     if (!arr.length) { return }
@@ -3894,7 +3894,7 @@
       cm.display.maxLineChanged = false;
     }
 
-    var takeFocus = op.focus && op.focus == activeElt();
+    var takeFocus = op.focus && op.focus == trangthaiElt();
     if (op.preparedSelection)
       { cm.display.input.showSelection(op.preparedSelection, takeFocus); }
     if (op.updatedDisplay || op.startHeight != cm.doc.height)
@@ -4071,9 +4071,9 @@
 
   function selectionSnapshot(cm) {
     if (cm.hasFocus()) { return null }
-    var active = activeElt();
-    if (!active || !contains(cm.display.lineDiv, active)) { return null }
-    var result = {activeElt: active};
+    var trangthai = trangthaiElt();
+    if (!trangthai || !contains(cm.display.lineDiv, trangthai)) { return null }
+    var result = {trangthaiElt: trangthai};
     if (window.getSelection) {
       var sel = window.getSelection();
       if (sel.anchorNode && sel.extend && contains(cm.display.lineDiv, sel.anchorNode)) {
@@ -4087,9 +4087,9 @@
   }
 
   function restoreSelection(snapshot) {
-    if (!snapshot || !snapshot.activeElt || snapshot.activeElt == activeElt()) { return }
-    snapshot.activeElt.focus();
-    if (!/^(INPUT|TEXTAREA)$/.test(snapshot.activeElt.nodeName) &&
+    if (!snapshot || !snapshot.trangthaiElt || snapshot.trangthaiElt == trangthaiElt()) { return }
+    snapshot.trangthaiElt.focus();
+    if (!/^(INPUT|TEXTAREA)$/.test(snapshot.trangthaiElt.nodeName) &&
         snapshot.anchorNode && contains(document.body, snapshot.anchorNode) && contains(document.body, snapshot.focusNode)) {
       var sel = window.getSelection(), range = document.createRange();
       range.setEnd(snapshot.anchorNode, snapshot.anchorOffset);
@@ -4465,7 +4465,7 @@
     // was opened.
     d.selForContextMenu = null;
 
-    d.activeTouch = null;
+    d.trangthaiTouch = null;
 
     d.gutterSpecs = getGutters(options.gutters, options.lineNumbers);
     renderGutters(d);
@@ -6667,7 +6667,7 @@
     globalsRegistered = true;
   }
   function registerGlobalHandlers() {
-    // When the window resizes, we need to refresh active editors.
+    // When the window resizes, we need to refresh trangthai editors.
     var resizeTimer;
     on(window, "resize", function () {
       if (resizeTimer == null) { resizeTimer = setTimeout(function () {
@@ -7244,7 +7244,7 @@
   function onKeyDown(e) {
     var cm = this;
     if (e.target && e.target != cm.display.input.getField()) { return }
-    cm.curOp.focus = activeElt();
+    cm.curOp.focus = trangthaiElt();
     if (signalDOMEvent(cm, e)) { return }
     // IE does strange things with escape.
     if (ie && ie_version < 11 && e.keyCode == 27) { e.returnValue = false; }
@@ -7336,7 +7336,7 @@
   // not interfere with, such as a scrollbar or widget.
   function onMouseDown(e) {
     var cm = this, display = cm.display;
-    if (signalDOMEvent(cm, e) || display.activeTouch && display.input.supportsTouch()) { return }
+    if (signalDOMEvent(cm, e) || display.trangthaiTouch && display.input.supportsTouch()) { return }
     display.input.ensurePolled();
     display.shift = e.shiftKey;
 
@@ -7406,7 +7406,7 @@
 
   function leftButtonDown(cm, pos, repeat, event) {
     if (ie) { setTimeout(bind(ensureFocus, cm), 0); }
-    else { cm.curOp.focus = activeElt(); }
+    else { cm.curOp.focus = trangthaiElt(); }
 
     var behavior = configureMouse(cm, repeat, event);
 
@@ -7570,7 +7570,7 @@
       var cur = posFromMouse(cm, e, true, behavior.unit == "rectangle");
       if (!cur) { return }
       if (cmp(cur, lastPos) != 0) {
-        cm.curOp.focus = activeElt();
+        cm.curOp.focus = trangthaiElt();
         extendTo(cur);
         var visible = visibleLines(display, doc);
         if (cur.line >= visible.to || cur.line < visible.from)
@@ -7985,9 +7985,9 @@
     // Used to suppress mouse event handling when a touch happens
     var touchFinished, prevTouch = {end: 0};
     function finishTouch() {
-      if (d.activeTouch) {
-        touchFinished = setTimeout(function () { return d.activeTouch = null; }, 1000);
-        prevTouch = d.activeTouch;
+      if (d.trangthaiTouch) {
+        touchFinished = setTimeout(function () { return d.trangthaiTouch = null; }, 1000);
+        prevTouch = d.trangthaiTouch;
         prevTouch.end = +new Date;
       }
     }
@@ -8006,22 +8006,22 @@
         d.input.ensurePolled();
         clearTimeout(touchFinished);
         var now = +new Date;
-        d.activeTouch = {start: now, moved: false,
+        d.trangthaiTouch = {start: now, moved: false,
                          prev: now - prevTouch.end <= 300 ? prevTouch : null};
         if (e.touches.length == 1) {
-          d.activeTouch.left = e.touches[0].pageX;
-          d.activeTouch.top = e.touches[0].pageY;
+          d.trangthaiTouch.left = e.touches[0].pageX;
+          d.trangthaiTouch.top = e.touches[0].pageY;
         }
       }
     });
     on(d.scroller, "touchmove", function () {
-      if (d.activeTouch) { d.activeTouch.moved = true; }
+      if (d.trangthaiTouch) { d.trangthaiTouch.moved = true; }
     });
     on(d.scroller, "touchend", function (e) {
-      var touch = d.activeTouch;
+      var touch = d.trangthaiTouch;
       if (touch && !eventInWidget(d, e) && touch.left != null &&
           !touch.moved && new Date - touch.start < 300) {
-        var pos = cm.coordsChar(d.activeTouch, "page"), range;
+        var pos = cm.coordsChar(d.trangthaiTouch, "page"), range;
         if (!touch.prev || farAway(touch, touch.prev)) // Single tap
           { range = new Range(pos, pos); }
         else if (!touch.prev.prev || farAway(touch, touch.prev.prev)) // Double tap
@@ -8598,7 +8598,7 @@
 
         signal(this, "overwriteToggle", this, this.state.overwrite);
       },
-      hasFocus: function() { return this.display.input.getField() == activeElt() },
+      hasFocus: function() { return this.display.input.getField() == trangthaiElt() },
       isReadOnly: function() { return !!(this.options.readOnly || this.doc.cantEdit) },
 
       scrollTo: methodOp(function (x, y) { scrollToCoords(this, x, y); }),
@@ -8879,7 +8879,7 @@
       var kludge = hiddenTextarea(), te = kludge.firstChild;
       cm.display.lineSpace.insertBefore(kludge, cm.display.lineSpace.firstChild);
       te.value = lastCopied.text.join("\n");
-      var hadFocus = activeElt();
+      var hadFocus = trangthaiElt();
       selectInput(te);
       setTimeout(function () {
         cm.display.lineSpace.removeChild(kludge);
@@ -8902,7 +8902,7 @@
 
   ContentEditableInput.prototype.prepareSelection = function () {
     var result = prepareSelection(this.cm, false);
-    result.focus = activeElt() == this.div;
+    result.focus = trangthaiElt() == this.div;
     return result
   };
 
@@ -8998,7 +8998,7 @@
 
   ContentEditableInput.prototype.focus = function () {
     if (this.cm.options.readOnly != "nocursor") {
-      if (!this.selectionInEditor() || activeElt() != this.div)
+      if (!this.selectionInEditor() || trangthaiElt() != this.div)
         { this.showSelection(this.prepareSelection(), true); }
       this.div.focus();
     }
@@ -9501,7 +9501,7 @@
   TextareaInput.prototype.supportsTouch = function () { return false };
 
   TextareaInput.prototype.focus = function () {
-    if (this.cm.options.readOnly != "nocursor" && (!mobile || activeElt() != this.textarea)) {
+    if (this.cm.options.readOnly != "nocursor" && (!mobile || trangthaiElt() != this.textarea)) {
       try { this.textarea.focus(); }
       catch (e) {} // IE8 will throw if the textarea is display: none or not in DOM
     }
@@ -9708,7 +9708,7 @@
     // Set autofocus to true if this textarea is focused, or if it has
     // autofocus and no other element is focused.
     if (options.autofocus == null) {
-      var hasFocus = activeElt();
+      var hasFocus = trangthaiElt();
       options.autofocus = hasFocus == textarea ||
         textarea.getAttribute("autofocus") != null && hasFocus == document.body;
     }

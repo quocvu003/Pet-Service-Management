@@ -24,7 +24,7 @@
                     <span class="mt-1 ms-1 sidebar-text" style="font-size: 30px">{{ $tenShop }}</span>
                 </a>
             </li>
-            <li class="nav-item  active ">
+            <li class="nav-item  trangthai ">
                 <a href="/template/chuShop/pages/dashboard/dashboard.html" class="nav-link">
                     <span class="sidebar-icon">
                         <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"

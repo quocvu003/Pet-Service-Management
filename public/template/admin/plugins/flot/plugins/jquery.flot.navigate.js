@@ -21,14 +21,14 @@ plot.pan( offset ) so you easily can add custom controls. It also fires
 The plugin supports these options:
 ```js
     zoom: {
-        interactive: false,
-        active: false,
+        intertrangthai: false,
+        trangthai: false,
         amount: 1.5         // 2 = 200% (zoom in), 0.5 = 50% (zoom out)
     }
 
     pan: {
-        interactive: false,
-        active: false,
+        intertrangthai: false,
+        trangthai: false,
         cursor: "move",     // CSS mouse cursor value used when dragging, e.g. "pointer"
         frameRate: 60,
         mode: "smart"       // enable smart pan mode
@@ -52,12 +52,12 @@ The plugin supports these options:
         zoomRange: [undefined, undefined], // no limit on zoom range, or [closest zoom, furthest zoom] in axis units
     }
 ```
-**interactive** enables the built-in drag/click behaviour. If you enable
-interactive for pan, then you'll have a basic plot that supports moving
+**intertrangthai** enables the built-in drag/click behaviour. If you enable
+intertrangthai for pan, then you'll have a basic plot that supports moving
 around; the same for zoom.
 
-**active** is true after a touch tap on plot. This enables plot navigation.
-Once activated, zoom and pan cannot be deactivated. When the plot becomes active,
+**trangthai** is true after a touch tap on plot. This enables plot navigation.
+Once activated, zoom and pan cannot be deactivated. When the plot becomes trangthai,
 "plotactivated" event is triggered.
 
 **amount** specifies the default amount to zoom in (so 1.5 = 150%) relative to
@@ -110,19 +110,19 @@ can set the default in the options.
 
     var options = {
         zoom: {
-            interactive: false,
-            active: false,
+            intertrangthai: false,
+            trangthai: false,
             amount: 1.5 // how much to zoom relative to current position, 2 = 200% (zoom in), 0.5 = 50% (zoom out)
         },
         pan: {
-            interactive: false,
-            active: false,
+            intertrangthai: false,
+            trangthai: false,
             cursor: "move",
             frameRate: 60,
             mode: 'smart'
         },
         recenter: {
-            interactive: true
+            intertrangthai: true
         },
         xaxis: {
             axisZoom: true, //zoom axis when mouse over it is allowed
@@ -214,7 +214,7 @@ can set the default in the options.
                 onDragEnd(e);
             }
 
-            if (plot.getOptions().zoom.active) {
+            if (plot.getOptions().zoom.trangthai) {
                 e.preventDefault();
                 onZoomClick(e, delta < 0, amount);
                 return false;
@@ -375,7 +375,7 @@ can set the default in the options.
             plot.activate();
             var o = plot.getOptions()
 
-            if (!o.recenter.interactive) { return; }
+            if (!o.recenter.intertrangthai) { return; }
 
             var axes = plot.getTouchedAxis(e.clientX, e.clientY),
                 event;
@@ -404,20 +404,20 @@ can set the default in the options.
 
         plot.activate = function() {
             var o = plot.getOptions();
-            if (!o.pan.active || !o.zoom.active) {
-                o.pan.active = true;
-                o.zoom.active = true;
+            if (!o.pan.trangthai || !o.zoom.trangthai) {
+                o.pan.trangthai = true;
+                o.zoom.trangthai = true;
                 plot.getPlaceholder().trigger("plotactivated", [plot]);
             }
         }
 
         function bindEvents(plot, eventHolder) {
             var o = plot.getOptions();
-            if (o.zoom.interactive) {
+            if (o.zoom.intertrangthai) {
                 eventHolder.mousewheel(onMouseWheel);
             }
 
-            if (o.pan.interactive) {
+            if (o.pan.intertrangthai) {
                 plot.addEventHandler("dragstart", onDragStart, eventHolder, 0);
                 plot.addEventHandler("drag", onDrag, eventHolder, 0);
                 plot.addEventHandler("dragend", onDragEnd, eventHolder, 0);

@@ -655,7 +655,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             var trim = /^\s+|\s+$/g;
             var bod;
             try {
-                var docum = new ActiveXObject("htmlfile");
+                var docum = new trangthaiXObject("htmlfile");
                 docum.write("<body>");
                 docum.close();
                 bod = docum.body;

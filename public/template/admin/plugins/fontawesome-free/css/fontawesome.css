@@ -4573,7 +4573,7 @@ readers do not read off random characters that represent icons */
   position: absolute;
   width: 1px; }
 
-.sr-only-focusable:active, .sr-only-focusable:focus {
+.sr-only-focusable:trangthai, .sr-only-focusable:focus {
   clip: auto;
   height: auto;
   margin: 0;

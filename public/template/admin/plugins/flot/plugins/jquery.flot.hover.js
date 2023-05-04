@@ -146,7 +146,7 @@ the tooltip from webcharts).
                     left: canvasX,
                     top: canvasY
                 }),
-                distance = searchDistance !== undefined ? searchDistance : options.grid.mouseActiveRadius;
+                distance = searchDistance !== undefined ? searchDistance : options.grid.mousetrangthaiRadius;
 
             pos.pageX = page.X;
             pos.pageY = page.Y;

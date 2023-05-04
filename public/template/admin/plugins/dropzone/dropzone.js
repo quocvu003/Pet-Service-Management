@@ -2321,12 +2321,12 @@ var scriptTag = function (content) {
   return LT + SCRIPT + GT + content + LT + '/' + SCRIPT + GT;
 };
 
-// Create object with fake `null` prototype: use ActiveX Object with cleared prototype
-var NullProtoObjectViaActiveX = function (activeXDocument) {
-  activeXDocument.write(scriptTag(''));
-  activeXDocument.close();
-  var temp = activeXDocument.parentWindow.Object;
-  activeXDocument = null; // avoid memory leak
+// Create object with fake `null` prototype: use trangthaiX Object with cleared prototype
+var NullProtoObjectViatrangthaiX = function (trangthaiXDocument) {
+  trangthaiXDocument.write(scriptTag(''));
+  trangthaiXDocument.close();
+  var temp = trangthaiXDocument.parentWindow.Object;
+  trangthaiXDocument = null; // avoid memory leak
   return temp;
 };
 
@@ -2347,18 +2347,18 @@ var NullProtoObjectViaIFrame = function () {
   return iframeDocument.F;
 };
 
-// Check for document.domain and active x support
-// No need to use active x approach when document.domain is not set
+// Check for document.domain and trangthai x support
+// No need to use trangthai x approach when document.domain is not set
 // see https://github.com/es-shims/es5-shim/issues/150
 // variation of https://github.com/kitcambridge/es5-shim/commit/4f738ac066346
 // avoid IE GC bug
-var activeXDocument;
+var trangthaiXDocument;
 var NullProtoObject = function () {
   try {
-    /* global ActiveXObject -- old IE */
-    activeXDocument = document.domain && new ActiveXObject('htmlfile');
+    /* global trangthaiXObject -- old IE */
+    trangthaiXDocument = document.domain && new trangthaiXObject('htmlfile');
   } catch (error) { /* ignore */ }
-  NullProtoObject = activeXDocument ? NullProtoObjectViaActiveX(activeXDocument) : NullProtoObjectViaIFrame();
+  NullProtoObject = trangthaiXDocument ? NullProtoObjectViatrangthaiX(trangthaiXDocument) : NullProtoObjectViaIFrame();
   var length = enumBugKeys.length;
   while (length--) delete NullProtoObject[PROTOTYPE][enumBugKeys[length]];
   return NullProtoObject();
@@ -8038,8 +8038,8 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
     } // Files that are either queued or uploading
 
   }, {
-    key: "getActiveFiles",
-    value: function getActiveFiles() {
+    key: "gettrangthaiFiles",
+    value: function gettrangthaiFiles() {
       return this.files.filter(function (file) {
         return file.status === Dropzone.UPLOADING || file.status === Dropzone.QUEUED;
       }).map(function (file) {
@@ -8273,10 +8273,10 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
       var totalUploadProgress;
       var totalBytesSent = 0;
       var totalBytes = 0;
-      var activeFiles = this.getActiveFiles();
+      var trangthaiFiles = this.gettrangthaiFiles();
 
-      if (activeFiles.length) {
-        var _iterator3 = dropzone_createForOfIteratorHelper(this.getActiveFiles(), true),
+      if (trangthaiFiles.length) {
+        var _iterator3 = dropzone_createForOfIteratorHelper(this.gettrangthaiFiles(), true),
             _step3;
 
         try {

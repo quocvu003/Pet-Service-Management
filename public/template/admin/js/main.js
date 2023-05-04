@@ -24,32 +24,6 @@ function removeRow(id, url) {
     }
 }
 
-
-
-/*Upload File */
-$('#upload').change(function () {
-    const form = new FormData();
-    form.append('file', $(this)[0].files[0]);
-    console.log('vv');
-    $.ajax({
-        processData: false,
-        contentType: false,
-        type: 'POST',
-        dataType: 'JSON',
-        data: form,
-        url: '/admin/upload/services',
-        success: function (results) {
-            if (results.error === false) {
-                $('#image_show').html('<a href="' + results.url + '" target="_blank">' +
-                    '<img src="' + results.url + '" width="100px"></a>');
-
-                $('#thumb').val(results.url);
-            } else {
-                alert('Upload File Lỗi');
-            }
-        }
-    });
-});
 // hiển thị mật khẩu
 function togglePasswordVisibility() {
     
@@ -86,7 +60,7 @@ function togglePasswordVisibility() {
   $('#hinhanh').change(function () {
     const form = new FormData();
     form.append('file', $(this)[0].files[0]);
-    console.log('form');
+    console.log("hihi");
     $.ajax({
         processData: false,
         contentType: false,
@@ -98,7 +72,7 @@ function togglePasswordVisibility() {
             if (results.error === false) {
                 $('#hinhanh_show').html('<a href="' + results.url + '" target="_blank">' +
                     '<img src="' + results.url + '" width="100px"></a>');
-
+                console.log()
                 $('#hinhanh01').val(results.url);
             } else {
                 alert('Upload File Lỗi');

@@ -81,7 +81,7 @@
                         @include('admin.alert')
                         <form action="register_seller_action" class="mt-4" method="POST">
                             <div class="form-outline mb-4">
-                                <label class="form-label" for="form3Example4">Họ và tên</label>
+                                <label class="form-label" for="form3Example4">Chủ Sở Hữu</label>
 
                                 <input type="text" id="form3Example4" class="form-control" name="name"
                                     placeholder="Nhập tên " />
@@ -104,6 +104,7 @@
                                 <input type="password" id="form3Example4" class="form-control" name="confirm_password"
                                     placeholder=" Nhập xác nhận mật khẩu" />
                             </div>
+
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="form3Example4">Tên Shop</label>
                                 <p style="font-size: 14px">Vui lòng không sử dụng bất kỳ ký tự nước ngoài nào
@@ -113,19 +114,20 @@
 
                             </div>
                             <div class="form-outline mb-4">
-                                <label class="form-label" for="form3Example3">Số điện thoại Shop</label>
-                                <input type="text" id="sdt" class="form-control" name="sdtshop"
-                                    placeholder="Nhập số điện thoại di động" />
-                            </div>
-
-                            <div class="form-outline mb-4">
                                 <label class="form-label" for="form3Example3">Logo</label>
-                                <p style="font-size: 14px">Để tăng tính thẩm mĩ bạn nên sử dụng ảnh đã được xóa nền</p>
+
                                 <input type="file" id="hinhanh" class="form-control" />
                                 <div id="hinhanh_show">
                                 </div>
                                 <input type="hidden" name="hinhanh" id="hinhanh01">
                             </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="form3Example3">Số điện thoại Shop</label>
+                                <input type="text" id="sdt" class="form-control" name="sdtshop"
+                                    placeholder="Nhập số điện thoại di động" />
+                            </div>
+
+
 
 
 
@@ -134,6 +136,8 @@
                                 <input type="text" id="daiChi" class="form-control" placeholder="Nhập địa chỉ"
                                     name="diachishop" />
                             </div>
+
+
 
                             <!-- Submit button -->
                             <button type="submit" class="btn btn-primary btn-block mb-4">

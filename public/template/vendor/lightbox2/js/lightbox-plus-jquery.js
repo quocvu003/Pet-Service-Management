@@ -1158,12 +1158,12 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 	// QSA and matchesSelector support
 
-	// matchesSelector(:active) reports false when true (IE9/Opera 11.5)
+	// matchesSelector(:trangthai) reports false when true (IE9/Opera 11.5)
 	rbuggyMatches = [];
 
 	// qSa(:focus) reports false when true (Chrome 21)
 	// We allow this because of a bug in IE8/9 that throws an error
-	// whenever `document.activeElement` is accessed on an iframe
+	// whenever `document.trangthaiElement` is accessed on an iframe
 	// So, we allow :focus to pass through QSA all the time to avoid the IE error
 	// See http://bugs.jquery.com/ticket/13378
 	rbuggyQSA = [];
@@ -1877,7 +1877,7 @@ Expr = Sizzle.selectors = {
 		},
 
 		"focus": function( elem ) {
-			return elem === document.activeElement && (!document.hasFocus || document.hasFocus()) && !!(elem.type || elem.href || ~elem.tabIndex);
+			return elem === document.trangthaiElement && (!document.hasFocus || document.hasFocus()) && !!(elem.type || elem.href || ~elem.tabIndex);
 		},
 
 		// Boolean properties
@@ -3439,7 +3439,7 @@ jQuery.ready.promise = function( obj ) {
 		readyList = jQuery.Deferred();
 
 		// Catch cases where $(document).ready() is called after the browser event has already occurred.
-		// We once tried to use readyState "interactive" here, but it caused issues like the one
+		// We once tried to use readyState "intertrangthai" here, but it caused issues like the one
 		// discovered by ChrisS here: http://bugs.jquery.com/ticket/12282#comment:15
 		if ( document.readyState === "complete" ) {
 			// Handle it asynchronously to allow scripts the opportunity to delay ready
@@ -4071,9 +4071,9 @@ function returnFalse() {
 	return false;
 }
 
-function safeActiveElement() {
+function safetrangthaiElement() {
 	try {
-		return document.activeElement;
+		return document.trangthaiElement;
 	} catch ( err ) { }
 }
 
@@ -4592,7 +4592,7 @@ jQuery.event = {
 		focus: {
 			// Fire native event if possible so blur/focus sequence is correct
 			trigger: function() {
-				if ( this !== safeActiveElement() && this.focus ) {
+				if ( this !== safetrangthaiElement() && this.focus ) {
 					this.focus();
 					return false;
 				}
@@ -4601,7 +4601,7 @@ jQuery.event = {
 		},
 		blur: {
 			trigger: function() {
-				if ( this === safeActiveElement() && this.blur ) {
+				if ( this === safetrangthaiElement() && this.blur ) {
 					this.blur();
 					return false;
 				}
@@ -5844,7 +5844,7 @@ function getWidthOrHeight( elem, name, extra ) {
 		val = parseFloat( val ) || 0;
 	}
 
-	// Use the active box-sizing model to add/subtract irrelevant styles
+	// Use the trangthai box-sizing model to add/subtract irrelevant styles
 	return ( val +
 		augmentWidthOrHeight(
 			elem,
@@ -6800,7 +6800,7 @@ jQuery.fn.extend({
 				hooks.stop.call( this, true );
 			}
 
-			// Look for any active animations, and finish them
+			// Look for any trangthai animations, and finish them
 			for ( index = timers.length; index--; ) {
 				if ( timers[ index ].elem === this && timers[ index ].queue === type ) {
 					timers[ index ].anim.stop( true );
@@ -7811,8 +7811,8 @@ function ajaxConvert( s, response, jqXHR, isSuccess ) {
 
 jQuery.extend({
 
-	// Counter for holding the number of active queries
-	active: 0,
+	// Counter for holding the number of trangthai queries
+	trangthai: 0,
 
 	// Last-Modified header cache for next request
 	lastModified: {},
@@ -8063,7 +8063,7 @@ jQuery.extend({
 		fireGlobals = jQuery.event && s.global;
 
 		// Watch for a new set of requests
-		if ( fireGlobals && jQuery.active++ === 0 ) {
+		if ( fireGlobals && jQuery.trangthai++ === 0 ) {
 			jQuery.event.trigger("ajaxStart");
 		}
 
@@ -8281,7 +8281,7 @@ jQuery.extend({
 			if ( fireGlobals ) {
 				globalEventContext.trigger( "ajaxComplete", [ jqXHR, s ] );
 				// Handle the global AJAX counter
-				if ( !( --jQuery.active ) ) {
+				if ( !( --jQuery.trangthai ) ) {
 					jQuery.event.trigger("ajaxStop");
 				}
 			}

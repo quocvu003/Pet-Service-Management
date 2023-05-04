@@ -28,7 +28,7 @@
   transform: translate3d(0, 0, 0) !important;
 }
 
-.pace-inactive .pace-progress,
+.pace-intrangthai .pace-progress,
 .pace-progress[data-progress="00"] {
   opacity: 0;
 }

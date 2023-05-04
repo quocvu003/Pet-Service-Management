@@ -257,7 +257,7 @@
 
     return result;
   };
-  const swalClasses = prefix(['container', 'shown', 'height-auto', 'iosfix', 'popup', 'modal', 'no-backdrop', 'no-transition', 'toast', 'toast-shown', 'show', 'hide', 'close', 'title', 'html-container', 'actions', 'confirm', 'deny', 'cancel', 'default-outline', 'footer', 'icon', 'icon-content', 'image', 'input', 'file', 'range', 'select', 'radio', 'checkbox', 'label', 'textarea', 'inputerror', 'input-label', 'validation-message', 'progress-steps', 'active-progress-step', 'progress-step', 'progress-step-line', 'loader', 'loading', 'styled', 'top', 'top-start', 'top-end', 'top-left', 'top-right', 'center', 'center-start', 'center-end', 'center-left', 'center-right', 'bottom', 'bottom-start', 'bottom-end', 'bottom-left', 'bottom-right', 'grow-row', 'grow-column', 'grow-fullscreen', 'rtl', 'timer-progress-bar', 'timer-progress-bar-container', 'scrollbar-measure', 'icon-success', 'icon-warning', 'icon-info', 'icon-question', 'icon-error']);
+  const swalClasses = prefix(['container', 'shown', 'height-auto', 'iosfix', 'popup', 'modal', 'no-backdrop', 'no-transition', 'toast', 'toast-shown', 'show', 'hide', 'close', 'title', 'html-container', 'actions', 'confirm', 'deny', 'cancel', 'default-outline', 'footer', 'icon', 'icon-content', 'image', 'input', 'file', 'range', 'select', 'radio', 'checkbox', 'label', 'textarea', 'inputerror', 'input-label', 'validation-message', 'progress-steps', 'trangthai-progress-step', 'progress-step', 'progress-step-line', 'loader', 'loading', 'styled', 'top', 'top-start', 'top-end', 'top-left', 'top-right', 'center', 'center-start', 'center-end', 'center-left', 'center-right', 'bottom', 'bottom-start', 'bottom-end', 'bottom-left', 'bottom-right', 'grow-row', 'grow-column', 'grow-fullscreen', 'rtl', 'timer-progress-bar', 'timer-progress-bar-container', 'scrollbar-measure', 'icon-success', 'icon-warning', 'icon-info', 'icon-question', 'icon-error']);
   const iconTypes = prefix(['success', 'warning', 'info', 'question', 'error']);
 
   /**
@@ -581,17 +581,17 @@
 
   const globalState = {};
 
-  const focusPreviousActiveElement = () => {
-    if (globalState.previousActiveElement && globalState.previousActiveElement.focus) {
-      globalState.previousActiveElement.focus();
-      globalState.previousActiveElement = null;
+  const focusPrevioustrangthaiElement = () => {
+    if (globalState.previoustrangthaiElement && globalState.previoustrangthaiElement.focus) {
+      globalState.previoustrangthaiElement.focus();
+      globalState.previoustrangthaiElement = null;
     } else if (document.body) {
       document.body.focus();
     }
-  }; // Restore previous active (focused) element
+  }; // Restore previous trangthai (focused) element
 
 
-  const restoreActiveElement = returnFocus => {
+  const restoretrangthaiElement = returnFocus => {
     return new Promise(resolve => {
       if (!returnFocus) {
         return resolve();
@@ -600,7 +600,7 @@
       const x = window.scrollX;
       const y = window.scrollY;
       globalState.restoreFocusTimeout = setTimeout(() => {
-        focusPreviousActiveElement();
+        focusPrevioustrangthaiElement();
         resolve();
       }, RESTORE_FOCUS_TIMEOUT); // issues/900
 
@@ -1295,7 +1295,7 @@
       progressStepsContainer.appendChild(stepEl);
 
       if (index === params.currentProgressStep) {
-        addClass(stepEl, swalClasses['active-progress-step']);
+        addClass(stepEl, swalClasses['trangthai-progress-step']);
       }
 
       if (index !== params.progressSteps.length - 1) {
@@ -1400,8 +1400,8 @@
     timer: 'timer'
   });
 
-  // Adding aria-hidden="true" to elements outside of the active modal dialog ensures that
-  // elements not within the active modal dialog will not be surfaced if a user opens a screen
+  // Adding aria-hidden="true" to elements outside of the trangthai modal dialog ensures that
+  // elements not within the trangthai modal dialog will not be surfaced if a user opens a screen
   // reader’s list of elements (headings, form controls, landmarks, etc.) in the document.
 
   const setAriaHidden = () => {
@@ -1907,8 +1907,8 @@
       setAriaHidden();
     }
 
-    if (!isToast() && !globalState.previousActiveElement) {
-      globalState.previousActiveElement = document.activeElement;
+    if (!isToast() && !globalState.previoustrangthaiElement) {
+      globalState.previoustrangthaiElement = document.trangthaiElement;
     }
 
     if (typeof params.didOpen === 'function') {
@@ -2536,12 +2536,12 @@
     const denyButton = getDenyButton();
     const cancelButton = getCancelButton();
 
-    if (![confirmButton, denyButton, cancelButton].includes(document.activeElement)) {
+    if (![confirmButton, denyButton, cancelButton].includes(document.trangthaiElement)) {
       return;
     }
 
     const sibling = arrowKeysNextButton.includes(key) ? 'nextElementSibling' : 'previousElementSibling';
-    const buttonToFocus = document.activeElement[sibling];
+    const buttonToFocus = document.trangthaiElement[sibling];
 
     if (buttonToFocus instanceof HTMLElement) {
       buttonToFocus.focus();
@@ -2828,7 +2828,7 @@
     if (isToast()) {
       triggerDidCloseAndDispose(instance, didClose);
     } else {
-      restoreActiveElement(returnFocus).then(() => triggerDidCloseAndDispose(instance, didClose));
+      restoretrangthaiElement(returnFocus).then(() => triggerDidCloseAndDispose(instance, didClose));
       globalState.keydownTarget.removeEventListener('keydown', globalState.keydownHandler, {
         capture: globalState.keydownListenerCapture
       });
@@ -3333,7 +3333,7 @@
     }
 
     if (!callIfFunction(innerParams.allowEnterKey)) {
-      return blurActiveElement();
+      return blurtrangthaiElement();
     }
 
     if (!focusButton(domCache, innerParams)) {
@@ -3360,9 +3360,9 @@
     return false;
   };
 
-  const blurActiveElement = () => {
-    if (document.activeElement instanceof HTMLElement && typeof document.activeElement.blur === 'function') {
-      document.activeElement.blur();
+  const blurtrangthaiElement = () => {
+    if (document.trangthaiElement instanceof HTMLElement && typeof document.trangthaiElement.blur === 'function') {
+      document.trangthaiElement.blur();
     }
   }; // Assign instance methods from src/instanceMethods/*.js to prototype
 

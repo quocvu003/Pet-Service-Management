@@ -377,7 +377,7 @@
     outline: 0;
     border-radius: 1px;
 }
-.note-btn:active, .note-btn.active {
+.note-btn:trangthai, .note-btn.trangthai {
     outline: 0;
     background-image: none;
     color: #333;
@@ -1437,7 +1437,7 @@ a.note-dropdown-item:hover {
     display: block !important;
     padding: 3px;
 }
-.note-hint-popover .popover-content .note-hint-group .note-hint-item.active, .note-hint-popover .popover-content .note-hint-group .note-hint-item:hover {
+.note-hint-popover .popover-content .note-hint-group .note-hint-item.trangthai, .note-hint-popover .popover-content .note-hint-group .note-hint-item:hover {
     display: block;
     clear: both;
     font-weight: 400;

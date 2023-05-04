@@ -37,27 +37,27 @@
                 navigationConstraint: 'unconstrained',
                 initialState: null
             },
-            useManualPan = options.pan.interactive && options.pan.touchMode === 'manual',
+            useManualPan = options.pan.intertrangthai && options.pan.touchMode === 'manual',
             smartPanLock = options.pan.touchMode === 'smartLock',
-            useSmartPan = options.pan.interactive && (smartPanLock || options.pan.touchMode === 'smart'),
+            useSmartPan = options.pan.intertrangthai && (smartPanLock || options.pan.touchMode === 'smart'),
             pan, pinch, doubleTap;
 
         function bindEvents(plot, eventHolder) {
             var o = plot.getOptions();
 
-            if (o.zoom.interactive && o.zoom.enableTouch) {
+            if (o.zoom.intertrangthai && o.zoom.enableTouch) {
                 eventHolder[0].addEventListener('pinchstart', pinch.start, false);
                 eventHolder[0].addEventListener('pinchdrag', pinch.drag, false);
                 eventHolder[0].addEventListener('pinchend', pinch.end, false);
             }
 
-            if (o.pan.interactive && o.pan.enableTouch) {
+            if (o.pan.intertrangthai && o.pan.enableTouch) {
                 eventHolder[0].addEventListener('panstart', pan.start, false);
                 eventHolder[0].addEventListener('pandrag', pan.drag, false);
                 eventHolder[0].addEventListener('panend', pan.end, false);
             }
 
-            if ((o.recenter.interactive && o.recenter.enableTouch)) {
+            if ((o.recenter.intertrangthai && o.recenter.enableTouch)) {
                 eventHolder[0].addEventListener('doubletap', doubleTap.recenterPlot, false);
             }
         }

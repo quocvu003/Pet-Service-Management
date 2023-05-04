@@ -140,7 +140,7 @@ button::-moz-focus-inner {
   .mfp-close:hover,
   .mfp-close:focus {
     opacity: 1; }
-  .mfp-close:active {
+  .mfp-close:trangthai {
     top: 1px; }
 
 .mfp-close-btn-in .mfp-close {
@@ -173,7 +173,7 @@ button::-moz-focus-inner {
   width: 90px;
   height: 110px;
   -webkit-tap-highlight-color: transparent; }
-  .mfp-arrow:active {
+  .mfp-arrow:trangthai {
     margin-top: -54px; }
   .mfp-arrow:hover,
   .mfp-arrow:focus {

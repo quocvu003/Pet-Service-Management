@@ -625,7 +625,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
   ], colorKeywords = keySet(colorKeywords_);
 
   var valueKeywords_ = [
-    "above", "absolute", "activeborder", "additive", "activecaption", "afar",
+    "above", "absolute", "trangthaiborder", "additive", "trangthaicaption", "afar",
     "after-white-space", "ahead", "alias", "all", "all-scroll", "alphabetic", "alternate",
     "always", "amharic", "amharic-abegede", "antialiased", "appworkspace",
     "arabic-indic", "armenian", "asterisks", "attr", "auto", "auto-flow", "avoid", "avoid-column", "avoid-page",
@@ -658,7 +658,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
     "gujarati", "gurmukhi", "hand", "hangul", "hangul-consonant", "hard-light", "hebrew",
     "help", "hidden", "hide", "higher", "highlight", "highlighttext",
     "hiragana", "hiragana-iroha", "horizontal", "hsl", "hsla", "hue", "hue-rotate", "icon", "ignore",
-    "inactiveborder", "inactivecaption", "inactivecaptiontext", "infinite",
+    "intrangthaiborder", "intrangthaicaption", "intrangthaicaptiontext", "infinite",
     "infobackground", "infotext", "inherit", "initial", "inline", "inline-axis",
     "inline-block", "inline-flex", "inline-grid", "inline-table", "inset", "inside", "intrinsic", "invert",
     "italic", "japanese-formal", "japanese-informal", "justify", "kannada",

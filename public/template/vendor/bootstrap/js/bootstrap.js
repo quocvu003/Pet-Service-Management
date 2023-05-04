@@ -380,7 +380,7 @@ var Button = function ($) {
   var JQUERY_NO_CONFLICT = $.fn[NAME];
 
   var ClassName = {
-    ACTIVE: 'active',
+    trangthai: 'trangthai',
     BUTTON: 'btn',
     FOCUS: 'focus'
   };
@@ -389,7 +389,7 @@ var Button = function ($) {
     DATA_TOGGLE_CARROT: '[data-toggle^="button"]',
     DATA_TOGGLE: '[data-toggle="buttons"]',
     INPUT: 'input',
-    ACTIVE: '.active',
+    trangthai: '.trangthai',
     BUTTON: '.btn'
   };
 
@@ -425,13 +425,13 @@ var Button = function ($) {
 
         if (input) {
           if (input.type === 'radio') {
-            if (input.checked && $(this._element).hasClass(ClassName.ACTIVE)) {
+            if (input.checked && $(this._element).hasClass(ClassName.trangthai)) {
               triggerChangeEvent = false;
             } else {
-              var activeElement = $(rootElement).find(Selector.ACTIVE)[0];
+              var trangthaiElement = $(rootElement).find(Selector.trangthai)[0];
 
-              if (activeElement) {
-                $(activeElement).removeClass(ClassName.ACTIVE);
+              if (trangthaiElement) {
+                $(trangthaiElement).removeClass(ClassName.trangthai);
               }
             }
           }
@@ -440,7 +440,7 @@ var Button = function ($) {
             if (input.hasAttribute('disabled') || rootElement.hasAttribute('disabled') || input.classList.contains('disabled') || rootElement.classList.contains('disabled')) {
               return;
             }
-            input.checked = !$(this._element).hasClass(ClassName.ACTIVE);
+            input.checked = !$(this._element).hasClass(ClassName.trangthai);
             $(input).trigger('change');
           }
 
@@ -450,11 +450,11 @@ var Button = function ($) {
       }
 
       if (addAriaPressed) {
-        this._element.setAttribute('aria-pressed', !$(this._element).hasClass(ClassName.ACTIVE));
+        this._element.setAttribute('aria-pressed', !$(this._element).hasClass(ClassName.trangthai));
       }
 
       if (triggerChangeEvent) {
-        $(this._element).toggleClass(ClassName.ACTIVE);
+        $(this._element).toggleClass(ClassName.trangthai);
       }
     };
 
@@ -589,7 +589,7 @@ var Carousel = function ($) {
 
   var ClassName = {
     CAROUSEL: 'carousel',
-    ACTIVE: 'active',
+    trangthai: 'trangthai',
     SLIDE: 'slide',
     RIGHT: 'carousel-item-right',
     LEFT: 'carousel-item-left',
@@ -599,8 +599,8 @@ var Carousel = function ($) {
   };
 
   var Selector = {
-    ACTIVE: '.active',
-    ACTIVE_ITEM: '.active.carousel-item',
+    trangthai: '.trangthai',
+    trangthai_ITEM: '.trangthai.carousel-item',
     ITEM: '.carousel-item',
     NEXT_PREV: '.carousel-item-next, .carousel-item-prev',
     INDICATORS: '.carousel-indicators',
@@ -620,7 +620,7 @@ var Carousel = function ($) {
 
       this._items = null;
       this._interval = null;
-      this._activeElement = null;
+      this._trangthaiElement = null;
 
       this._isPaused = false;
       this._isSliding = false;
@@ -689,9 +689,9 @@ var Carousel = function ($) {
     Carousel.prototype.to = function to(index) {
       var _this3 = this;
 
-      this._activeElement = $(this._element).find(Selector.ACTIVE_ITEM)[0];
+      this._trangthaiElement = $(this._element).find(Selector.trangthai_ITEM)[0];
 
-      var activeIndex = this._getItemIndex(this._activeElement);
+      var trangthaiIndex = this._getItemIndex(this._trangthaiElement);
 
       if (index > this._items.length - 1 || index < 0) {
         return;
@@ -704,13 +704,13 @@ var Carousel = function ($) {
         return;
       }
 
-      if (activeIndex === index) {
+      if (trangthaiIndex === index) {
         this.pause();
         this.cycle();
         return;
       }
 
-      var direction = index > activeIndex ? Direction.NEXT : Direction.PREV;
+      var direction = index > trangthaiIndex ? Direction.NEXT : Direction.PREV;
 
       this._slide(direction, this._items[index]);
     };
@@ -725,7 +725,7 @@ var Carousel = function ($) {
       this._interval = null;
       this._isPaused = null;
       this._isSliding = null;
-      this._activeElement = null;
+      this._trangthaiElement = null;
       this._indicatorsElement = null;
     };
 
@@ -797,26 +797,26 @@ var Carousel = function ($) {
       return this._items.indexOf(element);
     };
 
-    Carousel.prototype._getItemByDirection = function _getItemByDirection(direction, activeElement) {
+    Carousel.prototype._getItemByDirection = function _getItemByDirection(direction, trangthaiElement) {
       var isNextDirection = direction === Direction.NEXT;
       var isPrevDirection = direction === Direction.PREV;
-      var activeIndex = this._getItemIndex(activeElement);
+      var trangthaiIndex = this._getItemIndex(trangthaiElement);
       var lastItemIndex = this._items.length - 1;
-      var isGoingToWrap = isPrevDirection && activeIndex === 0 || isNextDirection && activeIndex === lastItemIndex;
+      var isGoingToWrap = isPrevDirection && trangthaiIndex === 0 || isNextDirection && trangthaiIndex === lastItemIndex;
 
       if (isGoingToWrap && !this._config.wrap) {
-        return activeElement;
+        return trangthaiElement;
       }
 
       var delta = direction === Direction.PREV ? -1 : 1;
-      var itemIndex = (activeIndex + delta) % this._items.length;
+      var itemIndex = (trangthaiIndex + delta) % this._items.length;
 
       return itemIndex === -1 ? this._items[this._items.length - 1] : this._items[itemIndex];
     };
 
     Carousel.prototype._triggerSlideEvent = function _triggerSlideEvent(relatedTarget, eventDirectionName) {
       var targetIndex = this._getItemIndex(relatedTarget);
-      var fromIndex = this._getItemIndex($(this._element).find(Selector.ACTIVE_ITEM)[0]);
+      var fromIndex = this._getItemIndex($(this._element).find(Selector.trangthai_ITEM)[0]);
       var slideEvent = $.Event(Event.SLIDE, {
         relatedTarget: relatedTarget,
         direction: eventDirectionName,
@@ -829,14 +829,14 @@ var Carousel = function ($) {
       return slideEvent;
     };
 
-    Carousel.prototype._setActiveIndicatorElement = function _setActiveIndicatorElement(element) {
+    Carousel.prototype._settrangthaiIndicatorElement = function _settrangthaiIndicatorElement(element) {
       if (this._indicatorsElement) {
-        $(this._indicatorsElement).find(Selector.ACTIVE).removeClass(ClassName.ACTIVE);
+        $(this._indicatorsElement).find(Selector.trangthai).removeClass(ClassName.trangthai);
 
         var nextIndicator = this._indicatorsElement.children[this._getItemIndex(element)];
 
         if (nextIndicator) {
-          $(nextIndicator).addClass(ClassName.ACTIVE);
+          $(nextIndicator).addClass(ClassName.trangthai);
         }
       }
     };
@@ -844,9 +844,9 @@ var Carousel = function ($) {
     Carousel.prototype._slide = function _slide(direction, element) {
       var _this5 = this;
 
-      var activeElement = $(this._element).find(Selector.ACTIVE_ITEM)[0];
-      var activeElementIndex = this._getItemIndex(activeElement);
-      var nextElement = element || activeElement && this._getItemByDirection(direction, activeElement);
+      var trangthaiElement = $(this._element).find(Selector.trangthai_ITEM)[0];
+      var trangthaiElementIndex = this._getItemIndex(trangthaiElement);
+      var nextElement = element || trangthaiElement && this._getItemByDirection(direction, trangthaiElement);
       var nextElementIndex = this._getItemIndex(nextElement);
       var isCycling = Boolean(this._interval);
 
@@ -864,7 +864,7 @@ var Carousel = function ($) {
         eventDirectionName = Direction.RIGHT;
       }
 
-      if (nextElement && $(nextElement).hasClass(ClassName.ACTIVE)) {
+      if (nextElement && $(nextElement).hasClass(ClassName.trangthai)) {
         this._isSliding = false;
         return;
       }
@@ -874,7 +874,7 @@ var Carousel = function ($) {
         return;
       }
 
-      if (!activeElement || !nextElement) {
+      if (!trangthaiElement || !nextElement) {
         // some weirdness is happening, so we bail
         return;
       }
@@ -885,12 +885,12 @@ var Carousel = function ($) {
         this.pause();
       }
 
-      this._setActiveIndicatorElement(nextElement);
+      this._settrangthaiIndicatorElement(nextElement);
 
       var slidEvent = $.Event(Event.SLID, {
         relatedTarget: nextElement,
         direction: eventDirectionName,
-        from: activeElementIndex,
+        from: trangthaiElementIndex,
         to: nextElementIndex
       });
 
@@ -900,13 +900,13 @@ var Carousel = function ($) {
 
         Util.reflow(nextElement);
 
-        $(activeElement).addClass(directionalClassName);
+        $(trangthaiElement).addClass(directionalClassName);
         $(nextElement).addClass(directionalClassName);
 
-        $(activeElement).one(Util.TRANSITION_END, function () {
-          $(nextElement).removeClass(directionalClassName + ' ' + orderClassName).addClass(ClassName.ACTIVE);
+        $(trangthaiElement).one(Util.TRANSITION_END, function () {
+          $(nextElement).removeClass(directionalClassName + ' ' + orderClassName).addClass(ClassName.trangthai);
 
-          $(activeElement).removeClass(ClassName.ACTIVE + ' ' + orderClassName + ' ' + directionalClassName);
+          $(trangthaiElement).removeClass(ClassName.trangthai + ' ' + orderClassName + ' ' + directionalClassName);
 
           _this5._isSliding = false;
 
@@ -915,8 +915,8 @@ var Carousel = function ($) {
           }, 0);
         }).emulateTransitionEnd(TRANSITION_DURATION);
       } else {
-        $(activeElement).removeClass(ClassName.ACTIVE);
-        $(nextElement).addClass(ClassName.ACTIVE);
+        $(trangthaiElement).removeClass(ClassName.trangthai);
+        $(nextElement).addClass(ClassName.trangthai);
 
         this._isSliding = false;
         $(this._element).trigger(slidEvent);
@@ -1088,7 +1088,7 @@ var Collapse = function ($) {
   };
 
   var Selector = {
-    ACTIVES: '.show, .collapsing',
+    trangthaiS: '.show, .collapsing',
     DATA_TOGGLE: '[data-toggle="collapse"]'
 
     /**
@@ -1145,19 +1145,19 @@ var Collapse = function ($) {
         return;
       }
 
-      var actives = void 0;
-      var activesData = void 0;
+      var trangthais = void 0;
+      var trangthaisData = void 0;
 
       if (this._parent) {
-        actives = $.makeArray($(this._parent).children().children(Selector.ACTIVES));
-        if (!actives.length) {
-          actives = null;
+        trangthais = $.makeArray($(this._parent).children().children(Selector.trangthaiS));
+        if (!trangthais.length) {
+          trangthais = null;
         }
       }
 
-      if (actives) {
-        activesData = $(actives).data(DATA_KEY);
-        if (activesData && activesData._isTransitioning) {
+      if (trangthais) {
+        trangthaisData = $(trangthais).data(DATA_KEY);
+        if (trangthaisData && trangthaisData._isTransitioning) {
           return;
         }
       }
@@ -1168,10 +1168,10 @@ var Collapse = function ($) {
         return;
       }
 
-      if (actives) {
-        Collapse._jQueryInterface.call($(actives), 'hide');
-        if (!activesData) {
-          $(actives).data(DATA_KEY, null);
+      if (trangthais) {
+        Collapse._jQueryInterface.call($(trangthais), 'hide');
+        if (!trangthaisData) {
+          $(trangthais).data(DATA_KEY, null);
         }
       }
 
@@ -1509,11 +1509,11 @@ var Dropdown = function ($) {
       }
 
       var parent = Dropdown._getParentFromElement(this._element);
-      var isActive = $(this._menu).hasClass(ClassName.SHOW);
+      var istrangthai = $(this._menu).hasClass(ClassName.SHOW);
 
       Dropdown._clearMenus();
 
-      if (isActive) {
+      if (istrangthai) {
         return;
       }
 
@@ -1734,9 +1734,9 @@ var Dropdown = function ($) {
       }
 
       var parent = Dropdown._getParentFromElement(this);
-      var isActive = $(parent).hasClass(ClassName.SHOW);
+      var istrangthai = $(parent).hasClass(ClassName.SHOW);
 
-      if (!isActive && (event.which !== ESCAPE_KEYCODE || event.which !== SPACE_KEYCODE) || isActive && (event.which === ESCAPE_KEYCODE || event.which === SPACE_KEYCODE)) {
+      if (!istrangthai && (event.which !== ESCAPE_KEYCODE || event.which !== SPACE_KEYCODE) || istrangthai && (event.which === ESCAPE_KEYCODE || event.which === SPACE_KEYCODE)) {
 
         if (event.which === ESCAPE_KEYCODE) {
           var toggle = $(parent).find(Selector.DATA_TOGGLE)[0];
@@ -2436,12 +2436,12 @@ var ScrollSpy = function ($) {
   var ClassName = {
     DROPDOWN_ITEM: 'dropdown-item',
     DROPDOWN_MENU: 'dropdown-menu',
-    ACTIVE: 'active'
+    trangthai: 'trangthai'
   };
 
   var Selector = {
     DATA_SPY: '[data-spy="scroll"]',
-    ACTIVE: '.active',
+    trangthai: '.trangthai',
     NAV_LIST_GROUP: '.nav, .list-group',
     NAV_LINKS: '.nav-link',
     LIST_ITEMS: '.list-group-item',
@@ -2473,7 +2473,7 @@ var ScrollSpy = function ($) {
       this._selector = this._config.target + ' ' + Selector.NAV_LINKS + ',' + (this._config.target + ' ' + Selector.LIST_ITEMS + ',') + (this._config.target + ' ' + Selector.DROPDOWN_ITEMS);
       this._offsets = [];
       this._targets = [];
-      this._activeTarget = null;
+      this._trangthaiTarget = null;
       this._scrollHeight = 0;
 
       $(this._scrollElement).on(Event.SCROLL, function (event) {
@@ -2540,7 +2540,7 @@ var ScrollSpy = function ($) {
       this._selector = null;
       this._offsets = null;
       this._targets = null;
-      this._activeTarget = null;
+      this._trangthaiTarget = null;
       this._scrollHeight = null;
     };
 
@@ -2587,29 +2587,29 @@ var ScrollSpy = function ($) {
       if (scrollTop >= maxScroll) {
         var target = this._targets[this._targets.length - 1];
 
-        if (this._activeTarget !== target) {
+        if (this._trangthaiTarget !== target) {
           this._activate(target);
         }
         return;
       }
 
-      if (this._activeTarget && scrollTop < this._offsets[0] && this._offsets[0] > 0) {
-        this._activeTarget = null;
+      if (this._trangthaiTarget && scrollTop < this._offsets[0] && this._offsets[0] > 0) {
+        this._trangthaiTarget = null;
         this._clear();
         return;
       }
 
       for (var i = this._offsets.length; i--;) {
-        var isActiveTarget = this._activeTarget !== this._targets[i] && scrollTop >= this._offsets[i] && (this._offsets[i + 1] === undefined || scrollTop < this._offsets[i + 1]);
+        var istrangthaiTarget = this._trangthaiTarget !== this._targets[i] && scrollTop >= this._offsets[i] && (this._offsets[i + 1] === undefined || scrollTop < this._offsets[i + 1]);
 
-        if (isActiveTarget) {
+        if (istrangthaiTarget) {
           this._activate(this._targets[i]);
         }
       }
     };
 
     ScrollSpy.prototype._activate = function _activate(target) {
-      this._activeTarget = target;
+      this._trangthaiTarget = target;
 
       this._clear();
 
@@ -2621,14 +2621,14 @@ var ScrollSpy = function ($) {
       var $link = $(queries.join(','));
 
       if ($link.hasClass(ClassName.DROPDOWN_ITEM)) {
-        $link.closest(Selector.DROPDOWN).find(Selector.DROPDOWN_TOGGLE).addClass(ClassName.ACTIVE);
-        $link.addClass(ClassName.ACTIVE);
+        $link.closest(Selector.DROPDOWN).find(Selector.DROPDOWN_TOGGLE).addClass(ClassName.trangthai);
+        $link.addClass(ClassName.trangthai);
       } else {
-        // Set triggered link as active
-        $link.addClass(ClassName.ACTIVE);
-        // Set triggered links parents as active
+        // Set triggered link as trangthai
+        $link.addClass(ClassName.trangthai);
+        // Set triggered links parents as trangthai
         // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
-        $link.parents(Selector.NAV_LIST_GROUP).prev(Selector.NAV_LINKS + ', ' + Selector.LIST_ITEMS).addClass(ClassName.ACTIVE);
+        $link.parents(Selector.NAV_LIST_GROUP).prev(Selector.NAV_LINKS + ', ' + Selector.LIST_ITEMS).addClass(ClassName.trangthai);
       }
 
       $(this._scrollElement).trigger(Event.ACTIVATE, {
@@ -2637,7 +2637,7 @@ var ScrollSpy = function ($) {
     };
 
     ScrollSpy.prototype._clear = function _clear() {
-      $(this._selector).filter(Selector.ACTIVE).removeClass(ClassName.ACTIVE);
+      $(this._selector).filter(Selector.trangthai).removeClass(ClassName.trangthai);
     };
 
     // static
@@ -2740,7 +2740,7 @@ var Tab = function ($) {
 
   var ClassName = {
     DROPDOWN_MENU: 'dropdown-menu',
-    ACTIVE: 'active',
+    trangthai: 'trangthai',
     DISABLED: 'disabled',
     FADE: 'fade',
     SHOW: 'show'
@@ -2749,10 +2749,10 @@ var Tab = function ($) {
   var Selector = {
     DROPDOWN: '.dropdown',
     NAV_LIST_GROUP: '.nav, .list-group',
-    ACTIVE: '.active',
+    trangthai: '.trangthai',
     DATA_TOGGLE: '[data-toggle="tab"], [data-toggle="pill"], [data-toggle="list"]',
     DROPDOWN_TOGGLE: '.dropdown-toggle',
-    DROPDOWN_ACTIVE_CHILD: '> .dropdown-menu .active'
+    DROPDOWN_trangthai_CHILD: '> .dropdown-menu .trangthai'
 
     /**
      * ------------------------------------------------------------------------
@@ -2775,7 +2775,7 @@ var Tab = function ($) {
     Tab.prototype.show = function show() {
       var _this22 = this;
 
-      if (this._element.parentNode && this._element.parentNode.nodeType === Node.ELEMENT_NODE && $(this._element).hasClass(ClassName.ACTIVE) || $(this._element).hasClass(ClassName.DISABLED)) {
+      if (this._element.parentNode && this._element.parentNode.nodeType === Node.ELEMENT_NODE && $(this._element).hasClass(ClassName.trangthai) || $(this._element).hasClass(ClassName.DISABLED)) {
         return;
       }
 
@@ -2785,7 +2785,7 @@ var Tab = function ($) {
       var selector = Util.getSelectorFromElement(this._element);
 
       if (listElement) {
-        previous = $.makeArray($(listElement).find(Selector.ACTIVE));
+        previous = $.makeArray($(listElement).find(Selector.trangthai));
         previous = previous[previous.length - 1];
       }
 
@@ -2843,38 +2843,38 @@ var Tab = function ($) {
     Tab.prototype._activate = function _activate(element, container, callback) {
       var _this23 = this;
 
-      var active = $(container).find(Selector.ACTIVE)[0];
-      var isTransitioning = callback && Util.supportsTransitionEnd() && active && $(active).hasClass(ClassName.FADE);
+      var trangthai = $(container).find(Selector.trangthai)[0];
+      var isTransitioning = callback && Util.supportsTransitionEnd() && trangthai && $(trangthai).hasClass(ClassName.FADE);
 
       var complete = function complete() {
-        return _this23._transitionComplete(element, active, isTransitioning, callback);
+        return _this23._transitionComplete(element, trangthai, isTransitioning, callback);
       };
 
-      if (active && isTransitioning) {
-        $(active).one(Util.TRANSITION_END, complete).emulateTransitionEnd(TRANSITION_DURATION);
+      if (trangthai && isTransitioning) {
+        $(trangthai).one(Util.TRANSITION_END, complete).emulateTransitionEnd(TRANSITION_DURATION);
       } else {
         complete();
       }
 
-      if (active) {
-        $(active).removeClass(ClassName.SHOW);
+      if (trangthai) {
+        $(trangthai).removeClass(ClassName.SHOW);
       }
     };
 
-    Tab.prototype._transitionComplete = function _transitionComplete(element, active, isTransitioning, callback) {
-      if (active) {
-        $(active).removeClass(ClassName.ACTIVE);
+    Tab.prototype._transitionComplete = function _transitionComplete(element, trangthai, isTransitioning, callback) {
+      if (trangthai) {
+        $(trangthai).removeClass(ClassName.trangthai);
 
-        var dropdownChild = $(active.parentNode).find(Selector.DROPDOWN_ACTIVE_CHILD)[0];
+        var dropdownChild = $(trangthai.parentNode).find(Selector.DROPDOWN_trangthai_CHILD)[0];
 
         if (dropdownChild) {
-          $(dropdownChild).removeClass(ClassName.ACTIVE);
+          $(dropdownChild).removeClass(ClassName.trangthai);
         }
 
-        active.setAttribute('aria-expanded', false);
+        trangthai.setAttribute('aria-expanded', false);
       }
 
-      $(element).addClass(ClassName.ACTIVE);
+      $(element).addClass(ClassName.trangthai);
       element.setAttribute('aria-expanded', true);
 
       if (isTransitioning) {
@@ -2888,7 +2888,7 @@ var Tab = function ($) {
 
         var dropdownElement = $(element).closest(Selector.DROPDOWN)[0];
         if (dropdownElement) {
-          $(dropdownElement).find(Selector.DROPDOWN_TOGGLE).addClass(ClassName.ACTIVE);
+          $(dropdownElement).find(Selector.DROPDOWN_TOGGLE).addClass(ClassName.trangthai);
         }
 
         element.setAttribute('aria-expanded', true);
@@ -3077,7 +3077,7 @@ var Tooltip = function ($) {
       this._isEnabled = true;
       this._timeout = 0;
       this._hoverState = '';
-      this._activeTrigger = {};
+      this._trangthaiTrigger = {};
       this._popper = null;
 
       // protected
@@ -3114,9 +3114,9 @@ var Tooltip = function ($) {
           $(event.currentTarget).data(dataKey, context);
         }
 
-        context._activeTrigger.click = !context._activeTrigger.click;
+        context._trangthaiTrigger.click = !context._trangthaiTrigger.click;
 
-        if (context._isWithActiveTrigger()) {
+        if (context._isWithtrangthaiTrigger()) {
           context._enter(null, context);
         } else {
           context._leave(null, context);
@@ -3147,7 +3147,7 @@ var Tooltip = function ($) {
       this._isEnabled = null;
       this._timeout = null;
       this._hoverState = null;
-      this._activeTrigger = null;
+      this._trangthaiTrigger = null;
       if (this._popper !== null) {
         this._popper.destroy();
       }
@@ -3293,9 +3293,9 @@ var Tooltip = function ($) {
         $('body').children().off('mouseover', null, $.noop);
       }
 
-      this._activeTrigger[Trigger.CLICK] = false;
-      this._activeTrigger[Trigger.FOCUS] = false;
-      this._activeTrigger[Trigger.HOVER] = false;
+      this._trangthaiTrigger[Trigger.CLICK] = false;
+      this._trangthaiTrigger[Trigger.FOCUS] = false;
+      this._trangthaiTrigger[Trigger.HOVER] = false;
 
       if (Util.supportsTransitionEnd() && $(this.tip).hasClass(ClassName.FADE)) {
 
@@ -3420,7 +3420,7 @@ var Tooltip = function ($) {
       }
 
       if (event) {
-        context._activeTrigger[event.type === 'focusin' ? Trigger.FOCUS : Trigger.HOVER] = true;
+        context._trangthaiTrigger[event.type === 'focusin' ? Trigger.FOCUS : Trigger.HOVER] = true;
       }
 
       if ($(context.getTipElement()).hasClass(ClassName.SHOW) || context._hoverState === HoverState.SHOW) {
@@ -3455,10 +3455,10 @@ var Tooltip = function ($) {
       }
 
       if (event) {
-        context._activeTrigger[event.type === 'focusout' ? Trigger.FOCUS : Trigger.HOVER] = false;
+        context._trangthaiTrigger[event.type === 'focusout' ? Trigger.FOCUS : Trigger.HOVER] = false;
       }
 
-      if (context._isWithActiveTrigger()) {
+      if (context._isWithtrangthaiTrigger()) {
         return;
       }
 
@@ -3478,9 +3478,9 @@ var Tooltip = function ($) {
       }, context.config.delay.hide);
     };
 
-    Tooltip.prototype._isWithActiveTrigger = function _isWithActiveTrigger() {
-      for (var trigger in this._activeTrigger) {
-        if (this._activeTrigger[trigger]) {
+    Tooltip.prototype._isWithtrangthaiTrigger = function _isWithtrangthaiTrigger() {
+      for (var trigger in this._trangthaiTrigger) {
+        if (this._trangthaiTrigger[trigger]) {
           return true;
         }
       }

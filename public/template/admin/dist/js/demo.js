@@ -524,15 +524,15 @@
     $main_header.addClass(color)
   })
 
-  var active_navbar_color = null
+  var trangthai_navbar_color = null
   $('.main-header')[0].classList.forEach(function (className) {
-    if (navbar_all_colors.indexOf(className) > -1 && active_navbar_color === null) {
-      active_navbar_color = className.replace('navbar-', 'bg-')
+    if (navbar_all_colors.indexOf(className) > -1 && trangthai_navbar_color === null) {
+      trangthai_navbar_color = className.replace('navbar-', 'bg-')
     }
   })
 
-  $navbar_variants_colors.find('option.' + active_navbar_color).prop('selected', true)
-  $navbar_variants_colors.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(active_navbar_color)
+  $navbar_variants_colors.find('option.' + trangthai_navbar_color).prop('selected', true)
+  $navbar_variants_colors.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(trangthai_navbar_color)
 
   $navbar_variants.append($navbar_variants_colors)
 
@@ -557,15 +557,15 @@
     $body.addClass(accent_color_class)
   }, true))
 
-  var active_accent_color = null
+  var trangthai_accent_color = null
   $('body')[0].classList.forEach(function (className) {
-    if (accent_colors.indexOf(className) > -1 && active_accent_color === null) {
-      active_accent_color = className.replace('navbar-', 'bg-')
+    if (accent_colors.indexOf(className) > -1 && trangthai_accent_color === null) {
+      trangthai_accent_color = className.replace('navbar-', 'bg-')
     }
   })
 
-  // $accent_variants.find('option.' + active_accent_color).prop('selected', true)
-  // $accent_variants.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(active_accent_color)
+  // $accent_variants.find('option.' + trangthai_accent_color).prop('selected', true)
+  // $accent_variants.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(trangthai_accent_color)
 
   $container.append('<h6>Dark Sidebar Variants</h6>')
   var $sidebar_variants_dark = $('<div />', {
@@ -589,16 +589,16 @@
   }, true)
   $container.append($sidebar_dark_variants)
 
-  var active_sidebar_dark_color = null
+  var trangthai_sidebar_dark_color = null
   $('.main-sidebar')[0].classList.forEach(function (className) {
     var color = className.replace('sidebar-dark-', 'bg-')
-    if (sidebar_colors.indexOf(color) > -1 && active_sidebar_dark_color === null) {
-      active_sidebar_dark_color = color
+    if (sidebar_colors.indexOf(color) > -1 && trangthai_sidebar_dark_color === null) {
+      trangthai_sidebar_dark_color = color
     }
   })
 
-  $sidebar_dark_variants.find('option.' + active_sidebar_dark_color).prop('selected', true)
-  $sidebar_dark_variants.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(active_sidebar_dark_color)
+  $sidebar_dark_variants.find('option.' + trangthai_sidebar_dark_color).prop('selected', true)
+  $sidebar_dark_variants.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(trangthai_sidebar_dark_color)
 
   $container.append('<h6>Light Sidebar Variants</h6>')
   var $sidebar_variants_light = $('<div />', {
@@ -622,17 +622,17 @@
   }, true)
   $container.append($sidebar_light_variants)
 
-  var active_sidebar_light_color = null
+  var trangthai_sidebar_light_color = null
   $('.main-sidebar')[0].classList.forEach(function (className) {
     var color = className.replace('sidebar-light-', 'bg-')
-    if (sidebar_colors.indexOf(color) > -1 && active_sidebar_light_color === null) {
-      active_sidebar_light_color = color
+    if (sidebar_colors.indexOf(color) > -1 && trangthai_sidebar_light_color === null) {
+      trangthai_sidebar_light_color = color
     }
   })
 
-  if (active_sidebar_light_color !== null) {
-    $sidebar_light_variants.find('option.' + active_sidebar_light_color).prop('selected', true)
-    $sidebar_light_variants.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(active_sidebar_light_color)
+  if (trangthai_sidebar_light_color !== null) {
+    $sidebar_light_variants.find('option.' + trangthai_sidebar_light_color).prop('selected', true)
+    $sidebar_light_variants.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(trangthai_sidebar_light_color)
   }
 
   var logo_skins = navbar_all_colors
@@ -675,15 +675,15 @@
   }, true).append($clear_btn)
   $container.append($brand_variants)
 
-  var active_brand_color = null
+  var trangthai_brand_color = null
   $('.brand-link')[0].classList.forEach(function (className) {
-    if (logo_skins.indexOf(className) > -1 && active_brand_color === null) {
-      active_brand_color = className.replace('navbar-', 'bg-')
+    if (logo_skins.indexOf(className) > -1 && trangthai_brand_color === null) {
+      trangthai_brand_color = className.replace('navbar-', 'bg-')
     }
   })
 
-  if (active_brand_color) {
-    $brand_variants.find('option.' + active_brand_color).prop('selected', true)
-    $brand_variants.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(active_brand_color)
+  if (trangthai_brand_color) {
+    $brand_variants.find('option.' + trangthai_brand_color).prop('selected', true)
+    $brand_variants.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(trangthai_brand_color)
   }
 })(jQuery)

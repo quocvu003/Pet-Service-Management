@@ -250,13 +250,13 @@
 }
 
 /* Equivalent to Vim's CursorLine group. */
-.cm-s-abbott .CodeMirror-activeline-background,
-.cm-s-abbott .CodeMirror-activeline-gutter {
+.cm-s-abbott .CodeMirror-trangthailine-background,
+.cm-s-abbott .CodeMirror-trangthailine-gutter {
   background: #3c3022 /* chocolate */;
 }
 
 /* Equivalent to Vim's CursorLineNr group. */
-.cm-s-abbott .CodeMirror-activeline-gutter .CodeMirror-linenumber {
+.cm-s-abbott .CodeMirror-trangthailine-gutter .CodeMirror-linenumber {
   color: #d8ff84 /* pastel_chartreuse */;
   font-weight: bold;
 }
