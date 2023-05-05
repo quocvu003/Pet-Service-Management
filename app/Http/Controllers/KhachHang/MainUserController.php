@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\KhachHang;
 
+use App\Http\Controllers\Controller;
 use App\Http\Services\DanhMucService;
 use Illuminate\Http\Request;
-use App\Http\Services\Slider\SliderService;
+use App\Http\Services\SliderService;
 
 use App\Http\Services\Product\ProductService;
+
+
 
 class MainUserController extends Controller
 {
@@ -14,9 +17,9 @@ class MainUserController extends Controller
     protected $menu;
     protected $product;
 
-    public function __construct(DanhMucService $menu,)
+    public function __construct(DanhMucService $menu, SliderService $slider)
     {
-        // $this->slider = $slider;
+        $this->slider = $slider;
         $this->menu = $menu;
         // $this->product = $product;
     }
@@ -25,7 +28,7 @@ class MainUserController extends Controller
     {
         return view('user.home', [
             'title' => 'PetCare Shop ',
-            // 'sliders' => $this->slider->show(),
+            'sliders' => $this->slider->show(),
             'menus' => $this->menu->show(),
             // 'products' => $this->product->get()
         ]);

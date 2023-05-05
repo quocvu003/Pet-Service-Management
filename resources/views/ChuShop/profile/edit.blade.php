@@ -8,22 +8,23 @@
                     <div class="card shadow border-0 text-center p-0">
                         <div class="profile-cover rounded-top" style="background-color: #1F2937">
                         </div>
-                        <div class="avatar-xl rounded-circle mx-auto mt-n7 mb-4">
+                        <div class="avatar-xl rounded-circle mx-auto mt-n7 mb-4" id="hinhanh_show">
                             <img src="{{ $shop->hinhanh }} ">
                         </div>
+                        <input type="file" id="hinhanh" class="form-control"
+                            style="width: 90px;display: block; margin: 0 auto;" />
+                        <h1>{{ $shop->ten }}</h1>
 
                     </div>
                 </div>
             </div>
 
-            <div class="form-outline mb-4">
-                <label class="form-label" for="form3Example3">Logo</label>
 
-                <input type="file" id="hinhanh" class="form-control" />
-                <div id="hinhanh_show">
-                </div>
-                <input name="hinhanh" id="hinhanh01">
-            </div>
+
+
+
+            <input type="hidden" name="hinhanh" value="{{ $shop->hinhanh }}" id="hinhanh01">
+
 
 
 

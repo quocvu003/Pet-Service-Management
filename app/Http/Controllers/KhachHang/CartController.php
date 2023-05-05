@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\KhachHang;
+
+use App\Http\Controllers\Controller;
 
 use App\Http\Services\CartService;
 use Illuminate\Http\Request;

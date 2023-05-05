@@ -53,17 +53,17 @@ class DanhmucController extends Controller
         return redirect('/admin/danhmucs/list');
     }
 
-    // public function destroy(Request $request)
-    // {
-    //     $result = $this->danhmucService->destroy($request);
-    //     if ($result) {
-    //         return response()->json([
-    //             'error' => false,
-    //             'masager' => 'Xóa thành công'
-    //         ]);
-    //     }
-    //     return response()->json([
-    //         'error' => true,
-    //     ]);
-    // }
+    public function destroy(Request $request)
+    {
+        $result = $this->danhmucService->destroy($request);
+        if ($result) {
+            return response()->json([
+                'error' => false,
+                'masager' => 'Xóa thành công'
+            ]);
+        }
+        return response()->json([
+            'error' => true,
+        ]);
+    }
 }

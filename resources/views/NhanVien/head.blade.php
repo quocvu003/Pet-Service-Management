@@ -49,3 +49,4 @@
 @yield('head')
 
 <link rel="stylesheet" href="/template/admin/plugins/fontawesome-free/css/all.min.css">
+<meta name="csrf-token" content="{{ csrf_token() }}">

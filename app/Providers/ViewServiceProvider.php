@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Http\View\Composers\NhanVienComposer;
 use App\Http\View\Composers\SideBarComposer;
 use App\Http\View\Composers\ShopComposer;
+use App\Http\View\Composers\UserComposer;
+
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,5 +34,6 @@ class ViewServiceProvider extends ServiceProvider
         View::composer('ChuShop/nav', ShopComposer::class);
         View::composer('NhanVien/sidebar', NhanVienComposer::class);
         View::composer('NhanVien/nav', NhanVienComposer::class);
+        View::composer('user/nav', UserComposer::class);
     }
 }

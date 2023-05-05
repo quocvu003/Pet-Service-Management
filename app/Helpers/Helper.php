@@ -10,12 +10,12 @@ class Helper
     public static function danhmuc($danhmucs, $danhmuccha = 0, $char = '')
     {
         $html = '';
-
+        $stt = 1;
         foreach ($danhmucs as $key => $danhmuc) {
             if ($danhmuc->danhmuccha == $danhmuccha) {
                 $html .= '
                     <tr>
-                        <td>' . $danhmuc->id . '</td>
+                        <td>' . $stt++ . '</td>
                         <td>' . $char . $danhmuc->ten . '</td>
                         <td>' . self::trangthai($danhmuc->trangthai) . '</td>
                        

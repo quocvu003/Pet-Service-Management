@@ -69,7 +69,7 @@
                     </a>
 
                 </div>
-                <input type='hidden' name="hinhanh" id="hinhanh01">
+                <input type='hidden' name="hinhanh" value="{{ $shops->hinhanh }}" id="hinhanh01">
 
 
                 <div class="form-group">

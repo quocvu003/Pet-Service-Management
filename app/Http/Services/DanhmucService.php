@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Session;
 
 class DanhMucService
 {
+    public function getdichvu()
+    {
+        return DanhMuc::where('danhmuccha', '<>', 0)->get();
+    }
     // menu ít, k cần phân trang
     public function getParent()
     {
@@ -17,7 +21,7 @@ class DanhMucService
     // menu nhiều, cần phân trang
     public function getAll()
     {
-        return DanhMuc::orderByDesc('id')->paginate(20);
+        return DanhMuc::orderBy('id')->paginate(20);
     }
 
     public function show()
@@ -59,16 +63,16 @@ class DanhMucService
         return true;
     }
 
-    // public function destroy($request)
-    // {
-    //     $id = (int) $request->input('id');
-    //     $DanhMuc = DanhMuc::where('id', $id)->first();
+    public function destroy($request)
+    {
+        $id = (int) $request->input('id');
+        $DanhMuc = DanhMuc::where('id', $id)->first();
 
-    //     if ($DanhMuc) {
-    //         return DanhMuc::where('id', $DanhMuc->id)->orWhere('danhmuccha', $id)->delete();
-    //     }
-    //     return false;
-    // }
+        if ($DanhMuc) {
+            return DanhMuc::where('id', $DanhMuc->id)->orWhere('danhmuccha', $id)->delete();
+        }
+        return false;
+    }
 
     // public function getId($id)
     // {

@@ -64,7 +64,7 @@ class MainCSController extends Controller
         $result = $this->ChuShopService->updateshop($request, $user, $shop);
 
         if ($result) {
-            return redirect()->back();
+            return redirect('/ChuShop/profiles/index');
         }
     }
 }

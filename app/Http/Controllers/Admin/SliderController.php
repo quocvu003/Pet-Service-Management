@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Slider;
 use Illuminate\Http\Request;
-use App\Http\Services\Slider\SliderService;
+use App\Http\Services\SliderService;
 
 class SliderController extends Controller
 {
@@ -19,18 +19,12 @@ class SliderController extends Controller
     public function create()
     {
         return view('admin.slider.add', [
-           'title' => 'Thêm SLider mới'
+            'title' => 'Thêm SLider mới'
         ]);
     }
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'thumb' => 'required',
-            'url'   => 'required'
-        ]);
-
         $this->slider->insert($request);
 
         return redirect()->back();
@@ -54,11 +48,7 @@ class SliderController extends Controller
 
     public function update(Request $request, Slider $slider)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'thumb' => 'required',
-            'url'   => 'required'
-        ]);
+
 
         $result = $this->slider->update($request, $slider);
         if ($result) {
@@ -78,6 +68,6 @@ class SliderController extends Controller
             ]);
         }
 
-        return response()->json([ 'error' => true ]);
+        return response()->json(['error' => true]);
     }
 }

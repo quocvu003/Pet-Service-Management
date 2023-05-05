@@ -7,12 +7,13 @@ use App\Http\Controllers\Admin\AccController;
 use App\Http\Controllers\Admin\DanhmucController;
 use App\Http\Controllers\Admin\FeeController;
 use App\Http\Controllers\Admin\MainController;
-use App\Http\Controllers\Admin\MenuController;
+
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\ChuShop\MainCSController;
-use App\Http\Controllers\MainUserController;
+use App\Http\Controllers\KhachHang\MainUserController;
 use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\ChuShop\DichvuController;
 use App\Http\Controllers\NhanVien\MainNVController;
 use App\Http\Controllers\ChuShop\NhanvienController;
 
@@ -104,26 +105,32 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/edit', [MainCSController::class, 'show']);
             Route::post('/edit', [MainCSController::class, 'updateshop']);
         });
-        // #Upload
-        // Route::post('upload/services', [UploadController::class, 'store']);
-        #Account
+
         Route::prefix('nhanviens')->group(function () {
             Route::get('list', [NhanvienController::class, 'index']);
             Route::post('list', [NhanvienController::class, 'store']);
         });
+        Route::prefix('dichvus')->group(function () {
+            Route::get('list', [DichvuController::class, 'index']);
+            Route::post('list', [DichvuController::class, 'store']);
+        });
     });
+});
+Route::middleware(['auth'])->group(function () {
     Route::prefix('NhanVien')->group(function () {
         Route::get('/', [MainNVController::class, 'index'])->name('NhanVien');
         Route::prefix('profiles')->group(function () {
             Route::get('/index', [NhanvienController::class, 'profile']);
             Route::get('/edit', [NhanVienController::class, 'show']);
-            Route::post('/edit', [NhanVienController::class, 'updateshop']);
+            Route::post('/edit', [NhanVienController::class, 'update']);
         });
     });
 });
 
+Route::get('/', [MainUserController::class, 'index']);
+
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', [MainUserController::class, 'index']);
+
     // // load more product
     // Route::post('/services/load-product', [MainUserController::class, 'loadProduct']);
     // // click danh muc

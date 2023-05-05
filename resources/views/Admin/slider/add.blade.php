@@ -7,7 +7,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="menu">Tiêu Đề</label>
-                        <input type="text" name="name" value="{{ old('name') }}" class="form-control">
+                        <input type="text" name="ten" value="{{ old('ten') }}" class="form-control">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -20,20 +20,20 @@
 
             <div class="form-group">
                 <label for="menu">Ảnh Sản Phẩm</label>
-                <input type="file" class="form-control" id="upload">
-                <div id="image_show">
+                <input type="file" class="form-control" id="hinhanh">
+                <div id="hinhanh_show">
 
                 </div>
-                <input type="hidden" name="thumb" id="thumb">
+                <input type="hidden" name="hinhanh" id="hinhanh01">
             </div>
 
 
             <div class="form-group">
                 <label for="menu">Sắp Xếp</label>
-                <input type="number" name="sort_by" value="1" class="form-control">
+                <input type="number" name="sapxep" value="1" class="form-control">
             </div>
 
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label>Kích Hoạt</label>
                 <div class="custom-control custom-radio">
                     <input class="custom-control-input" value="1" type="radio" id="trangthai" name="trangthai"
@@ -44,7 +44,7 @@
                     <input class="custom-control-input" value="0" type="radio" id="no_trangthai" name="trangthai">
                     <label for="no_trangthai" class="custom-control-label">Không</label>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
 

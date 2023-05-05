@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Services\Slider;
+namespace App\Http\Services;
 
 
 use App\Models\Slider;
@@ -14,8 +14,15 @@ class SliderService
     public function insert($request)
     {
         try {
-            #$request->except('_token');
-            Slider::create($request->input());
+
+            Slider::create([
+                'ten' => (string) $request->input('ten'),
+                'url' => $request->input('url'),
+                'hinhanh' => $request->input('hinhanh'),
+                'sapxep' => $request->input('sapxep'),
+                'trangthai' => 1,
+
+            ]);
             Session::flash('success', 'Thêm Slider mới thành công');
         } catch (\Exception $err) {
             Session::flash('error', 'Thêm Slider LỖI');
@@ -52,7 +59,7 @@ class SliderService
     {
         $slider = Slider::where('id', $request->input('id'))->first();
         if ($slider) {
-            $path = str_replace('storage', 'public', $slider->thumb);
+            $path = str_replace('storage', 'public', $slider->hinhanh);
             Storage::delete($path);
             $slider->delete();
             return true;
@@ -63,6 +70,6 @@ class SliderService
 
     public function show()
     {
-        return Slider::where('active', 1)->orderByDesc('sort_by')->get();
+        return Slider::where('trangthai', 1)->orderByDesc('sapxep')->get();
     }
 }

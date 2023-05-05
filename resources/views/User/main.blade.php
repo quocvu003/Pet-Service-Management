@@ -8,7 +8,7 @@
 <body> /
 
     <!-- Header -->
-    @include('user.header')
+    @include('user.nav')
 
     <!-- Cart -->
     @include('user.cart')

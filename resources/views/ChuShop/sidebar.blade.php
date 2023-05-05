@@ -25,15 +25,15 @@
                 </a>
             </li>
             <li class="nav-item  trangthai ">
-                <a href="/template/chuShop/pages/dashboard/dashboard.html" class="nav-link">
-                    <span class="sidebar-icon">
-                        <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-                        </svg>
-                    </span>
-                    <span class="sidebar-text">Trang Chủ</span>
+
+                <span class="sidebar-icon">
+                    <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                        <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                    </svg>
+                </span>
+                <span class="sidebar-text">Trang Chủ</span>
                 </a>
             </li>
 
@@ -64,16 +64,10 @@
                     </span>
                 </span>
                 <div class="multi-level collapse " role="list" id="submenu-app" aria-expanded="false">
+
                     <ul class="flex-column nav">
                         <li class="nav-item ">
-                            <a class="nav-link" href="/template/chuShop/pages/tables/bootstrap-tables.html">
-                                <span class="sidebar-text">Thêm Dịch Vụ</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="flex-column nav">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/template/chuShop/pages/tables/bootstrap-tables.html">
+                            <a class="nav-link" href="/ChuShop/dichvus/list">
                                 <span class="sidebar-text">Danh Sách Dịch Vụ </span>
 
                             </a>

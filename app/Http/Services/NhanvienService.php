@@ -52,4 +52,18 @@ class NhanvienService
         }
         return true;
     }
+    public function update($request, $acc)
+    {
+
+        $acc->ten = $request->ten;
+        $acc->email = $request->email;
+        $acc->sdt = $request->sdt;
+        $acc->hinhanh = $request->hinhanh;
+        $acc->diachi = $request->diachi;
+        $acc->save();
+
+
+        Session::flash('success', 'Cập nhật tài khoản thành công');
+        return true;
+    }
 }

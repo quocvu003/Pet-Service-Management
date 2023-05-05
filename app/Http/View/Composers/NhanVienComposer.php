@@ -30,5 +30,6 @@ class NhanVienComposer
 
         $view->with('ten', $currentuser1->ten);
         $view->with('avatar', $currentuser1->hinhanh);
+        $view->with('danhmucs', []);
     }
 }

@@ -7,8 +7,7 @@
                     <div class="profile-cover rounded-top" style="background-color: rgb(170, 173, 132)">
                     </div>
                     <div class="card-body pb-5">
-                        <img src="{{ $user->hinhanh }}" class="avatar-xl rounded-circle mx-auto mt-n7 mb-4"
-                            alt="Neil Portrait">
+                        <img src="{{ $user->hinhanh }}" class="avatar-xl rounded-circle mx-auto mt-n7 mb-4">
                         <h1>{{ $user->ten }}</h1>
                     </div>
                 </div>
@@ -22,42 +21,40 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <div>
-                        <label for="first_name">Chủ Sở Hữu</label>
+                        <label for="first_name">Họ và Tên</label>
                         <label class="form-control">{{ $user->ten }}</label>
                     </div>
                 </div>
-                <div class="col-md-6 mb-3">
-                    <div>
-                        <label for="last_name">Tên user</label>
-                        <label class="form-control">{{ $user->ten }}</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
                 <div class="col-md-6 mb-3">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <label class="form-control">{{ $user->email }}</label>
                     </div>
                 </div>
-                <div class="col-md-6 mb-3">
-                    <div class="form-group">
-                        <label for="phone">Số điện thoại</label>
-                        <label class="form-control">{{ $user->sdt }}</label>
-                    </div>
-                </div>
             </div>
 
             <div class="row">
-                <div class="col-sm-6 mb-3">
+
+                <div class="col-md-6 mb-3">
                     <div class="form-group">
-                        <label for="address">Địa chỉ user</label>
-                        <label class="form-control">{{ $user->diachi }}</label>
+                        <label for="phone">Số điện thoại</label>
+                        <input class="form-control" value="{{ $user->sdt }}">
                     </div>
                 </div>
-
+                <div class="col-sm-6 mb-3">
+                    <div class="form-group">
+                        <label for="address">Địa chỉ </label>
+                        <input class="form-control" type="text" value="{{ $user->diachi }}">
+                    </div>
+                </div>
             </div>
+
+
+
+
+
+
+
 
             <div class="mt-3" style="display: flex;justify-content: center;">
                 <a href="/NhanVien/profiles/edit">

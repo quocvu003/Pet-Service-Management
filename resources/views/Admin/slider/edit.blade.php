@@ -7,7 +7,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="menu">Tiêu Đề</label>
-                        <input type="text" name="name" value="{{ $slider->name }}" class="form-control">
+                        <input type="text" name="ten" value="{{ $slider->ten }}" class="form-control">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -20,19 +20,19 @@
 
             <div class="form-group">
                 <label for="menu">Ảnh Sản Phẩm</label>
-                <input type="file" class="form-control" id="upload">
-                <div id="image_show">
-                    <a href="{{ $slider->thumb }}">
-                        <img src="{{ $slider->thumb }}" width="100px">
+                <input type="file" class="form-control" id="hinhanh">
+                <div id="hinhanh_show">
+                    <a href="{{ $slider->hinhanh }}">
+                        <img src="{{ $slider->hinhanh }}" width="100px">
                     </a>
                 </div>
-                <input type="hidden" name="thumb" value="{{ $slider->thumb }}" id="thumb">
+                <input type="hidden" name="hinhanh" value="{{ $slider->hinhanh }}" id="hinhanh01">
             </div>
 
 
             <div class="form-group">
                 <label for="menu">Sắp Xếp</label>
-                <input type="number" name="sort_by" value="{{ $slider->sort_by }}" class="form-control">
+                <input type="number" name="sapxep" value="{{ $slider->sapxep }}" class="form-control">
             </div>
 
             <div class="form-group">
