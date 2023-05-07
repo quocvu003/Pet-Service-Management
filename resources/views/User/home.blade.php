@@ -45,7 +45,7 @@
                     <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
                         <!-- Block1 -->
                         <div class="block1 wrap-pic-w">
-                            <img src="/template/images/banner-01.jpg" alt="IMG-BANNER">
+                            <img src="/template/images/hoatdong.jpg" alt="IMG-BANNER">
 
                             <a href="/danh-muc/{{ $menu->id }}-{{ \Str::slug($menu->ten, '-') }}.html"
                                 class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
@@ -78,20 +78,20 @@
         <div class="container">
             <div class="p-b-10">
                 <h3 class="ltext-103 cl5">
-                    Product Overview
+                    Tổng quan
                 </h3>
             </div>
 
             <div class="flex-w flex-sb-m p-b-52">
                 <div class="flex-w flex-l-m filter-tope-group m-tb-10">
                     <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-trangthai1" data-filter="*">
-                        All Products
+                        Tất cả các dịch vụ
                     </button>
                 </div>
             </div>
 
             <div id="loadProduct">
-                @include('user.products.list')
+                @include('user.dichvu.list')
             </div>
 
 

@@ -76,3 +76,4 @@
     </footer>
 </div>
 @yield('footer')
+<script src="/template/admin/js/main.js"></script>

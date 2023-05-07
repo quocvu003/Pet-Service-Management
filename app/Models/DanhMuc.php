@@ -15,4 +15,8 @@ class DanhMuc extends Model
         'danhmuccha',
         'trangthai',
     ];
+    public function dichvus()
+    {
+        return $this->hasMany(DichVu::class, 'danhmuc_id', 'id');
+    }
 }

@@ -15,4 +15,23 @@ class Shop extends Model
         'diachi',
         'hinhanh',
     ];
+
+    protected $with = [
+        'taikhoans'
+    ];
+
+    // public function taikhoans()
+    // {
+    //     return $this->hasMany(User::class);
+    // }
+
+    public function taikhoans()
+    {
+        return $this->hasMany(User::class, 'id', 'shop_id');
+    }
+
+    // public function phithus()
+    // {
+    //     return $this->hasMany(PhiThu::class);
+    // }
 }

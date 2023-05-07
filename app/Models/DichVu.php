@@ -19,4 +19,8 @@ class DichVu extends Model
         'mota',
         'trangthai',
     ];
+    public function danhmucs()
+    {
+        return $this->belongsTo(DanhMuc::class, 'danhmuc_id', 'id');
+    }
 }

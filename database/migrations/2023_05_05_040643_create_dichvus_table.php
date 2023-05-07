@@ -20,7 +20,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('shops')
                 ->onDelete('cascade');
-            $table->integer('danhmuc_id');
+
             $table->string('ten');
             $table->string('gia');
             $table->text('hinhanh');

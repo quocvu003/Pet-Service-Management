@@ -5,8 +5,8 @@
             <tr>
                 <th style="width: 50px">STT</th>
                 <th>Ảnh đại diện</th>
-                <th>Tên shops</th>
-
+                <th>Tên shop</th>
+                {{-- <th>Chủ sở hữu</th> --}}
                 <th>Tiền</th>
                 <th>Ngày Thêm</th>
                 {{-- <th style="width: 100px">&nbsp;</th> --}}
@@ -25,7 +25,7 @@
                         </a>
                     </td>
                     <td>{{ $phithu->shops->ten }}</td>
-
+                    {{-- <td>{{ $phithu->shops->taikhoans->ten }}</td> --}}
                     <td>{{ $phithu->tien }}</td>
                     <td>{{ \Carbon\Carbon::parse($phithu->created_at)->isoFormat('DD/MM/YYYY') }}</td>
 

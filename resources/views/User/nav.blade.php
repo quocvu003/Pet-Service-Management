@@ -10,7 +10,7 @@
 
                 <!-- Logo desktop -->
                 <a href="/" class="logo">
-                    <img src="/template/images/icons/logo-01.png" alt="IMG-LOGO">
+                    <img src="/template/petcare.png" alt="IMG-LOGO" width="70px">
                 </a>
 
                 <!-- Menu desktop -->
@@ -50,7 +50,7 @@
     <div class="wrap-header-mobile">
         <!-- Logo moblie -->
         <div class="logo-mobile">
-            <a href="index.html"><img src="/template/images/icons/logo-01.png" alt="IMG-LOGO"></a>
+            <a href="index.html"><img src="/template/petcare.png" alt="IMG-LOGO"></a>
         </div>
 
         <!-- Icon header -->
@@ -79,7 +79,7 @@
     <!-- Menu Mobile -->
     <div class="menu-mobile">
         <ul class="main-menu-m">
-            <li class="trangthai-menu"><a href="/">Trang Chủ</a> </li>
+            <li class="active-menu"><a href="/">Trang Chủ</a> </li>
 
             {!! $menusHtml !!}
 

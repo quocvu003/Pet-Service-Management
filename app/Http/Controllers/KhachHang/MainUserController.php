@@ -4,10 +4,11 @@ namespace App\Http\Controllers\KhachHang;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\DanhMucService;
+use App\Http\Services\DichvuService;
 use Illuminate\Http\Request;
 use App\Http\Services\SliderService;
 
-use App\Http\Services\Product\ProductService;
+
 
 
 
@@ -15,13 +16,13 @@ class MainUserController extends Controller
 {
     protected $slider;
     protected $menu;
-    protected $product;
+    protected $dichvu;
 
-    public function __construct(DanhMucService $menu, SliderService $slider)
+    public function __construct(DanhMucService $menu, SliderService $slider, DichvuService $dichvu)
     {
         $this->slider = $slider;
         $this->menu = $menu;
-        // $this->product = $product;
+        $this->dichvu = $dichvu;
     }
 
     public function index()
@@ -29,22 +30,20 @@ class MainUserController extends Controller
         return view('user.home', [
             'title' => 'PetCare Shop ',
             'sliders' => $this->slider->show(),
-            'menus' => $this->menu->show(),
-            // 'products' => $this->product->get()
+            'menus' => $this->menu->getdichvu(),
+            'banner' => $this->menu->getbanner(),
+            'dichvus' => $this->dichvu->get()
         ]);
     }
+    public function showdanhmuc(Request $request, $id, $slug = '')
+    {
+        $danhmuc = $this->menu->getId($id);
 
-    // public function loadProduct(Request $request)
-    // {
-
-    //         $page = $request->input('page', 0);
-    //         $result = $this->product->get($page);
-    //         if (count($result) != 0) {
-    //             $html = view('user.products.list', ['product' => $result])->render();
-
-    //             return response()->json(['html' => $html]);
-    //         }
-
-    //         return response()->json(['html' => '']);
-    // }
+        $dichvus = $this->dichvu->dvshop($danhmuc, $request);
+        return view('user.service', [
+            'title' => $danhmuc->ten,
+            'dichvus' => $dichvus,
+            'menus'  => $danhmuc,
+        ]);
+    }
 }

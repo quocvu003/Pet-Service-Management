@@ -16,6 +16,7 @@ use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\ChuShop\DichvuController;
 use App\Http\Controllers\NhanVien\MainNVController;
 use App\Http\Controllers\ChuShop\NhanvienController;
+use App\Http\Controllers\KhachHang\MenuUserController;
 
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login_action', [AuthController::class, 'login_action']);
@@ -113,6 +114,8 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('dichvus')->group(function () {
             Route::get('list', [DichvuController::class, 'index']);
             Route::post('list', [DichvuController::class, 'store']);
+            Route::get('edit/{dichvu}', [DichvuController::class, 'show']);
+            Route::post('edit/{dichvu}', [DichvuController::class, 'update']);
         });
     });
 });
@@ -131,12 +134,10 @@ Route::get('/', [MainUserController::class, 'index']);
 
 Route::middleware(['auth'])->group(function () {
 
-    // // load more product
-    // Route::post('/services/load-product', [MainUserController::class, 'loadProduct']);
-    // // click danh muc
-    // Route::get('/danh-muc/{id}-{slug}.html', [MenuUserController::class, 'index']);
-    // // chi tiet san pham
-    // Route::get('/san-pham/{id}-{slug}.html', [ProductUserController::class, 'index']);
+    // click danh muc
+    Route::get('/danh-muc/{id}-{slug}.html', [MainUserController::class, 'showdanhmuc']);
+    // chi tiet dịch vụ
+    Route::get('/dich-vu/{id}-{slug}.html', [MainUserController::class, 'showdichvu']);
     // // them san pham vo gio hang
     // Route::post('add-cart', [App\Http\Controllers\CartController::class, 'index']);
     // Route::get('carts', [App\Http\Controllers\CartController::class, 'show']);

@@ -97,9 +97,9 @@
                 </div>
             </div>
 
-            @include('user.products.list')
+            @include('user.dichvu.list')
 
-            {!! $products->links() !!}
+
         </div>
     </div>
 @endsection

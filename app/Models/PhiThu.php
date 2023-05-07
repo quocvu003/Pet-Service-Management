@@ -13,6 +13,9 @@ class phithu extends Model
         'shop_id',
         'tien',
     ];
+    protected $with = [
+        'shops'
+    ];
 
     public function shops()
     {

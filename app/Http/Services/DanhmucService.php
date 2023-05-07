@@ -3,34 +3,46 @@
 namespace App\Http\Services;
 
 use App\Models\DanhMuc;
-
-
+use App\Models\DichVu;
 use Illuminate\Support\Facades\Session;
 
 class DanhMucService
 {
     public function getdichvu()
     {
-        return DanhMuc::where('danhmuccha', '<>', 0)->get();
+        return DanhMuc::where('danhmuccha', '<>', 0)
+            ->where('trangthai', 1)
+            ->get();
+    }
+    public function getbanner()
+    {
+        return DichVu::where('trangthai', 1)
+            ->get();
     }
     // menu ít, k cần phân trang
     public function getParent()
     {
-        return DanhMuc::where('danhmuccha', 0)->get();
+        return DanhMuc::where('danhmuccha', 0)
+            ->where('trangthai', 1)
+            ->get();
     }
     // menu nhiều, cần phân trang
     public function getAll()
     {
-        return DanhMuc::orderBy('id')->paginate(20);
+        return DanhMuc::orderBy('id')
+            ->where('trangthai', 1)
+            ->get();
     }
 
     public function show()
     {
         return DanhMuc::select('ten', 'id')
             ->where('danhmuccha', 0)
+            ->where('trangthai', 1)
             ->orderbyDesc('id')
             ->get();
     }
+
 
     public function create($request)
     {
@@ -74,18 +86,12 @@ class DanhMucService
         return false;
     }
 
-    // public function getId($id)
-    // {
-    //     return DanhMuc::where('id', $id)->where('trangthai', 1)->firstOrFail();
-    // }
 
-    // public function getProduct($DanhMuc)
-    // {
 
-    //     return $DanhMuc->products()
-    //         ->select('id', 'name', 'price', 'price_sale', 'thumb')
-    //         ->where('trangthai', 1)
-    //         ->orderBy('id')
-    //         ->paginate(12);
-    // }
+
+    // admin
+    public function getId($id)
+    {
+        return DanhMuc::where('id', $id)->where('trangthai', 1)->firstOrFail();
+    }
 }

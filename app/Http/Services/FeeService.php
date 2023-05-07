@@ -13,6 +13,7 @@ class FeeService
     {
         return Shop::select('id', 'ten')
             ->where('id', '<>', 0)
+
             ->orderByDesc('id')
             ->get();
     }
@@ -29,6 +30,7 @@ class FeeService
     }
     public function getphithu()
     {
-        return  Phithu::with('shops')->get();
+
+        return PhiThu::get();
     }
 }

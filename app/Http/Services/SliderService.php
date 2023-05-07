@@ -70,6 +70,6 @@ class SliderService
 
     public function show()
     {
-        return Slider::where('trangthai', 1)->orderByDesc('sapxep')->get();
+        return Slider::where('trangthai', 1)->orderBy('sapxep')->get();
     }
 }
