@@ -17,18 +17,30 @@
             <div class="form-group">
                 <label>Danh Mục</label>
                 <select class="form-control" name="danhmuccha">
-
-                    <option value="0" {{ $danhmuc->danhmuccha == 0 ? 'selected' : '' }}> Danh Mục Cha </option>
-                    @foreach ($danhmucs as $menuParent)
-                        <option value="{{ $menuParent->id }}" {{ $danhmuc->danhmuccha == $danhmuc->id ? 'selected' : '' }}>
-                            {{ $menuParent->ten }}
-                        </option>
+                    <option value='0' {{ $danhmuc->danhmuccha == 0 ? 'selected' : '' }}>
+                        Danh muc cha </option>
+                    @foreach ($danhmucs as $danhmucParent)
+                        @if ($danhmucParent->danhmucha == 0)
+                            <option value={{ $danhmucParent->id }}
+                                {{ $danhmuc->danhmuccha == $danhmucParent->id ? 'selected' : '' }}>
+                                {{ $danhmucParent->ten }} </option>
+                            {{-- @else
+                            <option value="{{ $danhmucParent->id }}"
+                                {{ $danhmucParent->id == $danhmuc->id ? 'selected' : '' }}>
+                                {{ $danhmucParent->ten }}
+                            </option> --}}
+                        @endif
                     @endforeach
+
                 </select>
+
             </div>
 
 
-
+            <div class="form-group">
+                <label>Mô Tả Chi Tiết</label>
+                <textarea name="content" id="content" class="form-control">{{ $danhmuc->mota }}</textarea>
+            </div>
 
             <div class="form-group">
                 <label>Kích Hoạt</label>

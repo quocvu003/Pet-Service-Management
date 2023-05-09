@@ -33,7 +33,7 @@
 
                         <i class="nav-icon fas fa-list-alt"></i>
                         <p>
-                            Danh mục
+                            Danh Mục Dịch Vụ
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -41,13 +41,13 @@
                         <li class="nav-item">
                             <a href="/admin/danhmucs/add" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Thêm danh mục</p>
+                                <p>Thêm dịch vụ</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="/admin/danhmucs/list" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách danh mục</p>
+                                <p>Danh sách dịch vụ</p>
                             </a>
                         </li>
 

@@ -19,18 +19,25 @@ class DanhMucService
         return DichVu::where('trangthai', 1)
             ->get();
     }
-    // menu ít, k cần phân trang
+
     public function getParent()
     {
         return DanhMuc::where('danhmuccha', 0)
             ->where('trangthai', 1)
             ->get();
     }
-    // menu nhiều, cần phân trang
+    public function getdanhmuccon()
+    {
+        return DanhMuc::where('danhmuccha', '<>', 0)
+            ->where('trangthai', 1)
+            ->get();
+    }
+
     public function getAll()
     {
         return DanhMuc::orderBy('id')
             ->where('trangthai', 1)
+            ->orderByDesc('danhmuccha')
             ->get();
     }
 
@@ -48,8 +55,9 @@ class DanhMucService
     {
         try {
             DanhMuc::create([
-                'ten' => (string) $request->input('name'),
-                'danhmuccha' => (int) $request->input('danhmuccha'),
+                'ten' =>  $request->input('name'),
+
+                'mota' =>  $request->input('content'),
                 'trangthai' => 1,
 
             ]);
@@ -68,6 +76,7 @@ class DanhMucService
             $danhmuc->danhmuccha = (string) $request->input('danhmuccha');
         }
         $danhmuc->ten = (string) $request->input('name');
+        $danhmuc->mota =  $request->input('content');
         $danhmuc->trangthai = (string) $request->input('trangthai');
         $danhmuc->save();
 

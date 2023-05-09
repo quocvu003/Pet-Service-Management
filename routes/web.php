@@ -131,13 +131,13 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/', [MainUserController::class, 'index']);
-
+Route::get('/danh-muc/{id}-{slug}.html', [MainUserController::class, 'showdanhmuc']);
+// chi tiet dịch vụ
+Route::get('/dich-vu/{id}-{slug}.html', [MainUserController::class, 'showdichvu']);
 Route::middleware(['auth'])->group(function () {
 
     // click danh muc
-    Route::get('/danh-muc/{id}-{slug}.html', [MainUserController::class, 'showdanhmuc']);
-    // chi tiet dịch vụ
-    Route::get('/dich-vu/{id}-{slug}.html', [MainUserController::class, 'showdichvu']);
+
     // // them san pham vo gio hang
     // Route::post('add-cart', [App\Http\Controllers\CartController::class, 'index']);
     // Route::get('carts', [App\Http\Controllers\CartController::class, 'show']);

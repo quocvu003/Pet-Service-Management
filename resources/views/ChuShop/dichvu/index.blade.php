@@ -131,8 +131,7 @@
                                                                     <i class="fas fa-user"></i>
                                                                 </span>
                                                                 <input type="text" class="form-control" value=""
-                                                                    placeholder="Nhập tên " id="name" name="ten"
-                                                                    autofocus>
+                                                                    id="name" name="ten" autofocus>
                                                             </div>
                                                         </div>
                                                         <div class="form-group mb-4">
@@ -214,7 +213,7 @@
                                         <th>Danh Mục</th>
                                         <th>Giá</th>
                                         <th>Hình Ảnh</th>
-                                        <th>Mô Tả</th>
+
                                         <th>Trạng Thái</th>
                                         <th>Ngày Tạo</th>
 
@@ -237,7 +236,7 @@
                                                     <img src="{{ $dichvu->hinhanh }}" height="40px">
                                                 </a>
                                             </td>
-                                            <td>{{ $dichvu->mota }}</td>
+
 
                                             <td>{!! \App\Helpers\Helper::trangthai($dichvu->trangthai) !!}</td>
                                             <td>{{ \Carbon\Carbon::parse($dichvu->created_at)->isoFormat('DD/MM/YYYY') }}

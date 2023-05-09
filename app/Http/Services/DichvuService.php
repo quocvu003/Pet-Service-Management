@@ -69,11 +69,24 @@ class DichvuService
     }
     public function dvshop($danhmuc)
     {
-
         return $danhmuc->dichvus()
-
             ->where('trangthai', 1)
             ->orderBy('id')
+            ->get();
+    }
+    public function show($id)
+    {
+        return DichVu::where('id', $id)
+            ->where('trangthai', 1)
+            ->with('danhmucs')
+            ->firstOrFail();
+    }
+    public function more($id)
+    {
+        return DichVu::where('trangthai', 1)
+            ->where('id', '!=', $id)
+            ->orderByDesc('id')
+            ->limit(4)
             ->get();
     }
 }

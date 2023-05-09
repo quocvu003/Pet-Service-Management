@@ -43,7 +43,17 @@ class MainUserController extends Controller
         return view('user.service', [
             'title' => $danhmuc->ten,
             'dichvus' => $dichvus,
-            'menus'  => $danhmuc,
+        ]);
+    }
+    public function showdichvu(Request $request, $id, $slug = '')
+    {
+        $dichvu = $this->dichvu->show($id);
+        $more = $this->dichvu->more($id);
+
+        return view('user.DichVu.detail', [
+            'title' => $dichvu->ten,
+            'dichvu' => $dichvu,
+            'dichvus'  => $more,
         ]);
     }
 }

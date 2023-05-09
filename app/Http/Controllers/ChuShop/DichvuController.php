@@ -39,7 +39,7 @@ class DichvuController extends Controller
             'title' => 'Quản lý dịch vụ thú cưng',
             'dichvus' => $this->dicvuService->getdichvu(),
             'menus' => $this->dicvuService->getdanhmuc(),
-            'dv' => $dv,
+
         ]);
     }
 }

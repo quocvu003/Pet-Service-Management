@@ -9,30 +9,18 @@
         <div class="card-body">
 
             <div class="form-group">
-                <label for="">Tên danh mục</label>
+                <label for="">Tên dịch vụ</label>
                 <input type="text" name="name" class="form-control" placeholder="Nhập tên danh mục">
             </div>
 
-
             <div class="form-group">
-                <label>Danh mục</label>
-                <select class="form-control" name="danhmuccha">
-                    <option value="0">Danh mục cha</option>
-
-                    <!-- Thêm danh mục con theo danh mục cha -->
-                    @foreach ($danhmucs as $danhmuc)
-                        <option value="{{ $danhmuc->id }}">{{ $danhmuc->ten }}</option>
-                    @endforeach
-
-                </select>
+                <label>Mô tả chi tiết</label>
+                <textarea name="content" id="content "class="form-control"></textarea>
             </div>
 
 
-
-
-
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Tạo danh mục</button>
+                <button type="submit" class="btn btn-primary">Tạo dịch vụ</button>
             </div>
             @csrf
     </form>

@@ -15,8 +15,11 @@ class Helper
             if ($danhmuc->danhmuccha == $danhmuccha) {
                 $html .= '
                     <tr>
-                        <td>' . $stt++ . '</td>
+                        <td>' . ++$key . '</td>
                         <td>' . $char . $danhmuc->ten . '</td>
+                        <td> Danh Mục Cha</td>
+
+                      
                         <td>' . self::trangthai($danhmuc->trangthai) . '</td>
                        
                         <td>' . \Carbon\Carbon::parse($danhmuc->created_at)->isoFormat('DD/MM/YYYY') . '</td>
@@ -32,9 +35,31 @@ class Helper
                     </tr>
                 ';
 
-                unset($danhmucs[$key]);
+                // unset($danhmucs[$key]);
 
-                $html .= self::danhmuc($danhmucs, $danhmuc->id, $char . '|--');
+                // $html .= self::danhmuc($danhmucs, $danhmuc->id, $char . 'Dịch vụ : ');
+            } else {
+                $html .= '
+                <tr>
+                    <td>' . ++$key . '</td>
+                    <td>' . $char . $danhmuc->ten . '</td>
+                    <td> Danh Mục Con</td>
+
+                  
+                    <td>' . self::trangthai($danhmuc->trangthai) . '</td>
+                   
+                    <td>' . \Carbon\Carbon::parse($danhmuc->created_at)->isoFormat('DD/MM/YYYY') . '</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="/admin/danhmucs/edit/' . $danhmuc->id . '">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger btn-sm"
+                            onclick="removeRow(' . $danhmuc->id . ', \'/admin/danhmucs/destroy\')">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            ';
             }
         }
 
@@ -61,7 +86,7 @@ class Helper
 
                 unset($danhmucs[$key]);
 
-                if (self::isChild($danhmucs, $danhmuc->id)) {
+                if (self::idcon($danhmucs, $danhmuc->id)) {
                     $html .= '<ul class="sub-menu">';
                     $html .= self::danhmucs($danhmucs, $danhmuc->id);
                     $html .= '</ul>';
@@ -74,7 +99,7 @@ class Helper
         return $html;
     }
 
-    public static function isChild($danhmucs, $id): bool
+    public static function idcon($danhmucs, $id): bool
     {
         foreach ($danhmucs as $danhmuc) {
             if ($danhmuc->danhmuccha == $id) {
