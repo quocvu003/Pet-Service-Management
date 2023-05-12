@@ -1,8 +1,6 @@
 @extends('admin.main')
 
-@section('head')
-    <script src="/ckeditor/ckeditor.js"></script>
-@endsection
+
 
 @section('content')
     <form action="" method="POST">
@@ -14,6 +12,10 @@
             </div>
 
             <div class="form-group">
+                <label>Tiêu đề</label>
+                <textarea name="tieude" id="content "class="form-control"></textarea>
+            </div>
+            <div class="form-group">
                 <label>Mô tả chi tiết</label>
                 <textarea name="content" id="content "class="form-control"></textarea>
             </div>
@@ -24,9 +26,4 @@
             </div>
             @csrf
     </form>
-@endsection
-@section('footer')
-    <script>
-        CKEDITOR.replace('content')
-    </script>
 @endsection

@@ -72,19 +72,10 @@ class AccService
     }
     public function update($request, $acc)
     {
-        // // mật khẩu cũ lấy từ db
-        // $oldPasswordHash = $acc->matkhau;
 
-        // // mật khẩu mới nhập từ input
-        // $newPassword = $request->password;
-
-        // if (Hash::check($newPassword, $oldPasswordHash)) {
-        //     $acc->matkhau = $oldPasswordHash;
-        // } else {
-        //     $acc->matkhau = bcrypt($request->password);
-        // }
         $acc->fill($request->input());
         $acc->save();
+
 
         Session::flash('success', 'Cập nhật tài khoản thành công');
         return true;
@@ -103,6 +94,7 @@ class AccService
         $shop->sdt = $request->sdt;
         $shop->diachi = $request->diachi;
         $shop->hinhanh = $request->hinhanh;
+        $shop->trangthai = $request->trangthai;
         $shop->save();
         Session::flash('success', 'Cập nhật tài khoản thành công');
         return true;

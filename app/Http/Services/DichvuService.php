@@ -24,8 +24,7 @@ class DichvuService
     }
     public function getdanhmuc()
     {
-        return DanhMuc::where('danhmuccha', '<>', 0)
-            ->where('trangthai', 1)
+        return DanhMuc::where('trangthai', 1)
             ->get();
     }
     public function create($request)

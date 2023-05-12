@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('danhmucs', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string(column: 'ten', length: 255);
-
-            $table->integer(column: 'trangthai');
+        Schema::table('danhmucs', function (Blueprint $table) {
+            $table->text('tieude');
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('danhmucs');
+        //
     }
 };

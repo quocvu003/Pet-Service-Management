@@ -16,7 +16,9 @@ use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\ChuShop\DichvuController;
 use App\Http\Controllers\NhanVien\MainNVController;
 use App\Http\Controllers\ChuShop\NhanvienController;
-use App\Http\Controllers\KhachHang\MenuUserController;
+use App\Http\Controllers\KhachHang\DichVuDatController;
+use App\Http\Controllers\KhachHang\DichVuUserController;
+
 
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login_action', [AuthController::class, 'login_action']);
@@ -131,18 +133,10 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/', [MainUserController::class, 'index']);
-Route::get('/danh-muc/{id}-{slug}.html', [MainUserController::class, 'showdanhmuc']);
-// chi tiet dịch vụ
-Route::get('/dich-vu/{id}-{slug}.html', [MainUserController::class, 'showdichvu']);
+Route::get('/dichvu/{danhmuc}', [DichVuUserController::class, 'index']);
+Route::get('/shop', [MainUserController::class, 'show']);
+
 Route::middleware(['auth'])->group(function () {
-
-    // click danh muc
-
-    // // them san pham vo gio hang
-    // Route::post('add-cart', [App\Http\Controllers\CartController::class, 'index']);
-    // Route::get('carts', [App\Http\Controllers\CartController::class, 'show']);
-    // Route::post('update-cart', [App\Http\Controllers\CartController::class, 'update']);
-    // Route::get('carts/delete/{id}', [App\Http\Controllers\CartController::class, 'remove']);
-    // // dat hang
-    // Route::post('carts', [App\Http\Controllers\CartController::class, 'addCart']);
+    Route::get('/datlich/{shop}-{dichvu}', [DichVuUserController::class, 'create']);
+    Route::post('/datlich/{shop}-{dichvu}', [DichVuDatController::class, 'store']);
 });

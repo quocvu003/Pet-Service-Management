@@ -12,12 +12,16 @@ class DanhMuc extends Model
 
     protected $fillable = [
         'ten',
-        'danhmuccha',
+        'tieude',
         'trangthai',
         'mota',
     ];
     public function dichvus()
     {
         return $this->hasMany(DichVu::class, 'danhmuc_id', 'id');
+    }
+    public function shops()
+    {
+        return $this->belongsTo(Shop::class, 'shop_id', 'id');
     }
 }

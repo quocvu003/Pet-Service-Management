@@ -33,17 +33,15 @@ class DanhmucController extends Controller
         return view('admin.menu.list', [
             'title' => 'Danh sách Danh Mục Cha',
             'danhmucs' => $this->danhmucService->getAll(),
-            'danhmuccons' => $this->danhmucService->getdanhmuccon()
         ]);
     }
 
     public function show(DanhMuc $danhmuc)
     {
-        // dd($this->danhmucService->getParent());
         return view('admin.menu.edit', [
             'title' => 'Chỉnh sửa danh mục:' . $danhmuc->ten,
             'danhmuc' => $danhmuc,
-            'danhmucs' => $this->danhmucService->getParent()
+
         ]);;
     }
 
@@ -64,6 +62,7 @@ class DanhmucController extends Controller
         }
         return response()->json([
             'error' => true,
+
         ]);
     }
 }

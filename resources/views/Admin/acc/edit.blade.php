@@ -72,7 +72,7 @@
                 <div class="custom-control custom-radio">
                     <input class="custom-control-input" value="0" type="radio" id="no_trangthai" name="trangthai"
                         {{ $acc->trangthai == 0 ? ' checked=""' : '' }}>
-                    <label for="no_trangthai" class="custom-control-label">khóa</label>
+                    <label for="no_trangthai" class="custom-control-label">Khóa</label>
                 </div>
             </div>
 

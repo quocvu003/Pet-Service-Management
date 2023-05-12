@@ -9,6 +9,7 @@ class Shop extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'id',
         'ten',
         'email',
         'sdt',
@@ -17,21 +18,18 @@ class Shop extends Model
     ];
 
     protected $with = [
-        'taikhoans'
+        'taikhoans',
+        'dichvus'
     ];
 
-    // public function taikhoans()
-    // {
-    //     return $this->hasMany(User::class);
-    // }
+
 
     public function taikhoans()
     {
         return $this->hasMany(User::class, 'id', 'shop_id');
     }
-
-    // public function phithus()
-    // {
-    //     return $this->hasMany(PhiThu::class);
-    // }
+    public function dichvus()
+    {
+        return $this->hasMany(DichVu::class, 'shop_id', 'id');
+    }
 }

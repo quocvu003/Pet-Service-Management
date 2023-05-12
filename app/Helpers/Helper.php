@@ -7,17 +7,17 @@ use Illuminate\Support\Str;
 
 class Helper
 {
-    public static function danhmuc($danhmucs, $danhmuccha = 0, $char = '')
+    public static function danhmuc($danhmucs)
     {
         $html = '';
-        $stt = 1;
+
         foreach ($danhmucs as $key => $danhmuc) {
-            if ($danhmuc->danhmuccha == $danhmuccha) {
-                $html .= '
+
+            $html .= '
                     <tr>
                         <td>' . ++$key . '</td>
-                        <td>' . $char . $danhmuc->ten . '</td>
-                        <td> Danh Mục Cha</td>
+                        <td>'  . $danhmuc->ten . '</td>
+                        <td>'  . $danhmuc->tieude . '</td>
 
                       
                         <td>' . self::trangthai($danhmuc->trangthai) . '</td>
@@ -34,33 +34,6 @@ class Helper
                         </td>
                     </tr>
                 ';
-
-                // unset($danhmucs[$key]);
-
-                // $html .= self::danhmuc($danhmucs, $danhmuc->id, $char . 'Dịch vụ : ');
-            } else {
-                $html .= '
-                <tr>
-                    <td>' . ++$key . '</td>
-                    <td>' . $char . $danhmuc->ten . '</td>
-                    <td> Danh Mục Con</td>
-
-                  
-                    <td>' . self::trangthai($danhmuc->trangthai) . '</td>
-                   
-                    <td>' . \Carbon\Carbon::parse($danhmuc->created_at)->isoFormat('DD/MM/YYYY') . '</td>
-                    <td>
-                        <a class="btn btn-primary btn-sm" href="/admin/danhmucs/edit/' . $danhmuc->id . '">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        <a href="#" class="btn btn-danger btn-sm"
-                            onclick="removeRow(' . $danhmuc->id . ', \'/admin/danhmucs/destroy\')">
-                            <i class="fas fa-trash"></i>
-                        </a>
-                    </td>
-                </tr>
-            ';
-            }
         }
 
         return $html;
@@ -73,39 +46,20 @@ class Helper
                 : '<span class="btn btn-success btn-xs">KÍCH HOẠT</span>');
     }
 
-    public static function danhmucs($danhmucs, $danhmuccha = 0): string
+    public static function danhmucs($danhmucs): string
     {
-        $html = '';
-        foreach ($danhmucs as $key => $danhmuc) {
-            if ($danhmuc->danhmuccha == $danhmuccha) {
-                $html .= '
-                    <li>
-                        <a href="/danh-muc/' . $danhmuc->id . '-' . Str::slug($danhmuc->ten, '-') . '.html">
-                            ' . $danhmuc->ten . '
-                        </a>';
-
-                unset($danhmucs[$key]);
-
-                if (self::idcon($danhmucs, $danhmuc->id)) {
-                    $html .= '<ul class="sub-menu">';
-                    $html .= self::danhmucs($danhmucs, $danhmuc->id);
-                    $html .= '</ul>';
-                }
-
-                $html .= '</li>';
-            }
+        $html = '<ul>';
+        foreach ($danhmucs as $danhmuc) {
+            $html .= '<li>
+            <a href="/danh-muc/' . $danhmuc->id . '-' . Str::slug($danhmuc->ten, '-') . '.html">' . $danhmuc->ten . '</a>
+            </li>';
         }
-
+        $html .= '</ul>';
         return $html;
     }
 
-    public static function idcon($danhmucs, $id): bool
+    public static function gia($gia)
     {
-        foreach ($danhmucs as $danhmuc) {
-            if ($danhmuc->danhmuccha == $id) {
-                return true;
-            }
-        }
-        return false;
+        return number_format($gia);
     }
 }

@@ -9,7 +9,7 @@
         <div class="card-body ">
             <label for="menu">Họ và Tên</label>
             <div class="input-group mb-3">
-                <input type="text" name="name" class="form-control" placeholder="Nhập Họ và Tên">
+                <input type="text" name="ten" class="form-control" placeholder="Nhập Họ và Tên">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-user"></span>
@@ -54,10 +54,7 @@
                     <input class="custom-control-input" type="radio" id="admin" name="role_id" value="1" checked>
                     <label class="custom-control-label" for="admin">Admin</label>
                 </div>
-                <div class="custom-control custom-radio">
-                    <input class="custom-control-input" type="radio" id="chushop" name="role_id" value="2">
-                    <label class="custom-control-label" for="chushop">Chủ Shop</label>
-                </div>
+
                 <div class="custom-control custom-radio">
                     <input class="custom-control-input" type="radio" id="khachhang" name="role_id" value="3">
                     <label class="custom-control-label" for="khachhang">Khách hàng</label>

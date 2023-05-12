@@ -23,4 +23,8 @@ class DichVu extends Model
     {
         return $this->belongsTo(DanhMuc::class, 'danhmuc_id', 'id');
     }
+    public function shops()
+    {
+        return $this->belongsTo(Shop::class, 'shop_id', 'id');
+    }
 }

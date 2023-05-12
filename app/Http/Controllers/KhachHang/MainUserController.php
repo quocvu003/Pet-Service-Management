@@ -7,10 +7,9 @@ use App\Http\Services\DanhMucService;
 use App\Http\Services\DichvuService;
 use Illuminate\Http\Request;
 use App\Http\Services\SliderService;
-
-
-
-
+use App\Models\DichVu;
+use App\Models\Shop;
+use App\Models\User;
 
 class MainUserController extends Controller
 {
@@ -32,28 +31,18 @@ class MainUserController extends Controller
             'sliders' => $this->slider->show(),
             'menus' => $this->menu->getdichvu(),
             'banner' => $this->menu->getbanner(),
-            'dichvus' => $this->dichvu->get()
         ]);
     }
-    public function showdanhmuc(Request $request, $id, $slug = '')
+    public function show()
     {
-        $danhmuc = $this->menu->getId($id);
+        $shop = Shop::where('id', '<>', 0)
+            ->where('trangthai', 1)
+            ->get();
 
-        $dichvus = $this->dichvu->dvshop($danhmuc, $request);
-        return view('user.service', [
-            'title' => $danhmuc->ten,
-            'dichvus' => $dichvus,
-        ]);
-    }
-    public function showdichvu(Request $request, $id, $slug = '')
-    {
-        $dichvu = $this->dichvu->show($id);
-        $more = $this->dichvu->more($id);
+        return view('user.shop', [
+            'title' => 'PetCare Shop ',
+            'shops' => $shop,
 
-        return view('user.DichVu.detail', [
-            'title' => $dichvu->ten,
-            'dichvu' => $dichvu,
-            'dichvus'  => $more,
         ]);
     }
 }

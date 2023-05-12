@@ -22,10 +22,34 @@
                 <!-- Menu desktop -->
                 <div class="menu-desktop">
                     <ul class="main-menu">
-                        <li class="trangthai-menu"><a href="/">Trang Chủ</a> </li>
-                        {!! $menusHtml !!}
+                        <li class="active-menu">
+                            <a href="/">Trang Chủ</a>
+                        </li>
+
                         <li>
-                            <a href="contact.html">Về Chúng Tôi</a>
+                            <a href="/shop">Các Shop Thú Cưng</a>
+                        </li>
+
+                        <li>
+                            <a href="#"> Dịch Vụ Thú Cưng </a>
+
+                            <ul class="sub-menu">
+                                @foreach ($danhmucs as $danhmuc)
+                                    <a href="/dichvu/{{ $danhmuc->id }}">
+                                        <li>{{ $danhmuc->ten }}</li>
+                                    </a>
+                                @endforeach
+                            </ul>
+
+
+
+                        </li>
+
+                        <li>
+                            <a href="">Khuyến mãi</a>
+                        </li>
+                        <li>
+                            <a href="">Về Chúng Tôi</a>
                         </li>
 
                     </ul>
@@ -34,11 +58,6 @@
                 <!-- Icon header -->
                 <div class="wrap-icon-header flex-w flex-r-m">
 
-
-                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
-                        data-notify="{{ !is_null(\Session::get('carts')) ? count(\Session::get('carts')) : 0 }}">
-                        <i class="zmdi zmdi-shopping-cart"></i>
-                    </div>
                     <div>
                         <li class="nav-item dropdown ms-lg-3" style="margin-left: 50px;display: flex">
 
@@ -99,21 +118,11 @@
     <div class="wrap-header-mobile">
         <!-- Logo moblie -->
         <div class="logo-mobile">
-            <a href="index.html"><img src="/template/petcare.png" alt="IMG-LOGO"></a>
+            <a href="/"><img src="/template/petcare.png" alt="IMG-LOGO"></a>
         </div>
 
         <!-- Icon header -->
         <div class="wrap-icon-header flex-w flex-r-m m-r-15">
-
-            <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
-                <i class="zmdi zmdi-search"></i>
-            </div>
-
-            <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
-                data-notify="2">
-                <i class="zmdi zmdi-shopping-cart"></i>
-            </div>
-
         </div>
 
         <!-- Button show menu -->
@@ -130,10 +139,30 @@
         <ul class="main-menu-m">
             <li class="active-menu"><a href="/">Trang Chủ</a> </li>
 
-            {!! $menusHtml !!}
+            <li>
+                <a href="/shop">Các Shop Thú Cưng</a>
+            </li>
 
             <li>
-                <a href="contact.html">Về Chúng Tôi</a>
+                <a href="#"> Dịch Vụ Thú Cưng </a>
+
+                <ul class="sub-menu">
+                    @foreach ($danhmucs as $danhmuc)
+                        <a href="/dichvu/{{ $danhmuc->id }}">
+                            <li>{{ $danhmuc->ten }}</li>
+                        </a>
+                    @endforeach
+                </ul>
+
+
+
+            </li>
+
+            <li>
+                <a href="">Khuyến mãi</a>
+            </li>
+            <li>
+                <a href="">Về Chúng Tôi</a>
             </li>
 
         </ul>

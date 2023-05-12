@@ -10,8 +10,7 @@ class DanhMucService
 {
     public function getdichvu()
     {
-        return DanhMuc::where('danhmuccha', '<>', 0)
-            ->where('trangthai', 1)
+        return DanhMuc::where('trangthai', 1)
             ->get();
     }
     public function getbanner()
@@ -20,31 +19,16 @@ class DanhMucService
             ->get();
     }
 
-    public function getParent()
-    {
-        return DanhMuc::where('danhmuccha', 0)
-            ->where('trangthai', 1)
-            ->get();
-    }
-    public function getdanhmuccon()
-    {
-        return DanhMuc::where('danhmuccha', '<>', 0)
-            ->where('trangthai', 1)
-            ->get();
-    }
-
     public function getAll()
     {
-        return DanhMuc::orderBy('id')
-            ->where('trangthai', 1)
-            ->orderByDesc('danhmuccha')
+        return DanhMuc::where('trangthai', 1)
             ->get();
     }
 
     public function show()
     {
         return DanhMuc::select('ten', 'id')
-            ->where('danhmuccha', 0)
+
             ->where('trangthai', 1)
             ->orderbyDesc('id')
             ->get();
@@ -56,15 +40,15 @@ class DanhMucService
         try {
             DanhMuc::create([
                 'ten' =>  $request->input('name'),
-
+                'tieude' =>  $request->input('tieude'),
                 'mota' =>  $request->input('content'),
                 'trangthai' => 1,
 
             ]);
 
             Session::flash('success', 'Tạo Danh mục thành công');
-        } catch (\Exception $err) {
-            Session::flash('error', $err->getMessage());
+        } catch (\Exception) {
+            Session::flash('error', 'Tạo Danh mục lỗi');
             return false;
         }
         return true;
@@ -72,14 +56,11 @@ class DanhMucService
 
     public function update($request, $danhmuc): bool
     {
-        if ($request->input('danhmuccha') != $danhmuc->id) {
-            $danhmuc->danhmuccha = (string) $request->input('danhmuccha');
-        }
-        $danhmuc->ten = (string) $request->input('name');
+        $danhmuc->ten = $request->input('name');
+        $danhmuc->tieude =  $request->input('tieude');
         $danhmuc->mota =  $request->input('content');
-        $danhmuc->trangthai = (string) $request->input('trangthai');
+        $danhmuc->trangthai = $request->input('trangthai');
         $danhmuc->save();
-
         Session::flash('success', 'Cập nhật danh mục thành công');
         return true;
     }
@@ -90,7 +71,7 @@ class DanhMucService
         $DanhMuc = DanhMuc::where('id', $id)->first();
 
         if ($DanhMuc) {
-            return DanhMuc::where('id', $DanhMuc->id)->orWhere('danhmuccha', $id)->delete();
+            return DanhMuc::where('id', $DanhMuc->id)->delete();
         }
         return false;
     }

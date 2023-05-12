@@ -1,8 +1,6 @@
 @extends('admin.main')
 
-@section('head')
-    <script src="/ckeditor/ckeditor.js"></script>
-@endsection
+
 
 @section('content')
     <form action="" method="POST">
@@ -15,28 +13,9 @@
             </div>
 
             <div class="form-group">
-                <label>Danh Mục</label>
-                <select class="form-control" name="danhmuccha">
-                    <option value='0' {{ $danhmuc->danhmuccha == 0 ? 'selected' : '' }}>
-                        Danh muc cha </option>
-                    @foreach ($danhmucs as $danhmucParent)
-                        @if ($danhmucParent->danhmucha == 0)
-                            <option value={{ $danhmucParent->id }}
-                                {{ $danhmuc->danhmuccha == $danhmucParent->id ? 'selected' : '' }}>
-                                {{ $danhmucParent->ten }} </option>
-                            {{-- @else
-                            <option value="{{ $danhmucParent->id }}"
-                                {{ $danhmucParent->id == $danhmuc->id ? 'selected' : '' }}>
-                                {{ $danhmucParent->ten }}
-                            </option> --}}
-                        @endif
-                    @endforeach
-
-                </select>
-
+                <label>Tiêu đề</label>
+                <textarea name="tieude" id="content "class="form-control">{{ $danhmuc->tieude }}</textarea>
             </div>
-
-
             <div class="form-group">
                 <label>Mô Tả Chi Tiết</label>
                 <textarea name="content" id="content" class="form-control">{{ $danhmuc->mota }}</textarea>
@@ -63,10 +42,4 @@
         </div>
         @csrf
     </form>
-@endsection
-
-@section('footer')
-    <script>
-        CKEDITOR.replace('content');
-    </script>
 @endsection

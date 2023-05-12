@@ -210,10 +210,9 @@
                                     <tr>
                                         <th style="width: 50px">STT</th>
                                         <th>Tên Dịch Vụ</th>
-                                        <th>Danh Mục</th>
+                                        <th>Danh Mục Dịch Vụ</th>
                                         <th>Giá</th>
                                         <th>Hình Ảnh</th>
-
                                         <th>Trạng Thái</th>
                                         <th>Ngày Tạo</th>
 
@@ -223,15 +222,11 @@
                                 <tbody>
 
                                     @foreach ($dichvus as $key => $dichvu)
-                                        @php
-                                            $stt = $key + 1;
-                                        @endphp
-
                                         <tr>
-                                            <td>{{ $stt }}</td>
+                                            <td>{{ ++$key }}</td>
                                             <td>{{ $dichvu->ten }}</td>
                                             <td>{{ $dichvu->danhmucs->ten }}</td>
-                                            <td>{{ $dichvu->gia }}</td>
+                                            <td>{{ number_format($dichvu->gia) }}</td>
                                             <td><a href="{{ $dichvu->hinhanh }}" target="_blank">
                                                     <img src="{{ $dichvu->hinhanh }}" height="40px">
                                                 </a>
