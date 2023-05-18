@@ -28,7 +28,6 @@ class FeeController extends Controller
     }
     public function list()
     {
-
         return view('admin.fee.list', [
             'title' => 'Danh Sách Các Shop Đã Đóng Phí',
             'phithus' => $this->FeeService->getphithu()

@@ -3,6 +3,30 @@
     .nav-link {
         display: {{ $display }};
     }
+
+    .main-menu li a {
+        font-size: 16px;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+    }
+
+    .dropdown-menu.show {
+        left: 145px !important;
+    }
+
+    .sub-menu {
+        min-width: 260px;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+        border-radius: 6px;
+    }
+
+    .sub-menu li:hover {
+        background-color: #6c7ae0
+    }
+
+    .sub-menu li a:hover {
+        color: white;
+    }
 </style>
 <header>
     @php $menusHtml = \App\Helpers\Helper::danhmucs($danhmucs); @endphp
@@ -11,7 +35,7 @@
     <div class="container-menu-desktop">
 
 
-        <div class="wrap-menu-desktop">
+        <div class="wrap-menu-desktop menu_desktop_update">
             <nav class="limiter-menu-desktop container">
 
                 <!-- Logo desktop -->
@@ -21,7 +45,7 @@
 
                 <!-- Menu desktop -->
                 <div class="menu-desktop">
-                    <ul class="main-menu">
+                    <ul class="main-menu" style="">
                         <li class="active-menu">
                             <a href="/">Trang Chủ</a>
                         </li>
@@ -35,9 +59,9 @@
 
                             <ul class="sub-menu">
                                 @foreach ($danhmucs as $danhmuc)
-                                    <a href="/dichvu/{{ $danhmuc->id }}">
-                                        <li>{{ $danhmuc->ten }}</li>
-                                    </a>
+                                    <li>
+                                        <a href="/dichvu/{{ $danhmuc->id }}">{{ $danhmuc->ten }}</a>
+                                    </li>
                                 @endforeach
                             </ul>
 
@@ -73,10 +97,11 @@
 
                             <div style="margin-top: 15px;margin-left: 25px;">
                                 <a href="{{ $link }}"> <span
-                                        class="fw-bold text-gray-900">{{ $username }}</span></a>
+                                        style="font-weight: 600">{{ $username }}</span></a>
                             </div>
-                            <div class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-1">
-                                <a class="dropdown-item d-flex align-items-center" href="/ChuShop/profiles/index">
+                            <div class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-1 "
+                                style="margin-left: 145px !important">
+                                <a class="dropdown-item d-flex align-items-center" href="/profiles/index">
                                     <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor"
                                         viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
@@ -84,6 +109,14 @@
                                             clip-rule="evenodd"></path>
                                     </svg>
                                     Trang cá nhân
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="/datlichs/index">
+                                    <div class="dropdown-icon text-gray-400 me-2" style="margin-left: 3px">
+                                        <i class="fas fa-list"></i>
+                                    </div>
+
+
+                                    Đặt dịch vụ
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor"

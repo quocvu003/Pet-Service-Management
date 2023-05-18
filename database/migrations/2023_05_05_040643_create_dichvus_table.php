@@ -23,7 +23,7 @@ return new class extends Migration
 
             $table->string('ten');
             $table->string('gia');
-            $table->text('hinhanh');
+
             $table->string('mota')->nullable();
             $table->integer('trangthai')->default(1);
             $table->timestamps();

@@ -19,7 +19,14 @@
                 <label>Mô tả chi tiết</label>
                 <textarea name="content" id="content "class="form-control"></textarea>
             </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example3">Ảnh</label>
 
+                <input type="file" id="hinhanh" class="form-control" />
+                <div id="hinhanh_show">
+                </div>
+                <input type="hidden" name="hinhanh" id="hinhanh01">
+            </div>
 
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Tạo dịch vụ</button>

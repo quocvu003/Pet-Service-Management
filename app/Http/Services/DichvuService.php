@@ -31,11 +31,11 @@ class DichvuService
     {
         $request->validate([
             'ten' => 'required',
-            'hinhanh' => 'required',
+
             'gia' => 'required',
         ], [
             'ten.required' => 'Bạn chưa nhập tên',
-            'hinhanh.required' => 'Bạn chưa nhập hình ảnh',
+
             'gia.required' => 'Bạn chưa nhập giá',
 
         ]);
@@ -50,8 +50,8 @@ class DichvuService
                 'danhmuc_id' =>  $request->danhmuc_id,
                 'ten' => $request->ten,
                 'gia' => $request->gia,
-                'hinhanh' =>  $request->hinhanh,
-                'mota' =>  $request->mota,
+
+
             ]);
             Session::flash('success', 'Tạo dịch vụ thành công');
         } catch (\Exception $err) {
@@ -60,12 +60,8 @@ class DichvuService
         }
         return true;
     }
-    //admin
-    public function get()
-    {
-        return DichVu::orderBy('id')
-            ->get();
-    }
+
+
     public function dvshop($danhmuc)
     {
         return $danhmuc->dichvus()
@@ -80,12 +76,23 @@ class DichvuService
             ->with('danhmucs')
             ->firstOrFail();
     }
-    public function more($id)
+
+    public function update($request, $acc)
     {
-        return DichVu::where('trangthai', 1)
-            ->where('id', '!=', $id)
-            ->orderByDesc('id')
-            ->limit(4)
-            ->get();
+        $request->validate([
+            'ten' => 'required',
+
+            'gia' => 'required',
+        ], [
+            'ten.required' => 'Bạn chưa nhập tên',
+
+            'gia.required' => 'Bạn chưa nhập giá',
+
+        ]);
+
+        $acc->fill($request->input());
+        $acc->save();
+        Session::flash('success', 'Cập nhật dịch vụ thành công');
+        return true;
     }
 }

@@ -31,6 +31,6 @@ class FeeService
     public function getphithu()
     {
 
-        return PhiThu::get();
+        return PhiThu::orderBy('id')->paginate(10);
     }
 }

@@ -7,16 +7,16 @@
 
 <body>
     <main>
+        <div style="background-image: url('/template/ChuShop/assets/img/background.jpg')">
+            <!-- Section -->
+            <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
 
-        <!-- Section -->
-        <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
-            <div class="container">
+                <div class="container">
 
-                <div class="row justify-content-center form-bg-image"
-                    data-background-lg="/template/chuShop/assets/img/illustrations/signin.svg">
-                    <div class="col-12 d-flex align-items-center justify-content-center">
-                        <div class="shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-500"
-                            style="background-color: rgb(197, 222, 244)">
+
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div class=" p-4 p-lg-5 w-100 fmxw-500"
+                            style="background-color: rgb(252, 253, 255); box-shadow: rgba(0, 0, 0, 0.19) 0px 20px 30px, rgba(0, 0, 0, 0.23) 0px 6px 6px;border-radius: 15px">
                             <div class="text-center text-md-center mb-4 mt-md-0">
                                 <h1 class="mb-0 h3">ĐĂNG NHẬP</h1>
                             </div>
@@ -79,11 +79,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
+        </div>
         </section>
     </main>
 
-    @include('ChuShop.footer')
+
 
 
 </body>

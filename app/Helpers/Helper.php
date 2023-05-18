@@ -14,26 +14,28 @@ class Helper
         foreach ($danhmucs as $key => $danhmuc) {
 
             $html .= '
-                    <tr>
-                        <td>' . ++$key . '</td>
-                        <td>'  . $danhmuc->ten . '</td>
-                        <td>'  . $danhmuc->tieude . '</td>
-
-                      
-                        <td>' . self::trangthai($danhmuc->trangthai) . '</td>
-                       
-                        <td>' . \Carbon\Carbon::parse($danhmuc->created_at)->isoFormat('DD/MM/YYYY') . '</td>
-                        <td>
-                            <a class="btn btn-primary btn-sm" href="/admin/danhmucs/edit/' . $danhmuc->id . '">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a href="#" class="btn btn-danger btn-sm"
-                                onclick="removeRow(' . $danhmuc->id . ', \'/admin/danhmucs/destroy\')">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                ';
+            <tr>
+                <td>'  . ++$key . '</td>
+                <td>'  . $danhmuc->ten . '</td>                       
+                <td>'  . $danhmuc->tieude . '</td>
+                <td>
+                    <a href="' . $danhmuc->hinhanh . '" target="_blank">
+                        <img src="' . $danhmuc->hinhanh . '" height="50px">
+                    </a>
+                </td>
+                <td>' . self::trangthai($danhmuc->trangthai) . '</td>
+                <td>' . \Carbon\Carbon::parse($danhmuc->created_at)->isoFormat('DD/MM/YYYY HH:mm:ss') . '</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/admin/danhmucs/edit/' . $danhmuc->id . '">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="#" class="btn btn-danger btn-sm"
+                        onclick="removeRow(' . $danhmuc->id . ', \'/admin/danhmucs/destroy\')">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        ';
         }
 
         return $html;
@@ -44,6 +46,13 @@ class Helper
         return $trangthai == 0 ? '<span class="btn btn-danger btn-xs">KHÓA</span>'
             : ($trangthai == 2 ? '<span class="btn btn-warning btn-xs">CHỜ DUYỆT</span>'
                 : '<span class="btn btn-success btn-xs">KÍCH HOẠT</span>');
+    }
+
+    public static function trangthai_lichdat($trangthai = 0): string
+    {
+        return $trangthai == 1 ? '<span class="btn btn-danger btn-xs">CHỜ DUYỆT</span>'
+            : ($trangthai == 2 ? '<span class="btn btn-info btn-xs">ĐÃ DUYỆT</span>'
+                : '<span class="btn btn-success btn-xs">HOÀN THÀNH</span>');
     }
 
     public static function danhmucs($danhmucs): string

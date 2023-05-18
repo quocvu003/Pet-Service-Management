@@ -3,12 +3,20 @@
 namespace App\Http\Controllers\NhanVien;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\CongViecService;
 use App\Models\User;
 
 use Illuminate\Support\Facades\Auth;
 
 class MainNVController extends Controller
 {
+    protected $congviec;
+
+    public function __construct(CongViecService $congviec)
+    {
+
+        $this->congviec = $congviec;
+    }
     public function index()
     {
         $id = Auth::user()->id;
@@ -16,21 +24,17 @@ class MainNVController extends Controller
 
         // dd($currentuser);
         return view('NhanVien.home', [
-            'title' => 'Trang Quản Trị Chủ Shop',
+            'title' => 'Nhân viên :' . $nhanvien->ten,
             'nhanvien' => $nhanvien,
 
 
         ]);
     }
-    // public function profile()
-    // {
-    //     $id = Auth::user()->id;
-    //     $currentuser = User::find($id);
-    //     // dd($currentuser);
-    //     return view('ChuShop.profile', [
-    //         'title' => 'Trang Cá Nhân',
-    //         // 'name' => $currentuser->ten,
-
-    //     ]);
-    // }
+    public function list()
+    {
+        return view('nhanvien.congviec.index', [
+            'title' => 'Công việc',
+            'congviecs' => $this->congviec->list(),
+        ]);
+    }
 }

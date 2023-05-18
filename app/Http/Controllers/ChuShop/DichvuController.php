@@ -34,12 +34,19 @@ class DichvuController extends Controller
     }
     public function show(DichVu $dichvu)
     {
-        $dv = $dichvu;
-        return view('ChuShop.dichvu.index', [
-            'title' => 'Quản lý dịch vụ thú cưng',
-            'dichvus' => $this->dicvuService->getdichvu(),
-            'menus' => $this->dicvuService->getdanhmuc(),
+        $dichvus = $dichvu;
 
+        return view('ChuShop.dichvu.edit', [
+            'title' => 'Quản lý dịch vụ thú cưng',
+            'dichvus' => $dichvus,
+            'menus' => $this->dicvuService->getdanhmuc()
         ]);
+    }
+    public function update(Request $request, DichVu $dichvu)
+    {
+        $result = $this->dicvuService->update($request, $dichvu);
+        if ($result) {
+            return redirect('/ChuShop/dichvus/list');
+        }
     }
 }

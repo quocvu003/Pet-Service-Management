@@ -67,8 +67,12 @@
 
                     <ul class="flex-column nav">
                         <li class="nav-item ">
+                            <a class="nav-link" href="/NhanVien/congviecs/index">
+                                <span class="sidebar-text">Danh sách công việc</span>
+
+                            </a>
                             <a class="nav-link" href="/template/chuShop/pages/tables/bootstrap-tables.html">
-                                <span class="sidebar-text">Danh Sách Dịch Vụ </span>
+                                <span class="sidebar-text">Đã hoàn thành</span>
 
                             </a>
                         </li>

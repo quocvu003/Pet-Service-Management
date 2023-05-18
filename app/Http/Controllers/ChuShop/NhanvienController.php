@@ -60,4 +60,21 @@ class NhanvienController extends Controller
             return redirect('/NhanVien/profiles/index');
         }
     }
+    public function edit(User $nhanvien)
+    {
+        $nhanviens = $nhanvien;
+
+        return view('ChuShop.nhanvien.edit', [
+            'title' => 'Quản lý tài khoản nhân viên',
+            'nhanviens' => $nhanviens,
+
+        ]);
+    }
+    public function change(Request $request, User $nhanvien)
+    {
+        $result = $this->nhanvienService->change($request, $nhanvien);
+        if ($result) {
+            return redirect('/ChuShop/nhanviens/list');
+        }
+    }
 }

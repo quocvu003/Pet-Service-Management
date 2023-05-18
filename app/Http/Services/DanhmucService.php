@@ -22,7 +22,7 @@ class DanhMucService
     public function getAll()
     {
         return DanhMuc::where('trangthai', 1)
-            ->get();
+            ->paginate(10);
     }
 
     public function show()
@@ -42,6 +42,7 @@ class DanhMucService
                 'ten' =>  $request->input('name'),
                 'tieude' =>  $request->input('tieude'),
                 'mota' =>  $request->input('content'),
+                'hinhanh' =>  $request->input('hinhanh'),
                 'trangthai' => 1,
 
             ]);
@@ -60,6 +61,7 @@ class DanhMucService
         $danhmuc->tieude =  $request->input('tieude');
         $danhmuc->mota =  $request->input('content');
         $danhmuc->trangthai = $request->input('trangthai');
+        $danhmuc->hinhanh = $request->input('hinhanh');
         $danhmuc->save();
         Session::flash('success', 'Cập nhật danh mục thành công');
         return true;

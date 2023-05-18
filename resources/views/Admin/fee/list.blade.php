@@ -27,9 +27,10 @@
                     <td>{{ $phithu->shops->ten }}</td>
                     {{-- <td>{{ $phithu->shops->taikhoans->ten }}</td> --}}
                     <td>{{ $phithu->tien }}</td>
-                    <td>{{ \Carbon\Carbon::parse($phithu->created_at)->isoFormat('DD/MM/YYYY') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($phithu->created_at)->isoFormat('DD/MM/YYYY HH:mm:ss') }}
+                    <td>
 
-                    {{-- <td>
+                        {{-- <td>
 
                         <a class="btn btn-primary btn-sm" href="/admin/accs/edit/{{ $phithu->id }}">
                             <i class="fas fa-edit"></i>
@@ -43,4 +44,5 @@
             @endforeach
         </tbody>
     </table>
+    <div style="display: flex;justify-content: center;align-content: center"> {{ $phithus->links() }}</div>
 @endsection

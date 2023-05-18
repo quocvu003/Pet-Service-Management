@@ -19,7 +19,7 @@ class NhanvienService
         $shop_id = $current_user->shop_id;
         return User::where('quyen_id', 4)
             ->where('shop_id', $shop_id)
-            ->get();
+            ->paginate(10);
     }
     public function create($request)
     {
@@ -61,9 +61,15 @@ class NhanvienService
         $acc->hinhanh = $request->hinhanh;
         $acc->diachi = $request->diachi;
         $acc->save();
-
-
         Session::flash('success', 'Cập nhật tài khoản thành công');
+        return true;
+    }
+    public function change($request, $nhanvien)
+    {
+        $nhanvien->fill($request->input());
+        $nhanvien->save();
+
+        Session::flash('success', 'Cập nhật tài khoản nhân viên thành công');
         return true;
     }
 }

@@ -31,7 +31,7 @@ class DanhmucController extends Controller
     public function index()
     {
         return view('admin.menu.list', [
-            'title' => 'Danh sách Danh Mục Cha',
+            'title' => 'Danh sách Danh Mục',
             'danhmucs' => $this->danhmucService->getAll(),
         ]);
     }
@@ -57,7 +57,7 @@ class DanhmucController extends Controller
         if ($result) {
             return response()->json([
                 'error' => false,
-                'masager' => 'Xóa thành công'
+                'message' => 'Xóa thành công'
             ]);
         }
         return response()->json([

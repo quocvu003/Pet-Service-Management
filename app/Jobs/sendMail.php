@@ -2,9 +2,10 @@
 
 namespace App\Jobs;
 
+use App\Mail\Duyet;
 use App\Mail\OrderShipped;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
+
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -35,5 +36,6 @@ class SendMail implements ShouldQueue
     public function handle()
     {
         Mail::to($this->email)->send(new OrderShipped);
+        Mail::to($this->email)->send(new Duyet);
     }
 }

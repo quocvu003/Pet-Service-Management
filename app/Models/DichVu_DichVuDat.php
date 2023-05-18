@@ -15,4 +15,11 @@ class DichVu_DichVuDat extends Model
         'dichvudat_id',
         'dichvu_id',
     ];
+    protected $with = [
+        'dichvus'
+    ];
+    public function dichvus()
+    {
+        return $this->belongsTo(DichVu::class, 'dichvu_id', 'id');
+    }
 }

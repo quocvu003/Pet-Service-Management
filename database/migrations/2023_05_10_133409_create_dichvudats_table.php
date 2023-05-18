@@ -28,10 +28,12 @@ return new class extends Migration
             $table->date('ngay');
             $table->time('gio');
             $table->integer('loaithucung');
+
             $table->string('ten');
             $table->string('email');
             $table->string('sdt');
             $table->integer('tongtien');
+
             $table->integer('trangthai');
             $table->timestamps();
         });

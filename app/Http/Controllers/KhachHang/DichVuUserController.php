@@ -32,18 +32,4 @@ class DichVuUserController extends Controller
             'dichvus' => $dichvu,
         ]);
     }
-    public function create(Shop $shop, DichVu $dichvu)
-    {
-        $dichvus = $dichvu;
-        $shops = $shop;
-
-        $user = Auth::user();
-
-        return view('user.datlich', [
-            'title' => ' Đặt lịch dịch vụ ',
-            'dichvus' => $dichvus,
-            'shops' => $shops,
-            'user' => $user,
-        ]);
-    }
 }

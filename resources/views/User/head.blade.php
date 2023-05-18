@@ -32,4 +32,5 @@
 <link rel="stylesheet" type="text/css" href="/template/css/main.css">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <!--===============================================================================================-->
-<meta name="csrf-token" content="{{ csrf_token() }}
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<link rel="stylesheet" href="/template/admin/plugins/fontawesome-free/css/all.min.css">

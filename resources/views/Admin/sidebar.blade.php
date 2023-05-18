@@ -33,7 +33,7 @@
 
                         <i class="nav-icon fas fa-list-alt"></i>
                         <p>
-                            Danh Mục Dịch Vụ
+                            Danh mục dịch vụ
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>

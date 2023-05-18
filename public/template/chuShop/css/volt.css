@@ -10415,7 +10415,7 @@ textarea.form-control-lg {
 }
 
 .w-100 {
-    width: 100% !important;
+    width: 95% !important;
 }
 
 .w-auto {
@@ -23632,8 +23632,8 @@ label {
 }
 
 .avatar {
-    width: 3rem;
-    height: 3rem;
+    width: 2.5rem;
+    height: 2.5rem;
 }
 
 .avatar img {

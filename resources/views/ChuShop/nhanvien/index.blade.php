@@ -119,12 +119,13 @@
                                             <td>{{ $acc->ten }}</td>
                                             <td>{{ $acc->email }}</td>
                                             <td>{!! \App\Helpers\Helper::trangthai($acc->trangthai) !!}</td>
-                                            <td>{{ \Carbon\Carbon::parse($acc->created_at)->isoFormat('DD/MM/YYYY') }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($acc->created_at)->isoFormat('DD/MM/YYYY HH:mm:ss') }}
+                                            <td>
 
                                             <td>
 
                                                 <a class="btn btn-primary btn-sm"
-                                                    href="/admin/accs/edit/{{ $acc->id }}">
+                                                    href="/ChuShop/nhanviens/edit/{{ $acc->id }}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="#" class="btn btn-danger btn-sm"
@@ -136,6 +137,8 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div style="display: flex;justify-content: center;align-content: center"> {{ $accs->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>

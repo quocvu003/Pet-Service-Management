@@ -5,9 +5,9 @@
     @include('user.head')
 </head>
 
-<body> /
+<body>
 
-    <!-- Header -->
+
     @include('user.nav')
 
     @yield('content')

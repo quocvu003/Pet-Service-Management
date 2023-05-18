@@ -11,12 +11,13 @@ class DichVu extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'shop_id',
         'danhmuc_id',
         'ten',
         'gia',
-        'hinhanh',
-        'mota',
+
+
         'trangthai',
     ];
     public function danhmucs()
@@ -26,5 +27,9 @@ class DichVu extends Model
     public function shops()
     {
         return $this->belongsTo(Shop::class, 'shop_id', 'id');
+    }
+    public function dichvu_dichvudat()
+    {
+        return $this->hasMany(DichVu_DichVuDat::class, 'dichvu_id', 'id');
     }
 }

@@ -26,7 +26,7 @@
                                     <div class="col-auto">
                                         <!-- Avatar -->
                                         <img alt="Image placeholder" src="{{ $logo }}"
-                                            class="avatar-md rounded">
+                                            style="width: 20px !important;">
                                     </div>
                                     <div class="col ps-0 ms-2">
                                         <div class="d-flex justify-content-between align-items-center">

@@ -17,7 +17,7 @@ class AccService
 
     public function getadmin()
     {
-        return User::where('quyen_id', 1)->get();
+        return User::where('quyen_id', 1)->paginate(10);
     }
 
     public function getappli()
@@ -26,7 +26,8 @@ class AccService
         return  User::with('shops')
             ->where('quyen_id', '=', 2)
             ->where('trangthai', '=', 2)
-            ->get();
+
+            ->paginate(10);
     }
 
     public function getUsersWithShops()
@@ -34,12 +35,12 @@ class AccService
         return  User::with('shops')
             ->where('quyen_id', '=', 2)
             ->where('trangthai', '<>', 2)
-            ->get();
+            ->paginate(10);
     }
 
     public function getkhachhang()
     {
-        return User::where('quyen_id', 3)->get();
+        return User::where('quyen_id', 3)->paginate(10);
     }
     public function create($request)
     {

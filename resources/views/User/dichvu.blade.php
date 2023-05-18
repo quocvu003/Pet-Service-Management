@@ -3,7 +3,7 @@
 @section('content')
     <section class="bg-img1 txt-center p-lr-15 p-tb-92"
         style="background-image: url('/template/images/bg-01.jpg');margin-top: 200px;">
-        <h2 class="ltext-105 cl0 txt-center" style="color: brown;margin-top: -150px">
+        <h2 class="ltext-105 cl0 txt-center" style="color: brown;margin-top: -150px;font-weight: bold">
             {{ $danhmucs->ten }}
         </h2>
     </section>
@@ -70,13 +70,11 @@
                 </div>
             </div>
 
-
-
-            <div class="row p-b-148">
+            <div class="row p-b-50">
                 <div class="col-md-7 col-lg-8">
                     <div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
                         <b style="font-size: 20px">{{ $danhmucs->tieude }}</b>
-                        <div style="white-space: pre-wrap;">
+                        <div style="white-space: pre-wrap;  line-height: 1.5;">
                             {{ $danhmucs->mota }}
                         </div>
 
@@ -86,7 +84,7 @@
                 <div class="col-11 col-md-5 col-lg-4 m-lr-auto">
                     <div class="how-bor1 ">
                         <div class="hov-img0">
-                            <img src="/template/images/tialong.jpg" alt="IMG">
+                            <img src="{{ $danhmucs->hinhanh }}" alt="IMG">
                         </div>
                     </div>
                 </div>
@@ -134,8 +132,7 @@
                         <div class="col-inner">
                             <h2>Các Shop có dịch vụ {{ $danhmucs->ten }}</h2>
                         </div>
-                        <p>Bảng giá cắt lông chó mèo đã bao gồm dịch vụ tắm cho chó mèo trọn gói, sấy khô, chải lông
-                            rụng, cắt dũa móng, vệ sinh tai mà không phát sinh thêm bất cứ phụ phí nào khác.</p>
+                        <p>Bảng giá các dịch vụ sẽ tùy thuộc vào từng Shop khác nhau. Vui lòng đọc kỹ giá!</p>
                     </div>
                 </div>
             </div>
@@ -162,11 +159,11 @@
                                                 Tên Shop : {{ $dichvu->shops->ten }}
                                             </span>
 
-                                            <span class="block1-info stext-102 trans-04">
+                                            <span class="block1-info stext-102 trans-04" style="font-weight: 600">
                                                 Tên dịch vụ : {{ $dichvu->ten }}
                                             </span>
-                                            <span class="block1-info stext-102 trans-04">
-                                                Giá :{{ number_format($dichvu->gia) }}đ
+                                            <span class="block1-info stext-102 trans-04" style="font-weight: 600">
+                                                Giá : {{ number_format($dichvu->gia) }} VNĐ
                                             </span>
                                         </div>
 
