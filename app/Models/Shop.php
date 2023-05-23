@@ -18,16 +18,14 @@ class Shop extends Model
     ];
 
     protected $with = [
-        'taikhoans',
+        // 'taikhoans',
         'dichvus'
     ];
+    // public function taikhoans()
+    // {
+    //     return $this->hasMany(User::class, 'shop_id', 'id');
+    // }
 
-
-
-    public function taikhoans()
-    {
-        return $this->hasMany(User::class, 'id', 'shop_id');
-    }
     public function dichvus()
     {
         return $this->hasMany(DichVu::class, 'shop_id', 'id');

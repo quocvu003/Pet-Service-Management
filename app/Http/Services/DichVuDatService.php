@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 
 use App\Jobs\SendMail;
+use App\Jobs\SendMailShop;
 use App\Models\DichVu;
 use App\Models\DichVu_DichVuDat;
 use App\Models\DichVuDat;
@@ -15,6 +16,19 @@ class DichVuDatService
 
     public function create($request)
     {
+        $request->validate([
+            'ngay' => 'required',
+            'sdt' => 'required',
+            'gio' => 'required',
+            'loaithucung' => 'required',
+
+        ], [
+            'ngay.required' => 'Bạn chưa chọn ngày',
+            'sdt.required' => 'Bạn chưa nhập số điện thoại',
+            'gio.required' => 'Bạn chưa chọn giờ',
+            'loaithucung.required' => 'Bạn chưa chọn loại thú cưng',
+
+        ]);
         $dichVuDat = new DichVuDat([
             'shop_id' => $request->input('shop_id'),
             'ten' =>  $request->input('ten'),
@@ -38,6 +52,7 @@ class DichVuDatService
             ]);
             $dichVuDat_dv->save();
         }
+        Session::flash('success', 'Đặt dịch vụ thành công. Vui lòng chờ chủ Shop duyệt!');
     }
     public function choduyet()
     {
@@ -75,22 +90,39 @@ class DichVuDatService
 
         Session::flash('success', 'Duyệt thành công');
         #Queue
-        SendMail::dispatch($request->input('email'))->delay(now()->addSeconds(5));
+        SendMailShop::dispatch($request->input('email'))->delay(now()->addSeconds(5));
         return true;
     }
     public function list()
     {
         $taikhoan_id = Auth::user()->id;
-
         return DichVuDat::where('taikhoan_id', '=', $taikhoan_id)->orderBy('trangthai')
             ->paginate(10);
     }
-    public function update($request, $lichdatdv)
+    public function update_daduyet($request, $lichdatdv)
     {
         $lichdatdv->fill($request->input());
         $lichdatdv->save();
 
         Session::flash('success', 'Duyệt thành công');
+        return true;
+    }
+    public function update_dichvudat($request, $dichvudats)
+    {
+        $dichvudat = $dichvudats;
+        DichVu_DichVuDat::where('dichvudat_id', $dichvudat->id)->delete();
+        $dichvudat->fill($request->input());
+        $dichvudat->save();
+        $dichvus = $request->input('dichvu');
+
+        foreach ($dichvus as $dichvu_id) {
+            $dichvudat_dv = new DichVu_DichVuDat([
+                'dichvudat_id' => $dichvudat->id,
+                'dichvu_id' =>  $dichvu_id,
+            ]);
+            $dichvudat_dv->save();
+        }
+        Session::flash('success', 'Cập nhật thành công');
         return true;
     }
 }

@@ -26,7 +26,7 @@
                     </td>
                     <td>{{ $phithu->shops->ten }}</td>
                     {{-- <td>{{ $phithu->shops->taikhoans->ten }}</td> --}}
-                    <td>{{ $phithu->tien }}</td>
+                    <td>{{ number_format($phithu->tien) }} VNĐ</td>
                     <td>{{ \Carbon\Carbon::parse($phithu->created_at)->isoFormat('DD/MM/YYYY HH:mm:ss') }}
                     <td>
 

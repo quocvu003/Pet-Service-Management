@@ -138,10 +138,11 @@ class AccController extends Controller
     {
         $user = User::findOrFail($id); // Lấy bản ghi của bảng users dựa trên $id truyền vào
 
-
+        // Lấy đối tượng của bảng shops mà có khóa ngoại là user_id
+        $shop = $user->shops()->first();
 
         // Gọi hàm cập nhật dữ liệu từ AccService
-        $result = $this->AccService->duyet($request, $user);
+        $result = $this->AccService->duyet($request, $user, $shop);
 
         if ($result) {
             return redirect('/admin/accs/application');

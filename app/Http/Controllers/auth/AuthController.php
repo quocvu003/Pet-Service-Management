@@ -7,12 +7,12 @@ use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 
 {
-
     public function register()
     {
         $data['title'] = 'Đăng ký tài khoản';
@@ -42,7 +42,7 @@ class AuthController extends Controller
         ]);
         $user->save();
 
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', 'Tạo tài khoản thành công! Đăng nhập để khám phá tất cả dịch vụ của chúng tôi.');;
     }
 
 
@@ -140,29 +140,66 @@ class AuthController extends Controller
         ]);
         $user->save();
 
-        return redirect()->route('login');
+        return redirect('login')
+            ->with('error', 'Đơn đăng ký trở thành chủ Shop của bạn đang chờ Quản trị viên duyệt.')
+            ->with('success', 'Chúng tôi sẽ thông báo qua Email khi đơn của bạn được duyệt!');
     }
-
-
-
-
-    public function password()
+    public function reset_password()
     {
-        $data['title'] = 'Change Password';
-        return view('user/password', $data);
-    }
-
-    public function password_action(Request $request)
-    {
-        $request->validate([
-            'old_password' => 'required|current_password',
-            'new_password' => 'required|confirmed',
+        $email = Auth::user()->email;
+        return view('reset_password', [
+            'title' => 'Đổi mật khẩu',
+            'email' => $email,
         ]);
-        $user = User::find(Auth::id());
-        $user->password = bcrypt($request->new_password);
+    }
+    public function reset_password_action(Request $request, User $user)
+    {
+        // Lấy dữ liệu từ request
+        $currentPassword = $request->input('current_password');
+        $newPassword = $request->input('new_password');
+        $confirmPassword = $request->input('confirm_password');
+
+        // Kiểm tra mật khẩu hiện tại của người dùng
+        if (!Hash::check($currentPassword, Auth::user()->matkhau)) {
+            // Mật khẩu hiện tại không khớp, hiển thị thông báo lỗi
+            return redirect()->back()->with('error', 'Mật khẩu hiện tại không đúng');
+        }
+
+        // Kiểm tra xác nhận mật khẩu mới
+        if ($newPassword !== $confirmPassword) {
+            // Mật khẩu mới không khớp với xác nhận mật khẩu, hiển thị thông báo lỗi
+            return redirect()->back()->with('error', 'Xác nhận mật khẩu mới không khớp');
+        }
+
+        // Cập nhật mật khẩu mới cho người dùng
+
+        $user->matkhau = Hash::make($newPassword);
         $user->save();
-        $request->session()->regenerate();
-        return back()->with('success', 'Password changed!');
+
+        // Đã cập nhật mật khẩu thành công, hiển thị thông báo thành công
+        return redirect('login')->with('success', 'Mật khẩu đã được cập nhật thành công');
+    }
+
+    public function forgot_password()
+    {
+
+        return view('forgot_password', [
+            'title' => 'Quên mật khẩu',
+
+        ]);
+    }
+
+    public function forgot_password_action(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        if (!$user) {
+            return redirect('login')->with('error', 'Email không tồn tại');
+        }
+        $user->matkhau = bcrypt('123456abc');
+        $user->save();
+
+        // $randomString = Str::random(6);
+        return redirect('login')->with('success', 'Mật khẩu mới đã được gửi tới Email của bạn!');
     }
 
     public function logout(Request $request)

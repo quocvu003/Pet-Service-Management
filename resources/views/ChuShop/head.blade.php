@@ -43,10 +43,9 @@
 <link type="text/css" href="/template/chuShop/assets/Icons/fontawesome-free/css/all.css" rel="stylesheet">
 <link type="text/css" href="/template/chuShop/assets/Icons/fontawesome-free/css/fontawesome.min.css" rel="stylesheet">
 
+<link rel="stylesheet" href="/template/admin/plugins/fontawesome-free/css/all.min.css">
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 
 
 <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 @yield('head')
-
-<link rel="stylesheet" href="/template/admin/plugins/fontawesome-free/css/all.min.css">
-<meta name="csrf-token" content="{{ csrf_token() }}" />

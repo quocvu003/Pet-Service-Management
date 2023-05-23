@@ -47,6 +47,7 @@ class MainUserController extends Controller
             'title' => 'PetCare Shop ',
             'shops' => $shop,
 
+
         ]);
     }
     public function profile()

@@ -21,6 +21,7 @@
                             <h4 style="margin-top: 10px">Thông tin của Shop</h4>
                             <ul>
                                 <li style="margin : 10px 0"><b>Tên Shop :</b> {{ $shop->ten }}</li>
+
                                 <li style="margin : 10px 0"><b>Số điện thoại :</b> {{ $shop->sdt }}</li>
                                 <li style="margin : 10px 0"><b>Địa chỉ :</b> {{ $shop->diachi }}</li>
                             </ul>

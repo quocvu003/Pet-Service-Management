@@ -59,53 +59,25 @@
                                                             </div>
                                                         </div>
 
-                                                        <!-- End of Form -->
-                                                        <div class="form-group">
-                                                            <!-- Form -->
-                                                            {{-- <div class="form-group mb-4">
-                                                                <label for="password">Hình Ảnh</label>
-                                                                <div class="input-group">
-                                                                    <span class="input-group-text" id="basic-addon2">
-                                                                        <i class="fas fa-lock"></i>
-                                                                    </span>
-                                                                    <input type="file" id="hinhanh"
-                                                                        class="form-control" />
-
-                                                                    <input type="hidden" name="hinhanh" id="hinhanh01">
-                                                                </div>
-                                                                <div id="hinhanh_show">
-                                                                </div>
-                                                            </div> --}}
-                                                            <!-- End of Form -->
-                                                            <!-- Form -->
-                                                            {{-- <div class="form-group mb-4">
-                                                                <label for="confirm_password">Mô Tả</label>
-                                                                <div class="input-group">
-                                                                    <span class="input-group-text" id="basic-addon2">
-                                                                        <i class="fas fa-lock-open"></i>
-                                                                    </span>
-                                                                    <textarea name="mota" id="content "class="form-control"></textarea>
-                                                                </div>
-                                                            </div> --}}
-                                                            <!-- End of Form -->
-
-                                                        </div>
                                                         <div class="d-grid">
                                                             <button type="submit" class="btn btn-gray-800">THÊM DỊCH
                                                                 VỤ</button>
                                                         </div>
-                                                        @csrf
-                                                    </form>
-
                                                 </div>
+
+                                                @csrf
+                                                </form>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-
-                                <!-- End of Modal Content -->
                             </div>
+
+
+                            <!-- End of Modal Content -->
+                        </div>
+                        @if (count($dichvus) > 0)
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -148,10 +120,15 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
+                        @else
+                            <div class="alert alert-danger">
+                                Shop của bạn hiện chưa có dịch vụ nào!
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         @include('admin.footer')
     </main>

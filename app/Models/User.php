@@ -20,6 +20,7 @@ class User extends Authenticatable
 
 
     protected $fillable = [
+        'id',
         'quyen_id',
         'shop_id',
         'ten',

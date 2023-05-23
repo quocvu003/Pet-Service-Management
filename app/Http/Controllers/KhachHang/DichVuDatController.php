@@ -39,23 +39,77 @@ class DichVuDatController extends Controller
     public function store(Request $request)
     {
         $this->dichvudat->create($request);
-        return redirect()->back();
+        return redirect('/datlichs/index');
     }
 
     public function index()
     {
+        $dichvudats = $this->dichvudat->list();
+
+        // $dichvu_id = $dichvudats->id;
+
+        // dd($dichvu_id);
+        // $soluongdv = DichVu_DichVuDat::where('dichvudat_id', $dichvu_id)->get();
+
         return view('user.datlich.list', [
             'title' => ' Đặt lịch dịch vụ ',
-            'dichvudats' => $this->dichvudat->list(),
+            'dichvudats' => $dichvudats,
+            // 'soluongdv' => $soluongdv,
         ]);
     }
+
     public function show(DichVuDat $dichvudat)
     {
-        $dichvudats = $dichvudat;
+        $lichdatdvs = $dichvudat;
+
+        $dichvu_dichvudat = DichVu_DichVuDat::where('dichvudat_id', $lichdatdvs->id)->get();
+
+        $arr_id = [];
+        // id các dịch vụ đã đặt
+        foreach ($dichvu_dichvudat as $item) {
+            array_push($arr_id, $item->dichvus->id);
+        }
+        // shop của dịch vụ đã đặt
+        $shop = Shop::where('id', $lichdatdvs->shop_id)->get();
 
         return view('user.datlich.show', [
-            'title' => ' Đặt lịch dịch vụ ',
-            'dichvudats' => $dichvudats,
+            'title' => 'Quản lý lịch đặt dịch vụ',
+            'lichdats' => $lichdatdvs,
+            'dichvu_dichvudats' => $dichvu_dichvudat,
+            "arr_id" => $arr_id,
+            'shops' => $shop,
         ]);
+    }
+
+    public function edit(DichVuDat $dichvudat)
+    {
+        $lichdatdvs = $dichvudat;
+
+        $dichvu_dichvudat = DichVu_DichVuDat::where('dichvudat_id', $lichdatdvs->id)->get();
+
+        $arr_id = [];
+        // id các dịch vụ đã đặt
+        foreach ($dichvu_dichvudat as $item) {
+            array_push($arr_id, $item->dichvus->id);
+        }
+        // shop của dịch vụ đã đặt
+        $shop = Shop::where('id', $lichdatdvs->shop_id)->get();
+
+        return view('user.datlich.edit', [
+            'title' => 'Quản lý lịch đặt dịch vụ',
+            'lichdats' => $lichdatdvs,
+            'dichvu_dichvudats' => $dichvu_dichvudat,
+            "arr_id" => $arr_id,
+            'shops' => $shop,
+        ]);
+    }
+
+    public function update_dichvudat(Request $request, DichVuDat $dichvudat)
+    {
+        $dichvudats = $dichvudat;
+        $result = $this->dichvudat->update_dichvudat($request, $dichvudats);
+        if ($result) {
+            return redirect('/datlichs/index');
+        }
     }
 }

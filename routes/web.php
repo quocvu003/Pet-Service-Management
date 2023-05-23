@@ -1,13 +1,11 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CartController;
 use App\Http\Controllers\Admin\AccController;
 use App\Http\Controllers\Admin\DanhmucController;
 use App\Http\Controllers\Admin\FeeController;
 use App\Http\Controllers\Admin\MainController;
-
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\ChuShop\MainCSController;
@@ -29,12 +27,14 @@ Route::post('register_action', [AuthController::class, 'register_action']);
 #Upload
 Route::post('upload/services', [UploadController::class, 'store']);
 
-
 Route::get('register_seller', [AuthController::class, 'register_seller'])->name('register_seller');
 Route::post('register_seller_action', [AuthController::class, 'register_seller_action']);
 
-Route::get('verification', [AuthController::class, 'verification'])->name('verification');
-Route::post('verification_action', [AuthController::class, 'verification_action']);
+Route::get('reset_password/{user}', [AuthController::class, 'reset_password'])->name('reset_password');
+Route::post('reset_password/{user}', [AuthController::class, 'reset_password_action']);
+
+Route::get('forgot_password', [AuthController::class, 'forgot_password'])->name('forgot_password');
+Route::post('forgot_password', [AuthController::class, 'forgot_password_action']);
 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
@@ -144,6 +144,9 @@ Route::middleware(['auth'])->group(function () {
         });
         Route::prefix('congviecs')->group(function () {
             Route::get('/index', [MainNVController::class, 'list']);
+            Route::get('/edit/{dichvudat}', [MainNVController::class, 'show']);
+            Route::post('/edit/{dichvudat}', [MainNVController::class, 'update_dichvudat']);
+            Route::get('/index_hoanthanh', [MainNVController::class, 'list_hoanthanh']);
         });
     });
 });
@@ -157,7 +160,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/datlich/{shop}-{dichvu}', [DichVuDatController::class, 'store']);
     Route::prefix('datlichs')->group(function () {
         Route::get('/index', [DichVuDatController::class, 'index']);
-        Route::get('/edit/{dichvudat}', [DichVuDatController::class, 'show']);
+        Route::get('/show/{dichvudat}', [DichVuDatController::class, 'show']);
+        Route::get('/edit/{dichvudat}', [DichVuDatController::class, 'edit']);
+        Route::post('/edit/{dichvudat}', [DichVuDatController::class, 'update_dichvudat']);
     });
     Route::prefix('profiles')->group(function () {
         Route::get('/index', [MainUserController::class, 'profile']);

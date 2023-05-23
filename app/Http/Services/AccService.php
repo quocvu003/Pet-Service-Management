@@ -100,16 +100,20 @@ class AccService
         Session::flash('success', 'Cập nhật tài khoản thành công');
         return true;
     }
-    public function duyet(Request $request, User $acc)
+    public function duyet(Request $request, User $acc, Shop $shop)
     {
 
         $acc->trangthai = $request->input('trangthai');
         $acc->save();
-
+        $shop->trangthai = $request->trangthai;
+        $shop->save();
 
         Session::flash('success', 'Đơn đăng ký đã được duyệt');
+
+        $email = $request->input('email');
+        $ten = $request->input('ten');
         #Queue
-        SendMail::dispatch($request->input('email'))->delay(now()->addSeconds(5));
+        SendMail::dispatch($email, $ten)->delay(now()->addSeconds(5));
         return true;
     }
     public function destroy($request)

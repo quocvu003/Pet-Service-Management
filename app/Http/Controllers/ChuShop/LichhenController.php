@@ -24,17 +24,20 @@ class LichhenController extends Controller
         return view('ChuShop.lichhen.index', [
             'title' => 'Quản lý lịch đặt dịch vụ',
             'lichdatdvs' => $this->dicvudatService->choduyet(),
-
         ]);
     }
 
     public function index_daduyet()
     {
-
+        // $dichvudats = $this->dicvudatService->daduyet();
+        // foreach ($dichvudats as $dichvudat) {
+        //     $dichvu_id = $dichvudat->id;
+        // }
+        // $soluongdv = DichVu_DichVuDat::where('dichvudat_id', $dichvu_id)->count();
         return view('ChuShop.lichhen.index_daduyet', [
             'title' => 'Quản lý lịch đặt dịch vụ',
             'lichdatdvs' => $this->dicvudatService->daduyet(),
-
+            // 'soluongdv' => $soluongdv,
         ]);
     }
 
@@ -54,11 +57,10 @@ class LichhenController extends Controller
 
         $id_shop = $lichdatdvs->shop_id;
 
-        $nhanvien = User::where('shop_id', $id_shop)->where('quyen_id', 4)->get();
+        $nhanvien = User::where('shop_id', $id_shop)->where('quyen_id', 4)->where('trangthai', 1)->get();
 
         return view('ChuShop.lichhen.show', [
             'title' => 'Quản lý lịch đặt dịch vụ',
-
             'lichdats' => $lichdatdvs,
             'dichvu_dichvudats' => $dichvu_dichvudat,
             'nhanviens' => $nhanvien,
@@ -84,7 +86,7 @@ class LichhenController extends Controller
 
         $id_shop = $lichdatdvs->shop_id;
 
-        $listnhanvien = User::where('shop_id', $id_shop)->where('quyen_id', 4)->get();
+        $listnhanvien = User::where('shop_id', $id_shop)->where('quyen_id', 4)->where('trangthai', 1)->get();
 
         return view('ChuShop.lichhen.show_daduyet', [
             'title' => 'Quản lý lịch đặt dịch vụ',
@@ -99,7 +101,7 @@ class LichhenController extends Controller
         $lichdatdvs = $lichdatdv;
 
 
-        $result = $this->dicvudatService->update($request, $lichdatdvs);
+        $result = $this->dicvudatService->update_daduyet($request, $lichdatdvs);
 
         if ($result) {
             return redirect('/ChuShop/lichdatdvs/list_daduyet');
@@ -113,7 +115,7 @@ class LichhenController extends Controller
 
         $id_shop = $lichdatdvs->shop_id;
 
-        $listnhanvien = User::where('shop_id', $id_shop)->where('quyen_id', 4)->get();
+        $listnhanvien = User::where('shop_id', $id_shop)->where('quyen_id', 4)->where('trangthai', 1)->get();
 
         return view('ChuShop.lichhen.show_hoanthanh', [
             'title' => 'Quản lý lịch đặt dịch vụ',

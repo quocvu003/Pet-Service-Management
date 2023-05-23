@@ -12,7 +12,10 @@
 
     @yield('content')
     <!-- Footer -->
+
     @include('user.footer')
+
+
 </body>
 
 </html>

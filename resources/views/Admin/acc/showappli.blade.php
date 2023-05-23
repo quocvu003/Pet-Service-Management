@@ -45,6 +45,7 @@
             <div>
                 <span class="icon"><i class="fas fa-user"></i></span>
                 <label for="menu">Chủ sở hữu: {{ $acc->ten }}</label>
+                <input type="hidden" name="ten" value="{{ $acc->ten }}">
             </div>
             <div>
                 <span class="icon"><i class="fas fa-store"></i></span>

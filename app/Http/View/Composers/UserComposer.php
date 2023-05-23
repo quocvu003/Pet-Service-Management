@@ -26,17 +26,19 @@ class UserComposer
             $display = 'block';
             $avatar = $currentuser->hinhanh;
             $link = '#';
+            $id = $currentuser->id;
         } else {
             $username = 'Đăng nhập';
             $link = '/login';
             $display = 'none';
             $avatar = '/template/avatar.jpg	';
+            $id = '#';
         }
         $view->with('username', $username);
         $view->with('avatar', $avatar);
         $view->with('link', $link);
         $view->with('display', $display);
-
+        $view->with('id', $id);
         $view->with('danhmucs', $this->danhmucService->getAll());
     }
 }

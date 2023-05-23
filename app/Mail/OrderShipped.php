@@ -13,18 +13,15 @@ class OrderShipped extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    protected $ten;
+
+    public function __construct($ten)
     {
-        //
+        $this->ten = $ten;
     }
     public function build()
     {
-        return $this->view('Mail.duyet')
+        return $this->view('Mail.duyet', compact('ten'))
             ->subject('THÔNG BÁO TỪ PETCARE');
     }
 }

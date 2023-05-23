@@ -3,13 +3,10 @@
     <section>
         <div class="row" style="margin: 80px ">
 
+            <h3 style="margin: 30px 0;text-align: center">Danh Sách Đặt Dịch Vụ</h3>
             <div class="card shadow border-0 text-center p-0 mt-3">
-
                 @include('admin.alert')
 
-
-
-                <h3 style="margin: 30px 0;text-align: center">Danh Sách Đặt Dịch Vụ</h3>
                 <table class="table">
                     <thead>
                         <tr>
@@ -19,6 +16,7 @@
                             <th>Ngày</th>
                             <th>Giờ</th>
                             <th>Loại Thú Cưng</th>
+                            {{-- <th>Số Lượng Dịch Vụ</th> --}}
                             <th>Tổng Tiền</th>
                             <th>Trạng Thái</th>
                             <th style="width: 100px">&nbsp;</th>
@@ -40,16 +38,22 @@
                                         Mèo
                                     @endif
                                 </td>
+                                {{-- <td>{{ $soluongdv }}</td> --}}
                                 <td>{{ number_format($dichvudat->tongtien) }} VNĐ</td>
                                 <td>{!! \App\Helpers\Helper::trangthai_lichdat($dichvudat->trangthai) !!}</td>
                                 <td>
-                                    <a class="btn btn-primary btn-sm" href="/datlichs/edit/{{ $dichvudat->id }}">
-                                        <i class="fas fa-edit"></i>
+                                    <a class="btn btn-primary btn-sm" href="/datlichs/show/{{ $dichvudat->id }}">
+                                        <i class="fas fa-eye"></i>
                                     </a>
-                                    <a href="#" class="btn btn-danger btn-sm"
-                                        onclick="removeRow({{ $dichvudat->id }}, '/datlichs/destroy')">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
+                                    @if ($dichvudat->trangthai == 1)
+                                        <a class="btn btn-primary btn-sm" href="/datlichs/edit/{{ $dichvudat->id }}">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-danger btn-sm"
+                                            onclick="removeRow({{ $dichvudat->id }}, '/datlichs/destroy')">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

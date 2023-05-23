@@ -1,33 +1,5 @@
 @include('ChuShop.head')
-<style>
-    .nav-link {
-        display: {{ $display }};
-    }
 
-    .main-menu li a {
-        font-size: 16px;
-        font-family: "Inter", sans-serif;
-        font-weight: 600;
-    }
-
-    .dropdown-menu.show {
-        left: 145px !important;
-    }
-
-    .sub-menu {
-        min-width: 260px;
-        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-        border-radius: 6px;
-    }
-
-    .sub-menu li:hover {
-        background-color: #6c7ae0
-    }
-
-    .sub-menu li a:hover {
-        color: white;
-    }
-</style>
 <header>
     @php $menusHtml = \App\Helpers\Helper::danhmucs($danhmucs); @endphp
 
@@ -118,7 +90,8 @@
 
                                     Đặt dịch vụ
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                <a class="dropdown-item d-flex align-items-center"
+                                    href="/reset_password/{{ $id }}">
                                     <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor"
                                         viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
@@ -204,7 +177,35 @@
 
     </div>
 
+    <style>
+        .nav-link {
+            display: {{ $display }};
+        }
 
+        .main-menu li a {
+            font-size: 16px;
+            font-family: "Inter", sans-serif;
+            font-weight: 600;
+        }
+
+        .dropdown-menu.show {
+            left: 145px !important;
+        }
+
+        .sub-menu {
+            min-width: 260px;
+            box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+            border-radius: 6px;
+        }
+
+        .sub-menu li:hover {
+            background-color: #6c7ae0
+        }
+
+        .sub-menu li a:hover {
+            color: white;
+        }
+    </style>
 </header>
 <!-- Core -->
 <script src="/template/chuShop/vendor/@popperjs/core/dist/umd/popper.min.js"></script>

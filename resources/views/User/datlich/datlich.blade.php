@@ -1,20 +1,9 @@
 @extends('user.main')
-<style>
-    input[type="checkbox"] {
-        display: inline-block;
-        width: auto;
-        margin-right: 10px;
-    }
 
-    label {
-        display: inline-block;
-        margin-bottom: 10px;
-    }
-</style>
 @section('content')
-    <section>
-        <div class="row" style="margin: 80px 200px 0 200px ">
-
+    <section style="margin-bottom: 50px">
+        <div class="row" style="margin: 80px 100px 0 100px ">
+            @include('admin.alert')
             <div class="card card-body border-0 shadow mt-3">
                 <form action="" method="POST">
                     <h3 style="margin: 30px 0;text-align: center">Đặt dịch vụ của {{ $shops->ten }}</h3>
@@ -64,19 +53,20 @@
                         <div class="col-md-4 mb-3">
                             <div class="form-group">
                                 <label for="menu">Ngày</label>
-                                <input type="date" name="ngay" value="" class="form-control">
+                                <input type="date" name="ngay" value="{{ old('ngay') }}" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <div class="form-group">
                                 <label for="menu">Giờ</label>
-                                <input type="time" name="gio" value="" class="form-control">
+                                <input type="time" name="gio" value="{{ old('gio') }}" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <div class="form-group">
                                 <label for="menu">Loại</label>
                                 <select class="form-control" name="loaithucung">
+                                    <option value="">Chọn loại</option>
                                     <option value="1">Chó</option>
                                     <option value="2">Mèo</option>
                                 </select>
@@ -86,7 +76,7 @@
 
                     <div class="row">
 
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-8 mb-3">
 
                             <label for="services">Dịch vụ </label><br>
                             @foreach ($shops->dichvus as $dichvu)
@@ -101,7 +91,7 @@
                         </div>
 
 
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-4 mb-3">
 
                             <label for="menu">Tổng giá (VNĐ)</label>
                             <div class="form-group">
@@ -110,7 +100,11 @@
 
                                 <input class="form-control" name='tongtiensting' id='tongtiensting'
                                     value={{ number_format($dichvus->gia) }} disabled>
+
                             </div>
+                        </div>
+                        <div class="card-footer d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary">Đặt lịch</button>
                         </div>
                     </div>
 
@@ -121,14 +115,23 @@
         <input type="hidden" name="shop_id" value="{{ $shops->id }}">
         <input type="hidden" name="taikhoan_id" value="{{ $user->id }}">
 
-        <div class="card-footer d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary">Đặt lịch</button>
-        </div>
+
         @csrf
         </form>
-
     </section>
 @endsection
+<style>
+    input[type="checkbox"] {
+        display: inline-block;
+        width: auto;
+        margin-right: 10px;
+    }
+
+    label {
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+</style>
 <script>
     function handleCheckBox(gia, event) {
         console.log(event.target.checked);

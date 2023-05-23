@@ -3,24 +3,24 @@
     <form action="" method="POST">
         <main class="content">
             @include('admin.alert')
-            <div class="row" style="margin: 0 200px">
+            <div class="row" style="margin: 0 100px">
 
                 <div class="card card-body border-0 shadow mt-3">
 
-                    <h3>Tài khoản nhân viên {{ $nhanviens->ten }}</h3>
+                    <h3>Tài khoản nhân viên: {{ $nhanviens->ten }}</h3>
                     <div class="row">
                         <div class="col-md-12 mb-3 d-flex align-items-center">
                             <label for="menu" class="mr-5">Ảnh đại diện</label>
-                            <div id="hinhanh_show">
+                            <div id="hinhanh_show" style="margin-left: 50px">
                                 <a href="{{ $nhanviens->hinhanh }}" target="_blank">
                                     <img src="{{ $nhanviens->hinhanh }}" width="60px" style="border-radius: 50%;">
                                 </a>
                             </div>
 
                         </div>
-
-                        <input type="file" class="form-control" id="hinhanh">
-
+                        <div class="col-md-12 mb-3">
+                            <input type="file" class="form-control " id="hinhanh">
+                        </div>
                         <input type="hidden" name="hinhanh" value="{{ $nhanviens->hinhanh }}"id="hinhanh01">
                     </div>
 

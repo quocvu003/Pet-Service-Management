@@ -26,7 +26,7 @@ class MainController extends Controller
 
       $shop = User::where('quyen_id', '2')->count();
       $khachhang = User::where('quyen_id', '3')->count();
-      $chuaduyet = User::where('trangthai', '3')->count();
+      $chuaduyet = User::where('trangthai', '2')->count();
       $danhmuc = DanhMuc::count();
       return view('admin.home', compact('shop', 'khachhang', 'chuaduyet', 'danhmuc'), [
          'title' => 'Trang Admin',

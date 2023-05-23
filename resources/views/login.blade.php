@@ -58,7 +58,10 @@
 
                                             <input type="password" placeholder="Nhập mật khẩu" class="form-control"
                                                 id="password" name="password">
+                                            <span class="fw-normal mt-4" style="margin-left: 250px">
 
+                                                <a href="/forgot_password" class="fw-bold">Quên mật khẩu?</a>
+                                            </span>
                                         </div>
                                     </div>
                                     <!-- End of Form -->
