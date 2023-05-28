@@ -22,6 +22,13 @@
                             <ul>
                                 <li style="margin : 10px 0"><b>Tên Shop :</b> {{ $shop->ten }}</li>
 
+                                @foreach ($shop->users as $user)
+                                    @if ($user->quyen_id == 2)
+                                        <li style="margin : 10px 0"><b>Chủ sở hữu :</b> {{ $user->ten }}</li>
+                                        <li style="margin : 10px 0"><b>Email:</b> {{ $user->email }}</li>
+                                    @endif
+                                @endforeach
+
                                 <li style="margin : 10px 0"><b>Số điện thoại :</b> {{ $shop->sdt }}</li>
                                 <li style="margin : 10px 0"><b>Địa chỉ :</b> {{ $shop->diachi }}</li>
                             </ul>
@@ -30,7 +37,6 @@
                         <div class="col-md-7">
                             <h4 style="margin-top: 10px">Dịch vụ của Shop</h4>
                             <ul>
-
                                 @foreach ($shop->dichvus as $dichvu)
                                     <div style="display: flex; align-items: center; gap: 20px">
                                         <li style="margin : 10px 0; width: 320px;">{{ $dichvu->ten }} </li> -

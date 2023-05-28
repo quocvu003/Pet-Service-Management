@@ -30,7 +30,7 @@
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="/admin/accs/chuShop" class="small-box-footer">Xem thêm<i
+                        <a href="/admin/accs/khachhang" class="small-box-footer">Xem thêm<i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>

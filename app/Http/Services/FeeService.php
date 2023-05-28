@@ -19,6 +19,14 @@ class FeeService
     }
     public function insert($request)
     {
+        $request->validate([
+
+            'tien' => 'required|email:filter',
+
+        ], [
+            'tien.required' => 'Bạn chưa nhập tiền',
+
+        ]);
         $phithu = new PhiThu;
         $phithu->shop_id = $request->input('shop_id');
 

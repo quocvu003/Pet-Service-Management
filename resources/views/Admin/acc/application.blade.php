@@ -1,6 +1,7 @@
 @extends('admin.main')
 
 @section('content')
+    @include('admin.alert')
     @if (count($accs) > 0)
         <table class="table">
             <thead>
@@ -35,10 +36,10 @@
                             <a class="btn btn-primary btn-sm" href="/admin/accs/showappli/{{ $acc->id }}">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a href="#" class="btn btn-danger btn-sm"
+                            {{-- <a href="#" class="btn btn-danger btn-sm"
                                 onclick="removeRow({{ $acc->shops->id }}, '/admin/accs/destroyshop')">
                                 <i class="fas fa-trash"></i>
-                            </a>
+                            </a> --}}
                         </td>
                     </tr>
                 @endforeach

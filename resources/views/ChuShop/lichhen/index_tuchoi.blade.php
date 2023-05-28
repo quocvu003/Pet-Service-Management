@@ -14,36 +14,40 @@
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="menu">Trạng thái</label>
+                                        <select class="form-control" style="width: 150px;" onchange="handleChange(this)">
 
-                                        <select class="form-control" style="width: 120px" onchange="handleChange(this)">
-
-                                            <option value="/ChuShop/lichdatdvs/list" selected>Chờ Duyệt</option>
-                                            <option value="/ChuShop/lichdatdvs/list_daduyet">Đã Duyệt</option>
+                                            <option value="/ChuShop/lichdatdvs/list">Chờ Duyệt</option>
+                                            <option value="/ChuShop/lichdatdvs/list_daduyet ">Đã Duyệt</option>
                                             <option value="/ChuShop/lichdatdvs/list_hoanthanh">Hoàn Thành</option>
-                                            <option value="/ChuShop/lichdatdvs/list_tuchoi">Đã Từ Chối</option>
+                                            <option value="/ChuShop/lichdatdvs/list_tuchoi" selected>Đã Từ Chối</option>
                                         </select>
 
-
+                                        <script>
+                                            function handleChange(select) {
+                                                var url = select.value;
+                                                if (url) {
+                                                    window.location.href = url;
+                                                }
+                                            }
+                                        </script>
 
                                     </div>
                                 </div>
                             </div>
-
-
-
                             @if (count($lichdatdvs) > 0)
                                 <div style='overflow-x:scroll'>
                                     <table class="table">
                                         <thead>
+
                                             <tr>
-                                                <th style="width: 10px">STT</th>
-                                                <th style="width: 50px">Ảnh đại diện</th>
+                                                <th>STT</th>
+                                                <th>Ảnh đại diện</th>
                                                 <th>Tên Khách Hàng</th>
-                                                <th>Số điện thoại</th>
-                                                <th>Số lượng</th>
-                                                <th>Tổng tiền</th>
+                                                <th>Số Điện Thoại</th>
+                                                <th>Số Lượng</th>
+                                                <th>Tổng Tiền</th>
                                                 <th>Trạng Thái</th>
-                                                <th>Ngày Tạo</th>
+                                                <th>Cập Nhật</th>
 
                                                 <th style="width: 80px">&nbsp;</th>
                                             </tr>
@@ -57,18 +61,19 @@
                                                             <img src="{{ $lichdatdv->taikhoans->hinhanh }}" height="30px">
                                                         </a>
                                                     </td>
+
                                                     <td>{{ $lichdatdv->ten }}</td>
 
                                                     <td>{{ $lichdatdv->sdt }}</td>
                                                     <td>{{ $lichdatdv->soluongdv }}</td>
                                                     <td>{{ number_format($lichdatdv->tongtien) }}VNĐ</td>
                                                     <td>{!! \App\Helpers\Helper::trangthai_lichdat($lichdatdv->trangthai) !!}</td>
-                                                    <td>{{ \Carbon\Carbon::parse($lichdatdv->created_at)->isoFormat('DD/MM/YYYY HH:mm:ss') }}
-                                                    </td>
-                                                    </td>
+                                                    <td>{{ \Carbon\Carbon::parse($lichdatdv->updated_at)->isoFormat('DD/MM/YYYY HH:mm:ss') }}
+
+
                                                     <td>
                                                         <a class="btn btn-primary btn-sm"
-                                                            href="/ChuShop/lichdatdvs/edit/{{ $lichdatdv->id }}">
+                                                            href="/ChuShop/lichdatdvs/edit_tuchoi/{{ $lichdatdv->id }}">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
                                                         {{-- <a href="#" class="btn btn-danger btn-sm"
@@ -83,7 +88,7 @@
                                 </div>
                             @else
                                 <div class="alert alert-info">
-                                    Tất cả các lịch đặt dịch vụ đã được duyệt.
+                                    Tất cả các lịch đặt dịch vụ đã hoàn thành.
                                 </div>
                             @endif
                         </div>
@@ -95,11 +100,14 @@
         @include('admin.footer')
     </main>
 @endsection
-<script>
-    function handleChange(select) {
-        var url = select.value;
-        if (url) {
-            window.location.href = url;
-        }
+<style>
+    .table {
+        border-collapse: collapse;
+        width: 100%;
     }
-</script>
+
+    .table th,
+    .table td {
+        padding: 8px;
+    }
+</style>

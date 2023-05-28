@@ -17,14 +17,14 @@ class Shop extends Model
         'hinhanh',
     ];
 
-    protected $with = [
-        // 'taikhoans',
-        'dichvus'
-    ];
-    // public function taikhoans()
-    // {
-    //     return $this->hasMany(User::class, 'shop_id', 'id');
-    // }
+    // protected $with = [
+    //     'users',
+    //     'dichvus'
+    // ];
+    public function users()
+    {
+        return $this->hasMany(User::class, 'shop_id', 'id');
+    }
 
     public function dichvus()
     {

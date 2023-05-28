@@ -49,6 +49,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('add', [DanhmucController::class, 'create']);
             Route::post('add', [DanhmucController::class, 'store']);
             Route::get('list', [DanhmucController::class, 'index']);
+            Route::get('requestdv', [DanhmucController::class, 'requestdv']);
+            Route::get('edit_requestdv/{danhmuc}', [DanhmucController::class, 'show_requestdv']);
+            Route::post('edit_requestdv/{danhmuc}', [DanhmucController::class, 'update_requestdv']);
             Route::get('edit/{danhmuc}', [DanhmucController::class, 'show']);
             Route::post('edit/{danhmuc}', [DanhmucController::class, 'update']);
             Route::DELETE('destroy', [DanhmucController::class, 'destroy']);
@@ -119,6 +122,7 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('dichvus')->group(function () {
             Route::get('list', [DichvuController::class, 'index']);
             Route::post('list', [DichvuController::class, 'store']);
+            Route::post('list', [DichvuController::class, 'store']);
             Route::get('edit/{dichvu}', [DichvuController::class, 'show']);
             Route::post('edit/{dichvu}', [DichvuController::class, 'update']);
         });
@@ -126,11 +130,17 @@ Route::middleware(['auth'])->group(function () {
             Route::get('list', [LichhenController::class, 'index']);
             Route::get('list_daduyet', [LichhenController::class, 'index_daduyet']);
             Route::get('list_hoanthanh', [LichhenController::class, 'index_hoanthanh']);
+            Route::get('list_tuchoi', [LichhenController::class, 'index_tuchoi']);
             Route::get('edit/{lichdatdv}', [LichhenController::class, 'show']);
             Route::post('edit/{lichdatdv}', [LichhenController::class, 'duyet']);
             Route::get('edit_daduyet/{lichdatdv}', [LichhenController::class, 'show_daduyet']);
             Route::post('edit_daduyet/{lichdatdv}', [LichhenController::class, 'update_daduyet']);
             Route::get('edit_hoanthanh/{lichdatdv}', [LichhenController::class, 'show_hoanthanh']);
+            Route::get('edit_tuchoi/{lichdatdv}', [LichhenController::class, 'show_tuchoi']);
+        });
+        Route::prefix('danhmucs')->group(function () {
+            Route::get('list', [DanhmucController::class, 'indexshop']);
+            Route::post('list', [DanhmucController::class, 'storeshop']);
         });
     });
 });
@@ -163,6 +173,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/show/{dichvudat}', [DichVuDatController::class, 'show']);
         Route::get('/edit/{dichvudat}', [DichVuDatController::class, 'edit']);
         Route::post('/edit/{dichvudat}', [DichVuDatController::class, 'update_dichvudat']);
+        Route::DELETE('destroy', [DichVuDatController::class, 'destroy']);
     });
     Route::prefix('profiles')->group(function () {
         Route::get('/index', [MainUserController::class, 'profile']);

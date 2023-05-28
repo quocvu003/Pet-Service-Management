@@ -3,31 +3,32 @@
 namespace App\Jobs;
 
 use App\Mail\Duyet;
-use App\Mail\OrderShipped;
 use Illuminate\Bus\Queueable;
-
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 
-class SendMail implements ShouldQueue
+class Duyet_LichDat implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $email;
-    protected $ten;
+    protected $lichdatdv;
+
     /**
      * Create a new job instance.
      *
-     
+     * @param string $email
+     * @param mixed $lichdatdv
      * @return void
      */
-    public function __construct($email, $ten)
+    public function __construct($email, $lichdatdv)
     {
         $this->email = $email;
-        $this->ten = $ten;
+        $this->lichdatdv = $lichdatdv;
     }
 
     /**
@@ -37,6 +38,6 @@ class SendMail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->email)->send(new OrderShipped($this->ten));
+        Mail::to($this->email)->send(new Duyet($this->lichdatdv));
     }
 }

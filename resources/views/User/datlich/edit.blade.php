@@ -4,7 +4,7 @@
     <section style="margin-bottom: 50px">
         <div class="row" style="margin: 80px 100px 0 100px ">
 
-            <div class="card card-body border-0 shadow mt-3">
+            <div class="card card-body border-0 shadow mt-3 mb-5">
                 <form action="" method="POST">
                     <div class="card-body">
                         <h2 style="margin-left: 400px;margin-bottom: 50px">Chi tiết lịch đặt dịch vụ</h2>

@@ -45,6 +45,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="/admin/danhmucs/requestdv" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Yêu cầu thêm dịch vụ</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="/admin/danhmucs/list" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách dịch vụ</p>

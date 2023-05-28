@@ -146,7 +146,7 @@
                             <div class="text-center">
                                 <span class="fw-normal">
                                     Bạn đã có tài khoản ?
-                                    <a href="/login" class="fw-bold">Đăng nhập</a>
+                                    <a href="/login" class="fw-bold" style="color: black">Đăng nhập</a>
                                 </span>
                             </div>
 

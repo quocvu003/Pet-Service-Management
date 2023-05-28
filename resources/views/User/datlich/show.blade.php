@@ -4,7 +4,7 @@
     <section style="margin-bottom: 50px">
         <div class="row" style="margin: 80px 100px 0 100px ">
 
-            <div class="card card-body border-0 shadow mt-3">
+            <div class="card card-body border-0 shadow mt-3 mb-5">
 
                 <div class="card-body">
                     <h2 style="margin-left: 400px;margin-bottom: 50px">Chi tiết lịch đặt dịch vụ</h2>
@@ -90,14 +90,10 @@
                         <div class="col-md-8 mb-3">
 
                             <label>Dịch vụ </label><br>
-                            @foreach ($shops as $key => $shop)
-                                @foreach ($shop->dichvus as $dichvu)
-                                    <ul>
-                                        <li><label> {{ ++$key }}. {{ $dichvu->ten }} - Giá :
-                                                {{ number_format($dichvu->gia) }}
-                                                VNĐ </label><br></li>
-                                    </ul>
-                                @endforeach
+                            @foreach ($dichvu_dichvudats as $key => $dichvu_dichvudat)
+                                <ul>
+                                    <li>{{ ++$key }}. {{ $dichvu_dichvudat->dichvus->ten }}</li>
+                                </ul>
                             @endforeach
 
                         </div>

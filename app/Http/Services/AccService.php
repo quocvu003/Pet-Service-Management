@@ -3,13 +3,14 @@
 
 namespace App\Http\Services;
 
-use App\Jobs\SendMail;
+use App\Jobs\Duyet_Shop;
+use App\Jobs\TuChoi_Shop;
 use App\Models\Shop;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Storage;
+
 
 class AccService
 {
@@ -53,7 +54,7 @@ class AccService
             'email.required' => 'Bạn chưa nhập email',
             'ten.required' => 'Bạn chưa nhập tên',
             'password.required' => 'Bạn chưa nhập mật khẩu',
-            'confirm_password.same' => 'Mật khẩu không trùng khớp',
+            'password_confirmation.same' => 'Mật khẩu không trùng khớp',
         ]);
         try {
             User::create([
@@ -102,19 +103,21 @@ class AccService
     }
     public function duyet(Request $request, User $acc, Shop $shop)
     {
-
-        $acc->trangthai = $request->input('trangthai');
+        $email = $request->email;
+        $acc->trangthai = $request->status;
         $acc->save();
-        $shop->trangthai = $request->trangthai;
+        $shop->trangthai = $request->status;
         $shop->save();
+        if ($acc->trangthai == 1) {
+            Session::flash('success', 'Duyệt thành công!');
+            dispatch((new Duyet_Shop($email, $acc))->delay(now()->addSeconds(5)));
+        }
 
-        Session::flash('success', 'Đơn đăng ký đã được duyệt');
-
-        $email = $request->input('email');
-        $ten = $request->input('ten');
-        #Queue
-        SendMail::dispatch($email, $ten)->delay(now()->addSeconds(5));
-        return true;
+        if ($acc->trangthai == 0) {
+            Session::flash('success', ' Đã Từ Chối! ');
+            dispatch((new TuChoi_Shop($email, $acc))->delay(now()->addSeconds(5)));
+        }
+        return $acc;
     }
     public function destroy($request)
     {

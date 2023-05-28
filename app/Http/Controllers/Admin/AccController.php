@@ -136,17 +136,23 @@ class AccController extends Controller
     }
     public function duyet(Request $request, $id)
     {
-        $user = User::findOrFail($id); // Lấy bản ghi của bảng users dựa trên $id truyền vào
-
-        // Lấy đối tượng của bảng shops mà có khóa ngoại là user_id
+        $user = User::findOrFail($id);
         $shop = $user->shops()->first();
-
-        // Gọi hàm cập nhật dữ liệu từ AccService
         $result = $this->AccService->duyet($request, $user, $shop);
 
-        if ($result) {
-            return redirect('/admin/accs/application');
+        if ($result->trangthai == 1) {
+            return response()->json([
+                'error' => false,
+                'message' => 'Duyet Thanh Cong'
+            ]);
         }
+        if ($result->trangthai == 0) {
+            return response()->json([
+                'error' => false,
+                'message' => 'Khong Duoc Duyet '
+            ]);
+        }
+        return response()->json(['error' => true]);
     }
     // public function destroyshow(Request $request)
     // {

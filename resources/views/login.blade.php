@@ -73,12 +73,19 @@
                                 @csrf
                             </form>
 
-                            <div class="d-flex justify-content-center align-items-center mt-4">
+                            <div class="d-flex justify-content-center mt-4">
                                 <span class="fw-normal">
-                                    Bạn chưa có tài khoản ?
-                                    <a href="/register" class="fw-bold">Tạo tài khoản</a>
+
+                                    Bạn chưa có tài khoản ? <br />
                                 </span>
                             </div>
+                            <div style="margin-top: 20px">
+                                <a href="/register" class="fw-bold " style="color: blue">Đăng ký thành viên</a>
+                                <a href="/register_seller" class="fw-bold " style="margin-left: 100px;color: brown">Đăng
+                                    ký chủ
+                                    Shop</a>
+                            </div>
+
                         </div>
                     </div>
                 </div>

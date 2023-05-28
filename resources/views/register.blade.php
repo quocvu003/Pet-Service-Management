@@ -71,13 +71,7 @@
                                         </div>
                                     </div>
                                     <!-- End of Form -->
-                                    <div class="mb-4">
-                                        <span class="fw-normal">
-                                            Bạn là Shop chăm sóc thú
-                                            cưng ?
-                                            <a href="/register_seller" class="fw-bold"> Đăng ký ngay nào!</a>
-                                        </span>
-                                    </div>
+
                                 </div>
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-gray-800">ĐĂNG KÝ</button>

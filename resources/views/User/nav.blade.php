@@ -71,6 +71,17 @@
                                 <a href="{{ $link }}"> <span
                                         style="font-weight: 600">{{ $username }}</span></a>
                             </div>
+
+                            <div style="margin-top: 15px;margin-left: 25px;">
+                                <a href="{{ $link2 }}"> <span
+                                        style="font-weight: 600;color: blue">{{ $hidden }}</span></a>
+                            </div>
+
+                            <div style="margin-top: 15px;margin-left: 25px;">
+                                <a href="{{ $link3 }}"> <span
+                                        style="font-weight: 600;color: brown">{{ $hidden2 }}</span></a>
+                            </div>
+
                             <div class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-1 "
                                 style="margin-left: 145px !important">
                                 <a class="dropdown-item d-flex align-items-center" href="/profiles/index">

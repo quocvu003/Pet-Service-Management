@@ -45,14 +45,16 @@ class Helper
     {
         return $trangthai == 0 ? '<span class="btn btn-danger btn-xs">KHÓA</span>'
             : ($trangthai == 2 ? '<span class="btn btn-warning btn-xs">CHỜ DUYỆT</span>'
-                : '<span class="btn btn-success btn-xs">KÍCH HOẠT</span>');
+                : ($trangthai == 3 ? '<span class="btn btn-dark btn-xs">YÊU CẦU</span>'
+                    : '<span class="btn btn-success btn-xs">KÍCH HOẠT</span>'));
     }
 
     public static function trangthai_lichdat($trangthai = 0): string
     {
         return $trangthai == 1 ? '<span class="btn btn-danger btn-xs">CHỜ DUYỆT</span>'
             : ($trangthai == 2 ? '<span class="btn btn-info btn-xs">ĐÃ DUYỆT</span>'
-                : '<span class="btn btn-success btn-xs">HOÀN THÀNH</span>');
+                : ($trangthai == 4 ? '<span class="btn btn-primary btn-xs">TỪ CHỐI</span>'
+                    : '<span class="btn btn-success btn-xs">HOÀN THÀNH</span>'));
     }
 
     public static function danhmucs($danhmucs): string

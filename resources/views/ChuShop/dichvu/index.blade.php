@@ -8,12 +8,20 @@
                     <div class="card-body">
                         <div class="row d-block mt-4">
 
-                            <div class="col-lg-4">
-                                <!-- Button Modal -->
+                            <div class="col-lg-12">
+
+
+
                                 <button type="button" class="btn btn-block btn-gray-800 mb-3" data-bs-toggle="modal"
-                                    data-bs-target="#modal-form-signup">Thêm dịch vụ thú cưng</button>
+                                    data-bs-target="#modal-form-add">Thêm dịch vụ thú
+                                    cưng</button>
+
+
+
+
+
                                 <!-- Modal thêm dịch vụ -->
-                                <div class="modal fade" id="modal-form-signup" tabindex="-1" role="dialog"
+                                <div class="modal fade" id="modal-form-add" tabindex="-1" role="dialog"
                                     aria-labelledby="modal-form-signup" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
@@ -55,7 +63,7 @@
 
                                                                 <input type="text"
                                                                     class="form-control"value="{{ old('gia') }}"
-                                                                    placeholder="Nhập giá " name="gia" autofocus>
+                                                                    placeholder="Nhập giá " name="gia">
                                                             </div>
                                                         </div>
 
@@ -72,58 +80,60 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
 
 
                             <!-- End of Modal Content -->
                         </div>
                         @if (count($dichvus) > 0)
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 50px">STT</th>
-                                        <th>Tên Dịch Vụ</th>
-                                        <th>Danh Mục Dịch Vụ</th>
-                                        <th>Giá</th>
-
-                                        <th>Trạng Thái</th>
-                                        <th>Ngày Tạo</th>
-
-                                        <th style="width: 100px">&nbsp;</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    @foreach ($dichvus as $key => $dichvu)
+                            <div style='overflow-x:scroll'>
+                                <table class="table">
+                                    <thead>
                                         <tr>
-                                            <td>{{ ++$key }}</td>
-                                            <td>{{ $dichvu->ten }}</td>
-                                            <td>{{ $dichvu->danhmucs->ten }}</td>
-                                            <td>{{ number_format($dichvu->gia) }} VNĐ</td>
-                                            <td>{!! \App\Helpers\Helper::trangthai($dichvu->trangthai) !!}</td>
-                                            <td>{{ \Carbon\Carbon::parse($dichvu->created_at)->isoFormat('DD/MM/YYYY HH:mm:ss') }}
-                                            <td>
-                                            </td>
+                                            <th style="width: 50px">STT</th>
+                                            <th>Tên Dịch Vụ</th>
+                                            <th>Danh Mục Dịch Vụ</th>
+                                            <th>Giá</th>
 
-                                            <td>
+                                            <th>Trạng Thái</th>
+                                            <th>Ngày Tạo</th>
 
-                                                <a class="btn btn-primary btn-sm"
-                                                    href="/ChuShop/dichvus/edit/{{ $dichvu->id }}">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                {{-- <a href="#" class="btn btn-danger btn-sm"
+                                            <th style="width: 100px">&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach ($dichvus as $key => $dichvu)
+                                            <tr>
+                                                <td>{{ ++$key }}</td>
+                                                <td>{{ $dichvu->ten }}</td>
+                                                <td>{{ $dichvu->danhmucs->ten }}</td>
+                                                <td>{{ number_format($dichvu->gia) }} VNĐ</td>
+                                                <td>{!! \App\Helpers\Helper::trangthai($dichvu->trangthai) !!}</td>
+                                                <td>{{ \Carbon\Carbon::parse($dichvu->created_at)->isoFormat('DD/MM/YYYY HH:mm:ss') }}
+                                                <td>
+                                                </td>
+
+                                                <td>
+
+                                                    <a class="btn btn-primary btn-sm"
+                                                        href="/ChuShop/dichvus/edit/{{ $dichvu->id }}">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    {{-- <a href="#" class="btn btn-danger btn-sm"
                                                     onclick="removeRow({{ $dichvu->id }}, '/admin/accs/destroy')">
                                                     <i class="fas fa-trash"></i>
                                                 </a> --}}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        @else
-                            <div class="alert alert-danger">
-                                Shop của bạn hiện chưa có dịch vụ nào!
-                            </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @else
+                                <div class="alert alert-danger">
+                                    Shop của bạn hiện chưa có dịch vụ nào!
+                                </div>
                         @endif
                     </div>
                 </div>

@@ -12,6 +12,7 @@ use App\Models\DichVu;
 use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MainUserController extends Controller
 {
@@ -39,15 +40,15 @@ class MainUserController extends Controller
     }
     public function show()
     {
-        $shop = Shop::where('id', '<>', 0)
+        $shop = Shop::with('users', 'dichvus')
+            ->where('id', '<>', 0)
             ->where('trangthai', 1)
             ->paginate(2);
 
         return view('user.shop', [
             'title' => 'PetCare Shop ',
             'shops' => $shop,
-
-
+            // 'user' => $user,
         ]);
     }
     public function profile()

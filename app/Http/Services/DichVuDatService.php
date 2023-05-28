@@ -2,13 +2,18 @@
 
 namespace App\Http\Services;
 
+use App\Jobs\Duyet_LichDat;
 use App\Jobs\SendMail;
 use App\Jobs\SendMailShop;
+use App\Jobs\TuChoi_LichDat;
+use App\Mail\Duyet;
+use App\Mail\TuChoi;
 use App\Models\DichVu;
 use App\Models\DichVu_DichVuDat;
 use App\Models\DichVuDat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class DichVuDatService
@@ -21,12 +26,13 @@ class DichVuDatService
             'sdt' => 'required',
             'gio' => 'required',
             'loaithucung' => 'required',
-
+            'dichvu' => 'required',
         ], [
             'ngay.required' => 'Bạn chưa chọn ngày',
             'sdt.required' => 'Bạn chưa nhập số điện thoại',
             'gio.required' => 'Bạn chưa chọn giờ',
             'loaithucung.required' => 'Bạn chưa chọn loại thú cưng',
+            'dichvu.required' => 'Bạn chưa chọn dịch vụ',
 
         ]);
         $dichVuDat = new DichVuDat([
@@ -52,7 +58,7 @@ class DichVuDatService
             ]);
             $dichVuDat_dv->save();
         }
-        Session::flash('success', 'Đặt dịch vụ thành công. Vui lòng chờ chủ Shop duyệt!');
+        Session::flash('success', 'Đặt dịch vụ thành công. Chúng tôi sẽ thông báo qua Mail ngay khi dịch vụ được duyệt!');
     }
     public function choduyet()
     {
@@ -61,7 +67,7 @@ class DichVuDatService
         $shop_id = $current_user->shop_id;
         return DichVuDat::where('trangthai', 1)
             ->where('shop_id', $shop_id)->orderBy('ngay')
-            ->paginate(10);
+            ->get();
     }
     public function daduyet()
     {
@@ -71,7 +77,7 @@ class DichVuDatService
 
         return DichVuDat::where('trangthai', 2)
             ->where('shop_id', $shop_id)->orderBy('ngay')
-            ->paginate(10);
+            ->get();
     }
     public function hoanthanh()
     {
@@ -80,18 +86,41 @@ class DichVuDatService
         $shop_id = $current_user->shop_id;
         return DichVuDat::where('trangthai', 3)
             ->where('shop_id', $shop_id)->orderBy('ngay')
-            ->paginate(10);
+            ->get();
+    }
+    public function tuchoi()
+    {
+        $current_user = Auth::user();
+        // Lấy shop_id của tài khoản hiện tại
+        $shop_id = $current_user->shop_id;
+        return DichVuDat::where('trangthai', 4)
+            ->where('shop_id', $shop_id)->orderBy('ngay')
+            ->get();
     }
     public function duyet($request, $lichdatdv)
     {
-        $lichdatdv->nhanvien_id = $request->input('nhanvien');
-        $lichdatdv->trangthai = $request->input('trangthai');
+        $email = $request->email;
+        $lichdatdv->nhanvien_id = $request->nhanvien_id;
+        $lichdatdv->trangthai = $request->status;
         $lichdatdv->save();
 
-        Session::flash('success', 'Duyệt thành công');
+        if ($lichdatdv->trangthai == 4) {
+            Session::flash('success', ' Đã Từ Chối! ');
+            dispatch((new TuChoi_LichDat($email, $lichdatdv))->delay(now()->addSeconds(5)));
+        }
+
+        if ($lichdatdv->trangthai == 2) {
+            if (!$request->nhanvien_id) {
+                Session::flash('error', 'Bạn chưa chọn nhân viên');
+                return false;
+            }
+            Session::flash('success', 'Duyệt thành công!');
+            dispatch((new Duyet_LichDat($email, $lichdatdv))->delay(now()->addSeconds(5)));
+        }
+
+
         #Queue
-        SendMailShop::dispatch($request->input('email'))->delay(now()->addSeconds(5));
-        return true;
+        return $lichdatdv;
     }
     public function list()
     {
@@ -123,6 +152,15 @@ class DichVuDatService
             $dichvudat_dv->save();
         }
         Session::flash('success', 'Cập nhật thành công');
+        return true;
+    }
+    public function destroy($request)
+    {
+
+        // DichVu_DichVuDat::where('dichvudat_id', $dichvudat->id)->delete();
+        DichVuDat::where('id', $request->input('id'))->delete();
+
+        Session::flash('success', 'Xóa thành công');
         return true;
     }
 }

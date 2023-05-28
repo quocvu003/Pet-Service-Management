@@ -44,17 +44,21 @@ class DichVuDatController extends Controller
 
     public function index()
     {
+        $lichdatdvstemp = [];
         $dichvudats = $this->dichvudat->list();
+        foreach ($dichvudats as $dichvudat) {
+            $soluongdv = DichVu_DichVuDat::where('dichvudat_id', $dichvudat->id)->count();
 
-        // $dichvu_id = $dichvudats->id;
 
-        // dd($dichvu_id);
-        // $soluongdv = DichVu_DichVuDat::where('dichvudat_id', $dichvu_id)->get();
+            $dichvudat->soluongdv = $soluongdv;
 
+
+            array_push($lichdatdvstemp, $dichvudat);
+        };
         return view('user.datlich.list', [
             'title' => ' Đặt lịch dịch vụ ',
-            'dichvudats' => $dichvudats,
-            // 'soluongdv' => $soluongdv,
+            'dichvudats' => $lichdatdvstemp,
+
         ]);
     }
 
@@ -64,19 +68,14 @@ class DichVuDatController extends Controller
 
         $dichvu_dichvudat = DichVu_DichVuDat::where('dichvudat_id', $lichdatdvs->id)->get();
 
-        $arr_id = [];
-        // id các dịch vụ đã đặt
-        foreach ($dichvu_dichvudat as $item) {
-            array_push($arr_id, $item->dichvus->id);
-        }
-        // shop của dịch vụ đã đặt
+
         $shop = Shop::where('id', $lichdatdvs->shop_id)->get();
 
         return view('user.datlich.show', [
             'title' => 'Quản lý lịch đặt dịch vụ',
             'lichdats' => $lichdatdvs,
             'dichvu_dichvudats' => $dichvu_dichvudat,
-            "arr_id" => $arr_id,
+
             'shops' => $shop,
         ]);
     }
@@ -111,5 +110,17 @@ class DichVuDatController extends Controller
         if ($result) {
             return redirect('/datlichs/index');
         }
+    }
+    public function destroy(Request $request)
+    {
+        $result = $this->dichvudat->destroy($request);
+        if ($result) {
+            return response()->json([
+                'error' => false,
+                'message' => 'Bạn đã hủy lịch đặt dịch vụ thành công.'
+            ]);
+        }
+
+        return response()->json(['error' => true]);
     }
 }

@@ -4,7 +4,7 @@
         @include('admin.alert')
         <form action="" method="POST">
             <div class="row" style="margin: 0 200px">
-                <div class="card card-body border-0 shadow mt-3">
+                <div class="card card-body border-0 shadow mt-3 mb-5">
 
                     <h3>Dịch vụ {{ $dichvus->ten }}</h3>
                     <div class="form-group mb-4">

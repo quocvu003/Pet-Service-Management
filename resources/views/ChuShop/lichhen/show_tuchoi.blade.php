@@ -75,6 +75,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-md-8 mb-3">
 
@@ -96,29 +97,12 @@
 
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <label>Nhân viên</label>
-                            <div class="input-group">
-                                <select class="form-control" name="nhanvien_id">
-                                    {{ $lichdats->nhanvien_id }}
-                                    @foreach ($listnhanviens as $listnhanvien)
-                                        <option value="{{ $listnhanvien->id }}"
-                                            {{ $listnhanvien->id == $lichdats->nhanvien_id ? 'selected' : '' }}>
-                                            {{ $listnhanvien->ten }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <input type="hidden" name="trangthai" value="2">
 
-                    <div class="card-footer d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary">Cập nhật</button>
-                    </div>
+
+
+
                 </div>
             </div>
         </main>
-        @csrf
     </form>
 @endsection

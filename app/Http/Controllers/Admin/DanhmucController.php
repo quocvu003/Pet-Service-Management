@@ -35,7 +35,25 @@ class DanhmucController extends Controller
             'danhmucs' => $this->danhmucService->getAll(),
         ]);
     }
-
+    public function requestdv()
+    {
+        return view('admin.menu.request', [
+            'title' => 'Danh sách Danh Mục',
+            'danhmucs' => $this->danhmucService->requestdv(),
+        ]);
+    }
+    public function indexshop()
+    {
+        return view('ChuShop.danhmuc.index', [
+            'title' => 'Danh sách Danh Mục',
+            'danhmucs' => $this->danhmucService->getAll(),
+        ]);
+    }
+    public function storeshop(Request $request)
+    {
+        $this->danhmucService->createshop($request);
+        return redirect()->back();
+    }
     public function show(DanhMuc $danhmuc)
     {
         return view('admin.menu.edit', [
@@ -44,13 +62,24 @@ class DanhmucController extends Controller
 
         ]);;
     }
+    public function show_requestdv(DanhMuc $danhmuc)
+    {
+        return view('admin.menu.edit_requestdv', [
+            'title' => 'Xem yêu cầu: ' . $danhmuc->ten,
+            'danhmuc' => $danhmuc,
 
+        ]);;
+    }
+    public function update_requestdv(DanhMuc $danhmuc, Request $request)
+    {
+        $this->danhmucService->update_requestdv($request, $danhmuc);
+        return redirect('/admin/danhmucs/list');
+    }
     public function update(DanhMuc $danhmuc, Request $request)
     {
         $this->danhmucService->update($request, $danhmuc);
         return redirect('/admin/danhmucs/list');
     }
-
     public function destroy(Request $request)
     {
         $result = $this->danhmucService->destroy($request);

@@ -6,7 +6,7 @@
             @include('admin.alert')
             <div class="row" style="margin: 0 50px">
 
-                <div class="card card-body border-0 shadow mt-3">
+                <div class="card card-body border-0 shadow mt-3 mb-5">
                     <h2 style="margin-left: 50px;margin-bottom: 50px">Chi tiết lịch đặt dịch vụ của khách hàng:
                         {{ $lichdats->ten }}</h2>
 

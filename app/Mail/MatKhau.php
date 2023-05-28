@@ -2,31 +2,31 @@
 
 namespace App\Mail;
 
-use App\Models\DichVuDat;
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
+
 use Illuminate\Queue\SerializesModels;
 
-class Duyet extends Mailable
+class MatKhau extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $lichdatdv;
+    protected $randomString;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(DichVuDat $lichdatdv)
+    public function __construct($randomString)
     {
-        $this->lichdatdv = $lichdatdv;
+        $this->randomString = $randomString;
     }
     public function build()
     {
-        return $this->view('Mail.duyet_lichdat')->with(['lichdatdv' => $this->lichdatdv])
+        return $this->view('Mail.matkhau')
+            ->with(['randomString' => $this->randomString])
             ->subject('THÔNG BÁO TỪ PETCARE');
     }
 }

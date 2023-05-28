@@ -40,7 +40,7 @@
                 <span class="nav-link  collapsed  d-flex justify-content-between align-items-center">
                     <span>
                         <span class="sidebar-icon">
-                            <i class="fa-solid fa-bars"></i>
+                            <i class="fa-solid fa-bars me-2"></i>
                         </span>
                         <a href="/ChuShop/lichdatdvs/list"><span class="sidebar-text">Lịch Đặt Dịch Vụ</span></a>
 
@@ -52,7 +52,7 @@
                 <span class="nav-link  collapsed  d-flex justify-content-between align-items-center">
                     <span>
                         <span class="sidebar-icon">
-                            <i class="fa-sharp fa-solid fa-paw"></i>
+                            <i class="fa-sharp fa-solid fa-paw me-2"></i>
                         </span>
                         <a href="/ChuShop/dichvus/list"><span class="sidebar-text">Dịch Vụ</span></a>
                     </span>
@@ -65,14 +65,25 @@
                 <span class="nav-link  collapsed  d-flex justify-content-between align-items-center">
                     <span>
                         <span class="sidebar-icon">
-                            <i class="fa-solid fa-users"></i>
+                            <i class="fa-solid fa-users "></i>
                         </span>
                         <a href="/ChuShop/nhanviens/list"> <span class="sidebar-text">Nhân Viên</span></a>
 
                     </span>
 
             </li>
+            <li class="nav-item">
+                <span class="nav-link  collapsed  d-flex justify-content-between align-items-center">
+                    <span>
+                        <span class="sidebar-icon">
+                            <i class="fa-brands fa-windows me-2"></i>
+                        </span>
+                        <a href="/ChuShop/danhmucs/list"><span class="sidebar-text">Danh mục</span></a>
+                    </span>
 
+                </span>
+
+            </li>
         </ul>
     </div>
 </nav>

@@ -5,7 +5,7 @@
             @include('admin.alert')
             <div class="row" style="margin: 0 50px">
 
-                <div class="card card-body border-0 shadow mt-3">
+                <div class="card card-body border-0 shadow mt-3 mb-5">
                     <h2>Chi tiết lịch đặt dịch vụ</h2>
                     <div class="row">
                         <div class="col-md-6 mb-3">
@@ -101,7 +101,7 @@
                         <div class="col-md-12 mb-3">
                             <label>Nhân viên</label>
                             <div class="input-group">
-                                <select class="form-control" name="nhanvien">
+                                <select class="form-control" name="nhanvien" disabled>
                                     {{ $lichdats->nhanvien_id }}
                                     @foreach ($listnhanviens as $listnhanvien)
                                         <option value="{{ $listnhanvien->id }}"

@@ -21,34 +21,81 @@ class LichhenController extends Controller
 
     public function index()
     {
+        $lichdatdvstemp = [];
+        $dichvudats = $this->dicvudatService->choduyet();
+        foreach ($dichvudats as $dichvudat) {
+            $soluongdv = DichVu_DichVuDat::where('dichvudat_id', $dichvudat->id)->count();
+
+
+            $dichvudat->soluongdv = $soluongdv;
+
+
+            array_push($lichdatdvstemp, $dichvudat);
+        };
         return view('ChuShop.lichhen.index', [
             'title' => 'Quản lý lịch đặt dịch vụ',
-            'lichdatdvs' => $this->dicvudatService->choduyet(),
+            'lichdatdvs' => $lichdatdvstemp,
+
         ]);
     }
 
     public function index_daduyet()
     {
-        // $dichvudats = $this->dicvudatService->daduyet();
-        // foreach ($dichvudats as $dichvudat) {
-        //     $dichvu_id = $dichvudat->id;
-        // }
-        // $soluongdv = DichVu_DichVuDat::where('dichvudat_id', $dichvu_id)->count();
+        $lichdatdvstemp = [];
+        $dichvudats = $this->dicvudatService->daduyet();
+        foreach ($dichvudats as $dichvudat) {
+            $soluongdv = DichVu_DichVuDat::where('dichvudat_id', $dichvudat->id)->count();
+            $nhanvien = User::where('id', $dichvudat->nhanvien_id)->first();
+
+            $dichvudat->soluongdv = $soluongdv;
+            $dichvudat->tenNhanVien = $nhanvien->ten;
+
+            array_push($lichdatdvstemp, $dichvudat);
+        };
+        // dd($lichdatdvstemp);
         return view('ChuShop.lichhen.index_daduyet', [
             'title' => 'Quản lý lịch đặt dịch vụ',
-            'lichdatdvs' => $this->dicvudatService->daduyet(),
+            'lichdatdvs' => $lichdatdvstemp,
             // 'soluongdv' => $soluongdv,
         ]);
     }
 
     public function index_hoanthanh()
     {
+        $lichdatdvstemp = [];
+        $dichvudats = $this->dicvudatService->hoanthanh();
+        foreach ($dichvudats as $dichvudat) {
+            $soluongdv = DichVu_DichVuDat::where('dichvudat_id', $dichvudat->id)->count();
+            $nhanvien = User::where('id', $dichvudat->nhanvien_id)->first();
+
+            $dichvudat->soluongdv = $soluongdv;
+            $dichvudat->tenNhanVien = $nhanvien->ten;
+
+            array_push($lichdatdvstemp, $dichvudat);
+        };
         return view('ChuShop.lichhen.index_hoanthanh', [
             'title' => 'Quản lý lịch đặt dịch vụ',
-            'lichdatdvs' => $this->dicvudatService->hoanthanh(),
+            'lichdatdvs' => $lichdatdvstemp,
         ]);
     }
+    public function index_tuchoi()
+    {
+        $lichdatdvstemp = [];
+        $dichvudats = $this->dicvudatService->tuchoi();
+        foreach ($dichvudats as $dichvudat) {
+            $soluongdv = DichVu_DichVuDat::where('dichvudat_id', $dichvudat->id)->count();
 
+
+            $dichvudat->soluongdv = $soluongdv;
+
+
+            array_push($lichdatdvstemp, $dichvudat);
+        };
+        return view('ChuShop.lichhen.index_tuchoi', [
+            'title' => 'Quản lý lịch đặt dịch vụ',
+            'lichdatdvs' => $lichdatdvstemp,
+        ]);
+    }
     public function show(DichVuDat $lichdatdv)
     {
         $lichdatdvs = $lichdatdv;
@@ -71,12 +118,22 @@ class LichhenController extends Controller
     {
         $lichdatdvs = $lichdatdv;
 
-        // Gọi hàm cập nhật dữ liệu từ
         $result = $this->dicvudatService->duyet($request, $lichdatdvs);
 
-        if ($result) {
-            return redirect('/ChuShop/lichdatdvs/list');
+        if ($result->trangthai == 2) {
+            return response()->json([
+                'error' => false,
+                'message' => 'Duyet Thanh Cong'
+            ]);
         }
+        if ($result->trangthai == 4) {
+            return response()->json([
+                'error' => false,
+                'message' => 'Khong Duoc Duyet '
+            ]);
+        }
+
+        return response()->json(['error' => true]);
     }
     public function show_daduyet(DichVuDat $lichdatdv)
     {
@@ -123,6 +180,21 @@ class LichhenController extends Controller
             'dichvu_dichvudats' => $dichvu_dichvudat,
 
             'listnhanviens' => $listnhanvien,
+        ]);
+    }
+    public function show_tuchoi(DichVuDat $lichdatdv)
+    {
+        $lichdatdvs = $lichdatdv;
+
+        $dichvu_dichvudat = DichVu_DichVuDat::where('dichvudat_id', $lichdatdvs->id)->get();
+
+
+        return view('ChuShop.lichhen.show_tuchoi', [
+            'title' => 'Quản lý lịch đặt dịch vụ',
+            'lichdats' => $lichdatdvs,
+            'dichvu_dichvudats' => $dichvu_dichvudat,
+
+
         ]);
     }
 }

@@ -1,33 +1,7 @@
 @extends('admin.main')
 
+
 @section('content')
-    <style>
-        .card-body div {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            margin-left: 300px;
-        }
-
-        .card-body div span {
-            margin-right: 10px;
-            width: 30px;
-            text-align: center;
-        }
-
-        .card-body div label {
-            margin: 0;
-        }
-
-        .col-4 {
-            text-align: right;
-        }
-
-        #hinhanh_show {
-            display: flex;
-            justify-content: center;
-        }
-    </style>
     <form action="" method="POST">
         <div class="card-body ">
 
@@ -67,25 +41,99 @@
                 <label for="menu">Địa chỉ : {{ $shops->diachi }}</label>
             </div>
         </div>
-        <input type="hidden" name="trangthai" value="1">
-        <input type="hidden" name="email" value="{{ $acc->email }}">
+
+        <input type="hidden" name="email" value="{{ $acc->email }}" id="email">
         </div>
 
         <div class="row" style="margin-left: 300px">
 
-            <!-- /.col -->
-            <div class="col-3">
+
+            {{-- <div class="col-3">
                 <button type="submit" class="btn btn-primary btn-block">Duyệt đơn đăng ký</button>
             </div>
             <div class="col-3">
                 <a href="/admin/accs/application">
-                    <button type="button" class="btn btn-danger btn-block">Quay lại</button>
+                    <button type="button" class="btn btn-danger btn-block">Từ chối đơn đăng ký</button>
                 </a>
+            </div> --}}
+            <div class="col-3">
+                <button class="btn btn-primary btn-block" onclick="onSubmit(1,{{ $acc->id }})">Duyệt đơn đăng
+                    ký</button>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-danger btn-block" style="margin-left: 50px"
+                    onclick="onSubmit(0,{{ $acc->id }})">Từ chối
+                    đơn đăng ký</button>
+
             </div>
         </div>
-        <!-- /.col -->
+
         @csrf
     </form>
 @endsection
 @section('footer')
 @endsection
+<script>
+    function onSubmit(status, id) {
+        console.log('vv ');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        const email = $("#email").val();
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'POST',
+
+            datatype: 'JSON',
+            data: {
+
+                status,
+                email
+            },
+            url: `/admin/accs/showappli/${id}`,
+            success: function(result) {
+                console.log(result)
+
+                window.location.href = '/admin/accs/application'
+            },
+            error: function(error) {
+                console.log(error)
+
+                window.location.reload()
+
+            }
+        })
+    }
+</script>
+<style>
+    .card-body div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        margin-left: 300px;
+    }
+
+    .card-body div span {
+        margin-right: 10px;
+        width: 30px;
+        text-align: center;
+    }
+
+    .card-body div label {
+        margin: 0;
+    }
+
+    .col-4 {
+        text-align: right;
+    }
+
+    #hinhanh_show {
+        display: flex;
+        justify-content: center;
+    }
+</style>

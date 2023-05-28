@@ -21,7 +21,11 @@ class DanhMucService
 
     public function getAll()
     {
-        return DanhMuc::where('trangthai', 1)
+        return DanhMuc::paginate(10);
+    }
+    public function requestdv()
+    {
+        return DanhMuc::where('trangthai', 3)
             ->paginate(10);
     }
 
@@ -37,6 +41,18 @@ class DanhMucService
 
     public function create($request)
     {
+        $request->validate([
+            'name' => 'required',
+            'tieude' => 'required|email:filter',
+            'content' => 'required',
+            'hinhanh' => 'required',
+
+        ], [
+            'name.required' => 'Bạn chưa nhập tên',
+            'tieude.required' => 'Bạn chưa nhập tiêu đề',
+            'content.required' => 'Bạn chưa nhập mô tả',
+            'hinhanh.required' => 'Bạn chưa nhập hình ảnh',
+        ]);
         try {
             DanhMuc::create([
                 'ten' =>  $request->input('name'),
@@ -54,7 +70,38 @@ class DanhMucService
         }
         return true;
     }
+    public function createshop($request)
+    {
+        $request->validate([
+            'ten' => 'required',
+            'tieude' => 'required',
+            'mota' => 'required',
 
+
+        ], [
+            'ten.required' => 'Bạn chưa nhập tên',
+            'tieude.required' => 'Bạn chưa nhập tiêu đề',
+            'mota.required' => 'Bạn chưa nhập mô tả',
+
+        ]);
+
+        try {
+            DanhMuc::create([
+                'ten' =>  $request->input('ten'),
+                'tieude' =>  $request->input('tieude'),
+                'mota' =>  $request->input('mota'),
+
+                'trangthai' => 3,
+
+            ]);
+
+            Session::flash('success', 'Gửi yêu cầu thành công');
+        } catch (\Exception) {
+            Session::flash('error', 'Gửi yêu cầu lỗi');
+            return false;
+        }
+        return true;
+    }
     public function update($request, $danhmuc): bool
     {
         $danhmuc->ten = $request->input('name');
@@ -66,7 +113,18 @@ class DanhMucService
         Session::flash('success', 'Cập nhật danh mục thành công');
         return true;
     }
-
+    public function update_requestdv($request, $danhmuc): bool
+    {
+        // dd($request->trangthai);
+        $danhmuc->ten = $request->input('name');
+        $danhmuc->tieude =  $request->input('tieude');
+        $danhmuc->mota =  $request->input('content');
+        $danhmuc->trangthai = $request->input('trangthai');
+        $danhmuc->hinhanh = $request->input('hinhanh');
+        $danhmuc->save();
+        Session::flash('success', 'Cập nhật danh mục thành công');
+        return true;
+    }
     public function destroy($request)
     {
         $id = (int) $request->input('id');

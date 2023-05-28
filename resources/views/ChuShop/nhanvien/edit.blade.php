@@ -5,7 +5,7 @@
             @include('admin.alert')
             <div class="row" style="margin: 0 100px">
 
-                <div class="card card-body border-0 shadow mt-3">
+                <div class="card card-body border-0 shadow mt-3 mb-5">
 
                     <h3>Tài khoản nhân viên: {{ $nhanviens->ten }}</h3>
                     <div class="row">

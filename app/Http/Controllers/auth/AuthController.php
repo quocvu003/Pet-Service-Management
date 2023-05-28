@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\DoiMatKhau;
+use App\Mail\Matkhau;
 use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -128,6 +130,7 @@ class AuthController extends Controller
             'diachi' => $request->diachishop,
             'sdt' => $request->sdtshop,
             'hinhanh' => $request->hinhanh,
+            'trangthai' => 2,
         ]);
         $shop->save();
         $user = new User([
@@ -195,10 +198,13 @@ class AuthController extends Controller
         if (!$user) {
             return redirect('login')->with('error', 'Email không tồn tại');
         }
-        $user->matkhau = bcrypt('123456abc');
+        $randomString = Str::random(6);
+
+        $user->matkhau = bcrypt($randomString);
         $user->save();
 
-        // $randomString = Str::random(6);
+        dispatch((new DoiMatKhau($request->email, $randomString))->delay(now()->addSeconds(5)));
+
         return redirect('login')->with('success', 'Mật khẩu mới đã được gửi tới Email của bạn!');
     }
 
