@@ -38,7 +38,7 @@
 
 <!-- Volt JS -->
 <script src="/template/chuShop/assets/js/volt.js"></script>
-
+<script src="https://kit.fontawesome.com/09ffb42aa8.js" crossorigin="anonymous"></script>
 <div class="row">
     <footer class="bg-white rounded shadow p-5 mb-4 mt-4"
         style="

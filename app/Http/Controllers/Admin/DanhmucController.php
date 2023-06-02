@@ -38,7 +38,7 @@ class DanhmucController extends Controller
     public function requestdv()
     {
         return view('admin.menu.request', [
-            'title' => 'Danh sách Danh Mục',
+            'title' => 'Danh mục được yêu cầu thêm từ các Shop',
             'danhmucs' => $this->danhmucService->requestdv(),
         ]);
     }

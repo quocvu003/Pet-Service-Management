@@ -52,6 +52,6 @@ class UserComposer
         $view->with('link3', $link3);
         $view->with('display', $display);
         $view->with('id', $id);
-        $view->with('danhmucs', $this->danhmucService->getAll());
+        $view->with('danhmucs', $this->danhmucService->getdanhmuc());
     }
 }

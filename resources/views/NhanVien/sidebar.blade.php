@@ -54,10 +54,7 @@
                                 <span class="sidebar-text">Danh sách công việc</span>
 
                             </a>
-                            <a class="nav-link" href="/NhanVien/congviecs/index_hoanthanh">
-                                <span class="sidebar-text">Đã hoàn thành</span>
 
-                            </a>
                         </li>
                     </ul>
                 </div>

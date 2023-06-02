@@ -54,11 +54,15 @@
                     <input class="custom-control-input" type="radio" id="admin" name="role_id" value="1" checked>
                     <label class="custom-control-label" for="admin">Admin</label>
                 </div>
-
+                <div class="custom-control custom-radio">
+                    <input class="custom-control-input" type="radio" id="chushop" name="role_id" value="2">
+                    <label class="custom-control-label" for="chushop">Chủ Shop</label>
+                </div>
                 <div class="custom-control custom-radio">
                     <input class="custom-control-input" type="radio" id="khachhang" name="role_id" value="3">
                     <label class="custom-control-label" for="khachhang">Khách hàng</label>
                 </div>
+
 
             </div>
             <div class="row">

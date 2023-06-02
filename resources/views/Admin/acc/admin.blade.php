@@ -28,7 +28,7 @@
                     <td>{{ $acc->ten }}</td>
                     <td>{{ $acc->email }}</td>
                     <td>{!! \App\Helpers\Helper::trangthai($acc->trangthai) !!}</td>
-                    <td>{{ \Carbon\Carbon::parse($acc->created_at)->isoFormat('DD/MM/YYYY HH:mm:ss') }}
+                    <td>{{ \Carbon\Carbon::parse($acc->created_at)->isoFormat('HH:mm:ss DD/MM/YYYY') }}
 
                     <td>
 

@@ -4,6 +4,8 @@ namespace App\Http\Services;
 
 use App\Models\DanhMuc;
 use App\Models\DichVu;
+use App\Models\Shop;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class DanhMucService
@@ -19,13 +21,22 @@ class DanhMucService
             ->get();
     }
 
+    public function getdanhmuc()
+    {
+        $dichvus = DichVu::where('trangthai', '=', 1)->pluck('danhmuc_id')->toArray();
+        return DanhMuc::where('trangthai', '=', 1)
+            ->whereIn('id', $dichvus)
+            ->get();
+    }
+
     public function getAll()
     {
+
         return DanhMuc::paginate(10);
     }
     public function requestdv()
     {
-        return DanhMuc::where('trangthai', 3)
+        return DanhMuc::where('trangthai', 2)
             ->paginate(10);
     }
 
@@ -43,7 +54,7 @@ class DanhMucService
     {
         $request->validate([
             'name' => 'required',
-            'tieude' => 'required|email:filter',
+            'tieude' => 'required',
             'content' => 'required',
             'hinhanh' => 'required',
 
@@ -72,27 +83,25 @@ class DanhMucService
     }
     public function createshop($request)
     {
+        $shop_id = Auth::user()->shop_id;
+        $tenshop = Shop::where('id', $shop_id)->first()->ten;
+
         $request->validate([
             'ten' => 'required',
             'tieude' => 'required',
             'mota' => 'required',
-
-
         ], [
             'ten.required' => 'Bạn chưa nhập tên',
             'tieude.required' => 'Bạn chưa nhập tiêu đề',
             'mota.required' => 'Bạn chưa nhập mô tả',
-
         ]);
-
         try {
             DanhMuc::create([
                 'ten' =>  $request->input('ten'),
                 'tieude' =>  $request->input('tieude'),
                 'mota' =>  $request->input('mota'),
-
-                'trangthai' => 3,
-
+                'tenshop' =>  $tenshop,
+                'trangthai' => 2,
             ]);
 
             Session::flash('success', 'Gửi yêu cầu thành công');

@@ -19,83 +19,38 @@ class LichhenController extends Controller
         $this->dicvudatService = $dicvudatService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $lichdatdvstemp = [];
-        $dichvudats = $this->dicvudatService->choduyet();
+        $dichvudats = [];
+
+        if ($request->status == 1) {
+            $dichvudats = $this->dicvudatService->choduyet();
+        }
+        if ($request->status == 2) {
+            $dichvudats = $this->dicvudatService->daduyet();
+        }
+        if ($request->status == 3) {
+            $dichvudats = $this->dicvudatService->hoanthanh();
+        }
+        if ($request->status == 4) {
+            $dichvudats = $this->dicvudatService->tuchoi();
+        }
+
         foreach ($dichvudats as $dichvudat) {
             $soluongdv = DichVu_DichVuDat::where('dichvudat_id', $dichvudat->id)->count();
-
-
             $dichvudat->soluongdv = $soluongdv;
-
-
             array_push($lichdatdvstemp, $dichvudat);
         };
         return view('ChuShop.lichhen.index', [
             'title' => 'Quản lý lịch đặt dịch vụ',
             'lichdatdvs' => $lichdatdvstemp,
+            'status' => $request->status,
+
 
         ]);
     }
 
-    public function index_daduyet()
-    {
-        $lichdatdvstemp = [];
-        $dichvudats = $this->dicvudatService->daduyet();
-        foreach ($dichvudats as $dichvudat) {
-            $soluongdv = DichVu_DichVuDat::where('dichvudat_id', $dichvudat->id)->count();
-            $nhanvien = User::where('id', $dichvudat->nhanvien_id)->first();
-
-            $dichvudat->soluongdv = $soluongdv;
-            $dichvudat->tenNhanVien = $nhanvien->ten;
-
-            array_push($lichdatdvstemp, $dichvudat);
-        };
-        // dd($lichdatdvstemp);
-        return view('ChuShop.lichhen.index_daduyet', [
-            'title' => 'Quản lý lịch đặt dịch vụ',
-            'lichdatdvs' => $lichdatdvstemp,
-            // 'soluongdv' => $soluongdv,
-        ]);
-    }
-
-    public function index_hoanthanh()
-    {
-        $lichdatdvstemp = [];
-        $dichvudats = $this->dicvudatService->hoanthanh();
-        foreach ($dichvudats as $dichvudat) {
-            $soluongdv = DichVu_DichVuDat::where('dichvudat_id', $dichvudat->id)->count();
-            $nhanvien = User::where('id', $dichvudat->nhanvien_id)->first();
-
-            $dichvudat->soluongdv = $soluongdv;
-            $dichvudat->tenNhanVien = $nhanvien->ten;
-
-            array_push($lichdatdvstemp, $dichvudat);
-        };
-        return view('ChuShop.lichhen.index_hoanthanh', [
-            'title' => 'Quản lý lịch đặt dịch vụ',
-            'lichdatdvs' => $lichdatdvstemp,
-        ]);
-    }
-    public function index_tuchoi()
-    {
-        $lichdatdvstemp = [];
-        $dichvudats = $this->dicvudatService->tuchoi();
-        foreach ($dichvudats as $dichvudat) {
-            $soluongdv = DichVu_DichVuDat::where('dichvudat_id', $dichvudat->id)->count();
-
-
-            $dichvudat->soluongdv = $soluongdv;
-
-
-            array_push($lichdatdvstemp, $dichvudat);
-        };
-        return view('ChuShop.lichhen.index_tuchoi', [
-            'title' => 'Quản lý lịch đặt dịch vụ',
-            'lichdatdvs' => $lichdatdvstemp,
-        ]);
-    }
     public function show(DichVuDat $lichdatdv)
     {
         $lichdatdvs = $lichdatdv;
@@ -135,6 +90,7 @@ class LichhenController extends Controller
 
         return response()->json(['error' => true]);
     }
+
     public function show_daduyet(DichVuDat $lichdatdv)
     {
         $lichdatdvs = $lichdatdv;
@@ -161,7 +117,7 @@ class LichhenController extends Controller
         $result = $this->dicvudatService->update_daduyet($request, $lichdatdvs);
 
         if ($result) {
-            return redirect('/ChuShop/lichdatdvs/list_daduyet');
+            return redirect('/ChuShop/lichdatdvs/list');
         }
     }
     public function show_hoanthanh(DichVuDat $lichdatdv)

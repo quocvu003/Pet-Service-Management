@@ -7,19 +7,10 @@
                 <div class="card border-0 shadow">
                     <div class="card-body">
                         <div class="row d-block mt-4">
-
                             <div class="col-lg-12">
-
-
-
                                 <button type="button" class="btn btn-block btn-gray-800 mb-3" data-bs-toggle="modal"
                                     data-bs-target="#modal-form-add">Thêm dịch vụ thú
                                     cưng</button>
-
-
-
-
-
                                 <!-- Modal thêm dịch vụ -->
                                 <div class="modal fade" id="modal-form-add" tabindex="-1" role="dialog"
                                     aria-labelledby="modal-form-signup" aria-hidden="true">
@@ -111,7 +102,7 @@
                                                 <td>{{ $dichvu->danhmucs->ten }}</td>
                                                 <td>{{ number_format($dichvu->gia) }} VNĐ</td>
                                                 <td>{!! \App\Helpers\Helper::trangthai($dichvu->trangthai) !!}</td>
-                                                <td>{{ \Carbon\Carbon::parse($dichvu->created_at)->isoFormat('DD/MM/YYYY HH:mm:ss') }}
+                                                <td>{{ \Carbon\Carbon::parse($dichvu->created_at)->isoFormat('HH:mm:ss DD/MM/YYYY') }}
                                                 <td>
                                                 </td>
 

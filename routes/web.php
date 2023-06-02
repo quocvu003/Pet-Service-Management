@@ -128,9 +128,9 @@ Route::middleware(['auth'])->group(function () {
         });
         Route::prefix('lichdatdvs')->group(function () {
             Route::get('list', [LichhenController::class, 'index']);
-            Route::get('list_daduyet', [LichhenController::class, 'index_daduyet']);
-            Route::get('list_hoanthanh', [LichhenController::class, 'index_hoanthanh']);
-            Route::get('list_tuchoi', [LichhenController::class, 'index_tuchoi']);
+            // Route::get('list_daduyet', [LichhenController::class, 'index_daduyet']);
+            // Route::get('list_hoanthanh', [LichhenController::class, 'index_hoanthanh']);
+            // Route::get('list_tuchoi', [LichhenController::class, 'index_tuchoi']);
             Route::get('edit/{lichdatdv}', [LichhenController::class, 'show']);
             Route::post('edit/{lichdatdv}', [LichhenController::class, 'duyet']);
             Route::get('edit_daduyet/{lichdatdv}', [LichhenController::class, 'show_daduyet']);
@@ -157,6 +157,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/edit/{dichvudat}', [MainNVController::class, 'show']);
             Route::post('/edit/{dichvudat}', [MainNVController::class, 'update_dichvudat']);
             Route::get('/index_hoanthanh', [MainNVController::class, 'list_hoanthanh']);
+            Route::get('/show_hoanthanh/{dichvudat}', [MainNVController::class, 'show_hoanthanh']);
         });
     });
 });

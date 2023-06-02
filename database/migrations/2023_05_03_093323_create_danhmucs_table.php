@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string(column: 'ten', length: 255);
             $table->string('hinhanh');
+            $table->string('tenShop')->nullable();
             $table->integer(column: 'trangthai');
         });
     }

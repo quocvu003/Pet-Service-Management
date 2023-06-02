@@ -8,8 +8,8 @@
                     <div class="profile-cover rounded-top" style="background-color: #1F2937">
                     </div>
                     <div class="card-body pb-5">
-                        <div class="avatar-xl rounded-circle mx-auto mt-n7 mb-4 " id="hinhanh_show">
-                            <img src="{{ $user->hinhanh }}" alt="{{ $user->hinhanh }} ">
+                        <div id="hinhanh_show" class="avatar-xl rounded-circle mx-auto mt-n7 mb-4">
+                            <img src="{{ $user->hinhanh }}" alt="{{ $user->hinhanh }}" style="border-radius: 50%">
                         </div>
 
                         <input type="file" id="hinhanh" class="form-control"

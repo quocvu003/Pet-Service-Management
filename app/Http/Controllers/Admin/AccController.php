@@ -140,19 +140,7 @@ class AccController extends Controller
         $shop = $user->shops()->first();
         $result = $this->AccService->duyet($request, $user, $shop);
 
-        if ($result->trangthai == 1) {
-            return response()->json([
-                'error' => false,
-                'message' => 'Duyet Thanh Cong'
-            ]);
-        }
-        if ($result->trangthai == 0) {
-            return response()->json([
-                'error' => false,
-                'message' => 'Khong Duoc Duyet '
-            ]);
-        }
-        return response()->json(['error' => true]);
+        return  $result;
     }
     // public function destroyshow(Request $request)
     // {

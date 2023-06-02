@@ -80,9 +80,9 @@
 
                             <label>Dịch vụ </label><br>
 
-                            @foreach ($dichvu_dichvudats as $dichvu_dichvudat)
+                            @foreach ($dichvu_dichvudats as $key => $dichvu_dichvudat)
                                 <ul>
-                                    <li>{{ $dichvu_dichvudat->dichvus->ten }}</li>
+                                    <li>{{ ++$key }}. {{ $dichvu_dichvudat->dichvus->ten }}</li>
                                 </ul>
                             @endforeach
 

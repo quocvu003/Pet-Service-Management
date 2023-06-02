@@ -168,13 +168,17 @@ class AuthController extends Controller
             return redirect()->back()->with('error', 'Mật khẩu hiện tại không đúng');
         }
 
-        // Kiểm tra xác nhận mật khẩu mới
+        if ($newPassword == $currentPassword) {
+
+            return redirect()->back()->with('error', 'Bạn đã nhập mật khẩu cũ');
+        }
+
         if ($newPassword !== $confirmPassword) {
-            // Mật khẩu mới không khớp với xác nhận mật khẩu, hiển thị thông báo lỗi
+
             return redirect()->back()->with('error', 'Xác nhận mật khẩu mới không khớp');
         }
 
-        // Cập nhật mật khẩu mới cho người dùng
+
 
         $user->matkhau = Hash::make($newPassword);
         $user->save();

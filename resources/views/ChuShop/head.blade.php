@@ -45,7 +45,7 @@
 
 <link rel="stylesheet" href="/template/admin/plugins/fontawesome-free/css/all.min.css">
 <meta name="csrf-token" content="{{ csrf_token() }}" />
-
+<script src="https://kit.fontawesome.com/09ffb42aa8.js" crossorigin="anonymous"></script>
 
 <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 @yield('head')

@@ -31,8 +31,8 @@
                                 </div>
                                 <div class="col-md-2">
                                     <select class="form-control" style="width: 120px" onchange="handleChange(this)">
-                                        <option value="/NhanVien/congviecs/index" selected>Đã Duyệt</option>
-                                        <option value="/NhanVien/congviecs/index_hoanthanh">Hoàn Thành</option>
+                                        <option value="/NhanVien/congviecs/index">Đã Duyệt</option>
+                                        <option value="/NhanVien/congviecs/index_hoanthanh" selected>Hoàn Thành</option>
                                     </select>
 
 
@@ -65,9 +65,9 @@
                                                     </a>
                                                 </td>
                                                 <td>{{ $congviec->ten }}</td>
+                                                <td>{{ $congviec->soluongdv }}</td>
 
                                                 <td>{{ $congviec->sdt }}</td>
-                                                <td>{{ $congviec->soluongdv }}</td>
                                                 <td>{{ number_format($congviec->tongtien) }}VNĐ</td>
                                                 <td>{!! \App\Helpers\Helper::trangthai_lichdat($congviec->trangthai) !!}</td>
                                                 <td>{{ \Carbon\Carbon::parse($congviec->updated)->isoFormat('HH:mm:ss DD/MM/YYYY') }}
@@ -75,8 +75,8 @@
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-primary btn-sm"
-                                                        href="/NhanVien/congviecs/edit/{{ $congviec->id }}">
-                                                        <i class="fas fa-edit"></i>
+                                                        href="/NhanVien/congviecs/show_hoanthanh/{{ $congviec->id }}">
+                                                        <i class="fas fa-eye"></i>
                                                     </a>
                                                     {{-- <a href="#" class="btn btn-danger btn-sm"
                                                     onclick="removeRow({{ $congviec->id }}, '/admin/accs/destroy')">

@@ -30,4 +30,9 @@ class Shop extends Model
     {
         return $this->hasMany(DichVu::class, 'shop_id', 'id');
     }
+
+    public function phithus()
+    {
+        return $this->hasMany(PhiThu::class, 'shop_id', 'id');
+    }
 }

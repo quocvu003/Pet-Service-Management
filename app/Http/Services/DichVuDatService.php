@@ -133,7 +133,7 @@ class DichVuDatService
         $lichdatdv->fill($request->input());
         $lichdatdv->save();
 
-        Session::flash('success', 'Duyệt thành công');
+        Session::flash('success', 'Cập nhật thành công');
         return true;
     }
     public function update_dichvudat($request, $dichvudats)

@@ -76,7 +76,7 @@
                                                 </div>
 
                                                 @csrf
-                                                <input type="text" name="sop" value="{{ Auth::user()->ten }}">
+
                                                 </form>
 
                                             </div>

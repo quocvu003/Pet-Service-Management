@@ -16,6 +16,7 @@ class DanhMuc extends Model
         'trangthai',
         'mota',
         'hinhanh',
+        'tenshop',
     ];
     public function dichvus()
     {

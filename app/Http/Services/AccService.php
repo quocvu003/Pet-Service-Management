@@ -36,12 +36,12 @@ class AccService
         return  User::with('shops')
             ->where('quyen_id', '=', 2)
             ->where('trangthai', '<>', 2)
-            ->paginate(10);
+            ->paginate(9);
     }
 
     public function getkhachhang()
     {
-        return User::where('quyen_id', 3)->paginate(10);
+        return User::where('quyen_id', 3)->paginate(9);
     }
     public function create($request)
     {
@@ -56,12 +56,37 @@ class AccService
             'password.required' => 'Bạn chưa nhập mật khẩu',
             'password_confirmation.same' => 'Mật khẩu không trùng khớp',
         ]);
+        $quyen_id = $request->role_id;
+        if ($quyen_id == 2) {
+            try {
+                $shop = new Shop([
+                    'trangthai' => 1,
+                ]);
+                $shop->save();
+                $user = new User([
+                    'shop_id' => $shop->id,
+                    'ten' => $request->ten,
+                    'email' => $request->email,
+                    'matkhau' => bcrypt($request->password),
+                    'quyen_id' => 2,
+                    'trangthai' => 1,
+                ]);
+                $user->save();
+
+                Session::flash('success', 'Tạo tài khoản thành công');
+            } catch (\Exception $err) {
+                Session::flash('error', $err->getMessage());
+                return false;
+            }
+            return true;
+        }
+
         try {
             User::create([
                 'ten' => (string) $request->input('ten'),
                 'email' => (string) $request->input('email'),
-                'password' => bcrypt($request->password),
-                'quyen_id' => (string) $request->input('quyen_id'),
+                'matkhau' => bcrypt($request->password),
+                'quyen_id' => (string) $request->input('role_id'),
 
             ]);
 
@@ -111,13 +136,23 @@ class AccService
         if ($acc->trangthai == 1) {
             Session::flash('success', 'Duyệt thành công!');
             dispatch((new Duyet_Shop($email, $acc))->delay(now()->addSeconds(5)));
+
+            return response()->json([
+                'error' => false,
+                'message' => 'Duyet Thanh Cong'
+            ]);
         }
 
         if ($acc->trangthai == 0) {
             Session::flash('success', ' Đã Từ Chối! ');
             dispatch((new TuChoi_Shop($email, $acc))->delay(now()->addSeconds(5)));
+            return response()->json([
+                'error' => false,
+                'message' => 'Khong Duoc Duyet '
+            ]);
         }
-        return $acc;
+
+        return response()->json(['error' => true]);
     }
     public function destroy($request)
     {

@@ -4,7 +4,8 @@
         <thead>
             <tr>
                 <th style="width: 50px">STT</th>
-                <th>Ten</th>
+                <th>Tên Shop</th>
+                <th>Tên danh mục</th>
                 <th>Tiêu đề</th>
                 <th>Mô tả</th>
                 <th>Trạng thái</th>
@@ -20,13 +21,14 @@
                 @endphp
                 <tr>
                     <td>{{ $stt }}</td>
+                    <td>{{ $danhmuc->tenshop }}</td>
                     <td>{{ $danhmuc->ten }}</td>
-                    <td>{{ $danhmuc->tieude }}</td>
-                    <td style="max-width: 200px;">{{ $danhmuc->mota }}</td>
+                    <td style="max-width: 150px;">{{ $danhmuc->tieude }}</td>
+                    <td style="max-width: 200px;min-width: 250px">{{ $danhmuc->mota }}</td>
 
 
                     <td>{!! \App\Helpers\Helper::trangthai($danhmuc->trangthai) !!}</td>
-                    <td>{{ \Carbon\Carbon::parse($danhmuc->created_at)->isoFormat('DD/MM/YYYY HH:mm:ss') }}
+                    <td>{{ \Carbon\Carbon::parse($danhmuc->created_at)->isoFormat('HH:mm:ss DD/MM/YYYY') }}
                     <td>
                     <td>
                         <a class="btn btn-primary btn-sm" href="/admin/danhmucs/edit_requestdv/{{ $danhmuc->id }}">

@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="bg-img1 txt-center p-lr-15 p-tb-92"
-        style="background-image: url('/template/images/bg-01.jpg');margin-top: 200px;">
+        style="background-image: url('/template/images/bg-02.jpg');margin-top: 200px;">
         <h2 class="ltext-105 cl0 txt-center" style="color: brown;margin-top: -150px;font-weight: bold">
             {{ $danhmucs->ten }}
         </h2>
@@ -74,7 +74,10 @@
                 <div class="col-md-7 col-lg-8">
                     <div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
                         <b style="font-size: 20px">{{ $danhmucs->tieude }}</b>
-                        <div style="white-space: pre-wrap;  line-height: 1.5;">
+                        <div
+                            style="line-height: 1.5; white-space: pre-line;
+                        text-align: justify;
+                    ">
                             {{ $danhmucs->mota }}
                         </div>
 
@@ -84,7 +87,7 @@
                 <div class="col-11 col-md-5 col-lg-4 m-lr-auto">
                     <div class="how-bor1 ">
                         <div class="hov-img0">
-                            <img src="{{ $danhmucs->hinhanh }}" alt="IMG">
+                            <img src="{{ $danhmucs->hinhanh }}" alt="IMG" style="height: 250px;width: 380px">
                         </div>
                     </div>
                 </div>
@@ -117,7 +120,7 @@
                 <div class="order-md-1 col-11 col-md-5 col-lg-4 m-lr-auto p-b-30">
                     <div class="how-bor2">
                         <div class="hov-img0">
-                            <img src="/template/images/trongthucung.jpg" alt="IMG">
+                            <img src="/template/images/trongthucung.jpg" alt="IMG" style="height: 300px;width: 380px">
                         </div>
                     </div>
                 </div>

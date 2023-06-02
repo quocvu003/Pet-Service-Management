@@ -24,7 +24,7 @@ class Helper
                     </a>
                 </td>
                 <td>' . self::trangthai($danhmuc->trangthai) . '</td>
-                <td>' . \Carbon\Carbon::parse($danhmuc->created_at)->isoFormat('DD/MM/YYYY HH:mm:ss') . '</td>
+                <td>' . \Carbon\Carbon::parse($danhmuc->created_at)->isoFormat('HH:mm:ss DD/MM/YYYY') . '</td>
                 <td>
                     <a class="btn btn-primary btn-sm" href="/admin/danhmucs/edit/' . $danhmuc->id . '">
                         <i class="fas fa-edit"></i>
@@ -44,33 +44,29 @@ class Helper
     public static function trangthai($trangthai = 0): string
     {
         return $trangthai == 0 ? '<span class="btn btn-danger btn-xs">KHÓA</span>'
-            : ($trangthai == 2 ? '<span class="btn btn-warning btn-xs">CHỜ DUYỆT</span>'
-                : ($trangthai == 3 ? '<span class="btn btn-dark btn-xs">YÊU CẦU</span>'
-                    : '<span class="btn btn-success btn-xs">KÍCH HOẠT</span>'));
+            : ($trangthai == 1 ? '<span class="btn btn-success btn-xs">KÍCH HOẠT </span>'
+                : '<span class="btn btn-warning btn-xs">CHỜ DUYỆT</span>');
     }
 
     public static function trangthai_lichdat($trangthai = 0): string
     {
         return $trangthai == 1 ? '<span class="btn btn-danger btn-xs">CHỜ DUYỆT</span>'
             : ($trangthai == 2 ? '<span class="btn btn-info btn-xs">ĐÃ DUYỆT</span>'
-                : ($trangthai == 4 ? '<span class="btn btn-primary btn-xs">TỪ CHỐI</span>'
-                    : '<span class="btn btn-success btn-xs">HOÀN THÀNH</span>'));
+                : ($trangthai == 3 ? '<span class="btn btn-success btn-xs">HOÀN THÀNH</span>'
+                    : '<span class="btn btn-primary btn-xs">TỪ CHỐI</span>'));
     }
 
     public static function danhmucs($danhmucs): string
     {
         $html = '<ul>';
+
         foreach ($danhmucs as $danhmuc) {
+
             $html .= '<li>
-            <a href="/danh-muc/' . $danhmuc->id . '-' . Str::slug($danhmuc->ten, '-') . '.html">' . $danhmuc->ten . '</a>
+            <a href="/danh-muc/' . $danhmuc->id . '-' . '.html">' . $danhmuc->ten . '</a>
             </li>';
         }
         $html .= '</ul>';
         return $html;
-    }
-
-    public static function gia($gia)
-    {
-        return number_format($gia);
     }
 }

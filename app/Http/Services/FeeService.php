@@ -20,25 +20,27 @@ class FeeService
     public function insert($request)
     {
         $request->validate([
-
-            'tien' => 'required|email:filter',
-
+            'tien' => 'required|numeric',
         ], [
             'tien.required' => 'Bạn chưa nhập tiền',
-
+            'tien.numeric' => 'Tiền phải là một số',
         ]);
-        $phithu = new PhiThu;
-        $phithu->shop_id = $request->input('shop_id');
 
-        $phithu->tien = $request->input('tien');
+        $shopId = $request->input('shop_id');
+        $tien = $request->input('tien');
+
+        $phithu = PhiThu::firstOrNew(['shop_id' => $shopId]);
+        $phithu->tien += $tien;
         $phithu->save();
 
         Session::flash('success', 'Thêm phí thu thành công');
-        return  true;
+        return true;
     }
+
+
     public function getphithu()
     {
 
-        return PhiThu::orderBy('id')->paginate(10);
+        return Shop::where('id', '<>', 0)->with('users')->with('phithus')->paginate(10);
     }
 }
