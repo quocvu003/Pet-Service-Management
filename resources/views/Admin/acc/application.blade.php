@@ -1,11 +1,12 @@
 @extends('admin.main')
 
 @section('content')
-    @include('admin.alert')
+
     @if (count($accs) > 0)
         <table class="table">
             <thead>
                 <tr>
+                    @include('admin.alert')
                     <th style="width: 50px">STT</th>
                     <th>Logo</th>
                     <th>Tên Shop</th>
@@ -31,7 +32,7 @@
                         <td>{{ $acc->ten }}</td>
                         <td>{{ $acc->email }}</td>
                         <td>{!! \App\Helpers\Helper::trangthai($acc->trangthai) !!}</td>
-                        <td>{{ \Carbon\Carbon::parse($acc->created_at)->isoFormat('HH:mm:ss DD/MM/YYYY') }}
+                        <td>{{ \Carbon\Carbon::parse($acc->created_at)->isoFormat('HH:mm DD/MM/YYYY') }}
                         <td>
                             <a class="btn btn-primary btn-sm" href="/admin/accs/showappli/{{ $acc->id }}">
                                 <i class="fas fa-edit"></i>

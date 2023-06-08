@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('matkhau');
             $table->string('diachi')->nullable();
             $table->string('sdt')->nullable();
-            $table->string('hinhanh')->nullable();
+            $table->string('hinhanh')->nullable()->default('/tempalte/avatar.jpg');
             $table->integer('trangthai')->default(1);
             $table->rememberToken();
             $table->timestamps();

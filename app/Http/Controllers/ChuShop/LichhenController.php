@@ -9,6 +9,7 @@ use App\Models\DichVu_DichVuDat;
 use App\Models\DichVuDat;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class LichhenController extends Controller
 {
@@ -23,6 +24,8 @@ class LichhenController extends Controller
     {
         $lichdatdvstemp = [];
         $dichvudats = [];
+        $nhanvien = null;
+        $id_shop = null;
 
         if ($request->status == 1) {
             $dichvudats = $this->dicvudatService->choduyet();
@@ -41,15 +44,28 @@ class LichhenController extends Controller
             $soluongdv = DichVu_DichVuDat::where('dichvudat_id', $dichvudat->id)->count();
             $dichvudat->soluongdv = $soluongdv;
             array_push($lichdatdvstemp, $dichvudat);
-        };
+        }
+
+        if (!empty($dichvudats)) {
+            if (count($dichvudats) > 0) {
+                $id_shop = $dichvudats[0]->shop_id;
+            }
+            $listnhanvien = User::where('shop_id', $id_shop)->where('quyen_id', 4)->where('trangthai', 1)->get();
+        } else {
+            $listnhanvien = [];
+        }
+
+
         return view('ChuShop.lichhen.index', [
             'title' => 'Quản lý lịch đặt dịch vụ',
             'lichdatdvs' => $lichdatdvstemp,
             'status' => $request->status,
-
-
+            'nhanviens' => $nhanvien,
+            'listnhanviens' => $listnhanvien,
         ]);
     }
+
+
 
     public function show(DichVuDat $lichdatdv)
     {
@@ -76,12 +92,14 @@ class LichhenController extends Controller
         $result = $this->dicvudatService->duyet($request, $lichdatdvs);
 
         if ($result->trangthai == 2) {
+            Session::flash('success', 'Duyệt thành công!');
             return response()->json([
                 'error' => false,
                 'message' => 'Duyet Thanh Cong'
             ]);
         }
         if ($result->trangthai == 4) {
+            Session::flash('success', ' Đã Từ Chối! ');
             return response()->json([
                 'error' => false,
                 'message' => 'Khong Duoc Duyet '
@@ -117,7 +135,7 @@ class LichhenController extends Controller
         $result = $this->dicvudatService->update_daduyet($request, $lichdatdvs);
 
         if ($result) {
-            return redirect('/ChuShop/lichdatdvs/list');
+            return redirect('/ChuShop/lichdatdvs/list?status=2');
         }
     }
     public function show_hoanthanh(DichVuDat $lichdatdv)

@@ -140,7 +140,7 @@ class AccController extends Controller
         $shop = $user->shops()->first();
         $result = $this->AccService->duyet($request, $user, $shop);
 
-        return  $result;
+        return  response()->json(['error' => true]);
     }
     // public function destroyshow(Request $request)
     // {

@@ -10,21 +10,7 @@
                     <h2 style="margin-left: 50px;margin-bottom: 50px">Chi tiết lịch đặt dịch vụ của khách hàng:
                         {{ $lichdats->ten }}</h2>
 
-                    {{-- <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label for="menu">Tên Shop</label>
-                                    <label class="form-control"> {{ $lichdats->shops->ten }} </label>
-                                </div>
-                            </div>
 
-                            <div class="col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label>Địa chỉ</label>
-                                    <label class="form-control">{{ $lichdats->shops->diachi }} </label>
-                                </div>
-                            </div>
-                        </div> --}}
 
                     <div class="row">
                         <div class="col-md-4 mb-3">
@@ -55,7 +41,9 @@
                         <div class="col-md-4 mb-3">
                             <div class="form-group">
                                 <label for="menu">Ngày</label>
-                                <label class="form-control">{{ $lichdats->ngay }}</label>
+                                <label
+                                    class="form-control">{{ \Carbon\Carbon::parse($lichdats->ngay)->format('d/m/Y') }}</label>
+
 
                             </div>
                         </div>

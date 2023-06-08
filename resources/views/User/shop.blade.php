@@ -37,20 +37,25 @@
                         <div class="col-md-7">
                             <h4 style="margin-top: 10px">Dịch vụ của Shop</h4>
                             <ul>
-                                @foreach ($shop->dichvus as $key => $dichvu)
-                                    @if ($dichvu->trangthai == 1)
-                                        <div style="display: flex; align-items: center; gap: 20px">
-                                            <li style="margin : 10px 0; width: 320px;">
-                                                {{ ++$key }}.{{ $dichvu->ten }} </li> -
-                                            <a href="/dichvu/{{ $dichvu->danhmucs->id }}"
-                                                style="font-weight: 600; color: #13b82c">Xem chi
-                                                tiết</a> -
-                                            <a href="/datlich/{{ $dichvu->shops->id }}-{{ $dichvu->id }}"
-                                                style="font-weight: 600; color: #4431db"> Đặt dịch vụ</a>
-                                        </div>
-                                    @endif
-                                @endforeach
-
+                                @if (count($shop->dichvus) > 0)
+                                    @foreach ($shop->dichvus as $key => $dichvu)
+                                        @if ($dichvu->trangthai == 1)
+                                            <div style="display: flex; align-items: center; gap: 20px">
+                                                <li style="margin : 10px 0; width: 320px;">
+                                                    {{ ++$key }}.{{ $dichvu->ten }} </li> -
+                                                <a href="/dichvu/{{ $dichvu->danhmucs->id }}"
+                                                    style="font-weight: 600; color: #13b82c">Xem chi
+                                                    tiết</a> -
+                                                <a href="/datlich/{{ $dichvu->shops->id }}-{{ $dichvu->id }}"
+                                                    style="font-weight: 600; color: #4431db"> Đặt dịch vụ</a>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @else
+                                    <div class="alert alert-info">
+                                        Shop chưa có dịch vụ nào!
+                                    </div>
+                                @endif
                             </ul>
 
                         </div>

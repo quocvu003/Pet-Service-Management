@@ -29,5 +29,6 @@ class ShopComposer
         $currentuser1 = User::find($id);
 
         $view->with('ten', $currentuser1->ten);
+        $view->with('id', $id);
     }
 }

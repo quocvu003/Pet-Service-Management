@@ -20,7 +20,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('diachi');
             $table->string('sdt');
-            $table->string('hinhanh');
+            $table->string('hinhanh')->default('/tempalte/avatar.jpg');
+            $table->integer('trangthai');
             $table->timestamps();
         });
     }

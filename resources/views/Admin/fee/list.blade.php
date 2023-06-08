@@ -11,7 +11,7 @@
                 <th>Trạng thái</th>
                 <th>Năm</th>
 
-                <th>Cập nhật</th>
+                <th>Ngày tạo</th>
 
             </tr>
         </thead>
@@ -39,10 +39,10 @@
                         @if ($shop->phithus->count() > 0)
                             @foreach ($shop->phithus as $phithu)
                                 @php
-                                    if ($phithu->tien == 100000000 && \Carbon\Carbon::now()->format('Y') == \Carbon\Carbon::parse($phithu->updated_at)->format('Y')) {
+                                    if ($phithu->tien == 12000000 && \Carbon\Carbon::now()->format('Y')) {
                                         echo '<span style="background-color: green; color: aliceblue;border-radius: 10px; padding: 5px;">Đã Nộp Đủ</span>';
                                     } else {
-                                        $missingAmount = 100000000 - $phithu->tien;
+                                        $missingAmount = 12000000 - $phithu->tien;
                                         echo 'Thiếu ' . number_format($missingAmount) . ' VNĐ</span>';
                                     }
                                 @endphp
@@ -58,7 +58,7 @@
                     <td>{{ date('Y') }}</td>
                     <td>
                         @foreach ($shop->phithus as $phithu)
-                            {{ \Carbon\Carbon::parse($phithu->updated_at)->isoFormat('HH:mm:ss DD/MM/YYYY') }}
+                            {{ \Carbon\Carbon::parse($phithu->created_at)->isoFormat('HH:mm DD/MM/YYYY') }}
                         @endforeach
                     </td>
                 </tr>

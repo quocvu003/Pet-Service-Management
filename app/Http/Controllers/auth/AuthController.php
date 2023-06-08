@@ -115,14 +115,19 @@ class AuthController extends Controller
     {
 
         $request->validate([
+            'name' => 'required',
+            'nameshop' => 'required',
             'email' => 'required|email:filter',
             'password' => 'required',
             'confirm_password' => 'same:password',
+            'hinhanh' => 'required',
         ], [
             'email.required' => 'Bạn chưa nhập email',
             'name.required' => 'Bạn chưa nhập tên',
             'password.required' => 'Bạn chưa nhập mật khẩu',
             'confirm_password.same' => 'Mật khẩu không trùng khớp',
+            'hinhanh.required' => 'Bạn chưa thêm logo',
+            'nameshop.required' => 'Bạn chưa thêm tên Shop',
         ]);
 
         $shop = new Shop([

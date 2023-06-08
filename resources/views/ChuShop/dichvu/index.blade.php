@@ -102,7 +102,7 @@
                                                 <td>{{ $dichvu->danhmucs->ten }}</td>
                                                 <td>{{ number_format($dichvu->gia) }} VNĐ</td>
                                                 <td>{!! \App\Helpers\Helper::trangthai($dichvu->trangthai) !!}</td>
-                                                <td>{{ \Carbon\Carbon::parse($dichvu->created_at)->isoFormat('HH:mm:ss DD/MM/YYYY') }}
+                                                <td>{{ \Carbon\Carbon::parse($dichvu->created_at)->isoFormat('HH:mm DD/MM/YYYY') }}
                                                 <td>
                                                 </td>
 

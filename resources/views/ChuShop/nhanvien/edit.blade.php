@@ -87,9 +87,3 @@
     </form>
 @endsection
 @include('admin.footer')
-<style>
-    .row {
-        justify-content: center;
-        align-items: center
-    }
-</style>

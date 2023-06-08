@@ -1,6 +1,6 @@
 @extends('Nhanvien.main')
 @section('content')
-    <main class="content" style="height: 600px; margin-top: 20px">
+    <main class="content" style="-min-height: 600px; margin-top: 20px">
         @include('admin.alert')
         <div class="row">
             <div class="col-12 mb-4">
@@ -31,71 +31,77 @@
                                 </div>
                                 <div class="col-md-2">
                                     <select class="form-control" style="width: 120px" onchange="handleChange(this)">
-                                        <option value="/NhanVien/congviecs/index" selected>Đã Duyệt</option>
-                                        <option value="/NhanVien/congviecs/index_hoanthanh">Hoàn Thành</option>
+                                        <option value="/NhanVien/congviecs/index?status=1"
+                                            {{ $status == 1 ? 'selected' : '' }}>Đã Duyệt</option>
+                                        <option value="/NhanVien/congviecs/index?status=2"
+                                            {{ $status == 2 ? 'selected' : '' }}>Hoàn Thành</option>
                                     </select>
-
-
 
                                 </div>
                             </div>
 
                             @if (count($congviecs) > 0)
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 10px">STT</th>
-                                            <th style="width: 50px">Ảnh đại diện</th>
-                                            <th>Tên Khách Hàng</th>
-                                            <th>Số điện thoại</th>
-                                            <th>Số lượng</th>
-                                            <th>Tổng tiền</th>
-                                            <th>Trạng thái</th>
-                                            <th>Thời gian cập nhật</th>
-                                            <th style="width: 80px">&nbsp;</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach ($congviecs as $key => $congviec)
+                                <div style='overflow-x:scroll'>
+                                    <table class="table">
+                                        <thead>
                                             <tr>
-                                                <td>{{ ++$key }}</td>
-                                                <td><a href="{{ $congviec->hinhanh }}" target="_blank">
-                                                        <img src="{{ $congviec->taikhoans->hinhanh }}" height="50px">
-                                                    </a>
-                                                </td>
-                                                <td>{{ $congviec->ten }}</td>
-
-                                                <td>{{ $congviec->sdt }}</td>
-                                                <td>{{ $congviec->soluongdv }}</td>
-                                                <td>{{ number_format($congviec->tongtien) }}VNĐ</td>
-                                                <td>{!! \App\Helpers\Helper::trangthai_lichdat($congviec->trangthai) !!}</td>
-                                                <td>{{ \Carbon\Carbon::parse($congviec->updated)->isoFormat('HH:mm:ss DD/MM/YYYY') }}
-                                                </td>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-primary btn-sm"
-                                                        href="/NhanVien/congviecs/edit/{{ $congviec->id }}">
-                                                        <i class="fas fa-edit"></i>
-                                                    </a>
-                                                    {{-- <a href="#" class="btn btn-danger btn-sm"
-                                                    onclick="removeRow({{ $congviec->id }}, '/admin/accs/destroy')">
-                                                    <i class="fas fa-trash"></i>
-                                                </a> --}}
-                                                </td>
+                                                <th style="width: 10px">STT</th>
+                                                <th style="width: 50px">Ảnh đại diện</th>
+                                                <th>Tên Khách Hàng</th>
+                                                <th>Số điện thoại</th>
+                                                <th>Số lượng</th>
+                                                <th>Tổng tiền</th>
+                                                <th>Trạng thái</th>
+                                                {{-- <th>Thời gian cập nhật</th> --}}
+                                                <th style="width: 80px">&nbsp;</th>
                                             </tr>
-                                        @endforeach
-                                    @else
-                                        <div class="alert alert-info">
-                                            Tuyệt vời! Bạn đã hoàn thành tất cả công việc trong ngày hôm nay!.
-                                        </div>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach ($congviecs as $key => $congviec)
+                                                <tr>
+                                                    <td>{{ ++$key }}</td>
+                                                    <td><a href="{{ $congviec->hinhanh }}" target="_blank">
+                                                            <img src="{{ $congviec->taikhoans->hinhanh }}" height="50px">
+                                                        </a>
+                                                    </td>
+                                                    <td>{{ $congviec->ten }}</td>
+
+                                                    <td>{{ $congviec->sdt }}</td>
+                                                    <td>{{ $congviec->soluongdv }}</td>
+                                                    <td>{{ number_format($congviec->tongtien) }}VNĐ</td>
+                                                    <td>{!! \App\Helpers\Helper::trangthai_lichdat($congviec->trangthai) !!}</td>
+                                                    {{-- <td>{{ \Carbon\Carbon::parse($congviec->updated)->isoFormat('HH:mm DD/MM/YYYY') }} --}}
+                                                    </td>
+                                                    </td>
+                                                    <td>
+
+                                                        <a class="btn btn-primary btn-sm"
+                                                            href="
+                                                        @if ($status == 1) /NhanVien/congviecs/edit/{{ $congviec->id }}
+                                                        @else
+                                                        /NhanVien/congviecs/show_hoanthanh/{{ $congviec->id }} @endif
+                                                    ">
+                                                            <i class="fas fa-edit"></i>
+                                                        </a>
+
+
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <div class="alert alert-info">
+                                                Tuyệt vời! Bạn đã hoàn thành tất cả công việc trong ngày hôm nay!.
+                                            </div>
                             @endif
                             </tbody>
                             </table>
                         </div>
+
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
         <div id="noResultsMessage" class="alert alert-danger d-none text-center">Không tìm thấy kết quả.</div>
@@ -105,13 +111,8 @@
     function handleChange(select) {
         var selectedValue = select.value;
 
-        if (selectedValue === '/NhanVien/congviecs/index') {
-            // Chuyển trang sang trạng thái "Đã Duyệt"
+        if (selectedValue)
             window.location.href = selectedValue;
-        } else if (selectedValue === '/NhanVien/congviecs/index_hoanthanh') {
-            // Chuyển trang sang trạng thái "Hoàn Thành"
-            window.location.href = selectedValue;
-        }
     }
 </script>
 

@@ -3,8 +3,9 @@
     <section>
         <div class="row" style="margin: 80px ">
 
-            <h3 style="margin: 30px 0;text-align: center">Danh Sách Đặt Dịch Vụ</h3>
+
             <div class="card shadow border-0 text-center p-0 mt-3">
+                <h3 style="margin: 30px 0;text-align: center">Danh Sách Đặt Dịch Vụ</h3>
                 @include('admin.alert')
                 @if (count($dichvudats) > 0)
                     <div style='overflow-x:scroll'>

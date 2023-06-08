@@ -48,7 +48,7 @@ class MainUserController extends Controller
         return view('user.shop', [
             'title' => 'PetCare Shop ',
             'shops' => $shop,
-            // 'user' => $user,
+
         ]);
     }
     public function profile()

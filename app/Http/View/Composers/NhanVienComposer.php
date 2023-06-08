@@ -27,7 +27,7 @@ class NhanVienComposer
         $view->with('logo', $shops->hinhanh);
         // lấy từ bảng taikhoan
         $currentuser1 = User::find($id);
-
+        $view->with('id', $id);
         $view->with('ten', $currentuser1->ten);
         $view->with('avatar', $currentuser1->hinhanh);
         $view->with('danhmucs', []);

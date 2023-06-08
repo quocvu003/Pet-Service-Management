@@ -133,7 +133,9 @@ class AccService
         $acc->save();
         $shop->trangthai = $request->status;
         $shop->save();
+
         if ($acc->trangthai == 1) {
+
             Session::flash('success', 'Duyệt thành công!');
             dispatch((new Duyet_Shop($email, $acc))->delay(now()->addSeconds(5)));
 
@@ -144,6 +146,7 @@ class AccService
         }
 
         if ($acc->trangthai == 0) {
+
             Session::flash('success', ' Đã Từ Chối! ');
             dispatch((new TuChoi_Shop($email, $acc))->delay(now()->addSeconds(5)));
             return response()->json([
@@ -152,7 +155,7 @@ class AccService
             ]);
         }
 
-        return response()->json(['error' => true]);
+        return $acc;
     }
     public function destroy($request)
     {

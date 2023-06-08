@@ -15,6 +15,7 @@ use App\Http\Controllers\ChuShop\DichvuController;
 use App\Http\Controllers\ChuShop\LichhenController;
 use App\Http\Controllers\NhanVien\MainNVController;
 use App\Http\Controllers\ChuShop\NhanvienController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\KhachHang\DichVuDatController;
 use App\Http\Controllers\KhachHang\DichVuUserController;
 
@@ -37,6 +38,9 @@ Route::get('forgot_password', [AuthController::class, 'forgot_password'])->name(
 Route::post('forgot_password', [AuthController::class, 'forgot_password_action']);
 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/export-pdf', [ExportController::class, 'exportPDF'])->name('export.pdf');
+
 
 Route::middleware(['auth'])->group(function () {
 
@@ -128,9 +132,6 @@ Route::middleware(['auth'])->group(function () {
         });
         Route::prefix('lichdatdvs')->group(function () {
             Route::get('list', [LichhenController::class, 'index']);
-            // Route::get('list_daduyet', [LichhenController::class, 'index_daduyet']);
-            // Route::get('list_hoanthanh', [LichhenController::class, 'index_hoanthanh']);
-            // Route::get('list_tuchoi', [LichhenController::class, 'index_tuchoi']);
             Route::get('edit/{lichdatdv}', [LichhenController::class, 'show']);
             Route::post('edit/{lichdatdv}', [LichhenController::class, 'duyet']);
             Route::get('edit_daduyet/{lichdatdv}', [LichhenController::class, 'show_daduyet']);
@@ -139,8 +140,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('edit_tuchoi/{lichdatdv}', [LichhenController::class, 'show_tuchoi']);
         });
         Route::prefix('danhmucs')->group(function () {
-            Route::get('list', [DanhmucController::class, 'indexshop']);
-            Route::post('list', [DanhmucController::class, 'storeshop']);
+            Route::get('list', [DanhmucController::class, 'indexyeucau']);
+            Route::post('list', [DanhmucController::class, 'storeyeucau']);
         });
     });
 });
@@ -156,7 +157,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/index', [MainNVController::class, 'list']);
             Route::get('/edit/{dichvudat}', [MainNVController::class, 'show']);
             Route::post('/edit/{dichvudat}', [MainNVController::class, 'update_dichvudat']);
-            Route::get('/index_hoanthanh', [MainNVController::class, 'list_hoanthanh']);
+            // Route::get('/index_hoanthanh', [MainNVController::class, 'list_hoanthanh']);
             Route::get('/show_hoanthanh/{dichvudat}', [MainNVController::class, 'show_hoanthanh']);
         });
     });

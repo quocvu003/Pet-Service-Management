@@ -60,8 +60,28 @@
                         <div class="col-md-4 mb-3">
                             <div class="form-group">
                                 <label for="menu">Giờ</label>
-                                <input type="time" name="gio" id="gio" value="{{ old('gio') }}"
-                                    class="form-control" pattern="(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]">
+                                <input type="time" name="gio" id="gio" class="form-control"
+                                    value="{{ old('gio') }}" pattern="(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]"
+                                    onchange="validateTime(this)">
+                                <div id="message" style="color: red;"></div>
+
+                                <script>
+                                    function validateTime(input) {
+                                        var gio = input.value;
+                                        var timeParts = gio.split(":");
+                                        var hour = parseInt(timeParts[0]);
+                                        var messageElement = document.getElementById("message");
+
+                                        if (!((hour >= 7 && hour <= 11) || (hour >= 13 && hour <= 20))) {
+                                            messageElement.innerText = "Vui lòng chọn thời gian từ 7h-11h hoặc 13h-20h.";
+                                            input.value = "";
+                                        } else {
+                                            messageElement.innerText = "";
+                                        }
+                                    }
+                                </script>
+
+
                             </div>
                         </div>
 
@@ -79,33 +99,23 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="row">
-                        <form action="" method="post" autocomplete="off">
-
-                            <div class="field">
-                                <input type="text" name="notes[]">
-                                <span onclick="addField(this)">+</span>
-                                <span onclick="removeField(this)">-</span>
-                            </div>
 
 
-
-
-                        </form>
-                    </div> --}}
                     <div class="row">
 
                         <div class="col-md-8 mb-3">
 
                             <label for="services">Dịch vụ </label><br>
-                            @foreach ($shops->dichvus as $dichvu)
-                                <input type="checkbox" id={{ $dichvu->id }} name="dichvu[]" value={{ $dichvu->id }}
-                                    {{ $dichvu->id == $dichvus->id ? 'checked' : '' }}
-                                    onchange="handleCheckBox({{ $dichvu->gia }},event)">
+                            @foreach ($shops->dichvus as $key => $dichvu)
+                                @if ($dichvu->trangthai == 1)
+                                    <input type="checkbox" id={{ $dichvu->id }} name="dichvu[]" value={{ $dichvu->id }}
+                                        {{ $dichvu->id == $dichvus->id ? 'checked' : '' }}
+                                        onchange="handleCheckBox({{ $dichvu->gia }},event)">
 
-                                <label for={{ $dichvu->id }}>{{ $dichvu->ten }} - Giá :
-                                    {{ number_format($dichvu->gia) }}
-                                    VNĐ </label><br>
+                                    <label for={{ $dichvu->id }}>{{ ++$key }}.{{ $dichvu->ten }} - Giá :
+                                        {{ number_format($dichvu->gia) }}
+                                        VNĐ </label><br>
+                                @endif
                             @endforeach
                         </div>
 

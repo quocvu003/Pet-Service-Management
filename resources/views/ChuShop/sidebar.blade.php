@@ -42,7 +42,8 @@
                         <span class="sidebar-icon">
                             <i class="fa-solid fa-bars me-2"></i>
                         </span>
-                        <a href="/ChuShop/lichdatdvs/list"><span class="sidebar-text">Lịch Đặt Dịch Vụ</span></a>
+                        <a href="/ChuShop/lichdatdvs/list?status=1"><span class="sidebar-text">Lịch Đặt Dịch
+                                Vụ</span></a>
 
                     </span>
 

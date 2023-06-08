@@ -42,17 +42,17 @@ class DanhmucController extends Controller
             'danhmucs' => $this->danhmucService->requestdv(),
         ]);
     }
-    public function indexshop()
+    public function indexyeucau()
     {
         return view('ChuShop.danhmuc.index', [
             'title' => 'Danh sách Danh Mục',
-            'danhmucs' => $this->danhmucService->getAll(),
+            'danhmucs' => $this->danhmucService->getdanhmucshop(),
         ]);
     }
-    public function storeshop(Request $request)
+    public function storeyeucau(Request $request)
     {
-        $this->danhmucService->createshop($request);
-        return redirect()->back();
+        $this->danhmucService->createyeucau($request);
+        return redirect('/ChuShop/danhmucs/list');
     }
     public function show(DanhMuc $danhmuc)
     {

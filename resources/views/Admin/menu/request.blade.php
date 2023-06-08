@@ -28,7 +28,7 @@
 
 
                     <td>{!! \App\Helpers\Helper::trangthai($danhmuc->trangthai) !!}</td>
-                    <td>{{ \Carbon\Carbon::parse($danhmuc->created_at)->isoFormat('HH:mm:ss DD/MM/YYYY') }}
+                    <td>{{ \Carbon\Carbon::parse($danhmuc->created_at)->isoFormat('HH:mm DD/MM/YYYY') }}
                     <td>
                     <td>
                         <a class="btn btn-primary btn-sm" href="/admin/danhmucs/edit_requestdv/{{ $danhmuc->id }}">

@@ -29,7 +29,7 @@
                     </td>
                     <td>{{ $slider->sapxep }}</td>
                     <td>{!! \App\Helpers\Helper::trangthai($slider->trangthai) !!}</td>
-                    <td>{{ \Carbon\Carbon::parse($slider->created_at)->isoFormat('HH:mm:ss DD/MM/YYYY') }}
+                    <td>{{ \Carbon\Carbon::parse($slider->created_at)->isoFormat('HH:mm DD/MM/YYYY') }}
                     <td>
                     <td>
                         <a class="btn btn-primary btn-sm" href="/admin/sliders/edit/{{ $slider->id }}">

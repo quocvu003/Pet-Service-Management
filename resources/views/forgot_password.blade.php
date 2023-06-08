@@ -41,7 +41,7 @@
                                     <label for="email">Email</label>
                                     <div class="input-group">
                                         <input type="email" class="form-control" id="email" name="email"
-                                            placeholder="Nhập email" required autofocus>
+                                            placeholder="Nhập email" autofocus>
                                     </div>
                                 </div>
                                 <!-- End of Form -->

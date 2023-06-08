@@ -90,15 +90,17 @@
                         <div class="col-md-8 mb-3">
 
                             <label>Dịch vụ </label><br>
-                            @foreach ($shops as $shop)
+                            @foreach ($shops as $key => $shop)
                                 @foreach ($shop->dichvus as $dichvu)
-                                    <input type="checkbox" id={{ $dichvu->id }} name="dichvu[]" value={{ $dichvu->id }}
-                                        {{ in_array($dichvu->id, $arr_id) ? 'checked' : '' }}
-                                        onchange="handleCheckBox({{ $dichvu->gia }},event)">
+                                    @if ($dichvu->trangthai == 1)
+                                        <input type="checkbox" id={{ $dichvu->id }} name="dichvu[]"
+                                            value={{ $dichvu->id }} {{ in_array($dichvu->id, $arr_id) ? 'checked' : '' }}
+                                            onchange="handleCheckBox({{ $dichvu->gia }},event)">
 
-                                    <label for={{ $dichvu->id }}>{{ $dichvu->ten }} - Giá :
-                                        {{ number_format($dichvu->gia) }}
-                                        VNĐ </label><br>
+                                        <label for={{ $dichvu->id }}>{{ ++$key }}.{{ $dichvu->ten }} - Giá :
+                                            {{ number_format($dichvu->gia) }}
+                                            VNĐ </label><br>
+                                    @endif
                                 @endforeach
                             @endforeach
 
@@ -115,15 +117,29 @@
                             </div>
 
                         </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label>Trạng thái</label>
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" type="radio" name="trangthai" value="3" checked>
+                            <label class="custom-control-label">Hoàn thành</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" type="radio" name="trangthai" value="4">
+                            <label class="custom-control-label">Hủy</label>
+                        </div>
+
+
                     </div>
                     <div class="card-footer d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary">Hoàn Thành</button>
+                        <button type="submit" class="btn btn-primary">Xác nhận</button>
 
                     </div>
                 </div>
 
             </div>
-            <input type="hidden" name="trangthai" value="3">
+
         </main>
         @csrf
     </form>

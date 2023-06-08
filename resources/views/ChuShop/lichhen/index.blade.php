@@ -1,6 +1,6 @@
 @extends('ChuShop.main')
 @section('content')
-    <main class="content" style="height: 1000px">
+    <main class="content" style="min-height: 1000px">
         @include('admin.alert')
         <div class="row">
 
@@ -33,7 +33,6 @@
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="menu"><i class="fa-solid fa-filter"></i> Trạng thái</label>
-
                                         <select class="form-control" style="width: 120px" onchange="handleChange(this)">
                                             {{-- <option>VV</option> --}}
                                             <option value="/ChuShop/lichdatdvs/list?status=1"
@@ -50,75 +49,85 @@
                                                 Đã Từ Chối</option>
 
                                         </select>
-
-
-
                                     </div>
                                 </div>
                             </div>
 
+                            <div style='overflow-x:scroll'>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">STT</th>
+                                            <th style="width: 50px">Ảnh đại diện</th>
+                                            <th>Tên Khách Hàng</th>
+                                            <th>Số Điện Thoại</th>
+                                            <th>Số Lượng</th>
+                                            <th>Tổng Tiền</th>
+                                            <th>Trạng Thái</th>
+
+                                            @if ($status == 3 || $status == 2)
+                                                <th>Nhân Viên</th>
+                                            @endif
+                                            {{-- <th>Ngày Tạo</th> --}}
+                                            {{-- <th>Cập nhật</th> --}}
+                                            <th style="width: 80px">&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
 
-                            @if (count($lichdatdvs) > 0)
-                                <div style='overflow-x:scroll'>
-                                    <table class="table">
-                                        <thead>
+                                        @foreach ($lichdatdvs as $key => $lichdatdv)
                                             <tr>
-                                                <th style="width: 10px">STT</th>
-                                                <th style="width: 50px">Ảnh đại diện</th>
-                                                <th>Tên Khách Hàng</th>
-                                                <th>Số điện thoại</th>
-                                                <th>Số lượng</th>
-                                                <th>Tổng tiền</th>
-                                                <th>Trạng Thái</th>
-                                                <th>Ngày Tạo</th>
+                                                <td>{{ ++$key }}</td>
+                                                <td><a href="{{ $lichdatdv->hinhanh }}" target="_blank">
+                                                        <img src="{{ $lichdatdv->taikhoans->hinhanh }}" height="30px">
+                                                    </a>
+                                                </td>
+                                                <td>{{ $lichdatdv->ten }}</td>
 
-                                                <th style="width: 80px">&nbsp;</th>
+                                                <td>{{ $lichdatdv->sdt }}</td>
+                                                <td>{{ $lichdatdv->soluongdv }}</td>
+                                                <td>{{ number_format($lichdatdv->tongtien) }}VNĐ</td>
+                                                <td>{!! \App\Helpers\Helper::trangthai_lichdat($lichdatdv->trangthai) !!}</td>
+                                                @if ($status == 3 || $status == 2)
+                                                    @foreach ($listnhanviens as $listnhanvien)
+                                                        @if ($listnhanvien->id == $lichdatdv->nhanvien_id)
+                                                            <td>{{ $listnhanvien->ten }}</td>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+
+
+                                                {{-- <td>{{ \Carbon\Carbon::parse($lichdatdv->created_at)->isoFormat('HH:mm DD/MM/YYYY') }} --}}
+                                                {{-- <td>{{ \Carbon\Carbon::parse($lichdatdv->updated)->isoFormat('HH:mm DD/MM/YYYY') }} --}}
+                                                </td>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-primary btn-sm"
+                                                        href="{{ $status == 1
+                                                            ? '/ChuShop/lichdatdvs/edit/' . $lichdatdv->id
+                                                            : ($status == 2
+                                                                ? '/ChuShop/lichdatdvs/edit_daduyet/' . $lichdatdv->id
+                                                                : ($status == 3
+                                                                    ? '/ChuShop/lichdatdvs/edit_hoanthanh/' . $lichdatdv->id
+                                                                    : '/ChuShop/lichdatdvs/edit_tuchoi/' . $lichdatdv->id)) }}">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+
+
+
+                                                </td>
+
                                             </tr>
-                                        </thead>
-                                        <tbody>
+                                        @endforeach
+                                        @if ($status == 3)
+                                            <a class="btn btn-primary" href="{{ route('export.pdf') }}">Xuất báo
+                                                cáo</a>
+                                        @endif
+                                    </tbody>
+                                </table>
+                            </div>
 
-                                            @foreach ($lichdatdvs as $key => $lichdatdv)
-                                                <tr>
-                                                    <td>{{ ++$key }}</td>
-                                                    <td><a href="{{ $lichdatdv->hinhanh }}" target="_blank">
-                                                            <img src="{{ $lichdatdv->taikhoans->hinhanh }}" height="30px">
-                                                        </a>
-                                                    </td>
-                                                    <td>{{ $lichdatdv->ten }}</td>
-
-                                                    <td>{{ $lichdatdv->sdt }}</td>
-                                                    <td>{{ $lichdatdv->soluongdv }}</td>
-                                                    <td>{{ number_format($lichdatdv->tongtien) }}VNĐ</td>
-                                                    <td>{!! \App\Helpers\Helper::trangthai_lichdat($lichdatdv->trangthai) !!}</td>
-                                                    <td>{{ \Carbon\Carbon::parse($lichdatdv->created_at)->isoFormat('HH:mm:ss DD/MM/YYYY') }}
-                                                    </td>
-                                                    </td>
-                                                    <td>
-                                                        <a class="btn btn-primary btn-sm"
-                                                            href="{{ $status == 1
-                                                                ? '/ChuShop/lichdatdvs/edit/' . $lichdatdv->id
-                                                                : ($status == 2
-                                                                    ? '/ChuShop/lichdatdvs/edit_daduyet/' . $lichdatdv->id
-                                                                    : ($status == 3
-                                                                        ? '/ChuShop/lichdatdvs/edit_hoanthanh/' . $lichdatdv->id
-                                                                        : '/ChuShop/lichdatdvs/edit_tuchoi/' . $lichdatdv->id)) }}">
-                                                            <i class="fas fa-edit"></i>
-                                                        </a>
-
-
-
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            @else
-                                <div class="alert alert-info">
-                                    Tất cả các lịch đặt dịch vụ đã được duyệt.
-                                </div>
-                            @endif
                         </div>
                     </div>
                 </div>

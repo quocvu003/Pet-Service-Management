@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Pagination\Paginator;
 
 class DichVuDatService
 {
@@ -63,39 +64,45 @@ class DichVuDatService
     public function choduyet()
     {
         $current_user = Auth::user();
-        // Lấy shop_id của tài khoản hiện tại
         $shop_id = $current_user->shop_id;
-        return DichVuDat::where('trangthai', 1)
-            ->where('shop_id', $shop_id)->orderBy('ngay')
+        $lichdatdvs = DichVuDat::where('trangthai', 1)
+            ->where('shop_id', $shop_id)
+            ->orderBy('ngay')
             ->get();
+
+        return $lichdatdvs;
     }
+
     public function daduyet()
     {
         $current_user = Auth::user();
         // Lấy shop_id của tài khoản hiện tại
         $shop_id = $current_user->shop_id;
 
-        return DichVuDat::where('trangthai', 2)
+        $lichdatdvs = DichVuDat::where('trangthai', 2)
             ->where('shop_id', $shop_id)->orderBy('ngay')
-            ->get();
+            ->paginate(10);
+        return $lichdatdvs;
     }
     public function hoanthanh()
     {
         $current_user = Auth::user();
         // Lấy shop_id của tài khoản hiện tại
         $shop_id = $current_user->shop_id;
-        return DichVuDat::where('trangthai', 3)
+        $lichdatdvs = DichVuDat::where('trangthai', 3)
             ->where('shop_id', $shop_id)->orderBy('ngay')
-            ->get();
+            ->paginate(17);
+        return $lichdatdvs;
     }
     public function tuchoi()
     {
         $current_user = Auth::user();
         // Lấy shop_id của tài khoản hiện tại
         $shop_id = $current_user->shop_id;
-        return DichVuDat::where('trangthai', 4)
+        $lichdatdvs =  DichVuDat::where('trangthai', 4)
             ->where('shop_id', $shop_id)->orderBy('ngay')
-            ->get();
+            ->paginate(10);
+        return $lichdatdvs;
     }
     public function duyet($request, $lichdatdv)
     {
@@ -105,7 +112,7 @@ class DichVuDatService
         $lichdatdv->save();
 
         if ($lichdatdv->trangthai == 4) {
-            Session::flash('success', ' Đã Từ Chối! ');
+
             dispatch((new TuChoi_LichDat($email, $lichdatdv))->delay(now()->addSeconds(5)));
         }
 
@@ -114,12 +121,10 @@ class DichVuDatService
                 Session::flash('error', 'Bạn chưa chọn nhân viên');
                 return false;
             }
-            Session::flash('success', 'Duyệt thành công!');
+
             dispatch((new Duyet_LichDat($email, $lichdatdv))->delay(now()->addSeconds(5)));
         }
 
-
-        #Queue
         return $lichdatdv;
     }
     public function list()

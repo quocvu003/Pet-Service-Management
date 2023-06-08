@@ -63,7 +63,7 @@
                                                             <label>Mô Tả</label>
                                                             <div class="input-group">
 
-                                                                <textarea name="mota" class="form-control">{{ old('mota') }}"</textarea>
+                                                                <textarea name="mota" class="form-control">{{ old('mota') }}</textarea>
                                                             </div>
                                                         </div>
                                                         <p>Bạn không thể chỉnh sửa sau khi gửi yêu cầu!</p>
@@ -73,52 +73,52 @@
                                                                 YÊU
                                                                 CẦU</button>
                                                         </div>
+
+
+                                                        @csrf
+
+                                                    </form>
+
                                                 </div>
-
-                                                @csrf
-
-                                                </form>
-
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
+
+                                <!-- End of Modal Content -->
                             </div>
 
-
-                            <!-- End of Modal Content -->
-                        </div>
-
-                        <div style='overflow-x:scroll'>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 50px">STT</th>
-                                        <th>Tên Dịch Vụ</th>
-                                        <th>Tiêu Đề</th>
-                                        <th style="width: 550px">Mô Tả</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    @foreach ($danhmucs as $key => $danhmuc)
+                            <div style='overflow-x:scroll'>
+                                <table class="table">
+                                    <thead>
                                         <tr>
-                                            <td>{{ ++$key }}</td>
-                                            <td>{{ $danhmuc->ten }}</td>
-                                            <td>{{ $danhmuc->tieude }}</td>
-                                            <td>{{ $danhmuc->mota }}</td>
-
-
+                                            <th style="width: 50px">STT</th>
+                                            <th>Tên Dịch Vụ</th>
+                                            <th>Tiêu Đề</th>
+                                            <th style="width: 550px">Mô Tả</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
 
+                                        @foreach ($danhmucs as $key => $danhmuc)
+                                            <tr>
+                                                <td>{{ ++$key }}</td>
+                                                <td>{{ $danhmuc->ten }}</td>
+                                                <td>{{ $danhmuc->tieude }}</td>
+                                                <td>{{ $danhmuc->mota }}</td>
+
+
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        @include('admin.footer')
+            {{-- @include('admin.footer') --}}
     </main>
 @endsection

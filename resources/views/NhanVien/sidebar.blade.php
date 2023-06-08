@@ -19,7 +19,7 @@
             <li class="nav-item">
                 <a href="/NhanVien" class="nav-link d-flex align-items-center">
                     <span class="sidebar-icon">
-                        <img src="{{ $logo }}" height="60" width="60" alt="Volt Logo">
+                        <img src="{{ $logo }}" alt="Volt Logo">
                     </span>
                     <span class="mt-1 ms-1 sidebar-text" style="font-size: 30px">{{ $tenShop }}</span>
                 </a>
@@ -33,23 +33,24 @@
                         <span class="sidebar-icon">
                             <i class="fas fa-list-alt"></i>
                         </span>
-                        <span class="sidebar-text">Công Việc</span>
+                        <a href="/NhanVien/congviecs/index?status=1"><span class="sidebar-text">Công Việc</span></a>
+
                     </span>
-                    <span class="link-arrow">
+                    {{-- <span class="link-arrow">
                         <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                 clip-rule="evenodd"></path>
                         </svg>
-                    </span>
+                    </span> --}}
                 </span>
-                <div class="multi-level collapse " role="list" id="submenu-app" aria-expanded="false">
+                {{-- <div class="multi-level collapse " role="list" id="submenu-app" aria-expanded="false">
 
                     <ul class="flex-column nav">
                         <li class="nav-item ">
 
-                            <a class="nav-link" href="/NhanVien/congviecs/index">
+                            <a class="nav-link" href="/NhanVien/congviecs/index?status=1">
 
                                 <span class="sidebar-text">Danh sách công việc</span>
 
@@ -57,7 +58,7 @@
 
                         </li>
                     </ul>
-                </div>
+                </div> --}}
             </li>
 
 

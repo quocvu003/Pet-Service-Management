@@ -15,6 +15,7 @@ class Shop extends Model
         'sdt',
         'diachi',
         'hinhanh',
+        'trangthai',
     ];
 
     // protected $with = [

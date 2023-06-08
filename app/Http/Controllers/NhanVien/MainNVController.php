@@ -37,10 +37,17 @@ class MainNVController extends Controller
 
         ]);
     }
-    public function list()
+    public function list(Request $request)
     {
         $lichdatdvstemp = [];
-        $dichvudats = $this->congviec->list();
+        $dichvudats = [];
+        if ($request->status == 1) {
+            $dichvudats = $this->congviec->list();
+        }
+        if ($request->status == 2) {
+            $dichvudats = $this->congviec->list_hoanthanh();
+        }
+
         foreach ($dichvudats as $dichvudat) {
             $soluongdv = DichVu_DichVuDat::where('dichvudat_id', $dichvudat->id)->count();
 
@@ -53,26 +60,27 @@ class MainNVController extends Controller
         return view('nhanvien.congviec.index', [
             'title' => 'Công việc',
             'congviecs' => $lichdatdvstemp,
+            'status' => $request->status,
         ]);
     }
-    public function list_hoanthanh()
-    {
-        $lichdatdvstemp = [];
-        $dichvudats = $this->congviec->list_hoanthanh();
-        foreach ($dichvudats as $dichvudat) {
-            $soluongdv = DichVu_DichVuDat::where('dichvudat_id', $dichvudat->id)->count();
+    // public function list_hoanthanh()
+    // {
+    //     $lichdatdvstemp = [];
+    //     $dichvudats = $this->congviec->list_hoanthanh();
+    //     foreach ($dichvudats as $dichvudat) {
+    //         $soluongdv = DichVu_DichVuDat::where('dichvudat_id', $dichvudat->id)->count();
 
 
-            $dichvudat->soluongdv = $soluongdv;
+    //         $dichvudat->soluongdv = $soluongdv;
 
 
-            array_push($lichdatdvstemp, $dichvudat);
-        };
-        return view('nhanvien.congviec.index_hoanthanh', [
-            'title' => 'Công việc',
-            'congviecs' => $lichdatdvstemp,
-        ]);
-    }
+    //         array_push($lichdatdvstemp, $dichvudat);
+    //     };
+    //     return view('nhanvien.congviec.index_hoanthanh', [
+    //         'title' => 'Công việc',
+    //         'congviecs' => $lichdatdvstemp,
+    //     ]);
+    // }
     public function show(DichVuDat $dichvudat)
     {
         $lichdatdvs = $dichvudat;
@@ -123,7 +131,7 @@ class MainNVController extends Controller
         $dichvudats = $dichvudat;
         $result = $this->congviec->update_dichvudat($request, $dichvudats);
         if ($result) {
-            return redirect('/NhanVien/congviecs/index');
+            return redirect('/NhanVien/congviecs/index?status=1');
         }
     }
 }

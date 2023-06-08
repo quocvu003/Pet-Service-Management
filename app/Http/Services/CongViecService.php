@@ -16,7 +16,7 @@ class CongViecService
 
         return DichVuDat::where('trangthai', 2)
             ->where('nhanvien_id', $id_user)->orderBy('ngay')
-            ->paginate(10);
+            ->paginate(15);
     }
     public function list_hoanthanh()
     {
@@ -24,7 +24,7 @@ class CongViecService
 
         return DichVuDat::where('trangthai', 3)
             ->where('nhanvien_id', $id_user)->orderBy('ngay')
-            ->paginate(10);
+            ->paginate(20);
     }
     public function update_dichvudat($request, $dichvudats)
     {
@@ -41,7 +41,7 @@ class CongViecService
             ]);
             $dichvudat_dv->save();
         }
-        Session::flash('success', 'Công việc đã hoàn thành!');
+        Session::flash('success', 'Xác nhận thành công!');
         return true;
     }
 }

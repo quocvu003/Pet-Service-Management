@@ -131,8 +131,7 @@
         });
         const nhanvien_id = $("#nhanvien_id option:selected").val();
         const email = $("#email").val();
-        // console.log(nhanvien_id)
-        // console.log(email)
+
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -149,7 +148,7 @@
             success: function(result) {
                 console.log(result)
 
-                window.location.href = '/ChuShop/lichdatdvs/list'
+                window.location.href = '/ChuShop/lichdatdvs/list?status=1'
             },
             error: function(error) {
                 console.log(error)

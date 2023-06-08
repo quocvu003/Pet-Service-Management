@@ -24,7 +24,7 @@ class Helper
                     </a>
                 </td>
                 <td>' . self::trangthai($danhmuc->trangthai) . '</td>
-                <td>' . \Carbon\Carbon::parse($danhmuc->created_at)->isoFormat('HH:mm:ss DD/MM/YYYY') . '</td>
+                <td>' . \Carbon\Carbon::parse($danhmuc->created_at)->isoFormat('HH:mm DD/MM/YYYY') . '</td>
                 <td>
                     <a class="btn btn-primary btn-sm" href="/admin/danhmucs/edit/' . $danhmuc->id . '">
                         <i class="fas fa-edit"></i>
@@ -53,7 +53,7 @@ class Helper
         return $trangthai == 1 ? '<span class="btn btn-danger btn-xs">CHỜ DUYỆT</span>'
             : ($trangthai == 2 ? '<span class="btn btn-info btn-xs">ĐÃ DUYỆT</span>'
                 : ($trangthai == 3 ? '<span class="btn btn-success btn-xs">HOÀN THÀNH</span>'
-                    : '<span class="btn btn-primary btn-xs">TỪ CHỐI</span>'));
+                    : '<span class="btn btn-primary btn-xs">KHÔNG HOÀN THÀNH</span>'));
     }
 
     public static function danhmucs($danhmucs): string

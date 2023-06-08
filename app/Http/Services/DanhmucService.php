@@ -28,11 +28,15 @@ class DanhMucService
             ->whereIn('id', $dichvus)
             ->get();
     }
+    public function getdanhmucshop()
+    {
 
+        return DanhMuc::where('trangthai', 1)->paginate(10);
+    }
     public function getAll()
     {
 
-        return DanhMuc::paginate(10);
+        return DanhMuc::where('trangthai', 1)->paginate(10);
     }
     public function requestdv()
     {
@@ -81,7 +85,7 @@ class DanhMucService
         }
         return true;
     }
-    public function createshop($request)
+    public function createyeucau($request)
     {
         $shop_id = Auth::user()->shop_id;
         $tenshop = Shop::where('id', $shop_id)->first()->ten;
@@ -105,7 +109,8 @@ class DanhMucService
             ]);
 
             Session::flash('success', 'Gửi yêu cầu thành công');
-        } catch (\Exception) {
+        } catch (\Exception $error) {
+            // dd($error);
             Session::flash('error', 'Gửi yêu cầu lỗi');
             return false;
         }
