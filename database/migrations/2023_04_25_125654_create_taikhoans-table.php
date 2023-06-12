@@ -21,7 +21,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('shops')
                 ->onDelete('cascade');
-            $table->integer('quyen_id');
+
             $table->string('ten');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('quyens', function (Blueprint $table) {
-            $table->id();
-            $table->string('ten');
-            $table->timestamps();
+        Schema::table('taikhoans', function (Blueprint $table) {
+            $table->unsignedBigInteger('quyen_id');
+            $table->foreign('quyen_id')
+                ->references('id')
+                ->on('quyens')
+                ->onDelete('cascade');
         });
     }
 
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quyens');
+        //
     }
 };

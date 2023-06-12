@@ -205,7 +205,7 @@ class AuthController extends Controller
     {
         $user = User::where('email', $request->email)->first();
         if (!$user) {
-            return redirect('login')->with('error', 'Email không tồn tại');
+            return redirect()->back()->with('error', 'Email không tồn tại');
         }
         $randomString = Str::random(6);
 

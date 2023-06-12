@@ -28,14 +28,13 @@ class MainCSController extends Controller
         $shops = $currentuser->shops;
 
         $dv_hoanthanh = DichVuDat::where('trangthai', 3)->where('shop_id', $shops->id)->count();
-
+        $dv_choduyet = DichVuDat::where('trangthai', 1)->where('shop_id', $shops->id)->count();
         $lichdatdvs = DichVuDat::where('shop_id', $shops->id)->get();
         $tongtien = DichVuDat::where('trangthai', 3)
             ->where('shop_id', $shops->id)
-
             ->sum('tongtien');
 
-        $dichvu = DichVu::where('shop_id', $shops->id)->where('trangthai', 1)->count();
+        // $dichvu = DichVu::where('shop_id', $shops->id)->where('trangthai', 1)->count();
         $nhanvien = User::where('shop_id', $shops->id)->where('quyen_id', 4)->where('trangthai', 1)->count();
 
         return view('ChuShop.home', [
@@ -45,8 +44,8 @@ class MainCSController extends Controller
             'ten',
             'dv_hoanthanh' => $dv_hoanthanh,
             'doanhthu' => $tongtien,
-            'dichvu' => $dichvu,
             'nhanvien' => $nhanvien,
+            'dv_choduyet' => $dv_choduyet,
             'lichdatdvs' => $lichdatdvs,
         ]);
     }

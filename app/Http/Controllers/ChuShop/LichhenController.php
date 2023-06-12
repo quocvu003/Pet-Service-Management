@@ -29,13 +29,13 @@ class LichhenController extends Controller
 
         if ($request->status == 1) {
             $dichvudats = $this->dicvudatService->choduyet();
-        }
+        } else
         if ($request->status == 2) {
             $dichvudats = $this->dicvudatService->daduyet();
-        }
+        } else
         if ($request->status == 3) {
             $dichvudats = $this->dicvudatService->hoanthanh();
-        }
+        } else
         if ($request->status == 4) {
             $dichvudats = $this->dicvudatService->tuchoi();
         }
@@ -54,7 +54,6 @@ class LichhenController extends Controller
         } else {
             $listnhanvien = [];
         }
-
 
         return view('ChuShop.lichhen.index', [
             'title' => 'Quản lý lịch đặt dịch vụ',

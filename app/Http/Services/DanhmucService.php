@@ -36,7 +36,7 @@ class DanhMucService
     public function getAll()
     {
 
-        return DanhMuc::where('trangthai', 1)->paginate(10);
+        return DanhMuc::paginate(10);
     }
     public function requestdv()
     {

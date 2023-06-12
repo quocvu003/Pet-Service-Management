@@ -36,12 +36,13 @@ class AccService
         return  User::with('shops')
             ->where('quyen_id', '=', 2)
             ->where('trangthai', '<>', 2)
+
             ->paginate(9);
     }
 
     public function getkhachhang()
     {
-        return User::where('quyen_id', 3)->paginate(9);
+        return User::where('quyen_id', 3)->orderBy('id')->paginate(9);
     }
     public function create($request)
     {

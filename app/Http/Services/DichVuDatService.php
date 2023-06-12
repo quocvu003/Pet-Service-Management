@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class DichVuDatService
 {
@@ -89,10 +90,10 @@ class DichVuDatService
         $current_user = Auth::user();
         // Lấy shop_id của tài khoản hiện tại
         $shop_id = $current_user->shop_id;
-        $lichdatdvs = DichVuDat::where('trangthai', 3)
-            ->where('shop_id', $shop_id)->orderBy('ngay')
-            ->paginate(17);
-        return $lichdatdvs;
+        return DichVuDat::where('trangthai', 3)
+            ->where('shop_id', $shop_id)
+            ->orderByDesc('ngay')
+            ->paginate(20);
     }
     public function tuchoi()
     {

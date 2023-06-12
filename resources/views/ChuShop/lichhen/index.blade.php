@@ -120,6 +120,7 @@
 
                                             </tr>
                                         @endforeach
+                                        {{-- {{ $lichdatdvs->links() }} --}}
                                         @if ($status == 3)
                                             <a class="btn btn-primary" href="{{ route('export.pdf') }}">Xuất báo
                                                 cáo</a>
