@@ -70,11 +70,6 @@ php artisan migrate
 php artisan serve
 ```
 
-## 📷 Demo
-
-![image](https://github.com/user-attachments/assets/68b02f61-d2f6-471f-be56-c58e507b5e38)
-
-
 ## 📌 Notes
 
 - Make sure to configure the MySQL database credentials in the `.env` file.
